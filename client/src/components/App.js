@@ -9,6 +9,7 @@ import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';
+import Footer from './Footer';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route component={NoMatch} />
           </Switch>
         </FetchUser>
+        <Footer />
       </div>
     );
   }
