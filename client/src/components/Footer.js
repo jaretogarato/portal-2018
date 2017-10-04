@@ -2,7 +2,7 @@ import React from 'react';
 import { Segment, Grid, Image } from 'semantic-ui-react';
 
 const Footer = () => (
-  <div>
+  <Segment fluid>
     <Segment textAlign='center' basic style={styles.footer}>
       <Image
         src='https://media.licdn.com/media/AAEAAQAAAAAAAAfcAAAAJDI5MjNjMmJjLTg5NjktNGUzNy04ZDAwLTNhODI5NmFhZjM4YQ.png'
@@ -27,12 +27,12 @@ const Footer = () => (
         </Grid.Column>
       </Grid>
     </Segment>
-  </div>
+  </Segment>
 )
 
 const styles = {
   footer: {
-    backgroundColor: '#75da71',
+    backgroundColor: '#FFF',
     position: 'absolute', left: '0',
     bottom: '0', right: '0'
   },

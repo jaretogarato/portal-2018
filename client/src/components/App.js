@@ -10,14 +10,18 @@ import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';
 import Footer from './Footer';
+import FullHeader from 'lyef-full-header';
+import { Container, Grid, Header, Segment } from 'semantic-ui-react';
+import Lorem from 'react-lorem-component';
+import ImgHero from '../assets/images/hero-image.png';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        <Flash />
         <FetchUser>
+          <NavBar />
+          <Flash />
           <Switch>
             <Route exact path='/' component={Home} />
             <AuthRoute exact path='/login' component={Login} />
