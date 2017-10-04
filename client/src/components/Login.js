@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
-import { Header, Segment, Form, Button } from 'semantic-ui-react';
+import { Header, Segment, Form, Button, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
+import styled from 'styled-components'
+
+const LoginHeader = styled(Header)`
+  color: purple !important;
+  text-align: center;
+  font-size: 2em !important;
+`;
+
+const LoginGrid = styled(Grid)`
+  text-align: center;
+  justify-content: center;
+`;
+
+const LoginSegment = styled(Segment)`
+  justify-content: center;
+`;
+
+const LoginButton = styled(Button)`
+  background-color: purple !important;
+  color: white !important;  
+`;
 
 class Login extends Component {
   state = { email: '', password: '' };
@@ -21,37 +42,49 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <Segment basic>
-        <Header as='h1' textAlign='center'>Login</Header>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label htmlFor='email'>Email</label>
-            <input
-              required
-              id='email'
-              value={email}
-              placeholder='Email'
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label htmlFor='password'>Password</label>
-            <input
-              required
-              id='password'
-              value={password}
-              placeholder='Password'
-              type='password'
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Segment textAlign='center' basic>
-            <Button primary type='submit'>Submit</Button>
-          </Segment>
-        </Form>
-      </Segment>
-    );
+      <div>
+        <LoginGrid>
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <LoginSegment raised>
+              <LoginHeader>Login</LoginHeader>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Field>
+                  <label htmlFor='email'>Email</label>
+                  <input
+                  fluid
+                  icon='user'
+                  iconPosition='left'
+                  placeholder='E-mail address'
+                  required
+                  id='email'
+                  value={email}
+                  placeholder='Email'
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label htmlFor='password'>Password</label>
+                <input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  required
+                  id='password'
+                  value={password}
+                  placeholder='Password'
+                  type='password'
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <LoginButton
+                >Login
+                </LoginButton>
+              </Form> 
+            </LoginSegment>
+          </Grid.Column>
+        </LoginGrid>
+      </div>
+    )
   }
 }
-
 export default connect()(Login);
