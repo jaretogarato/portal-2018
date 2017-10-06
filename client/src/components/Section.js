@@ -8,7 +8,7 @@ import {
    Container,
   } from 'semantic-ui-react';
 
-class LeftMenu extends Component {
+class Section extends Component {
   state = { 
     activeItem: 'week1',
 }
@@ -29,5 +29,5 @@ class LeftMenu extends Component {
   }
 }
 
-export default LeftMenu;
+export default Section;
 

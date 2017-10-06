@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Accordion, Segment, Icon } from 'semantic-ui-react';
 
-class Modules extends Component {
+class Group extends Component {
   state = { active: true }
 
   handleModClick = (e, titleProps) => {
+    debugger
     const { index } = titleProps
     const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index
@@ -38,7 +39,7 @@ class Modules extends Component {
             <Icon name='dropdown' />
             Week1 Day2
           </Accordion.Title>
-          <Accordion.Content active={activeIndex === 1} index={1} onClick={this.handleModClick}>
+          <Accordion.Content active={activeIndex === 1}>
             <Segment.Group>
               <Segment>
                 <p>Stuff about day 2</p>
@@ -55,7 +56,7 @@ class Modules extends Component {
             <Icon name='dropdown' />
             Week1 Day2
           </Accordion.Title>
-          <Accordion.Content active={activeIndex === 2} index={2} onClick={this.handleModClick}>
+          <Accordion.Content active={activeIndex === 2}>
             <Segment.Group>
               <Segment>
                 <p>Stuff about day 3</p>
@@ -74,4 +75,4 @@ class Modules extends Component {
   }
 }
 
-export default Modules;
+export default Group;
