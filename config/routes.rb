@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  namespace :api do
-    get 'section/index'
-  end
 
   mount_devise_token_auth_for 'User', at: 'api/auth'
   namespace :api do
     resources :courses do
       resources :sections
+    end
+    resources :sections do
+      resources :groups
     end
   end
 
