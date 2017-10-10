@@ -1,24 +1,12 @@
-# README
+Setup:
+rake db:create db:migrate db:seed
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Normal User:
+email: 'test@test.com'
+password: 'password'
 
-Things you may want to cover:
+Admin User:
+email: 'admin@admin.com'
+password: 'password'
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Be sure you update .env with appropriate api keys (use template from .env.example)
