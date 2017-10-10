@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   mount_devise_token_auth_for 'User', at: 'api/auth'
   
   namespace :api do
@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :sections do
       resources :groups
     end
+    get 'avatar', to: 'avatar#index'
+    post 'avatars', to: 'avatars#create'
+  
   end
 
   #Do not place any routes below this one

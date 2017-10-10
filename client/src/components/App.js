@@ -16,6 +16,7 @@ import FullHeader from 'lyef-full-header';
 import { Container, Grid, Header, Segment } from 'semantic-ui-react';
 import Lorem from 'react-lorem-component';
 import ImgHero from '../assets/images/hero-image.png';
+import UserProfile from './UserProfile';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <AuthRoute exact path='/login' component={Login} />
+            <ProtectedRoute exact path='/user_profile' component={UserProfile} />
             <AuthRoute exact path='/register' component={Register} />
             <AdminRoute path='/courses' component={Courses} />
             <Route component={NoMatch} />

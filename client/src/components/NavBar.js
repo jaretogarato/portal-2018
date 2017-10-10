@@ -3,6 +3,7 @@ import { Menu } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
+import UserProfile from './UserProfile';
 
 class NavBar extends Component {
   rightNavs = () => {
@@ -11,6 +12,9 @@ class NavBar extends Component {
     if (user.id) {
       return (
         <Menu.Menu position='right'>
+           <Link to='/user_profile'>
+            <Menu.Item name='User Profile' />
+          </Link>
           <Menu.Item
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}

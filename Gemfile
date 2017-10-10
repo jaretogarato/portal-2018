@@ -7,10 +7,13 @@ gem 'puma', '~> 3.7'
 gem 'omniauth'
 gem 'devise'
 gem 'devise_token_auth'
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
+  gem 'dotenv-rails'
+  gem 'faker'
 end
 
 group :development do

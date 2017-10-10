@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20171004222000) do
     t.string "first_name"
     t.string "last_name"
     t.text "bio"
-    t.boolean "is_admin"
     t.boolean "is_admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
