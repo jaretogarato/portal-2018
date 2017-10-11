@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { setFlash } from './flash';
+
 
 export const addGroup = (group) => {
   return(dispatch) => {
@@ -7,6 +9,7 @@ export const addGroup = (group) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Add Group', 'red'));
+    });
   }
 }
 
@@ -18,6 +21,7 @@ export const getGroups = (callback) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Groups', 'red'));
+    });
   }
 }
 
@@ -38,5 +42,6 @@ export const deleteGroup = (group) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Delete Group', 'red'));
+    });
   }
 }

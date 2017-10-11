@@ -10,6 +10,7 @@ export const getSections = (callback) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Sections', 'red'));
+    });
   }
 }
 
@@ -20,6 +21,7 @@ export const addSection = (section) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Add Section', 'red'));
+    });
   }
 }
 
@@ -30,6 +32,7 @@ export const updateSection = (section) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Update Section', 'red'));
+    });
   }
 }
 
@@ -40,5 +43,6 @@ export const deleteSection = (section) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Delete Section', 'red'));
+    });
   }
 }
