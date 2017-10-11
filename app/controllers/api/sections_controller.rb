@@ -1,4 +1,4 @@
-class Api::SectionController < ApplicationController
+class Api::SectionsController < ApplicationController
   before_action :set_section, only: [ :destroy, :udpate, :show ]
   # need this to show for only current user or school, how ?
 
@@ -21,7 +21,7 @@ class Api::SectionController < ApplicationController
   end
 
   def create
-    course = Course.find(section_params[:course_id])
+    course = Course.find(params[:course_id])
     section = course.sections.new(section_params)
 
     if section.save

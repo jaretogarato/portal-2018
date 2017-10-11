@@ -16,7 +16,8 @@ export const getSections = (callback) => {
 
 export const addSection = (section) => {
   return(dispatch) => {
-    axios.post('/api/sections', { section })
+    axios.post(`/api/courses/1/sections`, { title: section })
+    // TODO: eventually tie in :course_id instead of 1
       .then( res => dispatch({ type: 'ADD_SECTION', section: res.data }))
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
