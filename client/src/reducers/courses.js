@@ -17,4 +17,4 @@ const courses = (state = [], action) => {
   }
 }
 
-export default course;
+export default courses;
