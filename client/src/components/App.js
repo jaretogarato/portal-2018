@@ -16,7 +16,9 @@ import FullHeader from 'lyef-full-header';
 import { Container, Grid, Header, Segment } from 'semantic-ui-react';
 import Lorem from 'react-lorem-component';
 import ImgHero from '../assets/images/hero-image.png';
+import InviteConfirmation from './InviteConfirmation';
 import UserProfile from './UserProfile';
+import Users from './Users';
 
 class App extends Component {
   render() {
@@ -26,11 +28,13 @@ class App extends Component {
           <NavBar />
           <Flash />
           <Switch>
+            <Route exact path='/invitation/accept' component={InviteConfirmation} />
             <Route exact path='/' component={Home} />
             <AuthRoute exact path='/login' component={Login} />
             <ProtectedRoute exact path='/user_profile' component={UserProfile} />
             <AuthRoute exact path='/register' component={Register} />
             <AdminRoute path='/courses' component={Courses} />
+            <AdminRoute path='/users' component={Users} />
             <Route component={NoMatch} />
           </Switch>
         </FetchUser>

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import user from './user';
+import users from './users';
 import flash from './flash';
 import avatars from './avatars';
 import courses from './courses';
@@ -8,6 +9,7 @@ import groups from './groups';
 
 const rootReducer = combineReducers({
   user,
+  users,
   flash,
   avatars,
   courses,

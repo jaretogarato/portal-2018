@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     end
     get 'avatar', to: 'avatar#index'
     post 'avatars', to: 'avatars#create'
-  
+    post '/invitation/send', to: 'invitations#invite'
+    post '/invitation/accept', to: 'invitations#accept'
   end
 
   #Do not place any routes below this one

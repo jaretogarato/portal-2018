@@ -5,10 +5,6 @@ import { registerUser } from '../actions/auth';
 import { setFlash } from '../actions/flash';
 import styled from 'styled-components';
 
-const RegisterHeader = styled(Header)`
-  text-align: center;
-  font-size: 2em !important;
-`;
 
 class Register extends Component {
   state = { email: '', password: '', passwordConfirmation: '', firstName: '', lastName: '' };
@@ -23,8 +19,6 @@ class Register extends Component {
   }
 
   handleChange = event => {
-    // use e to grab the id off the element also the value and set state
-    // const { id, value } = event.target;
     const id = event.target.id;
     const value = event.target.value;
     this.setState({ [id]: value });
@@ -123,5 +117,10 @@ class Register extends Component {
     );
   }
 }
+
+const RegisterHeader = styled(Header)`
+  text-align: center;
+  font-size: 2em !important;
+`;
 
 export default connect()(Register);

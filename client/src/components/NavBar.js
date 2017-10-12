@@ -10,6 +10,22 @@ class NavBar extends Component {
     const { user, dispatch, history } = this.props;
 
     if (user.id) {
+      if (user.is_admin) {
+        return(
+          <Menu.Menu position='right'>
+            <Link to='/users'>
+              <Menu.Item name='Users' />
+            </Link>
+            <Link to='/user_profile'>
+              <Menu.Item name='User Profile' />
+            </Link>
+            <Menu.Item
+              name='Logout'
+              onClick={() => dispatch(handleLogout(history))}
+            />
+          </Menu.Menu>
+      );
+      }
       return (
         <Menu.Menu position='right'>
            <Link to='/user_profile'>
