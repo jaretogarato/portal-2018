@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 // import { Switch, Route } from 'react-router-dom';
-import Footer from './Footer';
-import FullHeader from 'lyef-full-header';
+// import Footer from './Footer';
 import { Container, Grid, Header, Segment, Sticky } from 'semantic-ui-react';
-import Lorem from 'react-lorem-component';
+// import Lorem from 'react-lorem-component';
 import ImgHero from '../assets/images/hero-image.png';
-import Section from './Section';
-import Group from './Group';
+import SectionSelect from './SectionSelect';
+import SectionShow from './SectionShow';
 import RightTab from './RightTab';
+// import HeroHeader from './HeroHeader';
+// import ImageSectionDiv from '../../styles/ImageSectionDiv'
+import NavBarSecondary from './NavBarSecondary';
+import {
+  HeroHeader,
+  HeroHeaderTextContainer,
+  HeroHeaderImageContainer,
+} from '../styles/styles';
 
 class Home extends Component {
-  state = { active: true }
+  state = {
+    active: true,
+    title:'Devpoint',
+    body:'Portal',
+    bgImg:'ImgHero',
+  }
 
   handleContextRef = (contextRef) => {
     this.setState({ contextRef })
@@ -18,40 +30,40 @@ class Home extends Component {
 
   render() {
     let { contextRef, active } = this.state;
+    // const { bgImg, title, body } = this.props;
+
     return (
-      <div ref={this.handleContextRef}>  
-        <div style={styles.headerSqueezed}>
-          <FullHeader
-            title="DevPoint"
-            subtitle="portal"
-            bgColor="#EBE9EB"
-            textColor="#3299BB"
-            font="Lobster"
-            bgImg={ImgHero}
-          /> 
-        </div>
+      <div ref={this.handleContextRef}>
+        {/* ---------- header --------- */}
+        <Container fluid basic>
+          <HeroHeader bgImage={ImgHero}>
+            <div className='layer'>
+              <HeroHeaderTextContainer>
+                <Header as='h1' style={styles.h1}>{'DevPoint'}</Header>
+                <Header as='h3' style={styles.h3}>{'Portal'}</Header>
+                <br/>
+              </HeroHeaderTextContainer>
+            </div>
+          </HeroHeader>
+          <NavBarSecondary />
+          <Segment basic />
+        </Container>
+
+        {/* ---------- 3 col grid --------- */}
         <Container>
           <Grid>
             <Grid.Column width={3}>
-              <Header as='h2'>Left Column</Header>
-              <Header as='h4'>3 Wide</Header>
               <Segment>
-                <Section />
-                {/* <Lorem /> */}
+                <SectionSelect />
               </Segment>
             </Grid.Column>
             <Grid.Column width={9}>
-              <Header as='h2'>Middle Column</Header>
-              <Header as='h4'>9 Wide</Header>
               <Segment>
-                {/* <Lorem /> */}
-                <Group />
+                <SectionShow />
                 {/* <OurMainViewComponent course="fall_2017" role="student" page="2" />  */}
               </Segment>
             </Grid.Column>
             <Grid.Column width={4}>
-              <Header as='h2'>Right Column</Header>
-              <Header as='h4'>4 Wide</Header>
               <Sticky active={active} context={contextRef}>
                 <RightTab />
               </Sticky>
@@ -65,10 +77,20 @@ class Home extends Component {
 
 const styles = {
   headerSqueezed: {
-    maxHeight: '250px',
+    maxHeight: '300px',
     overflow: 'hidden',
   },
+  fluidHeader: {
+    minHeight:'300px',
+  },
+  h1: {
+    color:'#FFF',
+    fontSize: '4em',
+  },
+  h3: {
+    color:'#FFF',
+    fontSize: '3em',
+  }
 }
 
 export default Home;
-

@@ -12,11 +12,9 @@ import AdminRoute from './AdminRoute';
 import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';
 import Footer from './Footer';
-import FullHeader from 'lyef-full-header';
-import { Container, Grid, Header, Segment } from 'semantic-ui-react';
-import Lorem from 'react-lorem-component';
-import ImgHero from '../assets/images/hero-image.png';
-import InviteConfirmation from './InviteConfirmation';
+// import { Container, Grid, Header, Segment } from 'semantic-ui-react';
+// import Lorem from 'react-lorem-component';
+// import ImgHero from '../assets/images/hero-image.png';
 import UserProfile from './UserProfile';
 import Users from './Users';
 

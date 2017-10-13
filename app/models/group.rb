@@ -1,3 +1,3 @@
 class Group < ApplicationRecord
-  belongs_to :Section
+  belongs_to :section
 end

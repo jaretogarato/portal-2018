@@ -21,7 +21,7 @@ const LoginSegment = styled(Segment)`
 
 const LoginButton = styled(Button)`
   background-color: purple !important;
-  color: white !important;  
+  color: white !important;
 `;
 
 class Login extends Component {
@@ -53,8 +53,7 @@ class Login extends Component {
                   <input
                   fluid
                   icon='user'
-                  iconPosition='left'
-                  placeholder='E-mail address'
+                  iconPosition='left'                  
                   required
                   id='email'
                   value={email}
@@ -79,7 +78,7 @@ class Login extends Component {
               <LoginButton
                 >Login
                 </LoginButton>
-              </Form> 
+              </Form>
             </LoginSegment>
           </Grid.Column>
         </LoginGrid>
