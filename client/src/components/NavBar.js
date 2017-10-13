@@ -17,7 +17,7 @@ class NavBar extends Component {
               <Menu.Item name='Users' />
             </Link>
             <Link to='/user_profile'>
-              <Menu.Item name='User Profile' />
+              <Menu.Item name='Profile' />
             </Link>
             <Menu.Item
               name='Logout'
@@ -29,7 +29,7 @@ class NavBar extends Component {
       return (
         <Menu.Menu position='right'>
            <Link to='/user_profile'>
-            <Menu.Item name='User Profile' />
+            <Menu.Item name='Profile' />
           </Link>
           <Menu.Item
             name='Logout'
@@ -40,9 +40,6 @@ class NavBar extends Component {
     }
     return (
       <Menu.Menu position='right'>
-        <Link to='/register'>
-          <Menu.Item name='Register' />
-        </Link>
         <Link to='/login'>
           <Menu.Item name='Login' />
         </Link>

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { Component }from 'react';
+import {Card} from 'semantic-ui-react';
+import axios from 'axios';
 
-const Courses = () => (
-  <div>
-    This is the courses page...
-  </div>
-)
-
+  class Courses extends Component {
+  state = {courses: []}
+  
+  render() {
+    return(
+      <div>
+        Courses
+      </div>
+    )
+  }
+}
 export default Courses;
