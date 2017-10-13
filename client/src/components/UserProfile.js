@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { handleUpload } from '../actions/avatar';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
-import { Segment, Grid, Image, Header } from 'semantic-ui-react';
+import {
+   Segment, 
+   Grid, 
+   Image, 
+   Header, 
+   Container,
+   Divider,
+  } from 'semantic-ui-react';
 
 class UserProfile extends Component {
    state = { fileUploading: false }
+
     onDrop = (avatar) => {
         // dispatch the handleUpload action pass it the photo
         this.toggleUploading();
@@ -27,18 +35,51 @@ class UserProfile extends Component {
       }
 
     render() {
+      const { user } = this.props;
         return (
-          <Segment basic >
-            <Dropzone
-                onDrop={this.onDrop}
-                style={{ width: '70px', height: '70px', border: 'solid black'}}
-                >
-                <Header> Add Stuff Here </Header>
-            </Dropzone>
-          </Segment>
+          <Container>
+            <Segment textAlign='center' basic>
+              <Header as='h2'>{user.first_name} {user.last_name}'s Profile</Header>
+            </Segment>
+            <Divider />
+            <Grid columns={3} divided>
+              <Grid.Row stretched>
+                <Grid.Column>
+                  <Segment basic style={{ display: 'flex', alignSelf: 'center'}}>
+                    <Dropzone
+                      onDrop={this.onDrop}
+                    />
+                  </Segment>
+                </Grid.Column>
+                <Grid.Column>
+                  <Segment basic>
+                    <Header as='h3'>{user.first_name}'s Bio</Header>
+                    <Divider />
+                    {user.bio}
+                  </Segment>
+                </Grid.Column>
+                <Grid.Column>
+                  <Segment basic>
+                    <Header as='h4'>{user.first_name}'s Email Address: </Header>
+                    <Divider />
+                    <i>{user.email}</i>
+                  </Segment>
+                  <Segment basic>
+                    <Header as='h4'>Nickname</Header>
+                    <Divider />
+                    <p>{user.nickname}</p>
+                  </Segment>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
         )
     }
 
 }
 
-export default connect()(UserProfile);
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(UserProfile);
