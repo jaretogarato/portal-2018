@@ -17,11 +17,21 @@ course_type = ['Full-Time', 'Part-Time']
             title: "Day #{i + 1}",
             section_id: section.id
           )
+            5.times do |i|
+              lecture = Lecture.create(
+                title: "Lecture #{i + 1}", 
+                content: "<h1><strong>This is a content page for lecture #{i + 1}. </strong></h1><p>Lecture #{i + 1} content. More content. Even more content.</p><p><br></p><ul><li>Lecture #{i + 1} bullet.</li><li>Lecture #{i + 1} bullet.</li><li>Lecture #{i + 1} bullet.</li><li><br></li></ul>",
+                group_id: group.id
+              )
+            end
         end
     end
 end
 
-puts "10 courses with 10 sections with 10 groups seeded"
+puts "10 courses seeded"
+puts "10 sections seeded" 
+puts "10 groups seeded"
+puts "5 lectures seeded"
 
 admin = User.create(
   first_name: 'admin',
