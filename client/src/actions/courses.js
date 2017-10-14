@@ -16,8 +16,11 @@ export const getCourses = (callback) => {
 
 export const addCourse = (course) => {
   return(dispatch) => {
-    axios.post('/api/courses', { course })
-      .then( res => dispatch({ type: 'ADD_COURSE', course: res.data }))
+    axios.post('/api/courses', course)
+      .then( res => {
+        dispatch(setFlash('Course Successfully Created!', 'success'))
+        dispatch({ type: 'ADD_COURSE', course: res.data })
+      })
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Add Course', 'red'));

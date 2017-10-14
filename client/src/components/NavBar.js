@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
 import UserProfile from './UserProfile';
+import Courses from './Courses';
 
 class NavBar extends Component {
   rightNavs = () => {
@@ -30,6 +31,9 @@ class NavBar extends Component {
         <Menu.Menu position='right'>
            <Link to='/user_profile'>
             <Menu.Item name='Profile' />
+          </Link>
+          <Link to='/courses'>
+            <Menu.Item name='Courses' />
           </Link>
           <Menu.Item
             name='Logout'

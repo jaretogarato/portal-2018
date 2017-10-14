@@ -18,6 +18,7 @@ import Footer from './Footer';
 // import ImgHero from '../assets/images/hero-image.png';
 import UserProfile from './UserProfile';
 import Users from './Users';
+import CourseForm from './CourseForm';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
             <AuthRoute exact path='/register' component={Register} />
             <AdminRoute path='/courses' component={Courses} />
             <AdminRoute path='/users' component={Users} />
+            <AdminRoute path='/courseform' component={CourseForm} />
             <Route component={NoMatch} />
           </Switch>
         </FetchUser>

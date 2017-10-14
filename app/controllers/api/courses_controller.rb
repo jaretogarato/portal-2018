@@ -21,9 +21,9 @@ class Api::CoursesController < ApplicationController
 
   def create
     course = current_user.courses.new(course_params)
-
     if course.save
       render json: course
+      
     else
       render json: { errors: course.errors.full_messages }, status: 422
     end
