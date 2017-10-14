@@ -19,6 +19,9 @@ class NavBar extends Component {
             <Link to='/user_profile'>
               <Menu.Item style={styles.navText} name='Profile' />
             </Link>
+            <Link to='/courses'>
+              <Menu.Item name='Courses' />
+            </Link>
             <Menu.Item
               style={styles.navText}
               name='Logout'

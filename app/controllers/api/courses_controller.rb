@@ -4,7 +4,7 @@ class Api::CoursesController < ApplicationController
 
   def index
     courses = Course.all
-    render json: { courses: courses }
+    render json: courses
   end
 
   def show
