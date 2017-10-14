@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Accordion, Segment, Icon, Divider, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { setFlash } from '../actions/flash';
+import axios from 'axios';
 
 // parent
 // const dummySections = [
@@ -29,25 +31,52 @@ import { connect } from 'react-redux';
 //   { id: 13, name: 'Day 4', section: 2},
 //   { id: 14, name: 'Day 5', section: 2},
 // ]
+const getSections = (course_id) => {
+  return(dispatch) => {
+    //         vvvvvvvv first argument is path, defined by routes
+    // const course_id = 0;
+
+    axios.get(`/api/courses/1/sections`)
+      .then(res => {
+        // res will return an object
+        const {} = res;
+        // dispatch(login(user));
+        console.log('******* res from getSections in SectionShow component **');
+        console.log(res);
+      })
+      .catch( err => {
+        console.log('we are in the catch');
+        dispatch({ type: 'SET_HEADERS', headers: err.headers });
+        dispatch(setFlash('Failed To Retrieve Sections', 'red'));
+
+      });
+  }
+}
 
 class SectionShow extends Component {
-  state = { activeSectionIndex: 0, activeGroupIndex: 0 }
+  state = { activeSectionId: 1, activeGroupId: 1 }
 
   componentWillMount() {
-    this.setState({ activeSectionIndex: this.props.activeSectionIndex });
-    console.log('**-- from SectionShow CWM -- **')
-    console.log(this.state)
-    // get the groups that are in this section. eg:
-    // this.props.dispatch(getApps(this.setLoaded))
-
+    // set the active section id upon mount
+    this.setState({ activeSectionId: this.props.activeSectionId });
+    this.setState({ activeCourseId: this.props.activeCourseId });
+    console.log('vvvvv');
+    console.log(this.props.activeCourseId);
+    console.log('vvvvv');
+    console.log(this.props.activeSectionId);
   }
 
+  // componentDidMount(){
+  //   this.setState({ activeCourseId: this.props.activeCourseId });
+  //   console.log('vvvvv');
+  //   console.log(this.props.activeCourseId);
+  //
+  //   // this.props.dispatch(getSections(this.props.activeCourseId));
+  // }
+
   componentWillReceiveProps = (nextProps) => {
-    // console.log(nextProps);
-    this.setState({ activeSectionIndex: nextProps.activeSectionIndex });
-    console.log('**-- from componentWillReceiveProps --**')
-    console.log(this.props);
-    console.log(this.state);
+    this.setState({ activeCourseId: nextProps.activeCourseId });
+    this.setState({ activeSectionId: nextProps.activeSectionId });
   }
 
   getGroups = (section) => {
@@ -55,44 +84,43 @@ class SectionShow extends Component {
   }
 
   renderSection = () => {
-    // debugger;
     return(
       <div>
-        <h2>activeSectionIndex: {this.state.activeSectionIndex}</h2>
+        <h3>activeCourseId: {this.state.activeCourseId} :: activeSectionId: {this.state.activeSectionId}</h3>
       </div>
     )
   }
 
   handleModClick = (e, titleProps) => {
-    // debugger
     const { index } = titleProps;
-    const { activeGroupIndex } = this.state;
-    const newIndex = activeGroupIndex === index ? -1 : index;
+    const { activeGroupId } = this.state;
+    const newIndex = activeGroupId === index ? -1 : index;
 
-    this.setState({ activeGroupIndex: newIndex });
+    this.setState({ activeGroupId: newIndex });
   }
 
-  // const showSection (activeSectionIndex) => {
+  // const showSection (activeSectionId) => {
   //
   // }
 
   render() {
-    const { activeGroupIndex } = this.state;
-    console.log(this.state);
-    console.log(activeGroupIndex);
+    const { activeGroupId } = this.state;
+    // console.log(this.state);
+    // console.log(activeGroupId);
     return (
       <div>
+        {/* {getSections()} */}
         <Container textAlign='left'>
           {/* vvv just renders section id so far  */}
           {this.renderSection()}
 
           <Header as='h3' align='center'>Week 1</Header>
           <Accordion styled>
-            <Accordion.Title active={activeGroupIndex === 0} index={0} onClick={this.handleModClick}>
+            <Accordion.Title active={activeGroupId === 0} index={0} onClick={this.handleModClick}>
               <Icon name='dropdown' />
               Week1 Day1
             </Accordion.Title>
-            <Accordion.Content active={activeGroupIndex === 0}>
+            <Accordion.Content active={activeGroupId === 0}>
               <Segment.Group>
                 <Segment>
                   <p>Stuff about day 1</p>
@@ -105,11 +133,11 @@ class SectionShow extends Component {
                 </Segment>
               </Segment.Group>
             </Accordion.Content>
-            <Accordion.Title active={activeGroupIndex === 1} index={1} onClick={this.handleModClick}>
+            <Accordion.Title active={activeGroupId === 1} index={1} onClick={this.handleModClick}>
               <Icon name='dropdown' />
               Week1 Day2
             </Accordion.Title>
-            <Accordion.Content active={activeGroupIndex === 1}>
+            <Accordion.Content active={activeGroupId === 1}>
               <Segment.Group>
                 <Segment>
                   <p>Stuff about day 2</p>
@@ -122,11 +150,11 @@ class SectionShow extends Component {
                 </Segment>
               </Segment.Group>
             </Accordion.Content>
-            <Accordion.Title active={activeGroupIndex === 2} index={2} onClick={this.handleModClick}>
+            <Accordion.Title active={activeGroupId === 2} index={2} onClick={this.handleModClick}>
               <Icon name='dropdown' />
               Week1 Day2
             </Accordion.Title>
-            <Accordion.Content active={activeGroupIndex === 2}>
+            <Accordion.Content active={activeGroupId === 2}>
               <Segment.Group>
                 <Segment>
                   <p>Stuff about day 3</p>
@@ -151,8 +179,8 @@ const mapStateToProps = (state) => {
   // console.log("-----");
   // console.log(state);
   // debugger;
-  return{activeSectionIndex: state.activeSectionIndex};
-  // ^^^^^^^ arbitrary name :   ^^^^^ look in redux store for activeSectionIndex
+  return{activeSectionId: state.activeSectionId, activeCourseId: state.activeCourseId};
+  // ^^^^^^^ arbitrary name :   ^^^^^ look in redux store for activeSectionId
 }
 
 export default connect(mapStateToProps)(SectionShow);

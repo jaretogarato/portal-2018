@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
-// import { Switch, Route } from 'react-router-dom';
-// import Footer from './Footer';
 import { Container, Grid, Header, Segment, Sticky } from 'semantic-ui-react';
-// import Lorem from 'react-lorem-component';
 import ImgHero from '../assets/images/hero-image.png';
 import SectionSelect from './SectionSelect';
 import SectionShow from './SectionShow';
 import RightTab from './RightTab';
-// import HeroHeader from './HeroHeader';
-// import ImageSectionDiv from '../../styles/ImageSectionDiv'
 import NavBarSecondary from './NavBarSecondary';
 import {
   HeroHeader,
   HeroHeaderTextContainer,
-  HeroHeaderImageContainer,
 } from '../styles/styles';
 
 class Home extends Component {
@@ -35,12 +29,12 @@ class Home extends Component {
     return (
       <div ref={this.handleContextRef}>
         {/* ---------- header --------- */}
-        <Container fluid basic>
+        <Container fluid>
           <HeroHeader bgImage={ImgHero}>
             <div className='layer'>
               <HeroHeaderTextContainer>
-                <Header as='h1' style={styles.h1}>{'DevPoint'}</Header>
-                <Header as='h3' style={styles.h3}>{'Portal'}</Header>
+                <Header as='h1' style={styles.h1}>{'Portal'}</Header>
+                <Header as='h3' style={styles.h3}>{'by DevPoint'}</Header>
                 <br/>
               </HeroHeaderTextContainer>
             </div>
@@ -50,8 +44,8 @@ class Home extends Component {
         </Container>
 
         {/* ---------- 3 col grid --------- */}
-        <Container>
-          <Grid>
+        <Container style={styles.noBorder}>
+          <Grid style={styles.noBorder}>
             <Grid.Column width={3}>
               <Segment>
                 <SectionSelect />
@@ -85,12 +79,17 @@ const styles = {
   },
   h1: {
     color:'#FFF',
-    fontSize: '4em',
+    fontSize: '5em',
   },
   h3: {
     color:'#FFF',
-    fontSize: '3em',
-  }
+    fontSize: '2.5em',
+    paddingTop: '0',
+    marginTop: '-25px',
+  },
+  noBorder: {
+    border:'none',
+  },
 }
 
 export default Home;

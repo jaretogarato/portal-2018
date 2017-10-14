@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { image } from 'semantic-ui-react';
 
 // ------------ v1 ---------------
 export const HeroHeader = styled.div`

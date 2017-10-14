@@ -3,12 +3,15 @@ class Api::SectionsController < ApplicationController
   # need this to show for only current user or school, how ?
 
   def index
+    # binding.pry
     course = Course.find(section_params[:course_id])
     sections = course.sections.all
     render json: { sections: sections }
   end
 
   def show
+    # course = Course.find(section_params[:course_id])
+    # section = Section.find()
     render json: @section
   end
 
@@ -37,7 +40,7 @@ class Api::SectionsController < ApplicationController
 
   private
     def section_params
-      params.require(:section).permit(:title, :section_id, :course_id)
+      params.require(:title, :section_id, :course_id)
     end
 
     def set_section

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-
 export const getSections = (callback) => {
   return(dispatch) => {
     axios.get('/api/sections')

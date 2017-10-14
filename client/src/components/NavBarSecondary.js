@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 
 class NavBar extends Component {
   leftNavs = () => {
-    const { user, dispatch, history } = this.props;
+    // const { user, dispatch, history } = this.props;
 
     return (
-      <Menu.Menu position='left'>
+      <Menu.Menu style={styles.navbarSecondary} position='left'>
         <Link to='/'>
           <Menu.Item name='Sample link 1' />
         </Link>
@@ -25,12 +25,19 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <Menu pointing secondary>
+        <Menu style={styles.navbarSecondary} pointing secondary>
           { this.leftNavs() }
         </Menu>
       </div>
     );
   }
+}
+
+const styles = {
+  navbarSecondary: {
+    backgroundColor: '#e0dfde',
+    border: 'none',
+  },
 }
 
 const mapStateToProps = state => {

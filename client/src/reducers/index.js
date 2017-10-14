@@ -6,7 +6,8 @@ import avatars from './avatars';
 import courses from './courses';
 import sections from './sections';
 import groups from './groups';
-import activeSectionIndex from './activeSectionIndex';
+import activeCourseId from './activeCourseId';
+import activeSectionId from './activeSectionId';
 
 const rootReducer = combineReducers({
   user,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   courses,
   sections,
   groups,
-  activeSectionIndex,
+  activeCourseId,
+  activeSectionId,
 });
 
 export default rootReducer;
