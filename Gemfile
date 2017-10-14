@@ -15,6 +15,11 @@ group :development, :test do
   gem 'pry'
   gem 'dotenv-rails'
   gem 'faker'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  # put /coverage into your git ignore
+  gem 'simplecov'
 end
 
 group :development do
