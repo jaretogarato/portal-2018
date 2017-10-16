@@ -94,3 +94,11 @@ export const HeroHeaderH1 = styled.h1`
   font-weight: 100;
   font-size: 3em;
 `
+export const FooterStyled = styled.div`
+  position: fixed;
+  border-top: solid 1px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+`

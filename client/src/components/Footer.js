@@ -6,9 +6,10 @@ import {
   Menu,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { FooterStyled } from '../styles/styles';
 
 const Footer = () => (
-  <Segment fluid style={styles.container}>
+  <FooterStyled>
     <Segment textAlign='center' basic >
       <Grid columns={3}>
         <Grid.Column>
@@ -42,7 +43,7 @@ const Footer = () => (
     </Segment>
     <Segment inverted color='grey' attached='top'>
       <Grid columns={2}>
-        <Grid.Column>
+        <Grid.Column textAlign='left'>
           <p style={styles.text}>
             <i>Designed by DevPoint Studios</i>
           </p>
@@ -66,7 +67,7 @@ const Footer = () => (
         </Grid.Column>
       </Grid>
     </Segment>
-  </Segment>
+  </FooterStyled>
 )
 
 const styles = {
