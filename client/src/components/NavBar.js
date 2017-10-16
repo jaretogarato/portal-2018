@@ -13,6 +13,9 @@ class NavBar extends Component {
       if (user.is_admin) {
         return(
           <Menu.Menu style={styles.navbarPrimary} position='right'>
+            <Link to='/course_view'>
+              <Menu.Item style={styles.navText} name='Course View' />
+            </Link>
             <Link to='/users'>
               <Menu.Item style={styles.navText} name='Users' />
             </Link>

@@ -20,13 +20,11 @@ class CourseView extends Component {
 
   render() {
     let { contextRef, active } = this.state;
-    // const { bgImg, title, body } = this.props;
 
     return (
       <div ref={this.handleContextRef}>
         <NavBarSecondary />
         <Segment basic />
-        {/* ---------- 3 col grid --------- */}
         <Container style={styles.noBorder}>
           <Grid style={styles.noBorder}>
             <Grid.Column width={3}>
@@ -37,7 +35,6 @@ class CourseView extends Component {
             <Grid.Column width={9}>
               <Segment>
                 <SectionShow />
-                {/* <OurMainViewComponent course="fall_2017" role="student" page="2" />  */}
               </Segment>
             </Grid.Column>
             <Grid.Column width={4}>
