@@ -15,13 +15,15 @@ class Courses extends Component {
 
   renderCourses = () => {
     const { courses } = this.props;
-    return courses.map( courses =>
-      <Card key={courses.id}>
-        <Card.Content>
-          <h1>{courses.course_type}</h1>
-        </Card.Content>
-      </Card>
-    ) 
+    if(courses) {
+      return courses.map( courses =>
+        <Card key={courses.id}>
+          <Card.Content>
+            <h1>{courses.course_type}</h1>
+          </Card.Content>
+        </Card>
+      )
+    }
   }
   
   render() {
@@ -37,7 +39,6 @@ class Courses extends Component {
             </Button>
           </Link>
       </Segment>
-      
       <Card.Group>
         { this.renderCourses() }
       </Card.Group>

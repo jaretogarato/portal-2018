@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
           :omniauthable, :invitable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :courses, :through => :enrollments
+
   has_many :enrollments
   has_many :attendances
+  has_many :courses, :through=>:enrollments, :source=>"course"
+  
 
   validates_presence_of :first_name, :last_name
 

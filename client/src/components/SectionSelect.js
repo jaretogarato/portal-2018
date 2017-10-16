@@ -12,20 +12,20 @@ import { getCourses } from '../actions/courses';
 // }
 
 class SectionSelect extends Component {
-  state = {courses: {}, activeCourseId: 1, activeSectionId: 1}
+  state = {courses: {}, activeSectionId: 1}
 
   componentDidMount(){
     // get all courses
-    this.props.dispatch({ type: 'GET_COURSES', courses: this.state.courses })
+    // this.props.dispatch({ type: 'GET_COURSES', courses: this.state.courses })
 
     // set up initial course id
-    this.props.dispatch({ type: 'SET_COURSE', course: this.state.activeCourseId });
+    // this.props.dispatch({ type: 'SET_COURSE', course: this.state.activeCourseId });
 
     // set up initial section id
-    this.props.dispatch({ type: 'SET_SECTION', section: this.state.activeSectionId });
+    // this.props.dispatch({ type: 'SET_SECTION', section: this.state.activeSectionId });
 
-    console.log('vv this.state from componentDidMount vv');
-    console.log(this.state);
+    // console.log('vv this.state from componentDidMount vv');
+    // console.log(this.state);
   }
 
   handleClick = (e) => {
@@ -50,14 +50,7 @@ class SectionSelect extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('v state.courses v');
-  console.log(state.courses);
-  console.log('v state.activeCourseI`d v');
-  console.log(state.activeCourseId);
-  console.log('v state.activeSectionId v');
-  console.log(state.activeSectionId);
-
-  return { activeSectionId: state.activeSectionId, activeCourseId: state.activeCourseId }
+  return { activeSectionId: state.activeSectionId }
 }
 
 export default connect(mapStateToProps)(SectionSelect);
