@@ -38,6 +38,8 @@ admin = User.create(
   last_name: 'admin',
   email: 'admin@admin.com',
   password: 'password',
+  bio: "This is a really good bio don't ya know...",
+  nickname: 'Spencer is BOSS',
   is_admin: true
 )
 
@@ -47,6 +49,8 @@ admin = User.create(
     last_name: 'student',
     email: 'test@test.com',
     password: 'password',
+    bio: "This is a really good bio don't ya know...",
+    nickname: 'Spencer is BOSS',
     is_admin: false
   )
     Enrollment.create(
@@ -66,6 +70,8 @@ puts "Test Student seeded email: test@test.com and password: password"
     password: 'password',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
+    bio: "This is a really good bio don't ya know...",
+    nickname: 'Spencer is BOSS',
     invitation_accepted_at: Time.now
   )
     Enrollment.create(
