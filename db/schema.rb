@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016204303) do
+ActiveRecord::Schema.define(version: 20171016232252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.string "attendance_record"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_attendances_on_course_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "course_type", null: false
@@ -130,6 +140,8 @@ ActiveRecord::Schema.define(version: 20171016204303) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "attendances", "courses"
+  add_foreign_key "attendances", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "groups", "sections"

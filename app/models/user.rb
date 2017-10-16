@@ -7,11 +7,12 @@ class User < ActiveRecord::Base
 
   has_many :courses, :through => :enrollments
   has_many :enrollments
+  has_many :attendances
 
   validates_presence_of :first_name, :last_name
 
   def full_name
     "#{self.first_name} #{self.last_name}"
-  end 
+  end
 
 end
