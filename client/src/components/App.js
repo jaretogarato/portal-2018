@@ -6,6 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import Flash from './Flash';
 import Home from './Home';
+import CourseView from './CourseView';
 import InviteConfirmation from './InviteConfirmation';
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <AuthRoute exact path='/login' component={Login} />
             <ProtectedRoute exact path='/user_profile' component={UserProfile} />
+            <ProtectedRoute exact path='/course_view' component={CourseView} />
             <AuthRoute exact path='/register' component={Register} />
             <AdminRoute path='/courses' component={Courses} />
             <AdminRoute path='/users' component={Users} />
