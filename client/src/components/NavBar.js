@@ -13,21 +13,33 @@ class NavBar extends Component {
       if (user.is_admin) {
         return(
           <Menu.Menu style={styles.navbarPrimary} position='right'>
-            <Link to='/course_view'>
-              <Menu.Item style={styles.navText} name='Course View' />
-            </Link>
-            <Link to='/users'>
-              <Menu.Item style={styles.navText} name='Users' />
-            </Link>
-            <Link to='/user_profile'>
-              <Menu.Item style={styles.navText} name='Profile' />
-            </Link>
-            <Link to='/courses'>
-              <Menu.Item name='Courses' />
-            </Link>
             <Menu.Item
+              as={Link}
+              to='/course_view'
               style={styles.navText}
-              name='Logout'
+              name="Course View"
+            />
+            <Menu.Item
+              as={Link}
+              to='/users'
+              style={styles.navText}
+              name="Users"
+            />
+            <Menu.Item
+              as={Link}
+              to='/user_profile'
+              style={styles.navText}
+              name="Profile"
+            />
+            <Menu.Item
+              as={Link}
+              to='/courses'
+              style={styles.navText}
+              name="Courses"
+            />
+            <Menu.Item
+              name="Logout"
+              style={styles.navText}
               onClick={() => dispatch(handleLogout(history))}
             />
           </Menu.Menu>
@@ -35,9 +47,12 @@ class NavBar extends Component {
       }
       return (
         <Menu.Menu style={styles.navbarPrimary} position='right'>
-           <Link to='/user_profile'>
-            <Menu.Item style={styles.navText} name='Profile' />
-          </Link>
+          <Menu.Item
+            as={Link}
+            to='/user_profile'
+            style={styles.navText}
+            name="Profile"
+          />
           <Menu.Item
             style={styles.navText}
             name='Logout'
@@ -48,12 +63,18 @@ class NavBar extends Component {
     }
     return (
       <Menu.Menu style={styles.navbarPrimary} position='right'>
-        <Link to='/register'>
-          <Menu.Item style={styles.navText} name='Register' />
-        </Link>
-        <Link to='/login'>
-          <Menu.Item style={styles.navText} name='Login' />
-        </Link>
+        <Menu.Item
+          as={Link}
+          to='/register'
+          style={styles.navText}
+          name="Register"
+        />
+        <Menu.Item
+          as={Link}
+          to='/login'
+          style={styles.navText}
+          name="Login"
+        />
       </Menu.Menu>
     );
   }
@@ -62,9 +83,12 @@ class NavBar extends Component {
     return (
       <div>
         <Menu style={styles.navbarPrimary} pointing secondary>
-          <Link to='/'>
-            <Menu.Item style={styles.navText} name='home' />
-          </Link>
+          <Menu.Item
+            as={Link}
+            to='/'
+            style={styles.navText}
+            name="Home"
+          />
           { this.rightNavs() }
         </Menu>
       </div>
