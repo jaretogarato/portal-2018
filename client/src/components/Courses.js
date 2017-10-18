@@ -8,24 +8,24 @@ import { getCourses } from '../actions/courses';
 class Courses extends Component {
   state = { courses: [] };
 
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(getCourses() );
+    dispatch(getCourses());
   }
 
   renderCourses = () => {
-    const { courses } = this.props;
-    if(courses) {
-      return courses.map( courses =>
-        <Card key={courses.id}>
-          <Card.Content>
-            <h1>{courses.course_type}</h1>
-          </Card.Content>
-        </Card>
-      )
-    }
+    const { courses } = this.props || [];
+    return courses.map( courses =>
+      <Card key={courses.id}>
+        <Card.Content>
+          <h2>{courses.course_type}</h2>
+          <h4>{courses.year}</h4>
+          <h4>{courses.term}</h4>
+        </Card.Content>
+      </Card>
+    )
   }
-  
+
   render() {
     return(
       <div>
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => {
   return { courses: state.courses }
 }
 
-export default connect(mapStateToProps) (Courses);
+export default connect(mapStateToProps)(Courses);

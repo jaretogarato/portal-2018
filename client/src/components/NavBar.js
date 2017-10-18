@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
@@ -7,6 +7,11 @@ import UserProfile from './UserProfile';
 import Attendance from './Attendance';
 
 class NavBar extends Component {
+  state = { activeItem: 'Course View' }
+
+  handleItemClick = (e, { name }) =>
+    this.setState({ activeItem: name })
+
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
 
@@ -25,40 +30,64 @@ class NavBar extends Component {
               to='/course_view'
               style={styles.navText}
               name="Course View"
-            />
-            <Menu.Item
-              as={Link}
-              to='/users'
-              style={styles.navText}
-              name="Users"
+              active={this.state.activeItem === 'Course View'}
+              onClick={this.handleItemClick}
             />
             <Menu.Item
               as={Link}
               to='/user_profile'
               style={styles.navText}
               name="Profile"
+              active={this.state.activeItem === 'Profile'}
+              onClick={this.handleItemClick}
             />
-            <Menu.Item
-              as={Link}
-              to='/courses'
-              style={styles.navText}
-              name="Courses"
-            />
+            <Dropdown item text='Admin' style={styles.navText }>
+              <Dropdown.Menu style={styles.dropdown} >
+                <Dropdown.Item
+                  as={Link}
+                  to='/courses'
+                  style={styles.navSecondaryText}
+                  name="Courses"
+                  text="Courses"
+                  active={this.state.activeItem === 'Courses'}
+                  onClick={this.handleItemClick}
+                />
+                <Dropdown.Item
+                  as={Link}
+                  to='/users'
+                  style={styles.navSecondaryText}
+                  name="Users"
+                  text="Users"
+                  active={this.state.activeItem === 'Users'}
+                  onClick={this.handleItemClick}
+                />
+              </Dropdown.Menu>
+            </Dropdown>
             <Menu.Item
               name="Logout"
               style={styles.navText}
               onClick={() => dispatch(handleLogout(history))}
             />
           </Menu.Menu>
-      );
+        );
       }
       return (
         <Menu.Menu style={styles.navbarPrimary} position='right'>
           <Menu.Item
             as={Link}
+            to='/course_view'
+            style={styles.navText}
+            name="Course View"
+            active={this.state.activeItem === 'Course View'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={Link}
             to='/user_profile'
             style={styles.navText}
             name="Profile"
+            active={this.state.activeItem === 'Profile'}
+            onClick={this.handleItemClick}
           />
           <Menu.Item
             style={styles.navText}
@@ -75,12 +104,16 @@ class NavBar extends Component {
           to='/register'
           style={styles.navText}
           name="Register"
+          active={this.state.activeItem === 'Register'}
+          onClick={this.handleItemClick}
         />
         <Menu.Item
           as={Link}
           to='/login'
           style={styles.navText}
           name="Login"
+          active={this.state.activeItem === 'Login'}
+          onClick={this.handleItemClick}
         />
       </Menu.Menu>
     );
@@ -95,6 +128,8 @@ class NavBar extends Component {
             to='/'
             style={styles.navText}
             name="Home"
+            active={this.state.activeItem === 'Home'}
+            onClick={this.handleItemClick}
           />
           { this.rightNavs() }
         </Menu>
@@ -111,6 +146,13 @@ const styles = {
   navText: {
     color: '#fff',
   },
+  navSecondaryText: {
+    // color: '#BBB',
+  },
+  dropdown: {
+    // color: '#BBB',
+    backgroundColor: '#DDD',
+  }
 }
 
 const mapStateToProps = state => {

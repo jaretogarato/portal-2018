@@ -1,56 +1,90 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Menu} from 'semantic-ui-react';
+import { Card, Dimmer, Loader, Menu, Segment } from 'semantic-ui-react';
 import { setSection } from '../actions/section';
 import { getSections } from '../actions/sections';
 import { getCourses } from '../actions/courses';
-
-// const getCourses = () => {
-//   this.props.dispatch(getCourses);
-//   console.log('vv this.props vv');
-//   console.log(this.props);
-// }
+import { setCourse } from '../actions/course';
 
 class SectionSelect extends Component {
-  state = {courses: {}, activeSectionId: 1}
+  state = {
+    coursesLoaded: false,
+    sectionsLoaded: false,
+    groupsLoaded: false,
+    itemsLoaded: false,
+    courses: [],
+    sections: [],
+    activeCourseId: 1,
+    activeSectionId: 1,
+  }
 
-  componentDidMount(){
-    // get all courses
-    // this.props.dispatch({ type: 'GET_COURSES', courses: this.state.courses })
+  setCoursesLoaded = () => this.setState({ coursesLoaded: true });
+  setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
+  setGroupsLoaded = () => this.setState({ groupsLoaded: true });
+  setItemsLoaded = () => this.setState({ itemsLoaded: true });
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    const { activeCourseId, activeSectionId } = this.state;
 
     // set up initial course id
-    // this.props.dispatch({ type: 'SET_COURSE', course: this.state.activeCourseId });
+    dispatch(setCourse(activeCourseId));
 
-    // set up initial section id
-    // this.props.dispatch({ type: 'SET_SECTION', section: this.state.activeSectionId });
+    // set up initial section id for the course
+    dispatch(setSection(activeSectionId));
 
-    // console.log('vv this.state from componentDidMount vv');
-    // console.log(this.state);
+    // pre-populate redux store with courses
+    dispatch(getCourses());
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    const { activeCourseId } = this.state;
+
+    // load sections for active course
+    dispatch(getSections(activeCourseId, this.setSectionsLoaded));
   }
 
   handleClick = (e) => {
     this.setState({ activeSectionId: parseInt(e.currentTarget.id, 10) }, () => {
-      console.log('**-- from SectionSelect component --**')
-      console.log(this.state);
-      console.log(this.state.activeSectionId);
       this.props.dispatch(setSection(this.state.activeSectionId));
     });
   }
 
   render() {
     let { activeCourseId, activeSectionId } = this.state;
-    return(
-      <Menu fluid vertical tabular>
-        <Menu.Item id='1' name='week1' active={activeSectionId === 1} onClick={e => this.handleClick(e)}></Menu.Item>
-        <Menu.Item id='2' name='week2' active={activeSectionId === 2} onClick={this.handleClick}></Menu.Item>
-        <Menu.Item id='3' name='week3' active={activeSectionId === 3} onClick={this.handleClick}></Menu.Item>
-      </Menu>
-    );
+    if(this.state.sectionsLoaded) {
+      return(
+        <div>
+          <h3>Sections</h3>
+          <Menu fluid vertical tabular>
+            {this.props.sections.map( section =>
+              <Menu.Item
+                key={section.id}
+                id={section.id}
+                name={section.title}
+                active={activeSectionId === section.id}
+                onClick={e => this.handleClick(e)}>
+              </Menu.Item>
+              )
+            }
+          </Menu>
+        </div>
+      );
+    } else {
+      return(
+        <div>
+          <Dimmer active inverted>
+            <Loader inverted size='large'>Loading</Loader>
+          </Dimmer>
+        </div>
+      )
+    }
   }
 }
 
 const mapStateToProps = (state) => {
-  return { activeSectionId: state.activeSectionId }
+  return { sections: state.sections, activeSectionId: state.activeSectionId, activeCourseId: state.activeCourseId }
 }
 
 export default connect(mapStateToProps)(SectionSelect);

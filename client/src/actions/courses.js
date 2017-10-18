@@ -5,9 +5,24 @@ export const getCourses = () => {
   return(dispatch) => {
     axios.get('/api/courses')
       .then( res => dispatch({  type: 'GET_COURSES', courses: res.data }))
+      // .then(callback())
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Courses', 'red'));
+      });
+  }
+}
+
+export const getCoursesByStudent = (userId) => {
+  return(dispatch) => {
+    axios.get(`/api/user_courses/${userId}`)
+      .then( res => {
+        dispatch({ type: 'GET_USER_COURSES', userCourses: res.data })
+      })
+      // .then(callback())
+      .catch( err => {
+        dispatch({ type: 'SET_HEADERS', headers: err.headers });
+        dispatch(setFlash('Failed To Retrieve User Courses', 'red'));
       });
   }
 }

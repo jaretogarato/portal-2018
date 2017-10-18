@@ -19,6 +19,10 @@ class Api::CoursesController < ApplicationController
     end
   end
 
+  def user_courses
+    render json: User.find(params[:user_id]).courses
+  end
+
   def create
     course = current_user.courses.new(course_params)
     if course.save

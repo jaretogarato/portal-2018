@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  
+
   mount_devise_token_auth_for 'User', at: 'api/auth'
-  
+
   namespace :api do
     resources :courses do
       resources :sections
     end
+
     resources :sections do
       resources :groups
     end
-    resources :users, only: [:update]
-    resources :attendances, only: [:create]
-    
+
+    get 'user_courses/:user_id', to: 'courses#user_courses'
+
     get 'avatar', to: 'avatar#index'
     post 'avatars', to: 'avatars#create'
     post '/invitation/send', to: 'invitations#invite'

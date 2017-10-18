@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-export const getSections = (callback) => {
+export const getSections = (course_id, callback) => {
   return(dispatch) => {
-    axios.get('/api/sections')
+    axios.get(`/api/courses/${course_id}/sections`)
       .then( res => dispatch({ type: 'GET_SECTIONS', sections: res.data }))
       .then( callback() )
       .catch( err => {

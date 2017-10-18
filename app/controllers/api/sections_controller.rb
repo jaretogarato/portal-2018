@@ -3,10 +3,9 @@ class Api::SectionsController < ApplicationController
   # need this to show for only current user or school, how ?
 
   def index
-    # binding.pry
-    course = Course.find(section_params[:course_id])
+    course = Course.find(params[:course_id])
     sections = course.sections.all
-    render json: { sections: sections }
+    render json: sections
   end
 
   def show
