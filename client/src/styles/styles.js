@@ -104,5 +104,4 @@ export const FlexContainer = styled.div`
 `
 export const FlexContent = styled.div`
   flex: 1 0 auto;
-  padding: 20px
 `
