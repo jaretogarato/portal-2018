@@ -10,11 +10,13 @@ Rails.application.routes.draw do
       resources :groups
     end
     resources :users, only: [:update]
-
+    resources :attendances, only: [:create]
+    
     get 'avatar', to: 'avatar#index'
     post 'avatars', to: 'avatars#create'
     post '/invitation/send', to: 'invitations#invite'
     post '/invitation/accept', to: 'invitations#accept'
+    get '/course_users', to: 'users#course_users'
   end
 
   #Do not place any routes below this one

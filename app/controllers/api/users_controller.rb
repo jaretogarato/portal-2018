@@ -9,6 +9,12 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def course_users
+    course = Course.last
+    users = course.users
+    render json: users
+  end
+
   private
   def user_params
     params.require(:user).permit(:firstName, :lastName, :bio, :email, :nickname)

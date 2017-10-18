@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
 import UserProfile from './UserProfile';
+import Attendance from './Attendance';
 
 class NavBar extends Component {
   rightNavs = () => {
@@ -13,6 +14,12 @@ class NavBar extends Component {
       if (user.is_admin) {
         return(
           <Menu.Menu style={styles.navbarPrimary} position='right'>
+            <Menu.Item 
+              as={Link}
+              to='/attendance'
+              style={styles.navText} 
+              name='Attendance' 
+            />
             <Menu.Item
               as={Link}
               to='/course_view'

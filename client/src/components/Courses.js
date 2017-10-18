@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import { getCourses } from '../actions/courses';
 
 class Courses extends Component {
-  state = {courses: []}
+  state = { courses: [] };
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(getCourses() )
+    dispatch(getCourses() );
   }
 
   renderCourses = () => {
