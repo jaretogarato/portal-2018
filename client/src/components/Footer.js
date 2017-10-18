@@ -10,37 +10,6 @@ import { FooterStyled } from '../styles/styles';
 
 const Footer = () => (
   <FooterStyled>
-    <Segment textAlign='center' basic >
-      <Grid columns={3}>
-        <Grid.Column>
-          <a href='http://www.devpointlabs.com/'>
-            <Image
-              src='https://media.licdn.com/media/AAEAAQAAAAAAAAfcAAAAJDI5MjNjMmJjLTg5NjktNGUzNy04ZDAwLTNhODI5NmFhZjM4YQ.png'
-              size='medium'
-              style={styles.icons}
-            />
-          </a>
-        </Grid.Column>
-        <Grid.Column>
-          <a href='http://www.stackoverflow.com'>
-            <Image
-              src='http://www.computerscience.org/wp-content/uploads/2015/10/Stackoverflow.png'
-              size='medium'
-              style={styles.icons}
-            />
-          </a>
-        </Grid.Column>
-        <Grid.Column>
-          <a href='http://www.github.com'>
-            <Image
-              src='https://4.bp.blogspot.com/-r4FaHOFh23U/WQYT2ynYqLI/AAAAAAAAEbg/BacAEeR-p_EyjyWRhsT5UK3mEWxVPhOiQCLcB/s400/github.7433692cabbfa132f34adb034e7909fa.jpg'
-              size='medium'
-              style={styles.icons}
-            />
-          </a>
-        </Grid.Column>
-      </Grid>
-    </Segment>
     <Segment inverted color='grey' attached='top'>
       <Grid columns={2}>
         <Grid.Column textAlign='left'>
