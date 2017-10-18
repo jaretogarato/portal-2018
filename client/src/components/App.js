@@ -17,29 +17,32 @@ import Footer from './Footer';
 import UserProfile from './UserProfile';
 import Users from './Users';
 import CourseForm from './CourseForm';
+import { FlexContainer, FlexContent } from '../styles/styles';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <FetchUser>
-          <NavBar />
-          <Flash />
-          <Switch>
-            <Route exact path='/invitation/accept' component={InviteConfirmation} />
-            <Route exact path='/' component={Home} />
-            <AuthRoute exact path='/login' component={Login} />
-            <ProtectedRoute exact path='/user_profile' component={UserProfile} />
-            <ProtectedRoute exact path='/course_view' component={CourseView} />
-            <AuthRoute exact path='/register' component={Register} />
-            <AdminRoute path='/courses' component={Courses} />
-            <AdminRoute path='/users' component={Users} />
-            <AdminRoute path='/courseform' component={CourseForm} />
-            <Route component={NoMatch} />
-          </Switch>
-        </FetchUser>
+      <FlexContainer>
+        <FlexContent>
+          <FetchUser>
+            <NavBar />
+            <Flash />
+            <Switch>
+              <Route exact path='/invitation/accept' component={InviteConfirmation} />
+              <Route exact path='/' component={Home} />
+              <AuthRoute exact path='/login' component={Login} />
+              <ProtectedRoute exact path='/user_profile' component={UserProfile} />
+              <ProtectedRoute exact path='/course_view' component={CourseView} />
+              <AuthRoute exact path='/register' component={Register} />
+              <AdminRoute path='/courses' component={Courses} />
+              <AdminRoute path='/users' component={Users} />
+              <AdminRoute path='/courseform' component={CourseForm} />
+              <Route component={NoMatch} />
+            </Switch>
+          </FetchUser>
+        </FlexContent>
         <Footer />
-      </div>
+      </FlexContainer>
     );
   }
 }

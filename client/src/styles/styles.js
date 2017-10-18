@@ -95,10 +95,14 @@ export const HeroHeaderH1 = styled.h1`
   font-size: 3em;
 `
 export const FooterStyled = styled.div`
-  position: fixed;
-  border-top: solid 1px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+  flex-shrink: 0;
+`
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`
+export const FlexContent = styled.div`
+  flex: 1 0 auto;
+  padding: 20px
 `
