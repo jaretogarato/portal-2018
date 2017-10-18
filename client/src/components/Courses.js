@@ -1,12 +1,19 @@
 import React, { Component }from 'react';
 import { Link } from 'react-router-dom';
 import CourseForm from './CourseForm';
-import {Card, Segment, Button } from 'semantic-ui-react';
+import {
+  Button,
+  Card,
+  Container,
+  Grid,
+  Menu,
+  Segment,
+} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getCourses } from '../actions/courses';
 
 class Courses extends Component {
-  state = { courses: [] };
+  state = {courses: [], isAdding: false}
 
   componentWillMount() {
     const { dispatch } = this.props;
@@ -14,34 +21,56 @@ class Courses extends Component {
   }
 
   renderCourses = () => {
-    const { courses } = this.props || [];
-    return courses.map( courses =>
-      <Card key={courses.id}>
-        <Card.Content>
-          <h2>{courses.course_type}</h2>
-          <h4>{courses.year}</h4>
-          <h4>{courses.term}</h4>
-        </Card.Content>
-      </Card>
-    )
+    const { courses } = this.props;
+    if(courses) {
+      return courses.map( course =>
+        <Grid.Column key={course.id}>
+          <Card>
+            <Card.Content>
+              <Card.Header>
+                {course.course_type}
+              </Card.Header>
+              <Card.Meta>
+                {course.term} {course.year}
+              </Card.Meta>
+            </Card.Content>
+            <Card.Content extra>
+              <div className='ui two buttons'>
+                <Button basic color='green'>View</Button>
+                <Button basic color='orange'>Edit</Button>
+              </div>
+            </Card.Content>
+          </Card>
+        </Grid.Column>
+      )
+    }
   }
 
   render() {
+    const { isAdding } = this.state;
     return(
       <div>
-      <Segment>
-        <Link to='/courseform'>
-            <Button
-              color='purple'
-              basic
-            >
-            Create Course
-            </Button>
-          </Link>
-      </Segment>
-      <Card.Group>
-        { this.renderCourses() }
-      </Card.Group>
+        <Menu>
+          <Menu.Item
+            disabled={isAdding}
+            name='Add Course'
+            active={'nope' === 'editorials'}
+            onClick={() => this.setState({isAdding: true})}
+          />
+          { isAdding &&
+            <Menu.Item
+              name='Cancel Create Course'
+              active={'nope' === 'editorials'}
+              onClick={() => this.setState({isAdding: false})}
+            />
+          }
+        </Menu>
+      { isAdding && <CourseForm cancelEdit={() => this.setState({isAdding: false})}/> }
+      <Container>
+        <Grid stackable columns='3'>
+          { this.renderCourses() }
+        </Grid>
+      </Container>
       </div>
     )
   }

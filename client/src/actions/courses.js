@@ -4,8 +4,9 @@ import { setFlash } from './flash';
 export const getCourses = () => {
   return(dispatch) => {
     axios.get('/api/courses')
-      .then( res => dispatch({  type: 'GET_COURSES', courses: res.data }))
-      // .then(callback())
+      .then( res => {
+        dispatch({  type: 'GET_COURSES', courses: res.data })
+      })
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Courses', 'red'));
@@ -33,10 +34,12 @@ export const addCourse = (course) => {
       .then( res => {
         dispatch(setFlash('Course Successfully Created!', 'success'))
         dispatch({ type: 'ADD_COURSE', course: res.data })
+        dispatch({ type: 'SET_HEADERS', headers: res.headers });
       })
       .catch( err => {
+        const message = err.response.data.errors;
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
-        dispatch(setFlash('Failed To Add Course', 'red'));
+        dispatch(setFlash(message, 'red'));
     });
   }
 }
