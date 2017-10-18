@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :sections do
       resources :groups
     end
+    resources :users, only: [:update]
+
     get 'avatar', to: 'avatar#index'
     post 'avatars', to: 'avatars#create'
     post '/invitation/send', to: 'invitations#invite'
