@@ -1,6 +1,7 @@
 import React, { Component }from 'react';
 import { Link } from 'react-router-dom';
 import CourseForm from './CourseForm';
+import EditCourseModal from './EditCourseModal';
 import {
   Button,
   Card,
@@ -37,7 +38,7 @@ class Courses extends Component {
             <Card.Content extra>
               <div className='ui two buttons'>
                 <Button basic color='green'>View</Button>
-                <Button basic color='orange'>Edit</Button>
+                <EditCourseModal course={course}/>
               </div>
             </Card.Content>
           </Card>
@@ -65,7 +66,7 @@ class Courses extends Component {
             />
           }
         </Menu>
-      { isAdding && <CourseForm cancelEdit={() => this.setState({isAdding: false})}/> }
+      { isAdding && <CourseForm cancelAdding={() => this.setState({isAdding: false})}/> }
       <Container>
         <Grid stackable columns='3'>
           { this.renderCourses() }

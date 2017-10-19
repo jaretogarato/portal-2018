@@ -1,5 +1,5 @@
 class Api::CoursesController < ApplicationController
-  before_action :set_course, only: [ :destroy, :udpate, :show ]
+  before_action :set_course, only: [ :destroy, :update, :show ]
   # need this to show for only current user or school, how ?
 
   def index

@@ -44,11 +44,15 @@ export const addCourse = (course) => {
   }
 }
 
-export const updateCourse = (course) => {
+export const updateCourse = (course, id) => {
   return(dispatch) => {
-    axios.post(`/api/courses/${course.id}`, { course })
-      .then( res => dispatch({ type: 'UPDATE_COURSE', course: res.data }))
+    axios.put(`/api/courses/${id}`, { course })
+      .then( res => {
+        dispatch({ type: 'UPDATE_COURSE', course: res.data });
+        dispatch({ type: 'SET_HEADERS', headers: res.headers });
+      })
       .catch( err => {
+        debugger
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Update Course', 'red'));
     });
