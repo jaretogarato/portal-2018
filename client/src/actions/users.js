@@ -15,3 +15,9 @@ export const getUsers = () => {
       })
   }
 }
+
+export const updateUserStatus = (id, status) => {
+  return(dispatch) => {
+    dispatch({ type: 'UPDATE_USER_STATUS', newStatus: { id, status } })
+  }
+}

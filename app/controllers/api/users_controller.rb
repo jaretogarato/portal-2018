@@ -11,7 +11,10 @@ class Api::UsersController < ApplicationController
 
   def course_users
     course = Course.last
-    users = course.users
+    users = course.users.order(last_name: :asc)
+    users.map do |user|
+      { id: user.id, first_name: user.first_name, last_name: user.last_name, status: nil }
+    end
     render json: users
   end
 

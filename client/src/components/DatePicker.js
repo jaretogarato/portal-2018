@@ -1,22 +1,26 @@
 import React from 'react';
 import moment from 'moment';
 import { Button, Container, Grid, Header } from 'semantic-ui-react';
+import { getDate, updateDate } from '../actions/currentDate';
+import { connect } from 'react-redux';
 
 class DatePicker extends React.Component {
-  state = { currentDate: '' };
-
+  
   componentDidMount() {
-    // TODO: Need to get actual real date
+    const { dispatch } = this.props;
     let currentDate = new Date("October 18, 2017")
-    this.setState({ currentDate: moment(currentDate).format('ddd MMM D YYYY') }) 
+    currentDate = moment(currentDate).format('ddd MMM D YYYY')
+    dispatch(getDate(currentDate));
   }
 
   handleDayChange = (dayChange) => {
-    const { currentDate } = this.state;
-    this.setState({ currentDate: moment(currentDate).add(dayChange, 'day').format('ddd MMM D YYYY') })
+    const { dispatch, currentDate } = this.props;
+    let newDate = moment(currentDate).add(dayChange, 'day').format('ddd MMM D YYYY')
+    dispatch(updateDate(newDate));
   }
   
   render() {
+    const { currentDate } = this.props;
     return(
       <Grid stackable columns='equal'>
         <Grid.Row stretched>
@@ -27,7 +31,7 @@ class DatePicker extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Header as='h1' textAlign="right">
-                { this.state.currentDate }
+                { currentDate }
               </Header>
                 <Container textAlign='right'>
                   <Button.Group>
@@ -52,4 +56,8 @@ class DatePicker extends React.Component {
   }
 }
 
-export default DatePicker;
+const mapStateToProps = (state) => {  
+  return { currentDate: state.currentDate }
+}
+
+export default connect(mapStateToProps)(DatePicker);

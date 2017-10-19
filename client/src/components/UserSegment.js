@@ -1,27 +1,36 @@
 import React from 'react';
+import { updateUserStatus } from '../actions/users';
+import { connect } from 'react-redux';
 import { Card, Container, Header, Icon, Image } from 'semantic-ui-react';
 
 class UserSegment extends React.Component {
   state = { status: 'none' };
 
-  handleClick = () => {
+  toggleStatus = () => {
     const { status } = this.state;
     switch(status) {
       case 'none':
-        this.setState({ status: 'present' });
+        this.handleStatusChange('present')
         break;
       case 'present':
-        this.setState({ status: 'absent' });
+        this.handleStatusChange('absent')
         break;
       case 'absent':
-        this.setState({ status: 'tardy' });
+        this.handleStatusChange('tardy')
         break;
       case 'tardy': 
-        this.setState({ status: 'none' });
+        this.handleStatusChange('none')
         break;
     }
   }
 
+  handleStatusChange = (foo) => {
+    this.setState( (state, props) => {
+      props.dispatch(updateUserStatus(props.user.id, foo))
+      return { status: foo }
+    })
+  }
+  
   displayIcon = () => {
     switch(this.state.status) {
       case 'none': 
@@ -40,11 +49,11 @@ class UserSegment extends React.Component {
 
     return (
       <Container>
-        <Card style={styles.userSection} onClick={this.handleClick}>
+        <Card style={styles.userSection} onClick={this.toggleStatus}>
           <Card.Content>
             <Image floated='left' size='tiny' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7pnbX2ymlHMB0338HBDcg3hrWKiWlNwIQ81WmhKoolgkqD5Uofw' />
             <Header as='h1'>
-              { first_name } { last_name } 
+              { last_name }, { first_name } 
               { this.displayIcon() }   
             </Header>
           </Card.Content>
@@ -60,4 +69,4 @@ const styles = {
   }
 }
 
-export default UserSegment;
+export default connect()(UserSegment);

@@ -6,7 +6,6 @@ import { getUsers } from '../actions/users';
 import { Button, Container, Header } from 'semantic-ui-react';
 
 class Attendance extends React.Component {
-  state = { attendances: [] };
   
   componentWillMount() {
     const { dispatch } = this.props;
@@ -16,13 +15,12 @@ class Attendance extends React.Component {
   displayUsers = () => {
     const { users } = this.props;
     return users.map( user => {
-      return <UserSegment id={user.id} user={user}  />
+      return <UserSegment key={user.id} user={user} />
     })
   }
 
-  handleClick = () => {
-    const { dispatch } = this.props;
-    // dispatch to action addAttendance
+  submitAttendance = () => {
+    const { dispatch, users } = this.props;
   }
 
   render() {
@@ -30,10 +28,7 @@ class Attendance extends React.Component {
       <Container>
         <Header as='h1' textAlign='center'>Attendance</Header>
         <DatePicker />
-        <Button 
-          basic 
-          onClick={ this.handleClick }
-        >
+        <Button basic onClick={this.submitAttendance}>
           Submit Attendance
         </Button>
         { this.displayUsers() }
