@@ -3,57 +3,64 @@ import { connect } from 'react-redux';
 import { Card, Dimmer, Loader, Menu, Segment } from 'semantic-ui-react';
 import { setSection } from '../actions/section';
 import { getSections } from '../actions/sections';
-import { getCourses } from '../actions/courses';
+import { getCoursesByStudent } from '../actions/courses';
 import { setCourse } from '../actions/course';
+import { getGroups } from '../actions/groups';
 
 class SectionSelect extends Component {
   state = {
     coursesLoaded: false,
     sectionsLoaded: false,
     groupsLoaded: false,
-    itemsLoaded: false,
     courses: [],
+    courseId: 1,
+    course: {},
+    courseHeader: '',
     sections: [],
-    activeCourseId: 1,
-    activeSectionId: 1,
+    sectionId: 1,
+    section: {},
+    sectionHeader: {},
   }
 
   setCoursesLoaded = () => this.setState({ coursesLoaded: true });
   setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
   setGroupsLoaded = () => this.setState({ groupsLoaded: true });
-  setItemsLoaded = () => this.setState({ itemsLoaded: true });
+
 
   componentWillMount() {
-    const { dispatch } = this.props;
-    const { activeCourseId, activeSectionId } = this.state;
+    const { dispatch, user: { id: userId, first_name } } = this.props;
+    const { courseId, sectionId } = this.state;
 
     // set up initial course id
-    dispatch(setCourse(activeCourseId));
+    dispatch(setCourse(this.state.courseId));
+
+    // get the courses to which a user belongs
+    dispatch(getCoursesByStudent(userId, this.setCoursesLoaded));
 
     // set up initial section id for the course
-    dispatch(setSection(activeSectionId));
-
-    // pre-populate redux store with courses
-    dispatch(getCourses());
+    dispatch(setSection(sectionId));
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    const { activeCourseId } = this.state;
+    const { courseId, sectionId } = this.state;
 
     // load sections for active course
-    dispatch(getSections(activeCourseId, this.setSectionsLoaded));
+    dispatch(getSections(courseId, this.setSectionsLoaded));
+
+    // load groups for active section
+    dispatch(getGroups(sectionId, this.setGroupsLoaded));
   }
 
   handleClick = (e) => {
-    this.setState({ activeSectionId: parseInt(e.currentTarget.id, 10) }, () => {
-      this.props.dispatch(setSection(this.state.activeSectionId));
+    this.setState({ sectionId: parseInt(e.currentTarget.id, 10) }, () => {
+      this.props.dispatch(setSection(this.state.sectionId));
     });
   }
 
   render() {
-    let { activeCourseId, activeSectionId } = this.state;
-    if(this.state.sectionsLoaded) {
+    let { coursesLoaded, sectionsLoaded, courseId, sectionId } = this.state;
+    if(sectionsLoaded && coursesLoaded) {
       return(
         <div>
           <h3>Sections</h3>
@@ -63,7 +70,7 @@ class SectionSelect extends Component {
                 key={section.id}
                 id={section.id}
                 name={section.title}
-                active={activeSectionId === section.id}
+                active={sectionId === section.id}
                 onClick={e => this.handleClick(e)}>
               </Menu.Item>
               )
@@ -84,7 +91,14 @@ class SectionSelect extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { sections: state.sections, activeSectionId: state.activeSectionId, activeCourseId: state.activeCourseId }
+  return {
+    user: state.user,
+    sections: state.sections,
+    sectionId: state.sectionId,
+    section: state.section,
+    courses: state.courses,
+    courseId: state.courseId,
+  }
 }
 
 export default connect(mapStateToProps)(SectionSelect);

@@ -1,4 +1,4 @@
-const activeSectionId = (state = null, action) => {
+const sectionId = (state = null, action) => {
   switch(action.type) {
     case 'SET_SECTION':
       return action.section;
@@ -7,4 +7,4 @@ const activeSectionId = (state = null, action) => {
   }
 }
 
-export default activeSectionId;
+export default sectionId;

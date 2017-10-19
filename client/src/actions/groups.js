@@ -13,10 +13,12 @@ export const addGroup = (group) => {
   }
 }
 
-export const getGroups = (callback) => {
+export const getGroups = (sectionId, callback) => {
   return(dispatch) => {
-    axios.get('/api/groups')
-      .then( res => dispatch({ type: 'GET_GROUPS', groups: res.data }))
+    axios.get(`/api/sections/${sectionId}/groups`)
+      .then( res => {
+        dispatch({ type: 'GET_GROUPS', groups: res.data })
+      })
       .then( callback() )
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
@@ -32,6 +34,7 @@ export const updateGroup = (group) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Update Group', 'red'));
+    });
   }
 }
 

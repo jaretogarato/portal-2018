@@ -1,4 +1,4 @@
-const activeCourseId = (state = null, action) => {
+const courseId = (state = null, action) => {
   switch(action.type) {
     case 'SET_COURSE':
       return action.course;
@@ -7,4 +7,4 @@ const activeCourseId = (state = null, action) => {
   }
 }
 
-export default activeCourseId;
+export default courseId;
