@@ -58,6 +58,7 @@ export const handleLogin = (email, password, history) => {
       .then(res => {
         const { data: { data: user }, headers } = res;
         dispatch(login(user));
+        dispatch(setFlash('Logged in successfully!', 'green'));
         dispatch(setHeaders(headers));
         history.push('/');
       })
