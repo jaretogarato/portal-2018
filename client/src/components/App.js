@@ -34,11 +34,22 @@ class App extends Component {
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/attendance' component={Attendance} />
               <ProtectedRoute exact path='/user_profile' component={UserProfile} />
-              <ProtectedRoute exact path='/course_view' component={CourseView} />
+              <ProtectedRoute
+                exact path='/course_view'
+                component={CourseView}
+              />
               <AuthRoute exact path='/register' component={Register} />
-              <AdminRoute path='/courses' component={Courses} />
-              <AdminRoute path='/users' component={Users} />
-              <AdminRoute path='/courseform' component={CourseForm} />
+              <ProtectedRoute adminOnly={true} path='/courses' component={Courses} />
+              <ProtectedRoute
+                exact path='/users'
+                component={Users}
+                adminOnly={true}
+              />
+              <ProtectedRoute
+                path='/users'
+                component={Users}
+                adminOnly={true}
+              />
               <Route component={NoMatch} />
             </Switch>
           </FetchUser>

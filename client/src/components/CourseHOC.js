@@ -20,7 +20,6 @@ class CourseHOC extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.dispatch(getCoursesByStudent(nextProps.user.id));
     if (!this.state.coursesLoaded) this.setCoursesLoaded();
   }
 
