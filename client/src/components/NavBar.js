@@ -134,10 +134,7 @@ class NavBar extends Component {
             active={this.state.activeItem === 'Home'}
             onClick={this.handleItemClick}
           >
-            <Image
-              src={PortalLogo}
-              height='45px'
-            />
+            <Image src={PortalLogo} height='60px' />
           </Menu.Item>
           { this.rightNavs() }
         </Menu>

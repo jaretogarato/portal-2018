@@ -3,7 +3,7 @@ class Api::GroupsController < ApplicationController
   before_action :set_section, only: [:index, :create]
 
   def index
-    groups = @section.groups.all
+    groups = @section.groups.all.order(id: :asc)
     render json: groups
   end
 

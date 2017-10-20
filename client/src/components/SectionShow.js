@@ -59,10 +59,33 @@ class SectionShow extends Component {
   renderGroups = () => {
     return this.props.groups.map( group => {
       return(
-        <Accordion.Title active={this.state.groupId === group.id} index={group.id} onClick={this.handleModClick}>
-          <Icon name='dropdown' />
-          {group.title}
-        </Accordion.Title>
+        <div key={group.id}>
+          {/* get lectures for group and map through them */}
+          <Accordion.Title
+            active={this.state.groupId === group.id}
+            index={group.id}
+            onClick={this.handleModClick}
+          >
+            <Icon name='dropdown' />
+            {group.title}
+          </Accordion.Title>
+          <Accordion.Content
+            active={this.state.groupId === group.id}
+            index={`${group.id}_1`}
+          >
+            <Segment.Group>
+              <Segment>
+                <p>Placeholder Lecture Notes 01</p>
+              </Segment>
+              <Segment>
+                <p>Placeholder Lecture Notes 02</p>
+              </Segment>
+              <Segment>
+                <p>Placeholder Lecture Notes 03</p>
+              </Segment>
+            </Segment.Group>
+          </Accordion.Content>
+        </div>
       )
     })
   }
@@ -88,76 +111,12 @@ class SectionShow extends Component {
       // console.log('');
 
       return (
-        <div>
-          <Container textAlign = 'left'>
-            <Header as='h2'>------Dynamic-------</Header>
-            <Header as='h3' align='center'>{sectionTitle}</Header>
-            <Accordion styled>
-              {this.renderGroups()}
-            </Accordion>
-          </Container>
-
-          <Divider />
-
-          <Container textAlign='left'>
-            <Header as='h2'>------Static/Placeholder-------</Header>
-            <Header as='h3' align='center'>Section placeholder: Week 1</Header>
-            <Accordion styled>
-              <Accordion.Title active={groupId === 0} index={0} onClick={this.handleModClick}>
-                <Icon name='dropdown' />
-                Week1 Day1
-              </Accordion.Title>
-              <Accordion.Content active={groupId === 0}>
-                <Segment.Group>
-                  <Segment>
-                    <p>Stuff about day 1</p>
-                  </Segment>
-                  <Segment>
-                    <p>More stuff about day 1</p>
-                  </Segment>
-                  <Segment>
-                    <p>Even more stuff about day 1</p>
-                  </Segment>
-                </Segment.Group>
-              </Accordion.Content>
-              <Accordion.Title active={groupId === 1} index={1} onClick={this.handleModClick}>
-                <Icon name='dropdown' />
-                Week1 Day2
-              </Accordion.Title>
-              <Accordion.Content active={groupId === 1}>
-                <Segment.Group>
-                  <Segment>
-                    <p>Stuff about day 2</p>
-                  </Segment>
-                  <Segment>
-                    <p>More stuff about day 2</p>
-                  </Segment>
-                  <Segment>
-                    <p>Even more stuff about day 2</p>
-                  </Segment>
-                </Segment.Group>
-              </Accordion.Content>
-              <Accordion.Title active={groupId === 2} index={2} onClick={this.handleModClick}>
-                <Icon name='dropdown' />
-                Week1 Day2
-              </Accordion.Title>
-              <Accordion.Content active={groupId === 2}>
-                <Segment.Group>
-                  <Segment>
-                    <p>Stuff about day 3</p>
-                  </Segment>
-                  <Segment>
-                    <p>More stuff about day 3</p>
-                  </Segment>
-                  <Segment>
-                    <p>Even more stuff about day 3</p>
-                  </Segment>
-                </Segment.Group>
-              </Accordion.Content>
-            </Accordion>
-          </Container>
-          <Divider />
-        </div>
+        <Container textAlign = 'left'>
+          <Header as='h3' align='center'>{sectionTitle}</Header>
+          <Accordion styled>
+            {this.renderGroups()}
+          </Accordion>
+        </Container>
       )
     } else {
       return(
