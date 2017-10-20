@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-export const getCourses = (callback) => {
+export const getCourses = () => {
   return(dispatch) => {
     axios.get('/api/courses')
       .then( res => {
         dispatch({  type: 'GET_COURSES', courses: res.data })
       })
-      .then(callback())
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Courses', 'red'));

@@ -19,13 +19,12 @@ class SectionSelect extends Component {
     sections: [],
     sectionId: 1,
     section: {},
-    sectionHeader: {},
+    sectionHeader: '',
   }
 
   setCoursesLoaded = () => this.setState({ coursesLoaded: true });
   setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
   setGroupsLoaded = () => this.setState({ groupsLoaded: true });
-
 
   componentWillMount() {
     const { dispatch, user: { id: userId, first_name } } = this.props;
@@ -59,8 +58,9 @@ class SectionSelect extends Component {
   }
 
   render() {
-    let { coursesLoaded, sectionsLoaded, courseId, sectionId } = this.state;
-    if(sectionsLoaded && coursesLoaded) {
+    let { coursesLoaded, sectionsLoaded, groupsLoaded, courseId, sectionId } = this.state;
+
+    if(sectionsLoaded && coursesLoaded && groupsLoaded) {
       return(
         <div>
           <h3>Sections</h3>
