@@ -44,16 +44,15 @@ class Login extends Component {
     return (
       <div>
         <LoginGrid>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <LoginSegment raised>
+          <Grid.Column style={{ maxWidth: 450, padding: '5%' }}>
+            <LoginSegment>
               <LoginHeader>Login</LoginHeader>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Field>
                   <label htmlFor='email'>Email</label>
                   <input
-                  fluid
                   icon='user'
-                  iconPosition='left'                  
+                  iconposition='left'                  
                   required
                   id='email'
                   value={email}
@@ -64,9 +63,8 @@ class Login extends Component {
               <Form.Field>
                 <label htmlFor='password'>Password</label>
                 <input
-                  fluid
                   icon='lock'
-                  iconPosition='left'
+                  iconposition='left'
                   required
                   id='password'
                   value={password}
