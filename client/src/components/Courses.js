@@ -20,6 +20,7 @@ class Courses extends Component {
     const { dispatch } = this.props;
     dispatch(getCourses());
   }
+  
 
   renderCourses = () => {
     const { courses } = this.props;

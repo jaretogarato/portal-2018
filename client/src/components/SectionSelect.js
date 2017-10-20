@@ -31,7 +31,7 @@ class SectionSelect extends Component {
     const { courseId, sectionId } = this.state;
 
     // set up initial course id
-    dispatch(setCourse(this.state.courseId));
+    //dispatch(setCourse(this.state.courseId));
 
     // get the courses to which a user belongs
     dispatch(getCoursesByStudent(userId, this.setCoursesLoaded));
