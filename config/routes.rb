@@ -11,13 +11,17 @@ Rails.application.routes.draw do
       resources :groups
     end
 
-    get 'user_courses/:user_id', to: 'courses#user_courses'
+    resources :groups do
+      resources :lectures
+    end
 
-    get 'avatar', to: 'avatar#index'
+    get  'user_courses/:user_id', to: 'courses#user_courses'
+    get  'avatar', to: 'avatar#index'
     post 'avatars', to: 'avatars#create'
     post '/invitation/send', to: 'invitations#invite'
     post '/invitation/accept', to: 'invitations#accept'
-    get '/course_users', to: 'users#course_users'
+    get  '/course_users', to: 'users#course_users'
+    # get '/group_lectures', to: 'groups#group_lectures'
   end
 
   #Do not place any routes below this one

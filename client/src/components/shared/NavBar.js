@@ -6,8 +6,9 @@ import { handleLogout } from '../../actions/auth';
 import UserProfile from '../profile/UserProfile';
 import Attendance from '../attendance/Attendance';
 import PortalLogo from '../../assets/images/portal-logo.png';
+import styled from 'styled-components';
 
-class NavBar extends Component {
+class NavBarSecondary extends Component {
   state = { activeItem: 'Course View' }
 
   handleItemClick = (e, { name }) =>
@@ -145,17 +146,13 @@ class NavBar extends Component {
 
 const styles = {
   navbarPrimary: {
-    backgroundColor: '#00baed',
+    background: 'linear-gradient(#00bef2, #00a6d4)',
     border: 'none',
   },
   navText: {
     color: '#fff',
   },
-  navSecondaryText: {
-    // color: '#BBB',
-  },
   dropdown: {
-    // color: '#BBB',
     backgroundColor: '#DDD',
   }
 }
@@ -164,4 +161,4 @@ const mapStateToProps = state => {
   return { user: state.user };
 };
 
-export default withRouter(connect(mapStateToProps)(NavBar));
+export default withRouter(connect(mapStateToProps)(NavBarSecondary));

@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Dimmer, Loader, Accordion, Segment, Icon, Divider, Header } from 'semantic-ui-react';
+import { Container, Dimmer,
+  Loader, Accordion, Segment,
+  Icon, Divider, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setFlash } from '../actions/flash';
-import { getGroups } from '../actions/groups';
+import { getGroups} from '../actions/groups';
+import { setGroup } from '../actions/group';
+import { setGroupId } from '../actions/groupId';
+import { getLectures } from '../actions/lectures';
 import axios from 'axios';
 
 class SectionShow extends Component {
@@ -10,6 +15,9 @@ class SectionShow extends Component {
     loaded: false,
     itemsLoaded: false,
     groupsLoaded: false,
+    lecturesLoaded: false,
+
+    activeIndex: 0,
 
     sectionId: 1,
     sections: [],
@@ -18,42 +26,75 @@ class SectionShow extends Component {
 
     groups: [],
     groupId: 1,
+    groupNewId: 1,
     group: {},
     groupHeader: '',
+
+    lectures: [],
+    lectureId: 1,
+    lecture: {},
+    lectureTitle: '',
   }
 
   setGroupsLoaded = () => this.setState({ groupsLoaded: true });
   setItemsLoaded = () => this.setState({ itemsLoaded: true });
+  setLecturesLoaded = () => this.setState({ lecturesLoaded: true })
   setLoaded = () => this.setState({ loaded: true });
 
   componentWillMount() {
     const { dispatch, sections, section } = this.props;
-    const { sectionId } = this.state;
+    const { sectionId, groupId } = this.state;
 
     dispatch(getGroups(sectionId, this.setGroupsLoaded));
+    dispatch(getLectures(groupId, this.setLecturesLoaded));
 
-    // set the active section id upon mount
+    this.setState({ courseId: this.props.courseId });
     this.setState({ section: this.props.section });
     this.setState({ sections: this.props.sections });
-    this.setState({ courseId: this.props.courseId });
+
+    dispatch(setGroupId(this.state.groupId));
   }
 
   componentDidMount() {
+    const { dispatch, group, lectures } = this.props;
+
+    this.setState({ group: group });
+    this.setState({ lectures: lectures });
     this.setLoaded();
   }
 
   componentWillReceiveProps = (nextProps) => {
+    const { sectionId, groupId, courseId } = this.state;
     this.setState({ courseId: nextProps.courseId });
     this.setState({ sectionId: nextProps.sectionId });
-    this.setState({ section: nextProps.section })
+    this.setState({ lectures: nextProps.lectures });
   }
 
-  handleModClick = (e, titleProps) => {
-    const { index } = titleProps;
-    const { groupId } = this.state;
-    const newIndex = groupId === index ? -1 : index;
+  handleClick = (e, titleProps) => {
 
-    this.setState({ groupId: newIndex });
+    const { dispatch } = this.props;
+    const { groupId, lectures } = this.state;
+
+    const { index } = titleProps; // index from where the click originates
+    const { activeIndex } = this.state;
+    const newIndex = activeIndex === index ? -1 : index;
+
+    this.setState({ activeIndex: newIndex });
+    this.setState({ groupId: index });
+
+    dispatch(getLectures(groupId, this.setLecturesLoaded));
+    dispatch(setGroupId(index));
+  }
+
+  renderItems = (groupId) => {
+    return this.props.lectures.map( lecture => {
+      return(
+        <Segment key={lecture.id}>
+          <h4>{lecture.title}</h4>
+          <div dangerouslySetInnerHTML={{ __html: lecture.content }} />
+        </Segment>
+      )
+    })
   }
 
   renderGroups = () => {
@@ -64,25 +105,18 @@ class SectionShow extends Component {
           <Accordion.Title
             active={this.state.groupId === group.id}
             index={group.id}
-            onClick={this.handleModClick}
+            onClick={this.handleClick}
           >
             <Icon name='dropdown' />
             {group.title}
           </Accordion.Title>
           <Accordion.Content
             active={this.state.groupId === group.id}
-            index={`${group.id}_1`}
+            index={group.id}
           >
-            <Segment.Group>
-              <Segment>
-                <p>Placeholder Lecture Notes 01</p>
-              </Segment>
-              <Segment>
-                <p>Placeholder Lecture Notes 02</p>
-              </Segment>
-              <Segment>
-                <p>Placeholder Lecture Notes 03</p>
-              </Segment>
+            <Segment.Group
+              index={`${group.id}_2`}>
+              {this.renderItems(group.id)}
             </Segment.Group>
           </Accordion.Content>
         </div>
@@ -91,24 +125,11 @@ class SectionShow extends Component {
   }
 
   render() {
-    let { groupId, loaded, groupsLoaded } = this.state;
+    let { groupId, loaded, groupsLoaded, lecturesLoaded } = this.state;
 
-    if(this.props.sections.length && loaded && groupsLoaded) {
+    if(this.props.sections.length && loaded && groupsLoaded && lecturesLoaded ) {
       let sectionObject = (this.props.sections[`${this.props.sectionId-1}`]);
       let sectionTitle = sectionObject['title'];
-
-      // console.log('-----------------------------');
-      // console.log('vv --this.props.sections-- vv');
-      // console.log(this.props.sections);
-      // console.log('vv --this.props.sectionId-- vv');
-      // console.log(this.props.sectionId);
-      // console.log('vv --sectionObject-- vv');
-      // console.log(sectionObject);
-      // console.log('vv --sectionTitle-- vv');
-      // console.log(sectionTitle);
-      // console.log('vv --groups-- vv');
-      // console.log(this.props.groups);
-      // console.log('');
 
       return (
         <Container textAlign = 'left'>
@@ -136,10 +157,16 @@ const mapStateToProps = (state) => {
     sections: state.sections,
     section: state.section,
     sectionHeader: {},
-    groups: state.groups,
+
     groupId: state.groupId,
+    groups: state.groups,
     group: state.group,
     groupHeader: state.groupHeader,
+
+    lectureId: state.lectureId,
+    lectures: state.lectures,
+    lecture: state.lecture,
+    lectureTitle: state.lectureTitle,
   };
 }
 

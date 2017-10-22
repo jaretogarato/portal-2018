@@ -7,7 +7,10 @@ import courses from './courses';
 import userCourses from './userCourses';
 import sections from './sections';
 import groups from './groups';
+import group from './group';
+import groupId from './groupId';
 import courseId from './courseId';
+import lectures from './lectures';
 import sectionId from './sectionId';
 import currentDate from './currentDate';
 
@@ -20,6 +23,9 @@ const rootReducer = combineReducers({
   userCourses,
   sections,
   groups,
+  group,
+  groupId,
+  lectures,
   courseId,
   sectionId,
   currentDate,

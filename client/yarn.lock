@@ -5401,6 +5401,10 @@ react-error-overlay@^2.0.2:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
+react-gsap-enhancer@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-gsap-enhancer/-/react-gsap-enhancer-0.3.0.tgz#b9f9fd19315875768c433e0943c2a41eea43b7d2"
+
 react-lorem-component@^0.12.2:
   version "0.12.2"
   resolved "https://registry.yarnpkg.com/react-lorem-component/-/react-lorem-component-0.12.2.tgz#a11fd298b044a2cf062905c5398880e46bfecc25"

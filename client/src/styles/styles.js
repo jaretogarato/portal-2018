@@ -20,7 +20,6 @@ export const HeroHeader = styled.div`
     width: 160%;
     margin-left: -30%;
   }
-
 `
 
 // ------------- v2 ----------------

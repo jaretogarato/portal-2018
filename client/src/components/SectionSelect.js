@@ -4,7 +4,7 @@ import { Card, Dimmer, Loader, Menu, Segment } from 'semantic-ui-react';
 import { setSection } from '../actions/section';
 import { getSections } from '../actions/sections';
 import { getCoursesByStudent } from '../actions/courses';
-import { setCourse } from '../actions/course';
+import { setCourse } from '../actions/courses';
 import { getGroups } from '../actions/groups';
 
 class SectionSelect extends Component {
@@ -12,6 +12,7 @@ class SectionSelect extends Component {
     coursesLoaded: false,
     sectionsLoaded: false,
     groupsLoaded: false,
+    group: {},
     courses: [],
     courseId: 1,
     course: {},
@@ -48,19 +49,20 @@ class SectionSelect extends Component {
     dispatch(getSections(courseId, this.setSectionsLoaded));
 
     // load groups for active section
-    dispatch(getGroups(sectionId, this.setGroupsLoaded));
+    // dispatch(getGroups(sectionId, this.setGroupsLoaded));
   }
 
   handleClick = (e) => {
     this.setState({ sectionId: parseInt(e.currentTarget.id, 10) }, () => {
+
       this.props.dispatch(setSection(this.state.sectionId));
     });
   }
 
   render() {
-    let { coursesLoaded, sectionsLoaded, groupsLoaded, courseId, sectionId } = this.state;
+    let { coursesLoaded, sectionsLoaded, courseId, sectionId } = this.state;
 
-    if(sectionsLoaded && coursesLoaded && groupsLoaded) {
+    if(sectionsLoaded && coursesLoaded) {
       return(
         <div>
           <h3>Sections</h3>

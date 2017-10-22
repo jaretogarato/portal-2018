@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
+export const setCourse = course => {
+  return { type: 'SET_COURSE', course };
+};
+
 export const getCourses = () => {
   return(dispatch) => {
     axios.get('/api/courses')

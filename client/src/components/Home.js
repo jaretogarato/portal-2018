@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Header, Segment } from 'semantic-ui-react';
-import ImgHero from '../../assets/images/hero-image.png';
-import HomeBg from '../../assets/images/home-image-2880w.jpg';
-import PortalLogo from '../../assets/images/dps-portal-logo.png';
-import { HeroHeader, HeroHeaderTextContainer } from '../../styles/styles';
+import { Container, Header, Segment, } from 'semantic-ui-react';
+import ImgHero from '../assets/images/hero-image.png';
+import HomeBg from '../assets/images/home-image-2880w.jpg';
+import PortalLogo from '../assets/images/dps-portal-logo.png';
+import { HeroHeader, HeroHeaderTextContainer, } from '../styles/styles';
 // import HomeImage from './HomeImage';
-import { HomeBody, HomeWrapper, HomeLogo } from '../../styles/home-images.js';
+import { HomeBody, HomeWrapper, HomeLogo } from '../styles/home-images.js'
 
 class Home extends Component {
   render () {

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-
 export const addGroup = (group) => {
   return(dispatch) => {
     axios.post('/api/groups', { group })

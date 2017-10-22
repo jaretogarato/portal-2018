@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 class NavBar extends Component {
   leftNavs = () => {
+    // const { user, dispatch, history } = this.props;
+
     return (
       <Menu.Menu style={styles.navbarSecondary} position='left'>
         <Link to='/'>

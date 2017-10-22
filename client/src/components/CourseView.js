@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Grid, Header, Segment, Sticky } from 'semantic-ui-react';
-import SectionSelect from '../SectionSelect';
-import SectionShow from '../SectionShow';
+import SectionSelect from './SectionSelect';
+import SectionShow from './SectionShow';
 // import RightTab from './RightTab';
 import NavBarSecondary from './NavBarSecondary';
 
