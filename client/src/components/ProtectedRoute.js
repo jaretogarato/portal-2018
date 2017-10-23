@@ -16,10 +16,6 @@ class ProtectedRoute extends Component {
     }
   }
 
-  verifyRole(){
-    const { activeCourseId, enrollments, permittedRoles, permittedSubRoles, isAdmin } = this.props;
-  }
-
   unpermitted = () => {
     return (
       <Redirect to={{
@@ -30,12 +26,12 @@ class ProtectedRoute extends Component {
   }
 
   checkYourPrivilege = () => {
-    const { activeCourseId, enrollments, requiredRoles, requiredSubRoles, isAdmin } = this.props;
+    const { courseId, enrollments, requiredRoles, requiredSubRoles, isAdmin } = this.props;
     if(requiredRoles != null){
       if(enrollments.length === 0){
         return false;
       }
-      let enrollment = enrollments.find(e => e.course_id === activeCourseId);
+      let enrollment = enrollments.find(e => e.course_id === courseId);
       if(enrollment){
         if(!requiredRoles.includes(enrollment.role)){
           return false;
@@ -72,7 +68,7 @@ const mapStateToProps = (state) => {
   return {
     isAdmin: state.user.is_admin,
     loggedIn: state.user.id,
-    activeCourseId: state.activeCourseId,
+    courseId: state.courseId,
     enrollments: state.user.enrollments
   }
 }

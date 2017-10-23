@@ -1,7 +1,5 @@
 const courses = (state = [], action) => {
   switch (action.type) {
-    case 'SET_COURSE':
-      return action.course;
     case 'GET_COURSES':
       return action.courses;
     case 'ADD_COURSE':
