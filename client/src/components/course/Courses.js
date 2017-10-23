@@ -11,16 +11,15 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { getCourses } from '../actions/courses';
+import { getCourses } from '../../actions/courses';
 
 class Courses extends Component {
-  state = {courses: [], isAdding: false}
+  state = { courses: [], isAdding: false }
 
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getCourses());
   }
-  
 
   renderCourses = () => {
     const { courses } = this.props;

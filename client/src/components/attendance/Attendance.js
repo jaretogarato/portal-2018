@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from './DatePicker';
 import UserSegment from './UserSegment';
 import { connect } from 'react-redux';
-import { getUsers } from '../actions/users';
+import { getUsers } from '../../actions/users';
 import { Button, Container, Header } from 'semantic-ui-react';
 
 class Attendance extends React.Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { handleUpload } from '../actions/avatar';
+import { handleUpload } from '../../actions/avatar';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';

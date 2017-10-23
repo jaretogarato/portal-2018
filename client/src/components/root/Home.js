@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ImgHero from '../assets/images/hero-image.png';
+import ImgHero from '../../assets/images/hero-image.png';
 import { Container, Header, Segment, } from 'semantic-ui-react';
 import {
   HeroHeader,
   HeroHeaderTextContainer,
-} from '../styles/styles';
+} from '../../styles/styles.js';
 
 class Home extends Component {
   render () {

@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
-import { editUser } from '../actions/user';
-import { Button, Container, Divider, Grid, Form, Header, Input, Segment, TextArea } from 'semantic-ui-react';
-
+import { editUser } from '../../actions/user';
+import { 
+  Button, 
+  Container, 
+  Divider, 
+  Grid, 
+  Form, 
+  Header, 
+  Input, 
+  Segment, 
+  TextArea 
+} from 'semantic-ui-react';
 
 class UserEditForm extends Component {
   state = { firstName: '', lastName: '', bio: '', email:  '', nickname: '' };

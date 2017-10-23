@@ -6,7 +6,7 @@ import {
   Menu,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { FooterStyled } from '../styles/styles';
+import { FooterStyled } from '../../styles/styles';
 
 const Footer = () => (
   <FooterStyled>

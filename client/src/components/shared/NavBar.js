@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Dropdown, Image, Label, Menu, Segment } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { handleLogout } from '../actions/auth';
-import UserProfile from './UserProfile';
-import Attendance from './Attendance';
-import PortalLogo from '../assets/images/portal-logo.png';
+import { handleLogout } from '../../actions/auth';
+import UserProfile from '../profile/UserProfile';
+import Attendance from '../attendance/Attendance';
+import PortalLogo from '../../assets/images/portal-logo.png';
 
 class NavBar extends Component {
   state = { activeItem: 'Course View' }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Segment, Select } from 'semantic-ui-react'
-import { addCourse, updateCourse } from '../actions/courses'
+import { addCourse, updateCourse } from '../../actions/courses'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 

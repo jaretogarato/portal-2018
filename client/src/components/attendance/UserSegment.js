@@ -1,5 +1,5 @@
 import React from 'react';
-import { updateUserStatus } from '../actions/users';
+import { updateUserStatus } from '../../actions/users';
 import { connect } from 'react-redux';
 import { Card, Container, Header, Icon, Image } from 'semantic-ui-react';
 

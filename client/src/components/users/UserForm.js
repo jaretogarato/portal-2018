@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Form } from 'semantic-ui-react';
-import { sendInvitation } from '../actions/invitations';
+import { sendInvitation } from '../../actions/invitations';
 
 class UserForm extends React.Component {
   state = { firstName: '', lastName: '', email: '' };
