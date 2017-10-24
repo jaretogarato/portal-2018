@@ -4,6 +4,7 @@ import Courses from './course/Courses';
 import NoMatch from './NoMatch';
 import NavBar from './shared/NavBar';
 import Login from './Login';
+import LectureView from './lecture/LectureView';
 import Register from './Register';
 import Flash from './Flash';
 import Home from './root/Home';
@@ -49,6 +50,10 @@ class App extends Component {
                 path='/users'
                 component={Users}
                 adminOnly={true}
+              />
+              <ProtectedRoute
+                path='/lectures/:id'
+                component={LectureView}
               />
               <Route component={NoMatch} />
             </Switch>
