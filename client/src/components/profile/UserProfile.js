@@ -6,10 +6,10 @@ import Dropzone from 'react-dropzone';
 import UserEditForm from './UserEditForm';
 import {
     Button,
-    Segment, 
-    Grid, 
-    Image, 
-    Header, 
+    Segment,
+    Grid,
+    Image,
+    Header,
     Container,
     Divider,
   } from 'semantic-ui-react';
@@ -48,7 +48,7 @@ class UserProfile extends Component {
         return(
           <Segment>
             <Button onClick={this.toggleEdit}>
-              Edit
+              Cancel Editting
             </Button>
             <UserEditForm toggleEdit={this.toggleEdit}/>
           </Segment>
