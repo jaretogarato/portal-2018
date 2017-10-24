@@ -6,6 +6,7 @@ import PortalLogo from '../../assets/images/dps-portal-logo.png';
 import { HeroHeader, HeroHeaderTextContainer } from '../../styles/styles';
 // import HomeImage from './HomeImage';
 import { HomeBody, HomeWrapper, HomeLogo } from '../../styles/home-images.js';
+// import HomeAnimation from './HomeAnimation';
 
 class Home extends Component {
   render () {

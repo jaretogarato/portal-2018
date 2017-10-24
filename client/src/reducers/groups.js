@@ -1,5 +1,7 @@
 const groups = (state = [], action) => {
   switch (action.type) {
+    case 'SET_GROUP':
+      return action.group;
     case 'GET_GROUPS':
       return action.groups;
     case 'ADD_GROUP':

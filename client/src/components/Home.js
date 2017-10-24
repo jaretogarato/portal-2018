@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Header, Segment, } from 'semantic-ui-react';
+import { Container, Header, Segment } from 'semantic-ui-react';
 import ImgHero from '../assets/images/hero-image.png';
 import HomeBg from '../assets/images/home-image-2880w.jpg';
 import PortalLogo from '../assets/images/dps-portal-logo.png';
-import { HeroHeader, HeroHeaderTextContainer, } from '../styles/styles';
+import { HeroHeader, HeroHeaderTextContainer } from '../styles/styles';
 // import HomeImage from './HomeImage';
-import { HomeBody, HomeWrapper, HomeLogo } from '../styles/home-images.js'
+import { HomeBody, HomeWrapper, HomeLogo } from '../styles/home-images.js';
+// import HomeAnimation from './HomeAnimation';
 
 class Home extends Component {
   render () {
@@ -28,8 +29,8 @@ class Home extends Component {
               {/* {PortalLogo} */}
               {/* <img src='../assets/images/dps-portal-logo.png' /> */}
               {/* <img src='../assets/images/hero-image.png' /> */}
-
             </HomeLogo>
+            {/* <div id="Stage" class="EDGE-145598600">{HomeAnimation}</div> */}
           </HomeWrapper>
         </HomeBody>
       </Container>

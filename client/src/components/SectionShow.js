@@ -82,9 +82,17 @@ class SectionShow extends Component {
     this.setState({ activeIndex: newIndex });
     this.setState({ groupId: index });
 
-    dispatch(getLectures(groupId, this.setLecturesLoaded));
     dispatch(setGroupId(index));
+    dispatch(getLectures(groupId, this.setLecturesLoaded));
   }
+
+  // handleClick = (e, titleProps) => {
+  //   const { index } = titleProps
+  //   const { activeIndex } = this.state
+  //   const newIndex = activeIndex === index ? -1 : index
+  //
+  //   this.setState({ activeIndex: newIndex })
+  // }
 
   renderItems = (groupId) => {
     return this.props.lectures.map( lecture => {
@@ -101,9 +109,8 @@ class SectionShow extends Component {
     return this.props.groups.map( group => {
       return(
         <div key={group.id}>
-          {/* get lectures for group and map through them */}
           <Accordion.Title
-            active={this.state.groupId === group.id}
+            active={this.state.activeIndex === group.id}
             index={group.id}
             onClick={this.handleClick}
           >
@@ -111,7 +118,7 @@ class SectionShow extends Component {
             {group.title}
           </Accordion.Title>
           <Accordion.Content
-            active={this.state.groupId === group.id}
+            active={this.state.activeIndex === group.id}
             index={group.id}
           >
             <Segment.Group
@@ -132,9 +139,9 @@ class SectionShow extends Component {
       let sectionTitle = sectionObject['title'];
 
       return (
-        <Container textAlign = 'left'>
+        <Container fluid textAlign = 'left'>
           <Header as='h3' align='center'>{sectionTitle}</Header>
-          <Accordion styled>
+          <Accordion fluid styled>
             {this.renderGroups()}
           </Accordion>
         </Container>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://openajax.org/metadata" spec="1.0" id="tag:adobe.com,2012-03:edge:oam:compid:EDGE-145598600" name="portal-logo" version="1">
+
+  <description type="text/html"><![CDATA[Widget Exported from Adobe Edge (V1.DW.Edge)]]></description>
+  <category name="Adobe Edge Animation"/>
+
+  <remarks>Compatible with: InDesign CC, Dreamweaver CC, Muse</remarks>
+
+  <icon src="transparent.png" width="550" height="400" />
+
+  <require type="other" src="portal-logo.html" />
+
+  <require type="javascript" src="portal-logo_edge.js" />
+  <require type="javascript" src="edge_includes/edge.6.0.0.min.js" />
+
+  <require type="image" src="transparent.png" />
+  <require type="image" src="images/a.png" />
+  <require type="image" src="images/dps-portal-logo-med.png" />
+  <require type="image" src="images/dps.png" />
+  <require type="image" src="images/l.png" />
+  <require type="image" src="images/o1.png" />
+  <require type="image" src="images/p.png" />
+  <require type="image" src="images/r.png" />
+  <require type="image" src="images/shadow.png" />
+  <require type="image" src="images/t.png" />
+
+  <require type="folder" src="edge_includes" />
+  <require type="folder" src="images" />
+
+
+  <content><![CDATA[
+    <div class="EDGE-145598600"></div>
+  ]]></content>
+   
+  <properties name="Properties">
+    <property name="default-width" defaultValue="550" hidden="true"/>
+    <property name="default-height" defaultValue="400" hidden="true"/>
+    <property name="resizable" defaultValue="false" hidden="true"/>				
+		<property name="centering" defaultValue="none" hidden="true"/>				
+		<property name="scaling" defaultValue="none" hidden="true"/>
+    <property name="html-page" defaultValue="portal-logo.html" hidden="true"/>
+  </properties>
+
+</widget>
