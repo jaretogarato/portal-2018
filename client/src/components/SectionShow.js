@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Dimmer,
+import { Link } from 'react-router-dom';
+import { Container, Dimmer, Button,
   Loader, Accordion, Segment,
   Icon, Divider, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -97,10 +98,11 @@ class SectionShow extends Component {
   renderItems = (groupId) => {
     return this.props.lectures.map( lecture => {
       return(
-        <Segment key={lecture.id}>
-          <h4>{lecture.title}</h4>
-          <div dangerouslySetInnerHTML={{ __html: lecture.content }} />
-        </Segment>
+        <Button fluid basic key={lecture.id}>
+          <Link  to={`/lecture/${lecture.id}`}>
+            <h4>{lecture.title}</h4>
+          </Link>
+        </Button>
       )
     })
   }
@@ -121,10 +123,11 @@ class SectionShow extends Component {
             active={this.state.activeIndex === group.id}
             index={group.id}
           >
-            <Segment.Group
-              index={`${group.id}_2`}>
+            <Container
+              index={`${group.id}_2`}
+            >
               {this.renderItems(group.id)}
-            </Segment.Group>
+            </Container>
           </Accordion.Content>
         </div>
       )
