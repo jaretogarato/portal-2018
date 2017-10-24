@@ -7,7 +7,7 @@ import Login from './Login';
 import LectureView from './lecture/LectureView';
 import Register from './Register';
 import Flash from './Flash';
-import Home from './root/Home';
+import Home from './Home';
 import CourseView from './course/CourseView';
 import InviteConfirmation from './InviteConfirmation';
 import ProtectedRoute from './ProtectedRoute';
@@ -27,36 +27,32 @@ class App extends Component {
       <FlexContainer>
         <FlexContent>
           <FetchUser>
-            <NavBar />
-            <Flash />
-            <Switch>
-              <Route exact path='/invitation/accept' component={InviteConfirmation} />
-              <Route exact path='/' component={Home} />
-              <AuthRoute exact path='/login' component={Login} />
-              <ProtectedRoute exact path='/attendance' component={Attendance} />
-              <ProtectedRoute exact path='/user_profile' component={UserProfile} />
-              <ProtectedRoute
-                exact path='/course_view'
-                component={CourseView}
-              />
-              <AuthRoute exact path='/register' component={Register} />
-              <ProtectedRoute adminOnly={true} path='/courses' component={Courses} />
-              <ProtectedRoute
-                exact path='/users'
-                component={Users}
-                adminOnly={true}
-              />
-              <ProtectedRoute
-                path='/users'
-                component={Users}
-                adminOnly={true}
-              />
-              <ProtectedRoute
-                path='/lectures/:id'
-                component={LectureView}
-              />
-              <Route component={NoMatch} />
-            </Switch>
+              <NavBar />
+              <Flash />
+              <Switch>
+                <Route exact path='/invitation/accept' component={InviteConfirmation} />
+                <Route exact path='/' component={Home} />
+                <AuthRoute exact path='/login' component={Login} />
+                <ProtectedRoute exact path='/attendance' component={Attendance} />
+                <ProtectedRoute exact path='/user_profile' component={UserProfile} />
+                <ProtectedRoute
+                  exact path='/course_view'
+                  component={CourseView}
+                />
+                <AuthRoute exact path='/register' component={Register} />
+                <ProtectedRoute adminOnly={true} path='/courses' component={Courses} />
+                <ProtectedRoute
+                  exact path='/users'
+                  component={Users}
+                  adminOnly={true}
+                />
+                <ProtectedRoute
+                  path='/users'
+                  component={Users}
+                  adminOnly={true}
+                />
+                <Route component={NoMatch} />
+              </Switch>
           </FetchUser>
         </FlexContent>
         <Footer />

@@ -55,12 +55,14 @@ admin = User.create(
     nickname: 'Spencer is BOSS',
     is_admin: false
   )
+  3.times do |i|
     Enrollment.create(
       role: 'student',
       sub_role: Faker::Company.bs,
       user_id: student.id,
-      course_id: 1
+      course_id: "#{i + 1}".to_i
     )
+  end
 end
 
 puts "Test Admin seeded email: admin@admin.com and password: password"

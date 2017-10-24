@@ -6,10 +6,26 @@ import { handleLogout } from '../../actions/auth';
 import UserProfile from '../profile/UserProfile';
 import Attendance from '../attendance/Attendance';
 import PortalLogo from '../../assets/images/portal-logo.png';
-import styled from 'styled-components';
+import { getCoursesByStudent, getCourses } from '../../actions/courses';
 
-class NavBarSecondary extends Component {
+class NavBar extends Component {
   state = { activeItem: 'Course View' }
+
+  renderCourseSections = () => {
+    const { user } = this.state;
+    const { userCourses } = this.props;
+    return userCourses.map( course =>
+      <Dropdown.Item key={course.id}
+        as={Link}
+        to='/course_view'
+        style={styles.navSecondaryText}
+        name={course.course_type}
+        text={course.course_type}
+        active={this.state.activeItem === `${course.id}`}
+        onClick={this.handleItemClick}
+      />
+    )
+  }
 
   handleItemClick = (e, { name }) =>
     this.setState({ activeItem: name })
@@ -24,7 +40,7 @@ class NavBarSecondary extends Component {
             <Menu.Item
               as={Link}
               to='/course_view'
-              style={styles.navText}
+              style={styles.navSecondaryText}
               name="Course View"
               active={this.state.activeItem === 'Course View'}
               onClick={this.handleItemClick}
@@ -75,16 +91,13 @@ class NavBarSecondary extends Component {
           </Menu.Menu>
         );
       }
-      return (
+      return(
         <Menu.Menu style={styles.navbarPrimary} position='right'>
-          <Menu.Item
-            as={Link}
-            to='/course_view'
-            style={styles.navText}
-            name="Course View"
-            active={this.state.activeItem === 'Course View'}
-            onClick={this.handleItemClick}
-          />
+           <Dropdown item text='My Courses' style={styles.navText}>
+            <Dropdown.Menu style={styles.dropdown}>
+              { this.renderCourseSections() }
+            </Dropdown.Menu>
+          </Dropdown>
           <Menu.Item
             as={Link}
             to='/user_profile'
@@ -99,7 +112,7 @@ class NavBarSecondary extends Component {
             onClick={() => dispatch(handleLogout(history))}
           />
         </Menu.Menu>
-      );
+      )
     }
     return (
       <Menu.Menu style={styles.navbarPrimary} position='right'>
@@ -158,7 +171,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-  return { user: state.user };
+  return { user: state.user, userCourses: state.userCourses };
 };
 
-export default withRouter(connect(mapStateToProps)(NavBarSecondary));
+export default withRouter(connect(mapStateToProps)(NavBar));
