@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     resources :courses do
       resources :sections
-      resources :attendances, only: [:create]
+      resources :attendances, only: [:index, :create]
     end
 
     resources :sections do

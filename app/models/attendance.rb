@@ -2,7 +2,7 @@ class Attendance < ApplicationRecord
   belongs_to :user
   belongs_to :course
 
-  def self.get_records(params)
+  def self.format_and_create_records(params)
     records = []
     params.each do |param|
       record = { 
