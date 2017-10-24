@@ -1,8 +1,9 @@
 import React from 'react';
 import DatePicker from './DatePicker';
-import UserSegment from './UserSegment';
+import StudentRecord from './StudentRecord';
 import { connect } from 'react-redux';
 import { getUsers } from '../../actions/users';
+import { addAttendance } from '../../actions/attendance';
 import { Button, Container, Header } from 'semantic-ui-react';
 
 class Attendance extends React.Component {
@@ -15,12 +16,14 @@ class Attendance extends React.Component {
   displayUsers = () => {
     const { users } = this.props;
     return users.map( user => {
-      return <UserSegment key={user.id} user={user} />
+      return <StudentRecord key={user.id} user={user} />
     })
   }
 
   submitAttendance = () => {
-    const { dispatch, users } = this.props;
+    const { dispatch, users, currentDate } = this.props;
+    // 20 is acting as course id
+    dispatch(addAttendance(20, users, currentDate));
   }
 
   render() {
@@ -38,7 +41,10 @@ class Attendance extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { users: state.users }
+  return { 
+    users: state.users, 
+    currentDate: state.currentDate 
+  }
 }
 
 export default connect(mapStateToProps)(Attendance);

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :courses do
       resources :sections
+      resources :attendances, only: [:create]
     end
 
     resources :sections do

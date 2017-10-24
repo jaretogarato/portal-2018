@@ -3,7 +3,7 @@ import { updateUserStatus } from '../../actions/users';
 import { connect } from 'react-redux';
 import { Card, Container, Header, Icon, Image } from 'semantic-ui-react';
 
-class UserSegment extends React.Component {
+class StudentRecord extends React.Component {
   state = { status: 'none' };
 
   toggleStatus = () => {
@@ -46,7 +46,6 @@ class UserSegment extends React.Component {
 
   render() {
     const { first_name, last_name } = this.props.user;
-
     return (
       <Container>
         <Card style={styles.userSection} onClick={this.toggleStatus}>
@@ -69,4 +68,4 @@ const styles = {
   }
 }
 
-export default connect()(UserSegment);
+export default connect()(StudentRecord);

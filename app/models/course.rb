@@ -6,5 +6,4 @@ class Course < ApplicationRecord
 
     validates_presence_of :course_type, :term, :year
     validates_numericality_of :year, :only_integer => true
-
 end
