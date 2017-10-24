@@ -8,7 +8,7 @@ import Attendance from '../attendance/Attendance';
 import PortalLogo from '../../assets/images/portal-logo.png';
 import styled from 'styled-components';
 
-class NavBarSecondary extends Component {
+class NavBar extends Component {
   state = { activeItem: 'Course View' }
 
   handleItemClick = (e, { name }) =>
@@ -161,4 +161,4 @@ const mapStateToProps = state => {
   return { user: state.user };
 };
 
-export default withRouter(connect(mapStateToProps)(NavBarSecondary));
+export default withRouter(connect(mapStateToProps)(NavBar));
