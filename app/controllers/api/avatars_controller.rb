@@ -15,7 +15,6 @@ class Api::AvatarsController < ApplicationController
   
       begin
         cloud_avatar = Cloudinary::Uploader.upload(uploaded_file, auth)
-        avatar = Avatar.create(url: cloud_avatar['url'])
         render json: avatar
       rescue => e
         render json: { errors: e }, status: :bad_request

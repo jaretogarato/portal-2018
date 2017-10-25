@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_many :enrollments
   has_many :attendances
   has_many :courses, :through=>:enrollments, :source=>"course"
-
+  has_one :avatar
+  
 
   validates_presence_of :first_name, :last_name
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { handleUpload } from '../../actions/avatar';
+import { handleUpload, setAvatars } from '../actions/avatar';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Dropzone from 'react-dropzone';
 import UserEditForm from './UserEditForm';
 import {
+<<<<<<< HEAD
     Button,
     Segment,
     Grid,
@@ -12,36 +12,43 @@ import {
     Header,
     Container,
     Divider,
+=======
+   Segment,
+   Dimmer,
+   Loader,
+   Button,
+   Grid, 
+   Image, 
+   Header, 
+   Container,
+   Divider,
+>>>>>>> Fixed Avatar API Upload
   } from 'semantic-ui-react';
 
 class UserProfile extends Component {
    state = { fileUploading: false, edit: false }
 
-    onDrop = (avatar) => {
-      // dispatch the handleUpload action pass it the photo
-      this.toggleUploading();
-      this.props.dispatch(handleUpload(avatar[0], this.toggleUploading));
-    }
+   
 
-    toggleUploading = () => {
-      this.setState({ fileUploading: !this.state.fileUploading });
-    }
+   componentDidMount() {
+    this.props.dispatch(setAvatars());
+  }
 
-    assignAvatar = () => {
-      return this.props.photos.map( photo => {
-        return(
-          <Grid.Column width={4} key={photo.id}>
-            <Image src={photo.url} fluid />
-          </Grid.Column>
-        );
-      });
-    }
-
+  assignAvatar = () => {
+    return this.props.avatars.map( avatar => {
+      return(
+        <Grid.Column key={avatar.id}>
+          <Image src={avatar.url} fluid />
+        </Grid.Column>
+      );
+    });
+  }
+   
     toggleEdit = () => {
       const { edit } = this.state;
       this.setState({ edit: !edit })
     }
-
+    
     render() {
       const { user } = this.props;
       if(this.state.edit) {
@@ -54,6 +61,7 @@ class UserProfile extends Component {
           </Segment>
         )
       } else {
+      // const { avatars } = user.img;
         return (
           <Container>
             <Button onClick={this.toggleEdit}>
@@ -67,9 +75,6 @@ class UserProfile extends Component {
               <Grid.Row stretched>
                 <Grid.Column>
                   <Segment basic style={{ display: 'flex', alignSelf: 'center'}}>
-                    <Dropzone
-                      onDrop={this.onDrop}
-                    />
                   </Segment>
                 </Grid.Column>
                 <Grid.Column>
@@ -101,7 +106,7 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user }
+  return { user: state.user, avatars: state.avatars }
 }
 
 export default connect(mapStateToProps)(UserProfile);
