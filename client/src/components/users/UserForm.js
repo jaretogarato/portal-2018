@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { handleUpload } from '../actions/avatar';
+import { handleUpload } from '../../actions/avatar';
 import Dropzone from 'react-dropzone';
 import { Button, Form, Dimmer, Loader, Segment } from 'semantic-ui-react';
-import { sendInvitation } from '../actions/invitations';
+import { sendInvitation } from '../../actions/invitations';
 
 class UserForm extends React.Component {
   state = { firstName: '', lastName: '', email: '', image: '' };
@@ -13,7 +13,7 @@ class UserForm extends React.Component {
     const { firstName, lastName, email, image } = this.state;
     dispatch(sendInvitation({
       email,
-      image, 
+      image,
       first_name: firstName,
       last_name: lastName
     }));
@@ -63,7 +63,7 @@ class UserForm extends React.Component {
               {this.setImage}
             </Segment>
         </Segment>
-        <Form.Input 
+        <Form.Input
           label='First Name'
           placeholder='First Name'
           name='firstName'
@@ -71,7 +71,7 @@ class UserForm extends React.Component {
           onChange={this.handleChange}
           required
         />
-        <Form.Input 
+        <Form.Input
           label='Last Name'
           placeholder='Last Name'
           name='lastName'
@@ -79,14 +79,14 @@ class UserForm extends React.Component {
           onChange={this.handleChange}
           required
         />
-        <Form.Input 
+        <Form.Input
           label='Email'
           placeholder='Email'
           name='email'
           value={email}
           onChange={this.handleChange}
           required
-        />                
+        />
         <Button type='submit'>Submit</Button>
       </Form>
     )

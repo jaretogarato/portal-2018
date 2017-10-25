@@ -1,34 +1,24 @@
 import React, { Component } from 'react';
-import { handleUpload, setAvatars } from '../actions/avatar';
+import { handleUpload, setAvatars } from '../../actions/avatar';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import UserEditForm from './UserEditForm';
 import {
-<<<<<<< HEAD
-    Button,
-    Segment,
-    Grid,
-    Image,
-    Header,
-    Container,
-    Divider,
-=======
    Segment,
    Dimmer,
    Loader,
    Button,
-   Grid, 
-   Image, 
-   Header, 
+   Grid,
+   Image,
+   Header,
    Container,
    Divider,
->>>>>>> Fixed Avatar API Upload
-  } from 'semantic-ui-react';
+} from 'semantic-ui-react';
 
 class UserProfile extends Component {
    state = { fileUploading: false, edit: false }
 
-   
+
 
    componentDidMount() {
     this.props.dispatch(setAvatars());
@@ -43,12 +33,12 @@ class UserProfile extends Component {
       );
     });
   }
-   
+
     toggleEdit = () => {
       const { edit } = this.state;
       this.setState({ edit: !edit })
     }
-    
+
     render() {
       const { user } = this.props;
       if(this.state.edit) {
