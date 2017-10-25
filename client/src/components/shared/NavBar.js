@@ -7,8 +7,9 @@ import UserProfile from '../profile/UserProfile';
 import Attendance from '../attendance/Attendance';
 import PortalLogo from '../../assets/images/portal-logo.png';
 import { getCoursesByStudent, getCourses } from '../../actions/courses';
+import styled from 'styled-components';
 
-class NavBar extends Component {
+class NavBarSecondary extends Component {
   state = { activeItem: 'Course View' }
 
   renderCourseSections = () => {
@@ -174,4 +175,4 @@ const mapStateToProps = state => {
   return { user: state.user, userCourses: state.userCourses };
 };
 
-export default withRouter(connect(mapStateToProps)(NavBar));
+export default withRouter(connect(mapStateToProps)(NavBarSecondary));

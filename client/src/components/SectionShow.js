@@ -45,7 +45,7 @@ class SectionShow extends Component {
   componentWillMount() {
     const { dispatch, sections, section } = this.props;
     const { sectionId, groupId } = this.state;
-
+    console.log(sectionId);
     dispatch(getGroups(sectionId, this.setGroupsLoaded));
     dispatch(getLectures(groupId, this.setLecturesLoaded));
 
@@ -66,9 +66,11 @@ class SectionShow extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     const { sectionId, groupId, courseId } = this.state;
+    const { dispatch } = this.props;
     this.setState({ courseId: nextProps.courseId });
     this.setState({ sectionId: nextProps.sectionId });
     this.setState({ lectures: nextProps.lectures });
+    dispatch(getGroups(sectionId, this.setGroupsLoaded));
   }
 
   handleClick = (e, titleProps) => {
@@ -92,7 +94,7 @@ class SectionShow extends Component {
       return(
         <Link  to={`/lectures/${lecture.id}`}>
           <Segment fluid key={lecture.id}>
-            <h4>{lecture.title}</h4>          
+            <h4>{lecture.title}</h4>
           </Segment>
         </Link>
       )
