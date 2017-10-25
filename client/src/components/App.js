@@ -51,6 +51,10 @@ class App extends Component {
                   component={Users}
                   adminOnly={true}
                 />
+                <ProtectedRoute
+                  path='/lectures/:id'
+                  component={LectureView}
+                />
                 <Route component={NoMatch} />
               </Switch>
           </FetchUser>
