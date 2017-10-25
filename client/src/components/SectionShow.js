@@ -65,7 +65,7 @@ class SectionShow extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    const { sectionId, groupId, courseId } = this.state;
+    const { sectionId, courseId } = this.state;
     const { dispatch, groupId } = this.props;
     this.setState({ courseId: nextProps.courseId });
     this.setState({ sectionId: nextProps.sectionId });
