@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Container, Segment } from 'semantic-ui-react';
 
 class LectureView extends Component {
   state = { lecture: {} }
@@ -14,11 +15,12 @@ class LectureView extends Component {
   }
 
   render() {
-    const { title } = this.state.lecture;
+    const { title, content, lecture } = this.state.lecture;
     return (
-      <div>
-        <h1>{title}</h1>
-      </div>
+      <Container>
+        <Container as='h1' textAlign='center'>{title}</Container>
+        <div dangerouslySetInnerHTML={{ __html: content}} />
+      </Container>
     );
   }
 }

@@ -87,22 +87,14 @@ class SectionShow extends Component {
     dispatch(getLectures(groupId, this.setLecturesLoaded));
   }
 
-  // handleClick = (e, titleProps) => {
-  //   const { index } = titleProps
-  //   const { activeIndex } = this.state
-  //   const newIndex = activeIndex === index ? -1 : index
-  //
-  //   this.setState({ activeIndex: newIndex })
-  // }
-
   renderItems = (groupId) => {
     return this.props.lectures.map( lecture => {
       return(
-        <Button fluid basic key={lecture.id}>
-          <Link  to={`/lecture/${lecture.id}`}>
-            <h4>{lecture.title}</h4>
-          </Link>
-        </Button>
+        <Link  to={`/lectures/${lecture.id}`}>
+          <Segment fluid key={lecture.id}>
+            <h4>{lecture.title}</h4>          
+          </Segment>
+        </Link>
       )
     })
   }
