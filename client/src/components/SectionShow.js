@@ -66,11 +66,13 @@ class SectionShow extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     const { sectionId, groupId, courseId } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, groupId } = this.props;
     this.setState({ courseId: nextProps.courseId });
     this.setState({ sectionId: nextProps.sectionId });
     this.setState({ lectures: nextProps.lectures });
-    dispatch(getGroups(sectionId, this.setGroupsLoaded));
+    if(groupId != nextProps.groupId){
+      dispatch(getGroups(sectionId, this.setGroupsLoaded));
+    }
   }
 
   handleClick = (e, titleProps) => {
