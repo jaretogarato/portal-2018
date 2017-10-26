@@ -50,7 +50,7 @@ course_year = [2016, 2016, 2016, 2016, 2017, 2017, 2017, 2017, 2017, 2017]
         lecture_moon = Faker::Space.moon
         lecture = Lecture.create(
           title: "Lecture #{l + 1}: #{group_prog_lang}--the #{lecture_scientist} of #{lecture_moon}",
-          content: lecture_seed,
+          content: lecture_seed.sample,
           group_id: group.id
         )
       end

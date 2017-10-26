@@ -5,7 +5,9 @@ import { setSection } from '../actions/section';
 import { getSections } from '../actions/sections';
 import { getCoursesByStudent } from '../actions/courses';
 import { setCourse } from '../actions/courses';
-import { getGroups } from '../actions/groups';
+import { getGroups} from '../actions/groups';
+import { setGroup } from '../actions/group';
+import { setGroupId } from '../actions/groupId';
 
 class SectionSelect extends Component {
   state = {
@@ -48,13 +50,21 @@ class SectionSelect extends Component {
     // load sections for active course
     dispatch(getSections(courseId, this.setSectionsLoaded));
 
-    // load groups for active section
-    // dispatch(getGroups(sectionId, this.setGroupsLoaded));
+    // testing, testing
+    dispatch(setSection(sectionId));
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    const { sectionId } = this.state;
+    const { dispatch, groupId } = this.props;
+
+    if( sectionId != nextProps.sectionId){
+      dispatch(setSection(sectionId));
+    }
   }
 
   handleClick = (e) => {
     this.setState({ sectionId: parseInt(e.currentTarget.id, 10) }, () => {
-
       this.props.dispatch(setSection(this.state.sectionId));
     });
   }

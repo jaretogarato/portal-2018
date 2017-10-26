@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Dimmer, Button,
-  Loader, Accordion, Segment,
-  Icon, Divider, Header } from 'semantic-ui-react';
+import {
+  Container,
+  Dimmer,
+  Button,
+  Loader,
+  Accordion,
+  Segment,
+  Icon,
+  Divider,
+  Header,
+} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setFlash } from '../actions/flash';
 import { getGroups} from '../actions/groups';
@@ -43,17 +51,16 @@ class SectionShow extends Component {
   setLoaded = () => this.setState({ loaded: true });
 
   componentWillMount() {
-    const { dispatch, sections, section } = this.props;
+    const { dispatch, sections, section, courseId } = this.props;
     const { sectionId, groupId } = this.state;
-    console.log(sectionId);
+
+    this.setState({ courseId: courseId });
+    this.setState({ section: section });
+    this.setState({ sections: sections });
+
     dispatch(getGroups(sectionId, this.setGroupsLoaded));
     dispatch(getLectures(groupId, this.setLecturesLoaded));
-
-    this.setState({ courseId: this.props.courseId });
-    this.setState({ section: this.props.section });
-    this.setState({ sections: this.props.sections });
-
-    dispatch(setGroupId(this.state.groupId));
+    dispatch(setGroupId(groupId));
   }
 
   componentDidMount() {
@@ -65,37 +72,43 @@ class SectionShow extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    const { sectionId, courseId } = this.state;
-    const { dispatch, groupId } = this.props;
+    const { dispatch, sectionId, groupId, lectures } = this.props;
+
     this.setState({ courseId: nextProps.courseId });
     this.setState({ sectionId: nextProps.sectionId });
     this.setState({ lectures: nextProps.lectures });
+
+    if(sectionId != nextProps.sectionId){
+      dispatch(getGroups(nextProps.sectionId, this.setGroupsLoaded));
+    }
     if(groupId != nextProps.groupId){
-      dispatch(getGroups(sectionId, this.setGroupsLoaded));
+      dispatch(setGroupId(nextProps.groupId));
+    }
+    if(JSON.stringify(lectures) != JSON.stringify(nextProps.lectures)){
+      // debugger;
+      dispatch(getLectures( nextProps.groupId, this.setLecturesLoaded));
     }
   }
 
   handleClick = (e, titleProps) => {
-
-    const { dispatch } = this.props;
-    const { groupId, lectures } = this.state;
-
+    const { dispatch, lectures } = this.props;
+    const { sectionId, groupId, activeIndex } = this.state;
     const { index } = titleProps; // index from where the click originates
-    const { activeIndex } = this.state;
+    // const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index;
 
     this.setState({ activeIndex: newIndex });
-    this.setState({ groupId: index });
-
-    dispatch(setGroupId(index));
-    dispatch(getLectures(groupId, this.setLecturesLoaded));
+    this.setState({ groupId: index }, () => {
+      dispatch(setGroupId(index));
+      dispatch(getLectures(groupId, this.setLecturesLoaded));
+    });
   }
 
   renderItems = (groupId) => {
     return this.props.lectures.map( lecture => {
       return(
-        <Link  to={`/lectures/${lecture.id}`}>
-          <Segment fluid key={lecture.id}>
+        <Link key={lecture.id} to={`/lectures/${lecture.id}`}>
+          <Segment key={lecture.id}>
             <h4>{lecture.title}</h4>
           </Segment>
         </Link>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid, Header, Segment, Sticky } from 'semantic-ui-react';
+import { Container, Grid, Segment } from 'semantic-ui-react';
 import SectionSelect from './SectionSelect';
 import SectionShow from './SectionShow';
 // import RightTab from './RightTab';
@@ -19,7 +19,7 @@ class CourseView extends Component {
   }
 
   render() {
-    let { contextRef, active } = this.state;
+    // let { contextRef, active } = this.state;
 
     return (
       <div ref={this.handleContextRef}>
