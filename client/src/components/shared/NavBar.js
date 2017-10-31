@@ -6,7 +6,6 @@ import { handleLogout } from '../../actions/auth';
 import UserProfile from '../profile/UserProfile';
 import Attendance from '../attendance/Attendance';
 import PortalLogo from '../../assets/images/portal-logo.png';
-import { getCoursesByStudent, getCourses } from '../../actions/courses';
 import styled from 'styled-components';
 
 class NavBarSecondary extends Component {
@@ -117,14 +116,6 @@ class NavBarSecondary extends Component {
     }
     return (
       <Menu.Menu style={styles.navbarPrimary} position='right'>
-        <Menu.Item
-          as={Link}
-          to='/register'
-          style={styles.navText}
-          name="Register"
-          active={this.state.activeItem === 'Register'}
-          onClick={this.handleItemClick}
-        />
         <Menu.Item
           as={Link}
           to='/login'

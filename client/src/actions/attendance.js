@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const getAttendance = (courseId, currentDate) => {
-  debugger
   return(dispatch) => {
     axios.get(`/api/courses/${courseId}/attendances`)
   }

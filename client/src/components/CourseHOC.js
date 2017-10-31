@@ -10,13 +10,11 @@ class CourseHOC extends Component {
 
   componentDidMount() {
     const { dispatch, user } = this.props;
-    // this.setCoursesLoaded();
     if(user.id){
       dispatch(getCoursesByStudent(user.id));
     }else{
       this.setCoursesLoaded();
     }
-
   }
 
   componentWillReceiveProps(nextProps) {

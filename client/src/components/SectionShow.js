@@ -85,7 +85,6 @@ class SectionShow extends Component {
       dispatch(setGroupId(nextProps.groupId));
     }
     if(JSON.stringify(lectures) != JSON.stringify(nextProps.lectures)){
-      // debugger;
       dispatch(getLectures( nextProps.groupId, this.setLecturesLoaded));
     }
   }

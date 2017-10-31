@@ -21,10 +21,10 @@ export const getCourses = () => {
 export const getCoursesByStudent = (userId, callback) => {
   return(dispatch) => {
     axios.get(`/api/user_courses/${userId}`)
-      .then( res => {
-        dispatch({ type: 'GET_USER_COURSES', userCourses: res.data })
+      .then( ({ data, headers }) => {
+        dispatch({ type: 'GET_USER_COURSES', userCourses: data, headers })
+        callback();
       })
-      .then(callback())
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve User Courses', 'red'));
@@ -56,7 +56,6 @@ export const updateCourse = (course, id) => {
         dispatch({ type: 'SET_HEADERS', headers: res.headers });
       })
       .catch( err => {
-        debugger
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Update Course', 'red'));
     });
