@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button, Grid, Header, Segment } from 'semantic-ui-react';
 
 // ------------ v1 ---------------
 export const HeroHeader = styled.div`
@@ -20,7 +21,7 @@ export const HeroHeader = styled.div`
     width: 160%;
     margin-left: -30%;
   }
-`
+`;
 
 // ------------- v2 ----------------
 export const HHeader = styled.div`
@@ -33,7 +34,8 @@ export const HHeader = styled.div`
   left: 0px; */}
   margin:0;
   padding:0;
-`
+`;
+
 export const HeroHeaderImageContainer = styled.div`
   min-height: 100%;
   width: 100%;
@@ -42,7 +44,8 @@ export const HeroHeaderImageContainer = styled.div`
   background-size: 100%;
   margin: 0;
   padding: 0;
-`
+`;
+
 export const HeroHeaderImg = styled('image')`
   position: absolute;
   transition: all .5s ease-in-out;
@@ -63,7 +66,8 @@ export const HeroHeaderImg = styled('image')`
     top: 40%;
     margin-top: -40%;
   }
-`
+`;
+
 export const HeroHeaderTextContainer = styled.div`
   ${'' /* background-image: linear-gradient(0, black, transparent 80%), linear-gradient(0, black, transparent 0px); */}
   z-index: 2;
@@ -81,7 +85,8 @@ export const HeroHeaderTextContainer = styled.div`
     clear: both;
     display: table;
   }
-`
+`;
+
 export const HeroHeaderH1 = styled.h1`
   position: relative;
   color: white;
@@ -92,19 +97,44 @@ export const HeroHeaderH1 = styled.h1`
   sans-serif;
   font-weight: 100;
   font-size: 3em;
-`
+`;
+
 export const FooterStyled = styled.div`
   flex-shrink: 0;
-`
+`;
+
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-`
+`;
+
 export const FlexContent = styled.div`
   flex: 1 0 auto;
   border-top: solid 1px;
   left: 0;
   bottom: 0;
   width: 100%;
-`
+`;
+
+// -- Course Form --
+
+export const CourseFormHeader = styled(Header)`
+  color: purple !important;
+  text-align: center;
+  font-size: 2em !important;
+`;
+
+export const CourseFormGrid = styled(Grid)`
+  text-align: center;
+  justify-content: center;
+`;
+
+export const CourseFormSegment = styled(Segment)`
+  justify-content: center;
+`;
+
+export const CourseFormButton = styled(Button)`
+  background-color: purple !important;
+  color: white !important;
+`;

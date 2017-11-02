@@ -1,20 +1,19 @@
-import React, { Component }from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import Course from './Course';
 import CourseForm from './CourseForm';
-import EditCourseModal from './EditCourseModal';
+import { connect } from 'react-redux';
+import { getCourses } from '../../actions/courses';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
   Container,
   Grid,
-  Menu,
-  Segment,
+  Menu
 } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import { getCourses } from '../../actions/courses';
 
-class Courses extends Component {
-  state = { courses: [], isAdding: false }
+class Courses extends React.Component {
+  state = { courses: [], isAdding: false };
 
   componentWillMount() {
     const { dispatch } = this.props;
@@ -25,24 +24,7 @@ class Courses extends Component {
     const { courses } = this.props;
     if(courses) {
       return courses.map( course =>
-        <Grid.Column key={course.id}>
-          <Card>
-            <Card.Content>
-              <Card.Header>
-                {course.course_type}
-              </Card.Header>
-              <Card.Meta>
-                {course.term} {course.year}
-              </Card.Meta>
-            </Card.Content>
-            <Card.Content extra>
-              <div className='ui two buttons'>
-                <Button basic color='green'>View</Button>
-                <EditCourseModal course={course}/>
-              </div>
-            </Card.Content>
-          </Card>
-        </Grid.Column>
+        <Course course={course} />
       )
     }
   }

@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect, Route } from 'react-router-dom';
 
-class ProtectedRoute extends Component {
+class ProtectedRoute extends React.Component {
+
   verifyAdmin = () => {
     const { adminOnly, isAdmin} = this.props;
     if(adminOnly != null){

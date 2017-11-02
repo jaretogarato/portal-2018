@@ -1,12 +1,12 @@
 import React from 'react';
+import { FooterStyled } from '../../styles/styles';
+import { Link } from 'react-router-dom';
 import {
-  Segment,
   Grid,
   Image,
   Menu,
+  Segment
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import { FooterStyled } from '../../styles/styles';
 
 const Footer = () => (
   <FooterStyled>

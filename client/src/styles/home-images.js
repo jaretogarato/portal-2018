@@ -13,7 +13,6 @@ export const HomeBody = styled.div`
   height: 100% !important;
   width: 100%;
   min-height: 750px;
-  ${'' /* display: flex; */}
 `
 
 export const HomeWrapper = styled.div`

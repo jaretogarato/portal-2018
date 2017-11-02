@@ -1,32 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Card, Dimmer, Loader, Menu, Segment } from 'semantic-ui-react';
-import { setSection } from '../actions/section';
-import { getSections } from '../actions/sections';
 import { getCoursesByStudent } from '../actions/courses';
-import { setCourse } from '../actions/courses';
 import { getGroups} from '../actions/groups';
+import { getSections } from '../actions/sections';
+import { setCourse } from '../actions/courses';
 import { setGroup } from '../actions/group';
 import { setGroupId } from '../actions/groupId';
+import { setSection } from '../actions/section';
+import { Dimmer, Loader, Menu } from 'semantic-ui-react';
 
-class SectionSelect extends Component {
+class SectionSelect extends React.Component {
   state = {
     coursesLoaded: false,
     sectionsLoaded: false,
     groupsLoaded: false,
-    group: {},
-    courses: [],
     courseId: 1,
-    course: {},
-    courseHeader: '',
-    sections: [],
-    sectionId: 1,
-    section: {},
-    sectionHeader: '',
-  }
+    sectionId: 1
+  };
 
   setCoursesLoaded = () => this.setState({ coursesLoaded: true });
+
   setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
+
   setGroupsLoaded = () => this.setState({ groupsLoaded: true });
 
   componentWillMount() {

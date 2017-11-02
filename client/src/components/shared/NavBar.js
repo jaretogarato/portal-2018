@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Dropdown, Image, Label, Menu, Segment } from 'semantic-ui-react';
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { handleLogout } from '../../actions/auth';
-import UserProfile from '../profile/UserProfile';
+import React from 'react';
 import Attendance from '../attendance/Attendance';
 import PortalLogo from '../../assets/images/portal-logo.png';
+import UserProfile from '../profile/UserProfile';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { handleLogout } from '../../actions/auth';
+import { Link, withRouter } from 'react-router-dom';
+import { Dropdown, Image, Label, Menu, Segment } from 'semantic-ui-react';
 
-class NavBarSecondary extends Component {
-  state = { activeItem: 'Course View' }
+class NavBar extends React.Component {
+  state = { activeItem: 'Course View' };
 
   renderCourseSections = () => {
     const { user } = this.state;
@@ -27,14 +27,13 @@ class NavBarSecondary extends Component {
     )
   }
 
-  handleItemClick = (e, { name }) =>
-    this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   rightNavs = () => {
-    const { user, dispatch, history } = this.props;
+    const { user: { id, is_admin }, dispatch, history } = this.props;
 
-    if (user.id) {
-      if (user.is_admin) {
+    if (id) {
+      if (is_admin) {
         return(
           <Menu.Menu style={styles.navbarPrimary} position='right'>
             <Menu.Item
@@ -91,6 +90,7 @@ class NavBarSecondary extends Component {
           </Menu.Menu>
         );
       }
+
       return(
         <Menu.Menu style={styles.navbarPrimary} position='right'>
            <Dropdown item text='My Courses' style={styles.navText}>
@@ -114,6 +114,7 @@ class NavBarSecondary extends Component {
         </Menu.Menu>
       )
     }
+
     return (
       <Menu.Menu style={styles.navbarPrimary} position='right'>
         <Menu.Item
@@ -150,15 +151,15 @@ class NavBarSecondary extends Component {
 }
 
 const styles = {
-  navbarPrimary: {
-    background: 'linear-gradient(#00bef2, #00a6d4)',
-    border: 'none',
+  dropdown: {
+    backgroundColor: '#DDD',
   },
   navText: {
     color: '#fff',
   },
-  dropdown: {
-    backgroundColor: '#DDD',
+  navbarPrimary: {
+    background: 'linear-gradient(#00bef2, #00a6d4)',
+    border: 'none',
   }
 }
 
@@ -166,4 +167,4 @@ const mapStateToProps = state => {
   return { user: state.user, userCourses: state.userCourses };
 };
 
-export default withRouter(connect(mapStateToProps)(NavBarSecondary));
+export default withRouter(connect(mapStateToProps)(NavBar));

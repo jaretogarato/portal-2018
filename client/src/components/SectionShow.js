@@ -1,49 +1,43 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Container,
-  Dimmer,
-  Button,
-  Loader,
-  Accordion,
-  Segment,
-  Icon,
-  Divider,
-  Header,
-} from 'semantic-ui-react';
+import React from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { setFlash } from '../actions/flash';
 import { getGroups} from '../actions/groups';
+import { getLectures } from '../actions/lectures';
+import { Link } from 'react-router-dom';
+import { setFlash } from '../actions/flash';
 import { setGroup } from '../actions/group';
 import { setGroupId } from '../actions/groupId';
-import { getLectures } from '../actions/lectures';
-import axios from 'axios';
+import {
+  Accordion,
+  Container,
+  Dimmer,
+  Header,
+  Icon,
+  Loader,
+  Segment
+} from 'semantic-ui-react';
 
-class SectionShow extends Component {
+class SectionShow extends React.Component {
   state = {
     loaded: false,
     itemsLoaded: false,
     groupsLoaded: false,
     lecturesLoaded: false,
-
     activeIndex: 0,
-
     sectionId: 1,
     sections: [],
     section: {},
     sectionHeader: '',
-
     groups: [],
     groupId: 1,
     groupNewId: 1,
     group: {},
     groupHeader: '',
-
     lectures: [],
     lectureId: 1,
     lecture: {},
     lectureTitle: '',
-  }
+  };
 
   setGroupsLoaded = () => this.setState({ groupsLoaded: true });
   setItemsLoaded = () => this.setState({ itemsLoaded: true });

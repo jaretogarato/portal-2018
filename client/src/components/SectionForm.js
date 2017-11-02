@@ -1,29 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
-import { Form, Button, Grid, Segment, Header } from 'semantic-ui-react';
 import { addSection } from '../actions/sections.js'
 import { connect } from 'react-redux';
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 
-
-class SectionForm extends Component {
-
-  state = { title: '' }
+class SectionForm extends React.Component {
+  state = { title: '' };
 
   handleSubmit = (e) => {
-    e.preventDefault();
     const { title } = this.state;
     this.props.dispatch(addSection(title))
     this.setState({ title: '' })
   }
 
-  handleChange = (e) => {
-    let { title, value } = e.target;
-    this.setState({ [title]: value });
-  }
+  handleChange = ({ target: { name, value } }) => this.setState({ [title]: value });
 
   render() {
     const { title } = this.state;
-
     return(
       <div>
         <Grid>
@@ -35,7 +28,7 @@ class SectionForm extends Component {
                   <label htmlFor='section'>Section</label>
                   <input
                     fluid
-                    title='title'
+                    name='title'
                     placeholder='Section'
                     required
                     id='section'
@@ -53,6 +46,7 @@ class SectionForm extends Component {
     )
   }
 }
+
 const mapStateToProps = (state) => {
   return { sections: state.sections }
 }

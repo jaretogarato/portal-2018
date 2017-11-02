@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Header } from 'semantic-ui-react';
 import { acceptInvitation } from '../actions/invitations';
-import { setFlash } from '../actions/flash';
 import { connect } from 'react-redux';
+import { setFlash } from '../actions/flash';
+import { Form, Header } from 'semantic-ui-react';
 
 class InviteConfirmation extends React.Component {
   state = { password: '', passwordConfirmation: '' };

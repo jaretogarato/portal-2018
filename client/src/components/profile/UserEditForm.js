@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
 import { editUser } from '../../actions/user';
 import { 
   Button, 
-  Container, 
   Divider, 
-  Grid, 
   Form, 
+  Grid, 
   Header, 
   Input, 
   Segment, 
   TextArea 
 } from 'semantic-ui-react';
 
-class UserEditForm extends Component {
-  state = { firstName: '', lastName: '', bio: '', email:  '', nickname: '' };
+class UserEditForm extends React.Component {
+  state = { 
+    firstName: '', 
+    lastName: '', 
+    bio: '', 
+    email:  '', 
+    nickname: '' 
+  };
 
   componentDidMount() {
     const { first_name, last_name, bio, email, nickname } = this.props.user;
@@ -23,17 +28,13 @@ class UserEditForm extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();
     const { firstName, lastName, bio, email, nickname } = this.state;
     this.props.dispatch(editUser({ first_name: firstName, last_name: lastName, bio, email, nickname }, this.props.user.id))
     this.setState({ bio, email, nickname });
     this.props.toggleEdit();
   }
 
-  handleChange = (e) => {
-    let { value, name } = e.target;
-    this.setState({ [name]: value });
-  }
+  handleChange = ({ target: { value, name } }) => this.setState({ [name]: value });
 
   render()  {
     const { firstName, lastName, bio, email, nickname } = this.state;

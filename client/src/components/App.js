@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Attendance from './attendance/Attendance';
-import Courses from './course/Courses';
-import NoMatch from './NoMatch';
-import NavBar from './shared/NavBar';
-import Login from './Login';
-import LectureView from './lecture/LectureView';
-import Register from './Register';
-import Flash from './Flash';
-import Home from './root/Home';
-import CourseView from './course/CourseView';
-import InviteConfirmation from './InviteConfirmation';
-import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
-import AdminRoute from './AdminRoute';
+import CourseForm from './course/CourseForm';
+import Courses from './course/Courses';
+import CourseView from './course/CourseView';
 import FetchUser from './FetchUser';
+import Flash from './Flash';
 import Footer from './shared/Footer';
+import Home from './root/Home';
+import InviteConfirmation from './InviteConfirmation';
+import LectureView from './lecture/LectureView';
+import Login from './Login';
+import NavBar from './shared/NavBar';
+import NoMatch from './NoMatch';
+import ProtectedRoute from './ProtectedRoute';
 import UserProfile from './profile/UserProfile';
 import Users from './users/Users';
-import CourseForm from './course/CourseForm';
-// import FetchCourses from './FetchCourses';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <FlexContainer>
@@ -40,7 +37,6 @@ class App extends Component {
                 exact path='/course_view'
                 component={CourseView}
               />
-              <AuthRoute exact path='/register' component={Register} />
               <ProtectedRoute adminOnly={true} path='/courses' component={Courses} />
               <ProtectedRoute
                 exact path='/users'

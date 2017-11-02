@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-// import ImgHero from '../assets/images/hero-image.png';
+import React from 'react';
 
-
-class HomeImage extends Component {
+class HomeImage extends React.Component {
   render(){
     return(
       <div style={styles.homeWrapper}>

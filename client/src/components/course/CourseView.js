@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
-import { Container, Grid, Header, Segment, Sticky } from 'semantic-ui-react';
+import React from 'react';
+import NavBarSecondary from './NavBarSecondary';
 import SectionSelect from '../SectionSelect';
 import SectionShow from '../SectionShow';
-// import RightTab from './RightTab';
-import NavBarSecondary from './NavBarSecondary';
+import { Container, Grid, Header, Segment, Sticky } from 'semantic-ui-react';
 
-
-class CourseView extends Component {
+class CourseView extends React.Component {
   state = {
     active: true,
     title:'Devpoint',
     body:'Portal',
     bgImg:'ImgHero',
-  }
+  };
 
   handleContextRef = (contextRef) => {
     this.setState({ contextRef })
@@ -37,11 +35,6 @@ class CourseView extends Component {
                 <SectionShow />
               </Segment>
             </Grid.Column>
-            {/* <Grid.Column width={4}>
-              <Sticky active={active} context={contextRef}>
-                <RightTab />
-              </Sticky>
-            </Grid.Column> */}
           </Grid>
         </Container>
       </div>

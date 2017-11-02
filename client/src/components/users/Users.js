@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 import UserForm from './UserForm';
+import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 
 class Users extends React.Component {
   state = { modalOpen: false };

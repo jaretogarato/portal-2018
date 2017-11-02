@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Menu } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-class NavBar extends Component {
+class NavBar extends React.Component {
+
   leftNavs = () => {
-    // const { user, dispatch, history } = this.props;
-
     return (
       <Menu.Menu style={styles.navbarSecondary} position='left'>
         <Link to='/'>

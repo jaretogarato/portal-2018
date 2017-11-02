@@ -1,7 +1,7 @@
 import React from 'react';
-import { updateUserStatus } from '../../actions/users';
 import { connect } from 'react-redux';
-import { Card, Container, Header, Icon, Image, Item } from 'semantic-ui-react';
+import { updateUserStatus } from '../../actions/users';
+import { Container, Header, Icon, Image, Item } from 'semantic-ui-react';
 
 class StudentRecord extends React.Component {
   state = { status: 'none' };

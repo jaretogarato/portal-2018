@@ -1,12 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import { Form, Button } from 'semantic-ui-react';
 import { addGroup } from '../actions/groups.js';
-
+import { Button, Form } from 'semantic-ui-react';
 
 class GroupForm extends Component {
-
-  state = { title: '' }
+  state = { title: '' };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +50,7 @@ class GroupForm extends Component {
     )
   }
 }
+
 const mapStateToProps = (state) => {
   return { groups: state.groups }
 }

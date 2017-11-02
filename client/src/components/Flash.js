@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Message, Container, Header } from 'semantic-ui-react';
 import { clearFlash } from '../actions/flash';
 import { FloatingMessage } from '../styles/flashStyles';
+import { Message, Container, Header } from 'semantic-ui-react';
 
 const fadeFlash = dispatch => {
   setTimeout(() => {

@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import HomeBg from '../../assets/images/home-image-2880w.jpg';
 import PortalLogo from '../../assets/images/dps-portal-logo.png';
 import { Container} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
-import { HomeBody, HomeWrapper, HomeLogo } from '../../styles/home-images.js';
-import { HeroHeader, HeroHeaderTextContainer } from '../../styles/styles';
+import { HomeBody, HomeLogo, HomeWrapper } from '../../styles/home-images.js';
 
-class Home extends Component {
-  state = { loaded: false, userCourses: [] }
+class Home extends React.Component {
+  state = { loaded: false, userCourses: [] };
 
   componentDidMount()  {
     const { dispatch, userId } = this.props;

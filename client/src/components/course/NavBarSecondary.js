@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Breadcrumb, Menu } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-class NavBarSecondary extends Component {
+class NavBarSecondary extends React.Component {
+
   leftNavs = () => {
     const { course, term, year } = this.props;
+
     if( course != null ){  
       return (
         <Breadcrumb style={styles.navbarSecondary} position='left'>
@@ -41,14 +43,14 @@ const styles = {
     background: 'linear-gradient(#e0dfde, #cccbca)',
     border: 'none',
     padding: '.5%',
-  },
+  }
 }
 
 const mapStateToProps = state => {
   return { 
     user: state.user,
     course: state.userCourses[0]
-    }
+  }
 };
 
 export default withRouter(connect(mapStateToProps)(NavBarSecondary));

@@ -1,20 +1,16 @@
 import React from 'react';
 import Editor from './Editor';
 import {
-  Container,
-  Header,
   Button,
+  Container,
   Divider,
-  Segment,
   Grid,
   Icon,
-  Dropdown,
-  Menu,
+  Segment
 } from 'semantic-ui-react';
 
 const LectureContent = () => (
   <Container>
-
     <Segment basic>
       <Grid columns={2}>
         <Grid.Row>
@@ -29,9 +25,7 @@ const LectureContent = () => (
         </Grid.Row>
       </Grid>
     </Segment>
-
     <Divider />
-
     <Editor placeholder='Write something...' />
   </Container>
 )

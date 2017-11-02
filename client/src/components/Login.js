@@ -1,28 +1,8 @@
 import React, { Component } from 'react';
-import { Header, Segment, Form, Button, Grid } from 'semantic-ui-react';
+import styled from 'styled-components'
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
-import styled from 'styled-components'
-
-const LoginHeader = styled(Header)`
-  color: purple !important;
-  text-align: center;
-  font-size: 2em !important;
-`;
-
-const LoginGrid = styled(Grid)`
-  text-align: center;
-  justify-content: center;
-`;
-
-const LoginSegment = styled(Segment)`
-  justify-content: center;
-`;
-
-const LoginButton = styled(Button)`
-  background-color: purple !important;
-  color: white !important;
-`;
+import { Button, Form, Header, Grid, Segment } from 'semantic-ui-react';
 
 class Login extends Component {
   state = { email: '', password: '' };
@@ -43,10 +23,10 @@ class Login extends Component {
     const { email, password } = this.state;
     return (
       <div>
-        <LoginGrid>
+        <Grid textAlign='center'>
           <Grid.Column style={{ maxWidth: 450, padding: '5%' }}>
-            <LoginSegment>
-              <LoginHeader>Login</LoginHeader>
+            <Segment>
+              <Header>Login</Header>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Field>
                   <label htmlFor='email'>Email</label>
@@ -73,13 +53,11 @@ class Login extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Field>
-              <LoginButton
-                >Login
-                </LoginButton>
+              <Button color='blue'>Login</Button>
               </Form>
-            </LoginSegment>
+            </Segment>
           </Grid.Column>
-        </LoginGrid>
+        </Grid>
       </div>
     )
   }

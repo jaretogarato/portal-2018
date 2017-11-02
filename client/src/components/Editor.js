@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactQuill, { Quill, Mixin, Toolbar } from 'react-quill';
 import {
-  Header,
   Button,
   Divider,
-  Segment,
+  Header,
+  Segment
 } from 'semantic-ui-react';
 import 'react-quill/dist/quill.snow.css';
 
-class Editor extends Component {
-  state = { text: '' }
+class Editor extends React.Component {
+  state = { text: '' };
 
   handleChange = (value) => {
     this.setState({ text: value });
@@ -58,6 +58,5 @@ Editor.formats = [
   'list', 'bullet', 'indent',
   'link', 'image', 'video'
 ]
-
 
 export default Editor;

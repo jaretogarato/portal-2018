@@ -1,14 +1,26 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import EditCourseModal from './EditCourseModal';
+import { Button, Card, Grid } from 'semantic-ui-react';
 
-const Course = ({ course: { id, course_type, term, year } }) => (
+const Course = ({ course }) => (
+  <Grid.Column key={course.id}>
     <Card>
       <Card.Content>
-        <h1>{term}</h1>
-        <h1>{course_type}</h1>
-        <h1>{year}</h1>
+        <Card.Header>
+          {course.course_type}
+        </Card.Header>
+        <Card.Meta>
+          {course.term} {course.year}
+        </Card.Meta>
+      </Card.Content>
+      <Card.Content extra>
+        <div className='ui two buttons'>
+          <Button basic color='green'>View</Button>
+          <EditCourseModal course={course}/>
+        </div>
       </Card.Content>
     </Card>
+  </Grid.Column>
 )
 
 export default Course;

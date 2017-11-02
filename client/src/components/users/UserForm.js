@@ -1,9 +1,9 @@
 import React from 'react';
+import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
 import { handleUpload } from '../../actions/avatar';
-import Dropzone from 'react-dropzone';
-import { Button, Form, Dimmer, Loader, Segment } from 'semantic-ui-react';
 import { sendInvitation } from '../../actions/invitations';
+import { Button, Dimmer, Form, Loader, Segment } from 'semantic-ui-react';
 
 class UserForm extends React.Component {
   state = { firstName: '', lastName: '', email: '', image: '' };
@@ -19,18 +19,21 @@ class UserForm extends React.Component {
     }));
     modalClose();
   }
+
   toggleUploading = (image) => {
     this.setState({ fileUploading: !this.state.fileUploading });
   }
+
   setImage = (url) => {
     this.toggleUploading();
-    this.setState({image: url})
+    this.setState({image: url});
   }
+
   onDrop = (avatar) => {
-    // dispatch the handleUpload action pass it the avatar
     this.toggleUploading();
     this.props.dispatch(handleUpload(avatar[0], this.setImage));
   }
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -38,30 +41,27 @@ class UserForm extends React.Component {
 
   uploadDisplay = () => {
     if(this.state.fileUploading) {
-        return(
-            <Dimmer active>
-                <Loader>Attempting to Code...Please Wait..</Loader>
-            </Dimmer>
-            );
-        } else {
-            return(
-                <Dropzone
-                    onDrop={this.onDrop}
-                    >
-                </Dropzone>
-                )
-            }
-        }
+      return (
+        <Dimmer active>
+          <Loader>Attempting to Code...Please Wait..</Loader>
+        </Dimmer>
+      );
+    } else {
+      return (
+        <Dropzone onDrop={this.onDrop} />
+      )
+    }
+  }
 
   render() {
     const { email, firstName, lastName } = this.state;
-    return(
+    return (
       <Form onSubmit={this.handleSubmit}>
         <Segment>
+          {this.setImage}
+          <Segment>
             {this.setImage}
-            <Segment>
-              {this.setImage}
-            </Segment>
+          </Segment>
         </Segment>
         <Form.Input
           label='First Name'
