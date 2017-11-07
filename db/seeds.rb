@@ -120,3 +120,5 @@ puts "Test Student seeded email: test@test.com and password: password"
 end
 
 puts "20 students seeded with enrollment, plus faker email and password password."
+
+# SOME NOTES TEEHEE
