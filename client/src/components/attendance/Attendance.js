@@ -17,7 +17,7 @@ class Attendance extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     const { currentDate, dispatch } = this.props;
-    // when finished dispatch this action  
+    // when finished dispatch this action
     // dispatch(getAttendance(this.state.courseId, nextProps.currentDate))
   }
 
@@ -34,11 +34,15 @@ class Attendance extends React.Component {
     // TODO: replace courseId with dynamic number
     dispatch(addAttendance(courseId, users, currentDate));
   }
-  
+
   allPresent = () => {
 
   }
+
+  sendDate = () => {
     
+  }
+
   render() {
     return(
       <Container>
@@ -60,9 +64,9 @@ class Attendance extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { 
-    users: state.users, 
-    currentDate: state.currentDate 
+  return {
+    users: state.users,
+    currentDate: state.currentDate
   }
 }
 

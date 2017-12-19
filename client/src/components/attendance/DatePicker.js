@@ -9,8 +9,7 @@ class DatePicker extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    // TODO: make current date
-    let currentDate = new Date("October 18, 2017")
+    let currentDate = new Date()
     currentDate = moment(currentDate).format('ddd MMM D YYYY')
     dispatch(getDate(currentDate));
   }
@@ -20,7 +19,7 @@ class DatePicker extends React.Component {
     let newDate = moment(currentDate).add(dayChange, 'day').format('ddd MMM D YYYY')
     dispatch(updateDate(newDate));
   }
-  
+
   render() {
     const { currentDate } = this.props;
     return(
@@ -37,13 +36,13 @@ class DatePicker extends React.Component {
               </Header>
                 <Container textAlign='right'>
                   <Button.Group>
-                    <Button 
+                    <Button
                       content='Prev'
                       icon='angle double left'
                       labelPosition='left'
                       onClick={() => this.handleDayChange(-1)}
                     />
-                    <Button 
+                    <Button
                       content='Next'
                       icon='angle right double'
                       labelPosition='right'
@@ -58,7 +57,7 @@ class DatePicker extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {
   return { currentDate: state.currentDate }
 }
 
