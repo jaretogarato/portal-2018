@@ -1,28 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateUserStatus } from '../../actions/users';
-import { Container, Header, Icon, Image, Item } from 'semantic-ui-react';
+import { Container,
+  Header,
+  Icon,
+  Image,
+  Item,
+  Form
+} from 'semantic-ui-react';
 
 class StudentRecord extends React.Component {
-  state = { status: 'none' };
-
-  toggleStatus = () => {
-    const { status } = this.state;
-    switch(status) {
-      case 'none':
-        this.handleStatusChange('present')
-        break;
-      case 'present':
-        this.handleStatusChange('absent')
-        break;
-      case 'absent':
-        this.handleStatusChange('tardy')
-        break;
-      case 'tardy':
-        this.handleStatusChange('none')
-        break;
-    }
-  }
+  state = { status: 'present' };
 
   handleStatusChange = (recordStatus) => {
     this.setState( (state, props) => {
@@ -31,17 +19,47 @@ class StudentRecord extends React.Component {
     })
   }
 
+  handleClick = (status, inactive) => {
+    if(inactive)
+      this.handleStatusChange(status)
+  }
+
   displayIcon = () => {
-    switch(this.state.status) {
-      case 'none':
-        return <Icon name='ban' size='big' color='grey' />
-      case 'present':
-        return <Icon name='check circle outline' size='big' color='green' />
-      case 'absent':
-        return <Icon name='remove circle outline' size='big' color='red' />
-      case 'tardy':
-        return <Icon name='wait' size='big' color='orange' />
-    }
+    const { status } = this.state
+    return(
+      <Form style={styles.row}>
+        <Form.Field style={styles.noMargin}>
+          <Icon
+            name='check circle outline'
+            size='big'
+            color='green'
+            disabled={ status !== 'present' }
+            onClick={ () => this.handleClick('present', status !== 'present') }
+            style={styles.pointer}
+          />
+        </Form.Field>
+        <Form.Field style={styles.noMargin}>
+          <Icon
+            name='remove circle outline'
+            size='big'
+            color='red'
+            disabled={ status !== 'absent' }
+            onClick={ () => this.handleClick('absent', status !== 'absent') }
+            style={styles.pointer}
+          />
+        </Form.Field>
+        <Form.Field style={styles.noMargin}>
+          <Icon
+            name='wait'
+            size='big'
+            color='orange'
+            disabled={ status !== 'tardy' }
+            onClick={ () => this.handleClick('tardy', status !== 'tardy') }
+            style={styles.pointer}
+          />
+        </Form.Field>
+      </Form>
+    )
   }
 
   render() {
@@ -52,9 +70,9 @@ class StudentRecord extends React.Component {
           <Item style={styles.userSection} onClick={this.toggleStatus}>
             <Item.Image style={styles.recordImage} size='tiny' src='http://skoolrunnr.com/wp-content/uploads/2017/10/placeholder.png' />
             <Item.Content verticalAlign='middle'>
-              <Item.Header>
-                { this.displayIcon() }
+              <Item.Header style={styles.row}>
                 { last_name }, { first_name }
+                { this.displayIcon() }
               </Item.Header>
             </Item.Content>
           </Item>
@@ -66,11 +84,26 @@ class StudentRecord extends React.Component {
 
 const styles = {
   userSection: {
-    width: '50%',
+    width: '35%',
     border: '1px solid #c0c0c0'
   },
   recordImage: {
     width: '50px'
+  },
+  row: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginRight: '7%',
+  },
+  noMargin: {
+    marginBottom: '0px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  pointer: {
+    cursor: 'pointer',
   }
 }
 
