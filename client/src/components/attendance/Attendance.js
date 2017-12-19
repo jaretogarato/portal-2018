@@ -40,7 +40,7 @@ class Attendance extends React.Component {
   }
 
   sendDate = () => {
-    
+
   }
 
   render() {
