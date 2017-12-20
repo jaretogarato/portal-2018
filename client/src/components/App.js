@@ -4,6 +4,7 @@ import AuthRoute from './AuthRoute';
 import CourseForm from './course/CourseForm';
 import Courses from './course/Courses';
 import CourseView from './course/CourseView';
+import Course from './Course';
 import FetchUser from './FetchUser';
 import Flash from './Flash';
 import Footer from './shared/Footer';
@@ -37,7 +38,8 @@ class App extends React.Component {
                 exact path='/course_view'
                 component={CourseView}
               />
-              <ProtectedRoute adminOnly={true} path='/courses' component={Courses} />
+              <ProtectedRoute path="/courses/:id" component={Course} />
+              <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />
               <ProtectedRoute
                 exact path='/users'
                 component={Users}

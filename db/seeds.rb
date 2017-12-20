@@ -25,6 +25,7 @@ course_type = [
   'Full-Time',
   'Part-Time',
 ]
+
 course_year = [2016, 2016, 2016, 2016, 2017, 2017, 2017, 2017, 2017, 2017]
 
 10.times do |i|
