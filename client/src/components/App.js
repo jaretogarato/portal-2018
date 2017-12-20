@@ -29,7 +29,7 @@ class App extends React.Component {
             <Flash />
             <Switch>
               <Route exact path='/invitation/accept' component={InviteConfirmation} />
-              <Route exact path='/' component={Home} />
+              <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/attendance' component={Attendance} />
               <ProtectedRoute exact path='/user_profile' component={UserProfile} />
