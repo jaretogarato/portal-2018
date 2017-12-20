@@ -15,7 +15,7 @@ const Course = ({ course }) => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button basic color='green'>View</Button>
+          <Button basic color='blue'>View</Button>
           <EditCourseModal course={course}/>
         </div>
       </Card.Content>

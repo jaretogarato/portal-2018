@@ -19,11 +19,12 @@ class CourseForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { course_type, term, year } = this.state;
-    const { type, course, handleClose } = this.props;
+    const { type, course, toggleModal } = this.props;
     if(type === 'edit'){
       this.props.dispatch(updateCourse(this.state, course.id));
-      handleClose();
+      toggleModal();
     }else{
+      //TODO: Error flash message combines error messages without spaces between errors
       this.props.dispatch(addCourse(this.state));
       this.props.cancelAdding();
     }
@@ -35,12 +36,13 @@ class CourseForm extends React.Component {
     const { course_type, term, year } = this.state;
 
     return(
-      <CourseFormGrid>
+      <CourseFormGrid width={16}>
         <Grid.Column style={{ maxWidth: 1200, paddingTop: 15 }}>
           <CourseFormSegment>
             <CourseFormHeader>Course Form</CourseFormHeader>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>
+                <Form.Field width={1} />
                 <Form.Field
                   control={Select}
                   label='Course'
@@ -60,7 +62,7 @@ class CourseForm extends React.Component {
                   value={term}
                   onChange={this.handleChange}
                   id='term'
-                  width={5}
+                  width={4}
                   required
                 />
                 <Form.Field
@@ -71,11 +73,12 @@ class CourseForm extends React.Component {
                   value={year}
                   onChange={this.handleChange}
                   id='year'
-                  width={5}
+                  width={4}
                   required
                 />
+                <Form.Field width={1} />
               </Form.Group>
-            <CourseFormButton>Submit</CourseFormButton>
+            <CourseFormButton>Save</CourseFormButton>
             </Form>
           </CourseFormSegment>
         </Grid.Column>

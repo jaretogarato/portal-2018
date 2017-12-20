@@ -5,12 +5,9 @@ import { Button, Modal } from 'semantic-ui-react';
 class EditCourseModal extends React.Component {
   state = { modalOpen: false };
 
-  handleOpen = (e) => {
-    this.setState({ modalOpen: true })
-  }
-
-  handleClose = (e) => {
-    this.setState({ modalOpen: false })
+  toggleModal = (e) => {
+    const { modalOpen } = this.state
+    this.setState({ modalOpen: !modalOpen })
   }
 
   render(){
@@ -18,13 +15,13 @@ class EditCourseModal extends React.Component {
     const { modalOpen } = this.state;
     return(
       <Modal
-        open={modalOpen}
-        onClose={this.handleClose}
+        open={ modalOpen }
+        onClose={() => this.toggleModal()}
         trigger={
-          <Button basic color='orange' onClick={this.handleOpen}>Edit</Button>
+          <Button basic color='grey' onClick={() => this.toggleModal() }>Edit</Button>
         }
       >
-        <CourseForm type='edit' course={course} handleClose={this.handleClose}/>
+        <CourseForm type='edit' course={course} toggleModal={this.toggleModal}/>
       </Modal>
     );
   }

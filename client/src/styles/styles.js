@@ -120,7 +120,7 @@ export const FlexContent = styled.div`
 // -- Course Form --
 
 export const CourseFormHeader = styled(Header)`
-  color: purple !important;
+  color: black !important;
   text-align: center;
   font-size: 2em !important;
 `;
@@ -135,6 +135,6 @@ export const CourseFormSegment = styled(Segment)`
 `;
 
 export const CourseFormButton = styled(Button)`
-  background-color: purple !important;
+  background-color: #009fff !important;
   color: white !important;
 `;
