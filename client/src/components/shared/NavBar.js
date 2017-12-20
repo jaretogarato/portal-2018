@@ -5,11 +5,18 @@ import UserProfile from '../profile/UserProfile';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { handleLogout } from '../../actions/auth';
+import { getCoursesByStudent } from '../../actions/courses';
 import { Link, withRouter } from 'react-router-dom';
 import { Dropdown, Image, Label, Menu, Segment } from 'semantic-ui-react';
 
 class NavBar extends React.Component {
   state = { activeItem: 'Course View' };
+
+  componentDidMount = () => {
+    const { dispatch, user: { id } } = this.props;
+    if(id)
+    dispatch(getCoursesByStudent(id))
+  }
 
   renderCourseSections = () => {
     const { user } = this.state;

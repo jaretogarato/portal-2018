@@ -18,12 +18,11 @@ export const getCourses = () => {
   }
 }
 
-export const getCoursesByStudent = (userId, callback) => {
+export const getCoursesByStudent = (userId) => {
   return(dispatch) => {
     axios.get(`/api/user_courses/${userId}`)
-      .then( ({ data, headers }) => {
+      .then( ({ data, headers } ) => {
         dispatch({ type: 'GET_USER_COURSES', userCourses: data, headers })
-        callback();
       })
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });

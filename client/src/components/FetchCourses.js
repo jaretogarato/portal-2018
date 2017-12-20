@@ -4,13 +4,15 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../actions/courses';
 import { Dimmer, Loader } from 'semantic-ui-react';
+import NavBar from './shared/NavBar';
 
 class FetchCourses extends React.Component {
-  state = { loaded: true };
+  state = { loaded: true, userCourses: [] };
 
   componentDidMount() {
     const { dispatch, userId } = this.props;
-    dispatch(getCoursesByStudent(userId, this.state.loaded))
+    if(userId)
+    dispatch(getCoursesByStudent(userId, this.loaded))
   }
 
   render() {
@@ -18,7 +20,7 @@ class FetchCourses extends React.Component {
     if(loaded) {
       return(
         <div>
-          <Route exact path='/' component={Home} />
+          <NavBar />
         </div>
       )
     }
