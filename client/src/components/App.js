@@ -13,7 +13,7 @@ import Home from './root/Home';
 import Assignment from './Rift/Assignment'
 import Quizzes from './Rift/Quizzes'
 import LectureNotes from './Rift/LectureNotes'
-import Wikiß from './Rift/Wikiß'
+import Wiki from './Rift/Wiki'
 import InviteConfirmation from './InviteConfirmation';
 import LectureView from './lecture/LectureView';
 import Login from './Login';
@@ -35,8 +35,8 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/invitation/accept' component={InviteConfirmation} />
               <Route exact path='/quizzes' component={Quizzes} />
-              <Route exact path='/lecturenotes' component={LectureNotes} />
-              <Route exact path='/assignments' component={Assignments} />
+              <Route exact path='/lecturenote' component={LectureNotes} />
+              <Route exact path='/assignment' component={Assignment} />
               <Route exact path='/wiki' component={Wiki} />
               <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />
