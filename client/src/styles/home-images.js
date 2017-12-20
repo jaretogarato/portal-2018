@@ -6,13 +6,14 @@ export const HomeBody = styled.div`
 	background-repeat:  no-repeat;
 	background-attachment: fixed;
 	background-size:  cover;
-	background-color: #999;
+  background-color: #999;
   margin: 0;
   padding: 0;
   font-family: exo, sans-serif;
-  height: 100% !important;
+  height: 86vh !important;
   width: 100%;
   min-height: 750px;
+  z-index: -5;
 `
 
 export const HomeWrapper = styled.div`
