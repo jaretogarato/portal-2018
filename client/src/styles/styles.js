@@ -101,6 +101,10 @@ export const HeroHeaderH1 = styled.h1`
 
 export const FooterStyled = styled.div`
   flex-shrink: 0;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 `;
 
 export const FlexContainer = styled.div`
@@ -115,6 +119,7 @@ export const FlexContent = styled.div`
   left: 0;
   bottom: 0;
   width: 100%;
+  margin-bottom: 49px;
 `;
 
 // -- Course Form --
