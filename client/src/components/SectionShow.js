@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getGroups} from '../actions/groups';
+import { getSubSections} from '../actions/subSections';
 import { getLectures } from '../actions/lectures';
 import { Link } from 'react-router-dom';
 import { setFlash } from '../actions/flash';
-import { setGroup } from '../actions/group';
-import { setGroupId } from '../actions/groupId';
+import { setSubSection } from '../actions/subSection';
+import { setSubSectionId } from '../actions/subSectionId';
 import {
   Accordion,
   Container,
@@ -21,83 +21,83 @@ class SectionShow extends React.Component {
   state = {
     loaded: false,
     itemsLoaded: false,
-    groupsLoaded: false,
+    subSectionsLoaded: false,
     lecturesLoaded: false,
     activeIndex: 0,
     sectionId: 1,
     sections: [],
     section: {},
     sectionHeader: '',
-    groups: [],
-    groupId: 1,
-    groupNewId: 1,
-    group: {},
-    groupHeader: '',
+    subSections: [],
+    subSectionId: 1,
+    subSectionNewId: 1,
+    subSection: {},
+    subSectionHeader: '',
     lectures: [],
     lectureId: 1,
     lecture: {},
     lectureTitle: '',
   };
 
-  setGroupsLoaded = () => this.setState({ groupsLoaded: true });
+  setSubSectionsLoaded = () => this.setState({ subSectionsLoaded: true });
   setItemsLoaded = () => this.setState({ itemsLoaded: true });
   setLecturesLoaded = () => this.setState({ lecturesLoaded: true })
   setLoaded = () => this.setState({ loaded: true });
 
   componentWillMount() {
     const { dispatch, sections, section, courseId } = this.props;
-    const { sectionId, groupId } = this.state;
+    const { sectionId, subSectionId } = this.state;
 
     this.setState({ courseId: courseId });
     this.setState({ section: section });
     this.setState({ sections: sections });
 
-    dispatch(getGroups(sectionId, this.setGroupsLoaded));
-    dispatch(getLectures(groupId, this.setLecturesLoaded));
-    dispatch(setGroupId(groupId));
+    dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
+    dispatch(getLectures(subSectionId, this.setLecturesLoaded));
+    dispatch(setSubSectionId(subSectionId));
   }
 
   componentDidMount() {
-    const { dispatch, group, lectures } = this.props;
+    const { dispatch, subSection, lectures } = this.props;
 
-    this.setState({ group: group });
+    this.setState({ subSection: subSection });
     this.setState({ lectures: lectures });
     this.setLoaded();
   }
 
   componentWillReceiveProps = (nextProps) => {
-    const { dispatch, sectionId, groupId, lectures } = this.props;
+    const { dispatch, sectionId, subSectionId, lectures } = this.props;
 
     this.setState({ courseId: nextProps.courseId });
     this.setState({ sectionId: nextProps.sectionId });
     this.setState({ lectures: nextProps.lectures });
 
     if(sectionId != nextProps.sectionId){
-      dispatch(getGroups(nextProps.sectionId, this.setGroupsLoaded));
+      dispatch(getSubSections(nextProps.sectionId, this.setSubSectionsLoaded));
     }
-    if(groupId != nextProps.groupId){
-      dispatch(setGroupId(nextProps.groupId));
+    if(subSectionId != nextProps.subSectionId){
+      dispatch(setSubSectionId(nextProps.subSectionId));
     }
     if(JSON.stringify(lectures) != JSON.stringify(nextProps.lectures)){
-      dispatch(getLectures( nextProps.groupId, this.setLecturesLoaded));
+      dispatch(getLectures( nextProps.subSectionId, this.setLecturesLoaded));
     }
   }
 
   handleClick = (e, titleProps) => {
     const { dispatch, lectures } = this.props;
-    const { sectionId, groupId, activeIndex } = this.state;
+    const { sectionId, subSectionId, activeIndex } = this.state;
     const { index } = titleProps; // index from where the click originates
     // const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index;
 
     this.setState({ activeIndex: newIndex });
-    this.setState({ groupId: index }, () => {
-      dispatch(setGroupId(index));
-      dispatch(getLectures(groupId, this.setLecturesLoaded));
+    this.setState({ subSectionId: index }, () => {
+      dispatch(setSubSectionId(index));
+      dispatch(getLectures(subSectionId, this.setLecturesLoaded));
     });
   }
 
-  renderItems = (groupId) => {
+  renderItems = (subSectionId) => {
     return this.props.lectures.map( lecture => {
       return(
         <Link key={lecture.id} to={`/lectures/${lecture.id}`}>
@@ -109,26 +109,26 @@ class SectionShow extends React.Component {
     })
   }
 
-  renderGroups = () => {
-    return this.props.groups.map( group => {
+  renderSubSections = () => {
+    return this.props.subSections.map( subSection => {
       return(
-        <div key={group.id}>
+        <div key={subSection.id}>
           <Accordion.Title
-            active={this.state.activeIndex === group.id}
-            index={group.id}
+            active={this.state.activeIndex === subSection.id}
+            index={subSection.id}
             onClick={this.handleClick}
           >
             <Icon name='dropdown' />
-            {group.title}
+            {subSection.title}
           </Accordion.Title>
           <Accordion.Content
-            active={this.state.activeIndex === group.id}
-            index={group.id}
+            active={this.state.activeIndex === subSection.id}
+            index={subSection.id}
           >
             <Container
-              index={`${group.id}_2`}
+              index={`${subSection.id}_2`}
             >
-              {this.renderItems(group.id)}
+              {this.renderItems(subSection.id)}
             </Container>
           </Accordion.Content>
         </div>
@@ -137,9 +137,9 @@ class SectionShow extends React.Component {
   }
 
   render() {
-    let { groupId, loaded, groupsLoaded, lecturesLoaded } = this.state;
+    let { subSectionId, loaded, subSectionsLoaded, lecturesLoaded } = this.state;
 
-    if(this.props.sections.length && loaded && groupsLoaded && lecturesLoaded ) {
+    if(this.props.sections.length && loaded && subSectionsLoaded && lecturesLoaded ) {
       let sectionObject = (this.props.sections[`${this.props.sectionId-1}`]);
       let sectionTitle = sectionObject['title'];
 
@@ -147,7 +147,7 @@ class SectionShow extends React.Component {
         <Container fluid textAlign = 'left'>
           <Header as='h3' align='center'>{sectionTitle}</Header>
           <Accordion fluid styled>
-            {this.renderGroups()}
+            {this.renderSubSections()}
           </Accordion>
         </Container>
       )
@@ -170,10 +170,10 @@ const mapStateToProps = (state) => {
     section: state.section,
     sectionHeader: {},
 
-    groupId: state.groupId,
-    groups: state.groups,
-    group: state.group,
-    groupHeader: state.groupHeader,
+    subSectionId: state.subSectionId,
+    subSections: state.subSections,
+    subSection: state.subSection,
+    subSectionHeader: state.subSectionHeader,
 
     lectureId: state.lectureId,
     lectures: state.lectures,

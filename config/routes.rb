@@ -11,10 +11,10 @@ Rails.application.routes.draw do
     end
 
     resources :sections do
-      resources :groups
+      resources :sub_sections
     end
 
-    resources :groups do
+    resources :sub_sections do
       resources :lectures
     end
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     post '/invitation/send', to: 'invitations#invite'
     post '/invitation/accept', to: 'invitations#accept'
     get  '/course_users', to: 'users#course_users'
-    # get '/group_lectures', to: 'groups#group_lectures'
+    # get '/group_lectures', to: 'sub_sections#group_lectures'
   end
 
   #Do not place any routes below this one

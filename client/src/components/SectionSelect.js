@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../actions/courses';
-import { getGroups} from '../actions/groups';
+import { getSubSections} from '../actions/subSections';
 import { getSections } from '../actions/sections';
 import { setCourse } from '../actions/courses';
-import { setGroup } from '../actions/group';
-import { setGroupId } from '../actions/groupId';
+import { setSubSection } from '../actions/subSection';
+import { setSubSectionId } from '../actions/subSectionId';
 import { setSection } from '../actions/section';
 import { Dimmer, Loader, Menu } from 'semantic-ui-react';
 
@@ -13,7 +13,7 @@ class SectionSelect extends React.Component {
   state = {
     coursesLoaded: false,
     sectionsLoaded: false,
-    groupsLoaded: false,
+    subSectionLoaded: false,
     courseId: 1,
     sectionId: 1
   };
@@ -22,7 +22,7 @@ class SectionSelect extends React.Component {
 
   setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
 
-  setGroupsLoaded = () => this.setState({ groupsLoaded: true });
+  setSubSectionLoaded = () => this.setState({ subSectionsLoaded: true });
 
   componentWillMount() {
     const { dispatch, user: { id: userId, first_name } } = this.props;

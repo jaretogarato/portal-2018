@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-export const getLectures = (groupId, callback) => {
+export const getLectures = (subSectionId, callback) => {
   return(dispatch) => {
-    axios.get(`/api/groups/${groupId}/lectures/`)
+    axios.get(`/api/sub-sections/${subSectionId}/lectures/`)
       .then( res => {
         dispatch({ type: 'GET_LECTURES', lectures: res.data });
       })

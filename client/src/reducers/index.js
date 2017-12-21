@@ -7,9 +7,9 @@ import courses from './courses';
 import course from './course';
 import userCourses from './userCourses';
 import sections from './sections';
-import groups from './groups';
-import group from './group';
-import groupId from './groupId';
+import subSections from './subSections';
+import subSection from './subSection';
+import subSectionId from './subSectionId';
 import courseId from './courseId';
 import lectures from './lectures';
 import sectionId from './sectionId';
@@ -24,9 +24,9 @@ const rootReducer = combineReducers({
   course,
   userCourses,
   sections,
-  groups,
-  group,
-  groupId,
+  subSections,
+  subSection,
+  subSectionId,
   lectures,
   courseId,
   sectionId,

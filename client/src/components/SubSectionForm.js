@@ -1,15 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import { addGroup } from '../actions/groups.js';
+import { addSubSection } from '../actions/subSections.js';
 import { Button, Form } from 'semantic-ui-react';
 
-class GroupForm extends Component {
+class SubSectionForm extends Component {
   state = { title: '' };
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { title } = this.state;
-    this.props.dispatch(addGroup(title))
+    this.props.dispatch(addSubSection(title))
     this.setState({ title: '' })
   }
 
@@ -26,17 +26,17 @@ class GroupForm extends Component {
         <Grid>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Segment raised>
-              <Header>Create a Group</Header>
+              <Header>Create a Sub-Section</Header>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Field>
-                  <label htmlFor='group'>Group</label>
+                  <label htmlFor='subSection'>Group</label>
                   <input
                     fluid
                     title='title'
-                    placeholder='Group'
+                    placeholder='Sub-Section'
                     required
-                    id='group'
-                    value={group}
+                    id='subSection'
+                    value={subSection}
                     onChange={this.handleChange}
                     autoFocus
                   />
@@ -52,7 +52,7 @@ class GroupForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { groups: state.groups }
+  return { subSections: state.subSections }
 }
 
-export default connect(mapStateToProps)(GroupForm);
+export default connect(mapStateToProps)(SubSectionForm);

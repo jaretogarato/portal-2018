@@ -1,4 +1,4 @@
 class Section < ApplicationRecord
   belongs_to :course
-  has_many :groups
+  has_many :sub_sections
 end

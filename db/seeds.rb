@@ -40,19 +40,19 @@ course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
       course_id: @course.id
     )
     5.times do |k|
-      group_prog_lang = Faker::ProgrammingLanguage.name
-      group_title = "Day #{k + 1}: #{group_prog_lang}"
-      group = Group.create(
-        title: group_title,
+      sub_section_prog_lang = Faker::ProgrammingLanguage.name
+      sub_secton_title = "Day #{k + 1}: #{sub_section_prog_lang}"
+      sub_section = SubSection.create(
+        title: sub_section_title,
         section_id: section.id
       )
       3.times do |l|
         lecture_scientist = Faker::Science.scientist
         lecture_moon = Faker::Space.moon
         lecture = Lecture.create(
-          title: "Lecture #{l + 1}: #{group_prog_lang}--the #{lecture_scientist} of #{lecture_moon}",
+          title: "Lecture #{l + 1}: #{sub_section_prog_lang}--the #{lecture_scientist} of #{lecture_moon}",
           content: lecture_seed.sample,
-          group_id: group.id
+          sub_section_id: sub_section.id
         )
       end
     end
@@ -61,7 +61,7 @@ end
 
 puts "10 courses seeded"
 puts "11 sections seeded"
-puts "5 groups seeded"
+puts "5 sub_sections seeded"
 puts "3 lectures seeded"
 
 admin = User.create(
