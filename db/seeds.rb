@@ -41,7 +41,7 @@ course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
     )
     5.times do |k|
       sub_section_prog_lang = Faker::ProgrammingLanguage.name
-      sub_secton_title = "Day #{k + 1}: #{sub_section_prog_lang}"
+      sub_section_title = "Day #{k + 1}: #{sub_section_prog_lang}"
       sub_section = SubSection.create(
         title: sub_section_title,
         section_id: section.id
