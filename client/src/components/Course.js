@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-import { setHeaders } from '../actions/headers';
+import { setActiveCourse, clearActiveCourse } from '../actions/course';
 import { connect } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 import CourseView from './course/CourseView';
@@ -8,14 +7,13 @@ import CourseSideNav from './CourseSideNav';
 import People from './People';
 
 class Course extends React.Component {
-  state = { course: {} }
-
   componentDidMount() {
-    axios.get(`/api/courses/${this.props.match.params.id}`)
-      .then( res => {
-        this.setState({ course: res.data });
-        this.props.dispatch(setHeaders(res.headers));
-      })
+    const { match: { params: { id }}, dispatch } = this.props;
+    dispatch(setActiveCourse(id))
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearActiveCourse())
   }
 
   render() {

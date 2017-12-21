@@ -4,6 +4,7 @@ import users from './users';
 import flash from './flash';
 import avatars from './avatars';
 import courses from './courses';
+import course from './course';
 import userCourses from './userCourses';
 import sections from './sections';
 import groups from './groups';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   flash,
   avatars,
   courses,
+  course,
   userCourses,
   sections,
   groups,

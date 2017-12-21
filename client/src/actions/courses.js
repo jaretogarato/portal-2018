@@ -9,7 +9,7 @@ export const getCourses = () => {
   return(dispatch) => {
     axios.get('/api/courses')
       .then( res => {
-        dispatch({  type: 'GET_COURSES', courses: res.data })
+        dispatch({  type: 'GET_COURSES', courses: res.data, headers: res.headers })
       })
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });

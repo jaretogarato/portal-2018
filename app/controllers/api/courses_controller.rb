@@ -1,4 +1,4 @@
-class Api::CoursesController < ApplicationController
+class Api::CoursesController < Api::ApiController
   before_action :set_course, only: [ :destroy, :update, :show ]
   # need this to show for only current user or school, how ?
 
@@ -8,7 +8,7 @@ class Api::CoursesController < ApplicationController
   end
 
   def show
-    render json: @course
+    render json: Course.with_enrollment(@course.id, current_user.id)
   end
 
   def update

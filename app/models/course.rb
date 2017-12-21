@@ -6,4 +6,12 @@ class Course < ApplicationRecord
 
     validates_presence_of :course_type, :term, :year
     validates_numericality_of :year, :only_integer => true
+
+    def self.with_enrollment(course_id, user_id)
+      select('courses.*, e.role, e.sub_role')
+      .joins("INNER JOIN enrollments e ON e.course_id = #{course_id} AND e.user_id = #{user_id}")
+      .where("courses.id = #{course_id}")
+      .limit(1)
+      .first
+    end
 end
