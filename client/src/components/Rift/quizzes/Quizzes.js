@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Table, Container, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import QuizForm from './QuizForm'
 
 class Quizzes extends Component {
 
@@ -13,10 +14,11 @@ class Quizzes extends Component {
             <Grid.Column width={14}>
             </Grid.Column>
             <Grid.Column width={2}>
-             <Button icon labelPosition='left'>
+            <Link to={'./quizform'}> <Button icon labelPosition='left'>
               <Icon name='add' />
               Quiz
               </Button> 
+            </Link>
             </Grid.Column>
           </Grid.Row> 
           <Grid.Row>

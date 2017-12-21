@@ -10,10 +10,11 @@ import NavBar from './FetchCourses';
 import Flash from './Flash';
 import Footer from './shared/Footer';
 import Home from './root/Home';
-import Assignment from './Rift/assignments/Assignment'
-import Quizzes from './Rift/quizzes/Quizzes'
-import LectureNotes from './Rift/lectureNotes/LectureNotes'
-import Wiki from './Rift/wiki/Wiki'
+import Assignment from './Rift/assignments/Assignment';
+import Quizzes from './Rift/quizzes/Quizzes';
+import QuizForm from './Rift/quizzes/QuizForm';
+import LectureNotes from './Rift/lectureNotes/LectureNotes';
+import Wiki from './Rift/wiki/Wiki';
 import InviteConfirmation from './InviteConfirmation';
 import LectureView from './lecture/LectureView';
 import Login from './Login';
@@ -35,6 +36,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/invitation/accept' component={InviteConfirmation} />
               <Route exact path='/quizzes' component={Quizzes} />
+              <Route exact path='/quizform' component={QuizForm} />
               <Route exact path='/lecturenote' component={LectureNotes} />
               <Route exact path='/assignment' component={Assignment} />
               <Route exact path='/wiki' component={Wiki} />
