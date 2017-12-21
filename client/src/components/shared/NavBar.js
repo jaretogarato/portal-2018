@@ -25,7 +25,7 @@ class NavBar extends React.Component {
       <Dropdown.Item
         key={course.id}
         as={Link}
-        to={`/courses/${course.id}`}
+        to={`/courses/${course.id}/course_view`}
         style={styles.navSecondaryText}
         name={course.course_type}
         text={course.course_type}
