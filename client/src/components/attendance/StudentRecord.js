@@ -6,7 +6,8 @@ import { Container,
   Icon,
   Image,
   Item,
-  Form
+  Form,
+  Divider,
 } from 'semantic-ui-react';
 
 class StudentRecord extends React.Component {
@@ -92,7 +93,7 @@ class StudentRecord extends React.Component {
 const styles = {
   userSection: {
     width: '35%',
-    border: '1px solid #c0c0c0'
+    marginBottom: '8px',
   },
   recordImage: {
     width: '50px'
