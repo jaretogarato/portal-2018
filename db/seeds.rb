@@ -97,7 +97,7 @@ end
 puts "Test Admin seeded email: admin@admin.com and password: password"
 puts "Test Student seeded email: test@test.com and password: password"
 
-20.times do
+25.times do
   student = User.create(
     email: Faker::Internet.email,
     password: 'password',
@@ -120,6 +120,31 @@ puts "Test Student seeded email: test@test.com and password: password"
     )
 end
 
-puts "20 students seeded with enrollment, plus faker email and password password."
+puts "25 students seeded with enrollment, plus faker email and password password."
+
+5.times do
+  ta = User.create(
+    email: Faker::Internet.email,
+    password: 'password',
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    bio: "#{Faker::Demographic.race},
+    #{Faker::Demographic.educational_attainment},
+    #{Faker::Demographic.marital_status},
+    #{Faker::Demographic.sex},
+    #{Faker::Demographic.height}",
+
+    nickname: Faker::Pokemon.name,
+    invitation_accepted_at: Time.now
+  )
+    Enrollment.create(
+      role: 'TA',
+      sub_role: Faker::Company.bs,
+      user_id: ta.id,
+      course_id: @course.id
+    )
+end
+
+puts "5 ta's seeded with enrollment, plus faker email and password password."
 
 # SOME NOTES TEEHEE
