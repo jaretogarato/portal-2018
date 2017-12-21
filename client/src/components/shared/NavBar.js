@@ -161,7 +161,7 @@ class NavBar extends React.Component {
 const styles = {
   dropdown: {
     backgroundColor: '#DDD',
-    width: 'auto',
+    width: '21vw',
     overflow: 'auto',
   },
   navText: {
