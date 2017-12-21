@@ -3,8 +3,7 @@ class Api::CoursesController < Api::ApiController
   # need this to show for only current user or school, how ?
 
   def index
-    courses = Course.all
-    render json: courses
+    render json: Course.all_sorted_courses
   end
 
   def show
