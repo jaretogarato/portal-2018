@@ -47,7 +47,7 @@ class NavBar extends React.Component {
             <Menu.Item
               as={Link}
               to='/course_view'
-              style={styles.navSecondaryText}
+              style={styles.navText}
               name="Course View"
               active={this.state.activeItem === 'Course View'}
               onClick={this.handleItemClick}
