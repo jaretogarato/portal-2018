@@ -1,37 +1,37 @@
 require 'faker'
 require_relative 'lecture_content'
 
-course_name = [
-  'Fall 2016 U of U Pro Ed Web Development',
-  'Fall 2016 Full Stack Web Development',
-  'Winter 2016 U of U Pro Ed Web Development',
-  'Winter 2016 Full Stack Web Development',
-  'Summer 2017 U of U Pro Ed Web Development',
-  'Summer 2017 Full Stack Web Development',
-  'Spring 2017 U of U Pro Ed Web Development',
-  'Spring 2017 Full Stack Web Development',
-  'Fall 2017 U of U Pro Ed Web Development',
-  'Fall 2017 Full Stack Web Development',
-]
 course_type = [
-  'Full-Time',
-  'Part-Time',
-  'Full-Time',
-  'Part-Time',
-  'Full-Time',
-  'Part-Time',
-  'Full-Time',
-  'Part-Time',
-  'Full-Time',
-  'Part-Time',
+  'U of U Pro Ed Web Development',
+  'Full Stack Web Development',
+  'Part-Time Web Development',
+  'Part-Time UX Design',
+  'U of U Pro Ed Web Development',
+  'Full Stack Web Development',
+  'Part-Time Web Development',
+  'Part-Time UX Design',
+  'U of U Pro Ed Web Development',
+  'Full Stack Web Development',
+]
+course_term = [
+  'Winter',
+  'Spring',
+  'Summer',
+  'Fall',
+  'Winter',
+  'Spring',
+  'Summer',
+  'Fall',
+  'Winter',
+  'Spring',
 ]
 
-course_year = [2016, 2016, 2016, 2016, 2017, 2017, 2017, 2017, 2017, 2017]
+course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
 
 10.times do |i|
   @course = Course.create(
-    course_type: course_name[i],
-    term: course_type[i],
+    course_type: course_type[i],
+    term: course_term[i],
     year: course_year[i],
   )
   11.times do |j|
