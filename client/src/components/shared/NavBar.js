@@ -22,7 +22,8 @@ class NavBar extends React.Component {
     const { user } = this.state;
     const { userCourses } = this.props;
     return userCourses.map( course =>
-      <Dropdown.Item key={course.id}
+      <Dropdown.Item
+        key={course.id}
         as={Link}
         to={`/courses/${course.id}`}
         style={styles.navSecondaryText}
@@ -160,6 +161,8 @@ class NavBar extends React.Component {
 const styles = {
   dropdown: {
     backgroundColor: '#DDD',
+    width: 'auto',
+    overflow: 'auto',
   },
   navText: {
     color: '#fff',
