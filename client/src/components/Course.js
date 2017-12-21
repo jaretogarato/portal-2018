@@ -5,6 +5,7 @@ import { Link, Route } from 'react-router-dom';
 import CourseView from './course/CourseView';
 import CourseSideNav from './CourseSideNav';
 import People from './People';
+import SectionSelect from './SectionSelect'
 
 class Course extends React.Component {
   componentDidMount() {
@@ -22,6 +23,7 @@ class Course extends React.Component {
         <Route component={CourseSideNav} />
         <Route exact path="/courses/:id" component={CourseView} />
         <Route path="/courses/:id/people" component={People} />
+        <Route path="/courses/:id/sections" component={SectionSelect} />
       </div>
     )
   }

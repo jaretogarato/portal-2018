@@ -14,8 +14,8 @@ class SectionSelect extends React.Component {
     coursesLoaded: false,
     sectionsLoaded: false,
     subSectionLoaded: false,
-    courseId: 1,
-    sectionId: 1
+    courseId: null,
+    sectionId: null,
   };
 
   setCoursesLoaded = () => this.setState({ coursesLoaded: true });
@@ -29,7 +29,12 @@ class SectionSelect extends React.Component {
     const { courseId, sectionId } = this.state;
 
     // set up initial course id
-    dispatch(setCourse(this.state.courseId));
+    // TODO: prevent user from navigating to any page via URL
+    this.setState({ 
+      courseId: parseInt(this.props.match.params.id), 
+      coursesLoaded: true 
+    })
+    dispatch(setCourse(courseId));    
 
     // get the courses to which a user belongs
     dispatch(getCoursesByStudent(userId, this.setCoursesLoaded));
@@ -104,7 +109,6 @@ const mapStateToProps = (state) => {
     sectionId: state.sectionId,
     section: state.section,
     courses: state.courses,
-    courseId: state.courseId,
   }
 }
 
