@@ -10,10 +10,10 @@ import NavBar from './FetchCourses';
 import Flash from './Flash';
 import Footer from './shared/Footer';
 import Home from './root/Home';
-import Assignment from './Rift/Assignment'
-import Quizzes from './Rift/Quizzes'
-import LectureNotes from './Rift/LectureNotes'
-import Wiki from './Rift/Wiki'
+import Assignment from './Rift/assignments/Assignment'
+import Quizzes from './Rift/quizzes/Quizzes'
+import LectureNotes from './Rift/lectureNotes/LectureNotes'
+import Wiki from './Rift/wiki/Wiki'
 import InviteConfirmation from './InviteConfirmation';
 import LectureView from './lecture/LectureView';
 import Login from './Login';

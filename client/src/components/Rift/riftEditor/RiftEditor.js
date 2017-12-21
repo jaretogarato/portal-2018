@@ -10,7 +10,7 @@ class RiftEditor extends Component {
   render() {
     return (
       <div>
-        This is the Assignment Component</div>
+        This is the RiftEditor Component</div>
     )
   }
 
