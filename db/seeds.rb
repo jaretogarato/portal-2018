@@ -108,7 +108,7 @@ puts "Test Student seeded email: test@test.com and password: password"
     #{Faker::Demographic.marital_status},
     #{Faker::Demographic.sex},
     #{Faker::Demographic.height}",
-
+    image: "https://robohash.org/#{Faker::Number.number(3)}",
     nickname: Faker::Pokemon.name,
     invitation_accepted_at: Time.now
   )

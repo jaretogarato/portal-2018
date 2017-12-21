@@ -66,11 +66,16 @@ class StudentRecord extends React.Component {
 
   render() {
     const { first_name, last_name } = this.props.user;
+    let { image } = this.props.user;
+    
+    if(!image)
+      image = 'http://skoolrunnr.com/wp-content/uploads/2017/10/placeholder.png'
+
     return (
       <Container>
         <Item.Group>
           <Item style={styles.userSection} onClick={this.toggleStatus}>
-            <Item.Image style={styles.recordImage} size='tiny' src='http://skoolrunnr.com/wp-content/uploads/2017/10/placeholder.png' />
+            <Item.Image style={styles.recordImage} size='tiny' src={image} />
             <Item.Content verticalAlign='middle'>
               <Item.Header style={styles.row}>
                 { last_name }, { first_name }
