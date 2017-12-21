@@ -24,6 +24,8 @@ import UserProfile from './profile/UserProfile';
 import Users from './users/Users';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
+import CreateAssignment from './Rift/assignments/CreateAssignment';
+// import CreateAssignment from './rift/assignments/CreateAssignment';
 
 class App extends React.Component {
   render() {
@@ -39,6 +41,7 @@ class App extends React.Component {
               <Route exact path='/quizform' component={QuizForm} />
               <Route exact path='/lecturenote' component={LectureNotes} />
               <Route exact path='/assignment' component={Assignment} />
+              <Route exact path='/assignment/create' component={CreateAssignment} />
               <Route exact path='/wiki' component={Wiki} />
               <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />

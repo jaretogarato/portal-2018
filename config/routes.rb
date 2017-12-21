@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  mount_devise_token_auth_for 'User', at: 'api/auth'
+mount_devise_token_auth_for 'User', at: 'api/auth'
 
   namespace :api do
     resources :users, only: :update
@@ -12,11 +11,14 @@ Rails.application.routes.draw do
 
     resources :sections do
       resources :sub_sections
+      resources :groups
+      resources :create_assignments
     end
 
     resources :sub_sections do
       resources :lectures
     end
+    resources :assignments
 
     get  'user_courses/:user_id', to: 'courses#user_courses'
     get  'avatar', to: 'avatar#index'
