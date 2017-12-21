@@ -10,7 +10,9 @@ import { Container,
 } from 'semantic-ui-react';
 
 class StudentRecord extends React.Component {
-  state = { status: 'present' };
+
+  componentWillMount() {
+  }
 
   handleStatusChange = (recordStatus) => {
     this.setState( (state, props) => {
@@ -25,7 +27,7 @@ class StudentRecord extends React.Component {
   }
 
   displayIcon = () => {
-    const { status } = this.state
+    const { status } = this.props.user
     return(
       <Form style={styles.row}>
         <Form.Field style={styles.noMargin}>
@@ -105,6 +107,10 @@ const styles = {
   pointer: {
     cursor: 'pointer',
   }
+}
+
+const mapStateToProps = (state) => {
+  return { user: state.user }
 }
 
 export default connect()(StudentRecord);

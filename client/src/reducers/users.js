@@ -12,7 +12,11 @@ const users = (state = [], action) => {
           return { ...u, ...action.newStatus }
         return u
       })
-    default: 
+    case 'MARK_ALL_PRESENT':
+      return state.map ( u => {
+        return { ...u, status: action.status }
+      })
+    default:
       return state;
   }
 }

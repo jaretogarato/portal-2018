@@ -21,3 +21,7 @@ export const updateUserStatus = (id, status) => {
     dispatch({ type: 'UPDATE_USER_STATUS', newStatus: { id, status } })
   }
 }
+
+export const markAllPresent = () => {
+  return({ type: 'MARK_ALL_PRESENT', status: 'present' })
+}
