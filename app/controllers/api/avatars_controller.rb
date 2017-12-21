@@ -1,8 +1,8 @@
-class Api::AvatarsController < ApplicationController
+class Api::AvatarsController < Api::ApiController
     def index
       render json: Avatar.all
     end
-  
+
     def create
       auth = {
         cloud_name: ENV['CLOUDINARY_CLOUD_NAME'],
@@ -12,7 +12,7 @@ class Api::AvatarsController < ApplicationController
 
       uploaded_avatar_url= params.keys.first
       uploaded_file = params[uploaded_avatar_url]
-  
+
       begin
         cloud_avatar = Cloudinary::Uploader.upload(uploaded_file, auth)
         render json: avatar
@@ -21,4 +21,3 @@ class Api::AvatarsController < ApplicationController
       end
     end
   end
-  

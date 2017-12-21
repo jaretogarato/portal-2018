@@ -1,5 +1,5 @@
-class Api::AttendancesController < ApplicationController
-  def index 
+class Api::AttendancesController < Api::ApiController
+  def index
     course = Course.find(params[:course_id])
     users = course.users.order(last_name: :asc)
     # users.map do |user|

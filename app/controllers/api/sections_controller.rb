@@ -1,4 +1,4 @@
-class Api::SectionsController < ApplicationController
+class Api::SectionsController < Api::ApiController
   before_action :set_section, only: [ :destroy, :udpate, :show ]
   # need this to show for only current user or school, how ?
 

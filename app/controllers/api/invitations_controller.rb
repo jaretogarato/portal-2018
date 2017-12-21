@@ -1,4 +1,4 @@
-class Api::InvitationsController < ApplicationController
+class Api::InvitationsController < Api::ApiController
 
   def invite
     user = User.invite!(user_params)

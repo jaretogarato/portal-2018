@@ -1,4 +1,4 @@
-class Api::SubSectionsController < ApplicationController
+class Api::SubSectionsController < Api::ApiController
   before_action :set_sub_section, only: [:show, :update, :destroy]
   before_action :set_section, only: [:index, :create]
 

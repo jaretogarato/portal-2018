@@ -1,4 +1,4 @@
-class Api::EnrollmentsController < ApplicationController
+class Api::EnrollmentsController < Api::ApiController
   before_action :set_enrollment, only: [:update, :destroy]
 
   def create
@@ -22,7 +22,7 @@ class Api::EnrollmentsController < ApplicationController
     @enrollment.destroy
   end
 
-  private 
+  private
   def enrollment_params
     params.require(:enrollment).permit(:role, :sub_role, :user_id, :course_id)
   end

@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::UsersController < Api::ApiController
 
   def update
     user = User.find(params[:id])

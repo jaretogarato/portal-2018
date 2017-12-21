@@ -1,4 +1,4 @@
-class Api::LecturesController < ApplicationController
+class Api::LecturesController < Api::ApiController
   before_action :set_group, only: [:index]
 
   def index
