@@ -1,8 +1,8 @@
 class Api::LecturesController < Api::ApiController
-  before_action :set_group, only: [:index]
+  before_action :set_sub_section, only: [:index]
 
   def index
-    lectures = @group.lectures.all.order(id: :asc)
+    lectures = @sub_section.lectures.all.order(id: :asc)
 
     lectures.map do |lecture|
       { id: lecture.id, title: lecture.title, content: lecture.content}
@@ -13,15 +13,15 @@ class Api::LecturesController < Api::ApiController
 
   private
     def lecture_params
-      params.require(:lectures).permit(:title, :group_id, :content)
+      params.require(:lectures).permit(:title, :sub_section_id, :content)
     end
 
     def set_lectures
-      @lectures = @group.lectures.find(params[:id])
+      @lectures = @sub_section.lectures.find(params[:id])
     end
 
-    def set_group
-      @group = Group.find(params[:group_id])
+    def set_sub_section
+      @sub_section = SubSection.find(params[:sub_section_id])
     end
 
 end

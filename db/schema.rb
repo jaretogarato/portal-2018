@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 20171221230337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "assignments", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "sub_section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sub_section_id"], name: "index_assignments_on_sub_section_id"
+  end
+
   create_table "attendances", force: :cascade do |t|
     t.string "status"
     t.date "record_date"
@@ -30,6 +39,11 @@ ActiveRecord::Schema.define(version: 20171221230337) do
     t.string "course_type", null: false
     t.string "term", null: false
     t.integer "year", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "create_assignments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -141,6 +155,7 @@ ActiveRecord::Schema.define(version: 20171221230337) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "assignments", "sub_sections"
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "users"
   add_foreign_key "enrollments", "courses"
