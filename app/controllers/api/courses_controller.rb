@@ -35,6 +35,13 @@ class Api::CoursesController < Api::ApiController
     @course.destroy
   end
 
+  #grabs all users associated with a course id
+  #need to join tables here, to get users roles
+  def users_by_course_id
+    users_ids = Course.find(params[:id]).enrollments.map { |u| u.user_id }
+    render json: User.find(users_ids)
+  end  
+
   private
     def course_params
       params.require(:course).permit(:course_type, :term, :year)
