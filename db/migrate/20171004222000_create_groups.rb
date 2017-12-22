@@ -1,6 +1,6 @@
-class CreateSubSections < ActiveRecord::Migration[5.1]
+class CreateGroups < ActiveRecord::Migration[5.1]
   def change
-    create_table :sub_sections do |t|
+    create_table :groups do |t|
       t.string :title
       t.belongs_to :section, foreign_key: true
 
