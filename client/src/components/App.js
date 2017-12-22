@@ -25,7 +25,10 @@ import Users from './users/Users';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
 import CreateAssignment from './Rift/assignments/CreateAssignment';
+<<<<<<< HEAD
+=======
 // import CreateAssignment from './rift/assignments/CreateAssignment';
+>>>>>>> c239def982c0b70fd440bc0126d7f9122337c90b
 
 class App extends React.Component {
   render() {
