@@ -5,7 +5,11 @@ import { Link, Route } from 'react-router-dom';
 import CourseView from './course/CourseView';
 import CourseSideNav from './CourseSideNav';
 import People from './People';
+<<<<<<< HEAD
 import SectionSelect from './SectionSelect'
+=======
+import { Grid, Segment } from 'semantic-ui-react';
+>>>>>>> Styled side nav bar.
 
 class Course extends React.Component {
   componentDidMount() {
@@ -20,10 +24,15 @@ class Course extends React.Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <Route component={CourseSideNav} />
         <Route exact path="/courses/:id" component={CourseView} />
         <Route path="/courses/:id/people" component={People} />
         <Route path="/courses/:id/sections" component={SectionSelect} />
+=======
+          <Route exact path="/courses/:id" component={CourseView} />
+          <Route path="/courses/:id/people" component={People} />
+>>>>>>> Styled side nav bar.
       </div>
     )
   }

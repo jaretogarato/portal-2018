@@ -25,6 +25,10 @@ import Users from './users/Users';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
 import CreateAssignment from './Rift/assignments/CreateAssignment';
+<<<<<<< HEAD
+=======
+// import CreateAssignment from './rift/assignments/CreateAssignment';
+>>>>>>> Fix merges.
 
 class App extends React.Component {
   render() {
