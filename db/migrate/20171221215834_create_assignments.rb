@@ -4,7 +4,7 @@ class CreateAssignments < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :content
       t.belongs_to :sub_section, foreign_key: true
-      
+
       t.timestamps
     end
   end

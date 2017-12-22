@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getSections } from '../actions/sections';
 import { setActiveCourse } from '../actions/course';
 import {
   Button,
@@ -11,11 +12,15 @@ import {
 } from 'semantic-ui-react';
 
 class GroupsHome extends React.Component {
-  state = { sections: [] };
+  state = { sectionsLoaded: false };
+
+  setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
 
   componentDidMount() {
     const id = this.props.courseId;
-    this.props.dispatch(setActiveCourse(id));
+    const { dispatch } = this.props;
+    dispatch(setActiveCourse(id));
+    dispatch(getSections(id, this.setSectionsLoaded));
   }
 
   displaySections = () => {
