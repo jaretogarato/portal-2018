@@ -64,15 +64,17 @@ puts "11 sections seeded"
 puts "5 sub_sections seeded"
 puts "3 lectures seeded"
 
-admin = User.create(
-  first_name: 'admin',
-  last_name: 'admin',
-  email: 'admin@admin.com',
-  password: 'password',
-  bio: "This is a really good bio don't ya know...",
-  nickname: 'Spencer is BOSS',
-  is_admin: true
-)
+1.times do
+  admin = User.create(
+    first_name: 'admin',
+    last_name: 'admin',
+    email: 'admin@admin.com',
+    password: 'password',
+    bio: "This is a really good bio don't ya know...",
+    nickname: 'Spencer is BOSS',
+    is_admin: true
+  )
+end
 
 1.times do
   student = User.create(
