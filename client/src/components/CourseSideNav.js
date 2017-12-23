@@ -7,11 +7,7 @@ import MenuItem from 'semantic-ui-react/dist/commonjs/collections/Menu/MenuItem'
 class CourseSideNav extends React.Component {
 
   render() {
-<<<<<<< HEAD
     const links = ['People', 'Attendance', 'Sections'];
-=======
-    const links = ['people', 'attendance', 'settings'];
->>>>>>> add course settings to course side nav
     const { match: { params: { id }}} = this.props;
     return links.map( (link, i) => 
       <Link key={i} to={`/courses/${id}/${link.toLowerCase()}`}>
