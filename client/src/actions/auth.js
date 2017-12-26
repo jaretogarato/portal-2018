@@ -21,9 +21,10 @@ export const registerUser = (email, password, passwordConfirmation, firstName, l
         history.push('/');
       })
       .catch(res => {
+        const errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
         const messages =
-          res.response.data.errors.full_messages.map(message =>
-            <div>{message}</div>);
+          errors.full_messages.map((message,i) =>
+            <div key={i}>{message}</div>);
         const { headers } = res;
         dispatch(setFlash(messages, 'red'));
         dispatch(setHeaders(headers));
@@ -42,9 +43,10 @@ export const handleLogout = history => {
         history.push('/login');
       })
       .catch(res => {
+        const errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
         const messages =
-          res.response.data.errors.map(message =>
-            <div>{message}</div>);
+          errors.full_messages.map((message,i) =>
+            <div key={i}>{message}</div>);
         const { headers } = res;
         dispatch(setFlash(messages, 'red'));
         dispatch(setHeaders(headers));
@@ -63,9 +65,10 @@ export const handleLogin = (email, password, history) => {
         history.push('/');
       })
       .catch(res => {
+        const errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
         const messages =
-          res.response.data.errors.map(message =>
-            <div>{message}</div>);
+          errors.full_messages.map((message,i) =>
+            <div key={i}>{message}</div>);
         const { headers } = res;
         dispatch(setFlash(messages, 'red'));
         dispatch(setHeaders(headers));
