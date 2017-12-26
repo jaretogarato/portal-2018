@@ -1,6 +1,7 @@
 import { setFlash } from './flash';
 import axios from 'axios';
-import avatars from '../reducers/avatars'
+import avatars from '../reducers/avatars';
+import { setHeaders } from './headers';
 
 const addAvatar = (avatar) => {
   return { type: 'ADD_AVATAR', avatar }
@@ -16,10 +17,12 @@ export const handleUpload = (avatar, callback) => {
     axios.post('/api/avatars', data)
       .then( res => {
         dispatch(addAvatar(res.data));
+        dispatch(setHeaders(res.headers));
         callback(res.data);
       })
       .catch( res => {
         dispatch(setFlash('Error uploading file. Please try again!', 'error'));
+        dispatch(setHeaders(res.headers));
     });
   }
 }
@@ -28,10 +31,11 @@ export const setAvatars = () => {
   return(dispatch) => {
     axios.get('/api/avatars')
       .then( res => {
-        dispatch({ type: 'SET_AVATARS', avatars: res.data });
+        dispatch({ type: 'SET_AVATARS', avatars: res.data, headers: res.headers });
       })
       .catch( res => {
         dispatch(setFlash('Error Fetching Avatar', 'error'));
+        dispatch(setHeaders(res.headers));
     });
   }
 }

@@ -5,7 +5,7 @@ export const getLectures = (subSectionId, callback) => {
   return(dispatch) => {
     axios.get(`/api/sub-sections/${subSectionId}/lectures/`)
       .then( res => {
-        dispatch({ type: 'GET_LECTURES', lectures: res.data });
+        dispatch({ type: 'GET_LECTURES', lectures: res.data, headers: res.headers });
       })
       .then( callback() )
       .catch( err => {

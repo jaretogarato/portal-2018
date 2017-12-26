@@ -5,6 +5,7 @@ import { getSections } from '../actions/sections';
 import { setCourse } from '../actions/courses';
 import { setSection } from '../actions/section';
 import { Dimmer, Loader, Menu } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 
 class SectionSelect extends React.Component {
   state = {
@@ -109,4 +110,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(SectionSelect);
+export default withRouter(connect(mapStateToProps)(SectionSelect));

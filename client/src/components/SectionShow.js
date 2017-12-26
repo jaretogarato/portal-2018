@@ -107,7 +107,11 @@ class SectionShow extends React.Component {
   }
 
   renderSubSections = () => {
-    return this.props.subSections.map( subSection => {
+    let { subSections } = this.props; 
+    //TODO this is a major hack and needs to be fixed
+    if (!Array.isArray(subSections))
+      subSections = [];
+    return subSections.map( subSection => {
       return(
         <div key={subSection.id}>
           <Accordion.Title
@@ -137,7 +141,7 @@ class SectionShow extends React.Component {
     let { loaded, subSectionsLoaded, lecturesLoaded } = this.state;
 
     if(this.props.sections.length && loaded && subSectionsLoaded && lecturesLoaded ) {
-      let sectionObject = (this.props.sections[`${this.props.sectionId-1}`]);
+      let sectionObject = (this.props.sections[`${this.props.sectionId}`] || this.props.sections[0]);
       let sectionTitle = sectionObject['title'];
 
       return (

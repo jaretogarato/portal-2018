@@ -6,7 +6,7 @@ export const getUsers = () => {
   return(dispatch) => {
     axios.get('/api/course_users')
       .then( res => {
-        dispatch({ type: 'GET_COURSE_USERS', courseUsers: res.data })
+        dispatch({ type: 'GET_COURSE_USERS', courseUsers: res.data, headers: res.headers })
       })
       .catch( err => {
         const { headers } =  err;

@@ -36,8 +36,7 @@ export const addCourse = (course) => {
     axios.post('/api/courses', course)
       .then( res => {
         dispatch(setFlash('Course Successfully Created!', 'success'))
-        dispatch({ type: 'ADD_COURSE', course: res.data })
-        dispatch({ type: 'SET_HEADERS', headers: res.headers });
+        dispatch({ type: 'ADD_COURSE', course: res.data, headers: res.headers })
       })
       .catch( err => {
         const message = err.response.data.errors;
@@ -51,8 +50,7 @@ export const updateCourse = (course, id) => {
   return(dispatch) => {
     axios.put(`/api/courses/${id}`, { course })
       .then( res => {
-        dispatch({ type: 'UPDATE_COURSE', course: res.data });
-        dispatch({ type: 'SET_HEADERS', headers: res.headers });
+        dispatch({ type: 'UPDATE_COURSE', course: res.data, headers: res.headers });
       })
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
@@ -64,7 +62,7 @@ export const updateCourse = (course, id) => {
 export const deleteCourse = (course) => {
   return(dispatch) => {
     axios.delete(`/api/courses/${course.id}`)
-      .then( res => dispatch({ type: 'DELETE_APP', course }))
+      .then( res => dispatch({ type: 'DELETE_APP', course, headers: res.headers }))
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Delete Course', 'red'));
