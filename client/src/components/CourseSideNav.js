@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Segment } from 'semantic-ui-react';
-import MenuItem from 'semantic-ui-react/dist/commonjs/collections/Menu/MenuItem';
-
+import { Menu } from 'semantic-ui-react';
 
 class CourseSideNav extends React.Component {
 

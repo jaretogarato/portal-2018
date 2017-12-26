@@ -3,8 +3,6 @@ import { FooterStyled } from '../../styles/styles';
 import { Link } from 'react-router-dom';
 import {
   Grid,
-  Image,
-  Menu,
   Segment
 } from 'semantic-ui-react';
 

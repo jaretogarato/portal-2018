@@ -1,6 +1,4 @@
 import React from 'react';
-import Home from './root/Home';
-import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../actions/courses';
 import { Dimmer, Loader } from 'semantic-ui-react';

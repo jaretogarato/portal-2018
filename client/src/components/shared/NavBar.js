@@ -1,13 +1,10 @@
 import React from 'react';
-import Attendance from '../attendance/Attendance';
 import PortalLogo from '../../assets/images/portal-logo.png';
-import UserProfile from '../profile/UserProfile';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { handleLogout } from '../../actions/auth';
 import { getCoursesByStudent } from '../../actions/courses';
 import { Link, withRouter } from 'react-router-dom';
-import { Dropdown, Image, Label, Menu, Segment } from 'semantic-ui-react';
+import { Dropdown, Image, Menu } from 'semantic-ui-react';
 
 class NavBar extends React.Component {
   state = { activeItem: 'Course View' };
@@ -19,7 +16,6 @@ class NavBar extends React.Component {
   }
 
   renderCourseSections = () => {
-    const { user } = this.state;
     const { userCourses } = this.props;
     return userCourses.map( course =>
       <Dropdown.Item

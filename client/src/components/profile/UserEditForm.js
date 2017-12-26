@@ -10,7 +10,6 @@ import {
   Header, 
   Input, 
   Segment, 
-  TextArea 
 } from 'semantic-ui-react';
 
 class UserEditForm extends React.Component {
@@ -24,7 +23,7 @@ class UserEditForm extends React.Component {
 
   componentDidMount() {
     const { first_name, last_name, bio, email, nickname } = this.props.user;
-    this.setState({ firstName: first_name, bio, email, nickname });
+    this.setState({ firstName: first_name, bio, email, nickname, last_name });
   }
 
   handleSubmit = (e) => {

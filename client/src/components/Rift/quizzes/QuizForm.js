@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, TextArea, Container } from 'semantic-ui-react';
+import { Form, Button, Container } from 'semantic-ui-react';
 import { addQuiz } from '../../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';

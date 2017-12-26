@@ -1,7 +1,6 @@
 import React from 'react';
 import Attendance from './attendance/Attendance';
 import AuthRoute from './AuthRoute';
-import CourseForm from './course/CourseForm';
 import Courses from './course/Courses';
 import CourseView from './course/CourseView';
 import Course from './Course';

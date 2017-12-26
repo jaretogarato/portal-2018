@@ -1,11 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { getSubSections} from '../actions/subSections';
 import { getLectures } from '../actions/lectures';
 import { Link } from 'react-router-dom';
-import { setFlash } from '../actions/flash';
-import { setSubSection } from '../actions/subSection';
 import { setSubSectionId } from '../actions/subSectionId';
 import {
   Accordion,
@@ -58,7 +55,7 @@ class SectionShow extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch, subSection, lectures } = this.props;
+    const { subSection, lectures } = this.props;
 
     this.setState({ subSection: subSection });
     this.setState({ lectures: lectures });
@@ -72,20 +69,20 @@ class SectionShow extends React.Component {
     this.setState({ sectionId: nextProps.sectionId });
     this.setState({ lectures: nextProps.lectures });
 
-    if(sectionId != nextProps.sectionId){
+    if(sectionId !== nextProps.sectionId){
       dispatch(getSubSections(nextProps.sectionId, this.setSubSectionsLoaded));
     }
-    if(subSectionId != nextProps.subSectionId){
+    if(subSectionId !== nextProps.subSectionId){
       dispatch(setSubSectionId(nextProps.subSectionId));
     }
-    if(JSON.stringify(lectures) != JSON.stringify(nextProps.lectures)){
+    if(JSON.stringify(lectures) !== JSON.stringify(nextProps.lectures)){
       dispatch(getLectures( nextProps.subSectionId, this.setLecturesLoaded));
     }
   }
 
   handleClick = (e, titleProps) => {
-    const { dispatch, lectures } = this.props;
-    const { sectionId, subSectionId, activeIndex } = this.state;
+    const { dispatch } = this.props;
+    const { subSectionId, activeIndex } = this.state;
     const { index } = titleProps; // index from where the click originates
     // const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index;
@@ -137,7 +134,7 @@ class SectionShow extends React.Component {
   }
 
   render() {
-    let { subSectionId, loaded, subSectionsLoaded, lecturesLoaded } = this.state;
+    let { loaded, subSectionsLoaded, lecturesLoaded } = this.state;
 
     if(this.props.sections.length && loaded && subSectionsLoaded && lecturesLoaded ) {
       let sectionObject = (this.props.sections[`${this.props.sectionId-1}`]);

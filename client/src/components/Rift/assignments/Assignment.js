@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Header, Icon, Grid, Table, Button } from 'semantic-ui-react';
-import { Switch, Route, Link } from 'react-router-dom';
-import CreateAssignment from './CreateAssignment';
+import { Link } from 'react-router-dom';
 
 class Assignment extends Component {
-
-
-  render() {
-    return(
-      <div> 
-        This is the Assignment Component (Landing Page).
-        <Link to={'api/assignments'}>Create New Assignment</Link>
-      </div>
-      
-    )
-  }
 
   render() {
     return (

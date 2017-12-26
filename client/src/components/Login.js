@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components'
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
 import { Button, Form, Header, Grid, Segment } from 'semantic-ui-react';

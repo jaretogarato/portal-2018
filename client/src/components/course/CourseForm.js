@@ -1,10 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addCourse, updateCourse } from '../../actions/courses';
 import { courseTermOptions, courseTypeOptions, courseYearOptions  } from '../../data/courseForm';
 import { CourseFormButton, CourseFormGrid, CourseFormHeader, CourseFormSegment } from '../../styles/styles';
-import { Button, Form, Grid, Header, Segment, Select } from 'semantic-ui-react';
+import { Form, Grid, Select } from 'semantic-ui-react';
 
 class CourseForm extends React.Component {
   state = { course_type: '', term: '', year: ''  };
@@ -18,7 +17,6 @@ class CourseForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { course_type, term, year } = this.state;
     const { type, course, toggleModal } = this.props;
     if(type === 'edit'){
       this.props.dispatch(updateCourse(this.state, course.id));

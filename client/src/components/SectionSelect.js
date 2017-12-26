@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../actions/courses';
-import { getSubSections} from '../actions/subSections';
 import { getSections } from '../actions/sections';
 import { setCourse } from '../actions/courses';
-import { setSubSection } from '../actions/subSection';
-import { setSubSectionId } from '../actions/subSectionId';
 import { setSection } from '../actions/section';
 import { Dimmer, Loader, Menu } from 'semantic-ui-react';
 
@@ -25,13 +22,13 @@ class SectionSelect extends React.Component {
   setSubSectionLoaded = () => this.setState({ subSectionsLoaded: true });
 
   componentWillMount() {
-    const { dispatch, user: { id: userId, first_name } } = this.props;
+    const { dispatch, user: { id: userId } } = this.props;
     const { courseId, sectionId } = this.state;
 
     // set up initial course id
     // TODO: prevent user from navigating to any page via URL
     this.setState({ 
-      courseId: parseInt(this.props.match.params.id), 
+      courseId: parseInt(this.props.match.params.id, 10), 
       coursesLoaded: true 
     })
     dispatch(setCourse(courseId));    
@@ -56,9 +53,9 @@ class SectionSelect extends React.Component {
 
   componentWillReceiveProps = (nextProps) => {
     const { sectionId } = this.state;
-    const { dispatch, groupId } = this.props;
+    const { dispatch } = this.props;
 
-    if( sectionId != nextProps.sectionId){
+    if( sectionId !== nextProps.sectionId){
       dispatch(setSection(sectionId));
     }
   }
@@ -70,7 +67,7 @@ class SectionSelect extends React.Component {
   }
 
   render() {
-    let { coursesLoaded, sectionsLoaded, courseId, sectionId } = this.state;
+    let { coursesLoaded, sectionsLoaded, sectionId } = this.state;
 
     if(sectionsLoaded && coursesLoaded) {
       return(

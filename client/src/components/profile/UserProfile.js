@@ -1,8 +1,7 @@
 import React from 'react';
 import UserEditForm from './UserEditForm';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { handleUpload, setAvatars } from '../../actions/avatar';
+import { setAvatars } from '../../actions/avatar';
 import {
   Button,
   Container,

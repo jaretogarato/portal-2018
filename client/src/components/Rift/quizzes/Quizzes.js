@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Table, Container, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import QuizForm from './QuizForm'
 
 class Quizzes extends Component {
 

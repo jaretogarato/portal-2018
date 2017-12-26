@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { setHeaders } from '../actions/headers';
-import { Label, Table, Segment } from 'semantic-ui-react'
+import { Table, Segment } from 'semantic-ui-react'
 
 
 class PeopleHome extends React.Component {

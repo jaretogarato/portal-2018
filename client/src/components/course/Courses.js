@@ -3,10 +3,7 @@ import Course from './Course';
 import CourseForm from './CourseForm';
 import { connect } from 'react-redux';
 import { getCourses } from '../../actions/courses';
-import { Link } from 'react-router-dom';
 import {
-  Button,
-  Card,
   Container,
   Grid,
   Menu

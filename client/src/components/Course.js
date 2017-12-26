@@ -1,12 +1,11 @@
 import React from 'react';
 import { setActiveCourse, clearActiveCourse } from '../actions/course';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import CourseView from './course/CourseView';
 import CourseSideNav from './CourseSideNav';
 import People from './People';
 import SectionSelect from './SectionSelect'
-import { Grid, Segment } from 'semantic-ui-react';
 import CourseSettings from './CourseSettings';
 
 class Course extends React.Component {

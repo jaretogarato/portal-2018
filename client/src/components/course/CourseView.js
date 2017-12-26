@@ -1,24 +1,15 @@
 import React from 'react';
-import NavBarSecondary from './NavBarSecondary';
 import SectionSelect from '../SectionSelect';
 import SectionShow from '../SectionShow';
-import { Container, Grid, Header, Segment } from 'semantic-ui-react';
-import GridColumn from 'semantic-ui-react/dist/commonjs/collections/Grid/GridColumn';
+import { Container, Grid, Segment } from 'semantic-ui-react';
 import CourseSideNav from '../CourseSideNav';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class CourseView extends React.Component {
-  state = {};
-
-  handleContextRef = (contextRef) => {
-    this.setState({ contextRef })
-  }
 
   render() {
-    let { contextRef } = this.state;
-
     return (
-      <div ref={this.handleContextRef}>
+      <div>
         <Segment basic />
         <Container fluid style={styles.noBorder}>
           <Grid style={styles.noBorder}>

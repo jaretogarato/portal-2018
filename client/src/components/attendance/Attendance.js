@@ -3,22 +3,15 @@ import DatePicker from './DatePicker';
 import StudentRecord from './StudentRecord';
 import { connect } from 'react-redux';
 import { getUsers, markAllPresent } from '../../actions/users';
-import { addAttendance, getAttendance } from '../../actions/attendance';
+import { addAttendance } from '../../actions/attendance';
 import { Button, Container, Header, Icon } from 'semantic-ui-react';
 
 class Attendance extends React.Component {
   state = { courseId: 10 }
 
   componentDidMount() {
-    const { dispatch, currentDate } = this.props;
-    const { courseId } = this.state;
+    const { dispatch } = this.props;
     dispatch(getUsers());
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { currentDate, dispatch } = this.props;
-    // when finished dispatch this action
-    // dispatch(getAttendance(this.state.courseId, nextProps.currentDate))
   }
 
   displayUsers = () => {

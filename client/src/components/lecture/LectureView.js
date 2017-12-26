@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container, Segment } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 class LectureView extends React.Component {
   state = { lecture: {} };
@@ -15,7 +15,7 @@ class LectureView extends React.Component {
   }
 
   render() {
-    const { title, content, lecture } = this.state.lecture;
+    const { title, content } = this.state.lecture;
     
     return (
       <Container>
@@ -28,7 +28,7 @@ class LectureView extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    lecture: state.lectures.filter(lecture => lecture.id == props.match.params.id)[0]
+    lecture: state.lectures.find(lecture => lecture.id === parseInt(props.match.params.id, 10))
   }
 }
 

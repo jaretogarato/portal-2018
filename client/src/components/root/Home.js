@@ -33,19 +33,6 @@ class Home extends React.Component {
   }
 }
 
-const styles = {
-  h1: {
-    color: '#FFF',
-    fontSize: '5em',
-  },
-  h3: {
-    color: '#FFF',
-    fontSize: '2.5em',
-    paddingTop: '0',
-    marginTop: '-25px',
-  },
-}
-
 const mapStateToProps = (state) => {
   return {
     userId: state.user.id

@@ -27,7 +27,7 @@ class ProtectedRoute extends React.Component {
   }
 
   checkYourPrivilege = () => {
-    const { courseId, enrollments, requiredRoles, requiredSubRoles, isAdmin } = this.props;
+    const { courseId, enrollments, requiredRoles, requiredSubRoles } = this.props;
     if(requiredRoles != null){
       if(enrollments.length === 0){
         return false;

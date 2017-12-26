@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import { Button, Container, Grid, Header } from 'semantic-ui-react';
 import { getDate, updateDate } from '../../actions/currentDate';
-import { getAttendance } from '../../actions/attendance';
 import { connect } from 'react-redux';
 
 class DatePicker extends React.Component {
@@ -15,7 +14,7 @@ class DatePicker extends React.Component {
   }
 
   handleDayChange = (dayChange) => {
-    const { dispatch, currentDate, courseId } = this.props;
+    const { dispatch, currentDate } = this.props;
     let newDate = moment(currentDate).add(dayChange, 'day').format('ddd MMM D YYYY')
     dispatch(updateDate(newDate));
   }

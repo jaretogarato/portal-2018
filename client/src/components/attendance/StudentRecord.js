@@ -2,18 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateUserStatus } from '../../actions/users';
 import { Container,
-  Header,
   Icon,
-  Image,
   Item,
   Form,
-  Divider,
 } from 'semantic-ui-react';
 
 class StudentRecord extends React.Component {
-
-  componentWillMount() {
-  }
 
   handleStatusChange = (recordStatus) => {
     this.setState( (state, props) => {
@@ -119,4 +113,4 @@ const mapStateToProps = (state) => {
   return { user: state.user }
 }
 
-export default connect()(StudentRecord);
+export default connect(mapStateToProps)(StudentRecord);

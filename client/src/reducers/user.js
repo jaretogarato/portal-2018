@@ -5,9 +5,9 @@ const user = (state = {}, action) => {
     case 'LOGOUT':
       return {};
     case 'UPDATE_USER':
-      if(state.id === action.user.id) {
+      if(state.id === action.user.id) 
         return action.user
-      }
+      return state;
     default:
       return state;
   }
