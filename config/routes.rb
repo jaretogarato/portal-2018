@@ -20,6 +20,8 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     end
     resources :assignments
 
+    resources :quizzes 
+    
     get  'user_courses/:user_id', to: 'courses#user_courses'
     get  'avatar', to: 'avatar#index'
     post 'avatars', to: 'avatars#create'

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Header, Table, Container, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { getQuiz } from '../../../actions/quizzes'
+import { connect } from 'react-redux';
 
 class Quizzes extends Component {
 
@@ -32,9 +34,9 @@ class Quizzes extends Component {
             </Table.Header>
             <Table.Body>
             <Table.Row>
-              <Table.Cell>First Quiz</Table.Cell>
-              <Table.Cell>December 21, 2017</Table.Cell>
-              <Table.Cell>FuChai Mead</Table.Cell>
+              <Table.Cell>{quiz.title}</Table.Cell>
+              <Table.Cell>{quiz.created_at}</Table.Cell>
+              <Table.Cell>{user}</Table.Cell>
             </Table.Row>
             </Table.Body>
           </Table> 
@@ -53,4 +55,4 @@ const styles = {
   }
 }
 
-export default Quizzes;
+export default connect()(Quizzes);

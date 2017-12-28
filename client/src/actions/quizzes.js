@@ -4,7 +4,7 @@ import { setFlash } from './flash';
 
 export const addQuiz = (quiz) => {
   return(dispatch) => {
-    axios.get('/api/quizzes')
+    axios.post('/api/quizzes', { quiz })
       .then( res => dispatch({ type: 'ADD_QUIZ', quizzes: res.data, headers: res.headers }))
       .catch( err => {
         dispatch(setHeaders(err.headers));
