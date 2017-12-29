@@ -40,7 +40,7 @@ class Api::CoursesController < Api::ApiController
   def users_by_course_id
     users_ids = Course.find(params[:id]).enrollments.map { |u| u.user_id }
     render json: User.find(users_ids)
-  end  
+  end
 
   private
     def course_params

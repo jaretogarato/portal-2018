@@ -7,10 +7,10 @@ class CourseSideNav extends React.Component {
   render() {
     const links = ['People', 'Attendance', 'Sections'];
     const { match: { params: { id }}} = this.props;
-    return links.map( (link, i) => 
+    return links.map( (link, i) =>
       <Link key={i} to={`/courses/${id}/${link.toLowerCase()}`}>
         <Menu fluid vertical>
-          <Menu.Item textAlign='center'>
+          <Menu.Item>
             {link}
           </Menu.Item>
         </Menu>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSubSections} from '../actions/subSections';
-import { getLectures } from '../actions/lectures';
+import { getSubSections} from '../../actions/subSections';
+import { getLectures } from '../../actions/lectures';
 import { Link } from 'react-router-dom';
-import { setSubSectionId } from '../actions/subSectionId';
+import { setSubSectionId } from '../../actions/subSectionId';
 import {
   Accordion,
   Container,
@@ -107,7 +107,7 @@ class SectionShow extends React.Component {
   }
 
   renderSubSections = () => {
-    let { subSections } = this.props; 
+    let { subSections } = this.props;
     //TODO this is a major hack and needs to be fixed
     if (!Array.isArray(subSections))
       subSections = [];

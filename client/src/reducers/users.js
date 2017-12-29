@@ -16,6 +16,8 @@ const users = (state = [], action) => {
       return state.map ( u => {
         return { ...u, status: action.status }
       })
+    case 'GET_USERS_BY_COURSE':
+      return action.usersByCourse;
     default:
       return state;
   }

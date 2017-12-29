@@ -3,10 +3,12 @@ import { setActiveCourse, clearActiveCourse } from '../actions/course';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import CourseView from './course/CourseView';
-import CourseSideNav from './CourseSideNav';
-import People from './People';
-import SectionSelect from './SectionSelect'
-import CourseSettings from './CourseSettings';
+import CourseSideNav from './tether/CourseSideNav';
+import People from './tether/People';
+import SectionSelect from './tether/SectionSelect'
+import CourseSettings from './tether/CourseSettings';
+import PeopleProfile from './tether/PeopleProfile';
+
 
 class Course extends React.Component {
   componentDidMount() {
@@ -26,6 +28,8 @@ class Course extends React.Component {
         <Route path="/courses/:id/people" component={People} />
         <Route path="/courses/:id/sections" component={SectionSelect} />
         <Route path="/courses/:id/settings" component={CourseSettings} />
+        <Route path="/people/:id/profile" component={PeopleProfile} />
+
       </div>
     )
   }

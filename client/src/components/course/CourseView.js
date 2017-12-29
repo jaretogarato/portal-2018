@@ -1,8 +1,8 @@
 import React from 'react';
-import SectionSelect from '../SectionSelect';
-import SectionShow from '../SectionShow';
+import SectionSelect from '../tether/SectionSelect';
+import SectionShow from '../tether/SectionShow';
 import { Container, Grid, Segment } from 'semantic-ui-react';
-import CourseSideNav from '../CourseSideNav';
+import CourseSideNav from '../tether/CourseSideNav';
 import { Route } from 'react-router-dom';
 
 class CourseView extends React.Component {
@@ -16,7 +16,7 @@ class CourseView extends React.Component {
             <Grid.Column width={3}>
               <Segment style={styles.sideBar}>
                 <Route component={CourseSideNav} />
-              </Segment> 
+              </Segment>
             </Grid.Column>
             <Grid.Column width={3}>
               <Segment>
@@ -39,7 +39,7 @@ const styles = {
   noBorder: {
     border:'none',
   },
-  
+
   sideBar: {
     height: "65vh",
     width: '11em',

@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 class Api::AssignmentsController < Api::ApiController
   before_action :set_assignment, except: [:index]
-=======
-class Api::AssignmentsController < ApplicationController
->>>>>>> c239def982c0b70fd440bc0126d7f9122337c90b
 
   def index
   end
@@ -28,5 +24,5 @@ class Api::AssignmentsController < ApplicationController
     def set_assignment
       @assignment = Assignment.find(params[:id])
     end
-  
+
 end

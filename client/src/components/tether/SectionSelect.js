@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCoursesByStudent } from '../actions/courses';
-import { getSections } from '../actions/sections';
-import { setCourse } from '../actions/courses';
-import { setSection } from '../actions/section';
+import { getCoursesByStudent } from '../../actions/courses';
+import { getSections } from '../../actions/sections';
+import { setCourse } from '../../actions/courses';
+import { setSection } from '../../actions/section';
 import { Dimmer, Loader, Menu } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
@@ -28,11 +28,11 @@ class SectionSelect extends React.Component {
 
     // set up initial course id
     // TODO: prevent user from navigating to any page via URL
-    this.setState({ 
-      courseId: parseInt(this.props.match.params.id, 10), 
-      coursesLoaded: true 
+    this.setState({
+      courseId: parseInt(this.props.match.params.id, 10),
+      coursesLoaded: true
     })
-    dispatch(setCourse(courseId));    
+    dispatch(setCourse(courseId));
 
     // get the courses to which a user belongs
     dispatch(getCoursesByStudent(userId, this.setCoursesLoaded));
