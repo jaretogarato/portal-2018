@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../actions/userId';
 import {
@@ -7,7 +6,6 @@ import {
   Divider,
   Grid,
   Header,
-  Image,
   Message,
   Rail,
   Segment,
@@ -84,15 +82,6 @@ class PeopleProfile extends React.Component {
       </Segment>
     )
   }
-}
-
-const styles = {
-  image: {
-    borderRadius: '50%',
-    borderStyle: 'solid',
-    borderWidth: '3px',
-    overflowX: 'hidden',
-  },
 }
 
 const mapStateToProps = (state) => {

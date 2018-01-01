@@ -12,12 +12,12 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :sections
       resources :attendances, only: [:index, :create]
     end
-    
+
     resources :sections do
       resources :sub_sections
       resources :groups
     end
-    
+
     resources :sub_sections do
       resources :lectures
     end
@@ -35,6 +35,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     post '/invitation/accept', to: 'invitations#accept'
     get  '/course_users/:id', to: 'users#course_users'
     get '/course/:id/users', to: 'courses#users_by_course_id'
+    get '/courses/:id/generate_groups', to: 'ta_groups#generate_groups'
     get '/lectures', to: 'lectures#all_lectures'
 
     get '/notes/:user_id', to: 'notes#recipient_notes'

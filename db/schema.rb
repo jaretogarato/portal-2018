@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20180109002035) do
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
     t.index ["course_id"], name: "index_sections_on_course_id"
   end
 
@@ -127,6 +128,15 @@ ActiveRecord::Schema.define(version: 20180109002035) do
     t.datetime "updated_at", null: false
     t.string "item_title"
     t.index ["section_id"], name: "index_sub_sections_on_section_id"
+  end
+
+  create_table "ta_groups", force: :cascade do |t|
+    t.text "ta"
+    t.text "students"
+    t.bigint "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_ta_groups_on_section_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -181,8 +191,13 @@ ActiveRecord::Schema.define(version: 20180109002035) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
+<<<<<<< HEAD
+=======
+  add_foreign_key "notes", "users"
+>>>>>>> add group model and controller, active status to sections WIP
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"
   add_foreign_key "sub_sections", "sections"
+  add_foreign_key "ta_groups", "sections"
 end

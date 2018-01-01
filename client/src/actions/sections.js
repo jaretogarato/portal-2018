@@ -28,7 +28,7 @@ export const addSection = (title, courseId) => {
 
 export const updateSection = (section) => {
   return(dispatch) => {
-    axios.post(`/api/sections/${section.id}`, { section })
+    axios.put(`/api/sections/${section.id}`, { section })
       .then( res => dispatch({ type: 'UPDATE_SECTION', section: res.data, headers: res.headers }))
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
@@ -46,4 +46,8 @@ export const deleteSection = (section) => {
         dispatch(setFlash('Failed To Delete Section', 'red'));
     });
   }
+}
+
+export const toggleActiveSection = (id) => {
+  return { type: 'TOGGLE_SECTION', id }
 }

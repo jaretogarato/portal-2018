@@ -39,7 +39,7 @@ class Api::SectionsController < Api::ApiController
 
   private
     def section_params
-      params.require(:section).permit(:title, :section_id, :course_id)
+      params.require(:title, :active, :section_id, :course_id)
     end
 
     def set_section

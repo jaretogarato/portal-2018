@@ -6,7 +6,6 @@ import { editUser } from '../../actions/user';
 import { handleUpload } from '../../actions/avatars';
 import {
   Button,
-  Container,
   Dimmer,
   Divider,
   Form,
@@ -53,7 +52,7 @@ class UserEditForm extends React.Component {
   handleChange = ({ target: { value, name } }) => this.setState({ [name]: value });
 
   render()  {
-    const { firstName, lastName, bio, email, nickname } = this.state;
+    const { bio, email, nickname } = this.state;
     const { user } = this.props;
 
     return(
