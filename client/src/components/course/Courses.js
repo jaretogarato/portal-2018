@@ -21,7 +21,7 @@ class Courses extends React.Component {
     const { courses } = this.props;
     if(courses) {
       return courses.map( course =>
-        <Course course={course} />
+        <Course key={course.id} course={course} />
       )
     }
   }
