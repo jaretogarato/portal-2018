@@ -16,10 +16,8 @@ class Attendance extends React.Component {
 
   displayUsers = () => {
     const { users } = this.props;
-    const { allPresent } = this.state;
-    let status = allPresent ? 'present' : ''
     return users.map( user => {
-      return <StudentRecord key={user.id} user={user} status={status} />
+      return <StudentRecord key={user.id} user={user} status={user.status} />
     })
   }
 

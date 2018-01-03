@@ -22,7 +22,7 @@ class StudentRecord extends React.Component {
   }
 
   displayIcon = () => {
-    const { status } = this.props.user
+    const { status } = this.props
     return(
       <Form style={styles.row}>
         <Form.Field style={styles.noMargin}>
@@ -62,7 +62,7 @@ class StudentRecord extends React.Component {
   render() {
     const { first_name, last_name } = this.props.user;
     let { image } = this.props.user;
-    
+
     if(!image)
       image = 'http://skoolrunnr.com/wp-content/uploads/2017/10/placeholder.png'
 
@@ -110,7 +110,7 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user }
+  return { currentUser: state.user }
 }
 
 export default connect(mapStateToProps)(StudentRecord);
