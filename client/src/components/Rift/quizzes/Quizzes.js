@@ -34,9 +34,9 @@ class Quizzes extends Component {
             </Table.Header>
             <Table.Body>
             <Table.Row>
-              <Table.Cell>{quiz.title}</Table.Cell>
-              <Table.Cell>{quiz.created_at}</Table.Cell>
-              <Table.Cell>{user}</Table.Cell>
+              <Table.Cell>{this.quiz.title}</Table.Cell>
+              <Table.Cell>{this.quiz.created_at}</Table.Cell>
+              <Table.Cell>{this.user}</Table.Cell>
             </Table.Row>
             </Table.Body>
           </Table> 
