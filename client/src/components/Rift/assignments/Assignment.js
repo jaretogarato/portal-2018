@@ -7,13 +7,13 @@ class Assignment extends Component {
   render() {
     return (
       <Container>
-        <Header as="h1" textAlign='center' style={styles.lecture_notes}>All Assignments</Header>
+        <Header as="h1" textAlign='center' style={styles.pageTitle}>All Assignments</Header>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
             </Grid.Column>
             <Grid.Column width={2}>
-              <Link to={'assignment/create'}>
+              <Link to={'/assignment/create'}>
                 <Button icon labelPosition='left'>
                   <Icon name='add' />
                   Assignment
@@ -48,9 +48,9 @@ class Assignment extends Component {
 }
 
 const styles = {
-  lecture_notes: {
+  pageTitle: {
     paddingTop: '2%',
-  }
+  },
 }
 
 export default Assignment;
