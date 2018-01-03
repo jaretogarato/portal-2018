@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 mount_devise_token_auth_for 'User', at: 'api/auth'
 
   namespace :api do
-    resources :users, only: :update
+    resources :users, only: [:update, :show]
 
     resources :courses do
       resources :sections
@@ -28,7 +28,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     post '/invitation/send', to: 'invitations#invite'
     post '/invitation/accept', to: 'invitations#accept'
     get  '/course_users', to: 'users#course_users'
-    get '/course/:id/users', to: 'courses#users_by_course_id'	
+    get '/course/:id/users', to: 'courses#users_by_course_id'
     # get '/group_lectures', to: 'sub_sections#group_lectures'
   end
 

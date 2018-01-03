@@ -28,7 +28,7 @@ class Course extends React.Component {
         <Route path="/courses/:id/people" component={People} />
         <Route path="/courses/:id/sections" component={SectionSelect} />
         <Route path="/courses/:id/settings" component={CourseSettings} />
-        <Route path="/people/:id/profile" component={PeopleProfile} />
+        <Route path="/courses/:id/user/:id" component={PeopleProfile} />
 
       </div>
     )

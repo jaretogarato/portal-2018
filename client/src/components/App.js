@@ -25,6 +25,7 @@ import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
 import CreateAssignment from './Rift/assignments/CreateAssignment';
 
+
 // import CreateAssignment from './rift/assignments/CreateAssignment';
 
 class App extends React.Component {
@@ -43,6 +44,7 @@ class App extends React.Component {
               <Route exact path='/assignment' component={Assignment} />
               <Route exact path='/assignment/create' component={CreateAssignment} />
               <Route exact path='/wiki' component={Wiki} />
+
               <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/attendance' component={Attendance} />

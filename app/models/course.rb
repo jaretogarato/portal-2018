@@ -15,11 +15,11 @@ class Course < ApplicationRecord
 		.limit(1)
 		.first
 	end
-	
+
 	# Imperfect fix, but this will sort by year and keep same-term courses together
 	def self.all_sorted_courses
 		select("id, course_type, term, year")
 		.order(year: :asc, term: :asc)
 	end
-		
+
 end

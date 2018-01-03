@@ -9,6 +9,11 @@ class Api::UsersController < Api::ApiController
     end
   end
 
+  def show
+    user = User.find(params[:id])
+    render json: user
+  end  
+
   def course_users
     course = Course.last
     users = course.users.order(last_name: :asc)
