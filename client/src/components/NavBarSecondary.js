@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Menu } from 'semantic-ui-react';
+import { Header, Menu } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 
 class NavBar extends React.Component {
