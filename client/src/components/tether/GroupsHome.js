@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSections } from '../actions/sections';
-import { setActiveCourse } from '../actions/course';
+import { getSections } from '../../actions/sections';
+import { setActiveCourse } from '../../actions/course';
 import {
   Button,
   Checkbox,
