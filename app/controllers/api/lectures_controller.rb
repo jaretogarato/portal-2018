@@ -11,6 +11,10 @@ class Api::LecturesController < Api::ApiController
     render json: lectures
   end
 
+  def all_lectures 
+    render json: Lecture.all
+  end
+
   private
     def lecture_params
       params.require(:lectures).permit(:title, :sub_section_id, :content)

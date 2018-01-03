@@ -29,6 +29,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     post '/invitation/accept', to: 'invitations#accept'
     get  '/course_users', to: 'users#course_users'
     get '/course/:id/users', to: 'courses#users_by_course_id'
+    get '/lectures', to: 'lectures#all_lectures'
     # get '/group_lectures', to: 'sub_sections#group_lectures'
   end
 
