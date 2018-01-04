@@ -6,7 +6,7 @@ class Api::QuizzesController < ApplicationController
   end
 
   def show
-    render json: Quiz.with_enrollment(@quiz.id, current_user.id)
+    render json: @quiz
   end
 
   def update
@@ -38,6 +38,6 @@ class Api::QuizzesController < ApplicationController
     end
 
     def set_quiz
-      @quiz = quiz.find(params[:id])
+      @quiz = Quiz.find(params[:id])
     end
 end

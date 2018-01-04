@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { Header, Table, Container, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { getQuizzes } from '../../../actions/quizzes'
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Quizzes extends Component {
+  state = { quizzes: [] }
 
 componentDidMount() {
-  this.props.dispatch(getQuizzes())
   axios.get('/api/quizzes')
   .then( res => {
     this.setState({ quizzes: res.data })
@@ -20,12 +18,14 @@ componentDidMount() {
 }
 
 displayQuizzes = () => {
-  return this.props.quizzes.map(quiz => {
+  return this.state.quizzes.map(quiz => {
     let time = moment(quiz.created_at).format('MMMM D, YYYY')
     let date = moment(quiz.due_date).format('MMMM D, YYYY')
     return(
       <Table.Row key={quiz.id}>
-        <Table.Cell>{quiz.title}</Table.Cell>
+        <Link to={`./quizzes/${quiz.id}`}>
+         <Table.Cell>{quiz.title}</Table.Cell>
+        </Link> 
         <Table.Cell>{time}</Table.Cell> 
         <Table.Cell>{date}</Table.Cell> 
       </Table.Row>
@@ -78,10 +78,4 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state) => {
-  return( {quizzes: state.quizzes})
-
-}
-
-
-export default connect(mapStateToProps)(Quizzes);
+export default Quizzes;

@@ -4,6 +4,13 @@ import { addQuiz } from '../../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+//testing testing testing 
+const submissionOptions = [
+  { key: '1', text: 'No Submission', value: '1' },
+  { key: '2', text: 'Online', value: '2' },
+  { key: '3', text: 'On Paper', value: '3' },
+  { key: '4', text: 'External', value: '4' },
+]
 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: '1' },
@@ -16,10 +23,10 @@ class QuizForm extends Component {
 state = { title: '', content: '', due_date:''}
 
 handleSubmit = (e) => {
+  const { history, dispatch } = this.props
   e.preventDefault();
   let quiz = { due_date: this.state.due_date, title: this.state.title, content: this.state.content}
-  this.props.dispatch(addQuiz(quiz))
-  this.props.history.push('/quizzes')
+  dispatch(addQuiz(quiz, history))
 }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })

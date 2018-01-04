@@ -12,6 +12,7 @@ import Home from './root/Home';
 import Assignment from './Rift/assignments/Assignment';
 import Quizzes from './Rift/quizzes/Quizzes';
 import QuizForm from './Rift/quizzes/QuizForm';
+import SingleQuiz from './Rift/quizzes/SingleQuiz';
 import LectureNotes from './Rift/lectureNotes/LectureNotes';
 import Wiki from './Rift/wiki/Wiki';
 import InviteConfirmation from './InviteConfirmation';
@@ -40,6 +41,7 @@ class App extends React.Component {
               <Route exact path='/invitation/accept' component={InviteConfirmation} />
               <Route exact path='/quizzes' component={Quizzes} />
               <Route exact path='/quizform' component={QuizForm} />
+              <Route exact path='/quizzes/:id' component={SingleQuiz} />
               <Route exact path='/lecturenote' component={LectureNotes} />
               <Route exact path='/assignment' component={Assignment} />
               <Route exact path='/assignment/create' component={CreateAssignment} />
