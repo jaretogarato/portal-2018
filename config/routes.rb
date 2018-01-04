@@ -2,13 +2,8 @@ Rails.application.routes.draw do
 mount_devise_token_auth_for 'User', at: 'api/auth'
 
   namespace :api do
-<<<<<<< HEAD
     resources :users, only: :update
     resources :quizzes 
-=======
-    resources :users, only: [:update, :show]
-
->>>>>>> origin
     resources :courses do
       resources :sections
       resources :attendances, only: [:index, :create]

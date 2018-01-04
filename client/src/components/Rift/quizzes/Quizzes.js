@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
 import { Header, Table, Container, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import { getQuizzes } from '../../../actions/quizzes'
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Quizzes extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(getQuizzes())
-    axios.get('/api/quizzes')
-    .then( res => {
-      this.setState({ quizzes: res.data })
-    })
-    .catch( err => {
-      console.log(err);
-    });
-  }
+componentDidMount() {
+  this.props.dispatch(getQuizzes())
+  axios.get('/api/quizzes')
+  .then( res => {
+    this.setState({ quizzes: res.data })
+  })
+  .catch( err => {
+    console.log(err);
+  });
+}
 
 displayQuizzes = () => {
   return this.props.quizzes.map(quiz => {
+    let time = moment(quiz.created_at).format('MMMM D, YYYY')
     return(
       <Table.Row>
         <Table.Cell>{quiz.title}</Table.Cell>
-        <Table.Cell>{quiz.created_at}</Table.Cell> 
+        <Table.Cell>{time}</Table.Cell> 
       </Table.Row>
     )
   })
