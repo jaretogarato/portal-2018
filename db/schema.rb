@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20171221230337) do
     t.bigint "sub_section_id"
     t.string "title"
     t.text "content"
-    t.date "due_date"
+    t.string "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"

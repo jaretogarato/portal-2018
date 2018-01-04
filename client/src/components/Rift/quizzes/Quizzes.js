@@ -22,10 +22,12 @@ componentDidMount() {
 displayQuizzes = () => {
   return this.props.quizzes.map(quiz => {
     let time = moment(quiz.created_at).format('MMMM D, YYYY')
+    let date = moment(quiz.due_date).format('MMMM D, YYYY')
     return(
-      <Table.Row>
+      <Table.Row key={quiz.id}>
         <Table.Cell>{quiz.title}</Table.Cell>
         <Table.Cell>{time}</Table.Cell> 
+        <Table.Cell>{date}</Table.Cell> 
       </Table.Row>
     )
   })
@@ -52,9 +54,9 @@ displayQuizzes = () => {
               <Table singleLine>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell width={6}>Name</Table.HeaderCell>
-                <Table.HeaderCell width={4}> Created At</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Created By</Table.HeaderCell>
+                <Table.HeaderCell width={6}> Name </Table.HeaderCell>
+                <Table.HeaderCell width={4}> Created At </Table.HeaderCell>
+                <Table.HeaderCell width={4}> Due Date </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

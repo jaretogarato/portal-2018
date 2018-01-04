@@ -34,7 +34,7 @@ class Api::QuizzesController < ApplicationController
 
   private
     def quiz_params
-      params.require(:quiz).permit(:title, :content)
+      params.require(:quiz).permit(:title, :content, :due_date)
     end
 
     def set_quiz

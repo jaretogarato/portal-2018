@@ -4,7 +4,7 @@ class CreateQuizzes < ActiveRecord::Migration[5.1]
       t.belongs_to :group, foreign_key: true
       t.string :title
       t.text :content
-      t.date :due_date
+      t.string :due_date
 
       t.timestamps
     end
