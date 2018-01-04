@@ -1,11 +1,33 @@
 import React, { Component } from 'react';
 import { Header, Table, Container, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { getQuiz } from '../../../actions/quizzes'
+import { getQuizzes } from '../../../actions/quizzes'
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Quizzes extends Component {
 
+  componentDidMount() {
+    this.props.dispatch(getQuizzes())
+    axios.get('/api/quizzes')
+    .then( res => {
+      this.setState({ quizzes: res.data })
+    })
+    .catch( err => {
+      console.log(err);
+    });
+  }
+
+displayQuizzes = () => {
+  return this.props.quizzes.map(quiz => {
+    return(
+      <Table.Row>
+        <Table.Cell>{quiz.title}</Table.Cell>
+        <Table.Cell>{quiz.created_at}</Table.Cell> 
+      </Table.Row>
+    )
+  })
+}
   render() {
     return (
       <Container> 
@@ -15,8 +37,9 @@ class Quizzes extends Component {
             <Grid.Column width={14}>
             </Grid.Column>
             <Grid.Column width={2}>
-            <Link to={'./quizform'}> <Button icon labelPosition='left'>
-              <Icon name='add' />
+            <Link to={'./quizform'}> 
+              <Button icon labelPosition='left'>
+                <Icon name='add' />
               Quiz
               </Button> 
             </Link>
@@ -33,11 +56,7 @@ class Quizzes extends Component {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-            <Table.Row>
-              <Table.Cell>{this.quiz.title}</Table.Cell>
-              <Table.Cell>{this.quiz.created_at}</Table.Cell>
-              <Table.Cell>{this.user}</Table.Cell>
-            </Table.Row>
+              {this.displayQuizzes()}
             </Table.Body>
           </Table> 
             </Grid.Column>
@@ -55,4 +74,10 @@ const styles = {
   }
 }
 
-export default connect()(Quizzes);
+const mapStateToProps = (state) => {
+  return( {quizzes: state.quizzes})
+
+}
+
+
+export default connect(mapStateToProps)(Quizzes);
