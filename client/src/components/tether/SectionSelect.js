@@ -4,11 +4,12 @@ import { getCoursesByStudent } from '../../actions/courses';
 import { getSections } from '../../actions/sections';
 import { setCourse } from '../../actions/courses';
 import { setSection } from '../../actions/section';
-import { Dimmer, Loader, Menu } from 'semantic-ui-react';
+import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class SectionSelect extends React.Component {
   state = {
+    activeIndex: 0,
     coursesLoaded: false,
     sectionsLoaded: false,
     subSectionLoaded: false,
@@ -67,26 +68,52 @@ class SectionSelect extends React.Component {
     });
   }
 
+  handleSubClick = (e, titleProps) => {
+    const { index } = titleProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
+
+    this.setState({ activeIndex: newIndex })
+  }
+
+  displaySubSections = () => {
+    return subSections.map( ss => (
+      <Accordion defaultActiveIndex={0} styled>
+        <Accordion.Title active={this.state.activeIndex === ss.id} index={ss.id} onClick={this.handleSubClick}>
+          <Icon name='dropdown' />
+          { ss.title }
+        </Accordion.Title>
+      </Accordion>
+    ))
+  }
+
+
   render() {
     let { coursesLoaded, sectionsLoaded, sectionId } = this.state;
 
     if(sectionsLoaded && coursesLoaded) {
       return(
-        <div>
-          <h3>Sections</h3>
-          <Menu fluid vertical tabular>
-            {this.props.sections.map( section =>
-              <Menu.Item
+        <Grid columns={6}>
+          <Grid.Column>
+            <h3>Sections</h3>
+            <Menu fluid vertical tabular>
+              {this.props.sections.map( section =>
+                <Menu.Item
                 key={section.id}
                 id={section.id}
                 name={section.title}
                 active={sectionId === section.id}
                 onClick={e => this.handleClick(e)}>
-              </Menu.Item>
-              )
-            }
-          </Menu>
-        </div>
+                </Menu.Item>
+                )
+              }
+            </Menu>
+          </Grid.Column>
+          <Grid.Column>
+            <h3>SubSections</h3>
+            { this.displaySubSections() }
+          </Grid.Column>
+        </Grid>
       );
     } else {
       return(
@@ -99,6 +126,33 @@ class SectionSelect extends React.Component {
     }
   }
 }
+
+const subSections = [
+  {
+    id: 0,
+    title: 'Day 1'
+  },
+  {
+    id: 1,
+    title: 'Day 2'
+  },
+  {
+    id: 2,
+    title: 'Day 3'
+  },
+  {
+    id: 3,
+    title: 'Day 4'
+  },
+  {
+    id: 4,
+    title: 'Day 5'
+  },
+  {
+    id: 5,
+    title: 'Week Blah Resources'
+  }
+]
 
 const mapStateToProps = (state) => {
   return {
