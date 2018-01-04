@@ -2,7 +2,6 @@ import React from 'react';
 import Attendance from './attendance/Attendance';
 import AuthRoute from './AuthRoute';
 import Courses from './course/Courses';
-import CourseView from './course/CourseView';
 import Course from './Course';
 import FetchUser from './FetchUser';
 import NavBar from './FetchCourses';
@@ -46,15 +45,10 @@ class App extends React.Component {
               <Route exact path='/assignment' component={Assignment} />
               <Route exact path='/assignment/create' component={CreateAssignment} />
               <Route exact path='/wiki' component={Wiki} />
-
               <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/attendance' component={Attendance} />
               <ProtectedRoute exact path='/user_profile' component={UserProfile} />
-              <ProtectedRoute
-                exact path='/course_view'
-                component={CourseView}
-              />
               <ProtectedRoute path="/courses/:id" component={Course} />
               <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />
               <ProtectedRoute
