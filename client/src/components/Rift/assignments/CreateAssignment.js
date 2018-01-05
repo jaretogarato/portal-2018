@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import { Container, Header, Segment, Icon, Grid, Table, Button, Form, Input, Message, Divider } from 'semantic-ui-react';
+import React, { Component, createFactory } from 'react';
+import { Form, Button, Container, Header, Segment, Divider } from 'semantic-ui-react';
+import { addAssignment } from '../../../actions/assignments';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+//testing testing testing 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: '1' },
   { key: '2', text: 'Online', value: '2' },
@@ -10,28 +13,78 @@ const submissionOptions = [
 ]
 
 class CreateAssignment extends Component {
-  state = {}
+  state = { title: '', content: '', due_date: '' }
+
+  handleSubmit = (e) => {
+    const { history, dispatch } = this.props
+    e.preventDefault();
+    let assignment = { due_date: this.state.due_date, title: this.state.title, content: this.state.content }
+    dispatch(addAssignment(assignment, history) )
+  }
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
 
   render() {
-    const { value } = this.state
+    const { title, content, due_date } = this.state
     return (
       <Container>
-        <Header as="h1" textAlign='center' style={styles.pageTitle}>All Assignments</Header>
+        <Header as="h1" textAlign='center' style={ styles.pageTitle }>Create Assignment</Header>
         <Segment>
-          <Form>
+          <Form onSubmit={ this.handleSubmit } style={ styles.form }>
             <Form.Group widths='equal'>
-              <Form.Input focus label='Assignment Title' placeholder='Assignment Title' required width={9} />
-              <Form.Select label='Submission Options' options={ submissionOptions } placeholder='Submission Options' required width={2} />
+              <Form.Input
+                label='Title'
+                name='title'
+                value={ title }
+                width={ 9 }
+                placeholder='Assignment Title'
+                autoFocus={ true }
+                required
+                onChange={ this.handleChange }>
+              </Form.Input>
+              <Form.Select
+                label='Submission Options'
+                options={ submissionOptions }
+                placeholder='Submission Options'
+                required
+                width={ 2} 
+              />
             </Form.Group>
             <Form.Group widths='equal'>
-            <Form.Input label='Due Date' type='date' width={9} />
-              <Form.Input label='Points' placeholder='Points' type='number' required width={2} />
+              <Form.Input
+                name='due_date'
+                value={ due_date }
+                label='Due Date'
+                type='date'
+                width={9}
+                onChange={ this.handleChange }
+              >
+              </Form.Input>
+              <Form.Input
+                label='Points'
+                placeholder='Points'
+                type='number'
+                required
+                width={ 2 } />
             </Form.Group>
-            <Form.TextArea style={ styles.textArea }label='Content' placeholder='Rift Text Editor Placeholder' required />
+            <Form.TextArea
+              name='content'
+              value={ content }
+              style={ styles.textArea }
+              label='Content'
+              placeholder='Rift Text Editor Placeholder'
+              required
+              onChange={ this.handleChange }
+            />
             <Form.Checkbox label='Published?' />
             <Divider />
-            <Form.Button primary>Create Assignment</Form.Button>
+            <Form.Group>
+              <Button type='submit'>Create</Button>
+              <Link to={ './assignments' }>
+                <Button> Cancel </Button>
+              </Link>
+            </Form.Group>
           </Form>
         </Segment>
       </Container>
@@ -40,6 +93,9 @@ class CreateAssignment extends Component {
 }
 
 const styles = {
+  form: {
+    paddingTop: '2%',
+  },
   pageTitle: {
     paddingTop: '2%',
   },
@@ -49,4 +105,6 @@ const styles = {
 }
 
 
-export default CreateAssignment;
+export default connect()(CreateAssignment);
+
+

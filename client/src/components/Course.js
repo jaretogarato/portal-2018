@@ -9,14 +9,15 @@ import SectionSelect from './tether/SectionSelect'
 import CourseSettings from './tether/CourseSettings';
 import PeopleProfile from './tether/PeopleProfile';
 import SectionShow from './tether/SectionShow';
-import Assignment from './Rift/assignments/Assignment';
 import Quizzes from './Rift/quizzes/Quizzes';
 import QuizForm from './Rift/quizzes/QuizForm';
 import SingleQuiz from './Rift/quizzes/SingleQuiz';
 import LectureNotes from './Rift/lectureNotes/LectureNotes';
 import Wiki from './Rift/wiki/Wiki';
-import CreateAssignment from './Rift/assignments/CreateAssignment';
 import Attendance from './attendance/Attendance';
+import Assignments from './Rift/assignments/Assignments';
+import Assignment from './Rift/assignments/Assignment';
+import CreateAssignment from './Rift/assignments/CreateAssignment';
 
 
 
@@ -53,6 +54,7 @@ class Course extends React.Component {
                   <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
                   <Route exact path='/courses/:id/lecture-Notes' component={LectureNotes} />
                   <Route exact path='/courses/:id/assignment' component={Assignment} />
+                  <Route exact path='/courses/:id/assignments' component={Assignments} />
                   <Route exact path='/courses/:id/assignment/create' component={CreateAssignment} />
                   <Route exact path='/courses/:id/wiki' component={Wiki} />
                 </Switch>

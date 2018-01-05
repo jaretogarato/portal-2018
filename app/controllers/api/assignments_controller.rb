@@ -1,28 +1,39 @@
 class Api::AssignmentsController < Api::ApiController
-  before_action :set_assignment, except: [:index]
+  before_action :set_assignment, only: [:destroy, :update, :show]
 
   def index
+    render json: Assignment.all
   end
 
   def show
+    render json: Assignment.with_enrollment(@assignnment.id, current_user.id)
   end
 
   def update
+    if @assignment.update(assignment_params)
+      render json: @assignment_params
+    else
+      render json: { errors: @assignment.errors.full_messages}, status: 422
   end
 
-  # def create
-  # end
+  def create
+    assignment = Assignment.new(assignment_params)
+    if assignment.save
+      render json: assignment
+    else
+      render json: { errors: assignment.errors.full_messages }, status: 422
+  end
 
   def destroy
+    @assignment.destroy
   end
 
   private
     def assignment_params
-      params.require(:assignments).permit(:title, :content)
+      params.require(:assignments).permit(:title, :submission_type, :points, :due_date, :published, :content)
     end
 
     def set_assignment
       @assignment = Assignment.find(params[:id])
     end
-
 end

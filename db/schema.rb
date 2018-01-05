@@ -17,6 +17,10 @@ ActiveRecord::Schema.define(version: 20180104235951) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
+    t.string "submission_type"
+    t.integer "points"
+    t.string "due_date"
+    t.boolean "published"
     t.text "content"
     t.bigint "sub_section_id"
     t.datetime "created_at", null: false
@@ -99,7 +103,7 @@ ActiveRecord::Schema.define(version: 20180104235951) do
     t.bigint "sub_section_id"
     t.string "title"
     t.text "content"
-    t.date "due_date"
+    t.string "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"

@@ -28,6 +28,17 @@ course_term = [
 
 course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
 
+5.times do |a|
+  assignment = Assignment.create(
+    title: "Seeded Assignment #{a}",
+    submission_type: 'Online',
+    points: 100,
+    due_date: 'June 9th, 2018',
+    published: true,
+    content: Faker::Lorem.paragraph
+  )
+end
+
 10.times do |i|
   @course = Course.create(
     course_type: course_type[i],
@@ -59,6 +70,7 @@ course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
   end
 end
 
+puts "5 assignments seeded"
 puts "10 courses seeded"
 puts "11 sections seeded"
 puts "5 sub_sections seeded"
