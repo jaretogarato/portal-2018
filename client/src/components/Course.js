@@ -6,9 +6,10 @@ import { Container, Grid, Segment } from 'semantic-ui-react';
 import CourseSideNav from './tether/CourseSideNav';
 import People from './tether/People';
 import SectionSelect from './tether/SectionSelect'
+import CourseHome from './course/CourseHome';
 import CourseSettings from './tether/CourseSettings';
 import PeopleProfile from './tether/PeopleProfile';
-import SectionShow from './tether/SectionShow';
+import Assignment from './Rift/assignments/Assignment';
 import Quizzes from './Rift/quizzes/Quizzes';
 import QuizForm from './Rift/quizzes/QuizForm';
 import SingleQuiz from './Rift/quizzes/SingleQuiz';
@@ -16,7 +17,6 @@ import LectureNotes from './Rift/lectureNotes/LectureNotes';
 import Wiki from './Rift/wiki/Wiki';
 import Attendance from './attendance/Attendance';
 import Assignments from './Rift/assignments/Assignments';
-import Assignment from './Rift/assignments/Assignment';
 import CreateAssignment from './Rift/assignments/CreateAssignment';
 
 
@@ -44,7 +44,7 @@ class Course extends React.Component {
             <Grid.Column width={13}>
               <Segment>
                 <Switch>
-                  <Route exact path="/courses/:id" component={SectionShow} />
+                  <Route exact path="/courses/:id" component={CourseHome} />
                   <Route path="/courses/:id/people" component={People} />
                   <Route path="/courses/:id/sections" component={SectionSelect} />
                   <Route path="/courses/:id/settings" component={CourseSettings} />
