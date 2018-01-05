@@ -7,7 +7,8 @@ class Api::CoursesController < Api::ApiController
   end
 
   def show
-    render json: Course.with_enrollment(@course.id, current_user.id)
+    # render json: Course.with_enrollment(@course.id, current_user.id)
+    render json: @course
   end
 
   def update

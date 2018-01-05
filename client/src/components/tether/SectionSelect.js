@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { getSections } from '../../actions/sections';
-import { setCourse } from '../../actions/courses';
 import { setSection } from '../../actions/section';
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
@@ -11,56 +10,31 @@ import { withRouter } from 'react-router-dom';
 class SectionSelect extends React.Component {
   state = {
     activeIndex: 0,
-    coursesLoaded: false,
+    courseLoaded: false,
     sectionsLoaded: false,
     subSectionLoaded: false,
-    courseId: null,
-    sectionId: null,
   };
 
-  setCoursesLoaded = () => this.setState({ coursesLoaded: true });
-
+  setCourseLoaded = () => this.setState({ courseLoaded: true });
   setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
-
   setSubSectionLoaded = () => this.setState({ subSectionsLoaded: true });
 
   componentWillMount() {
-    const { dispatch, user: { id: userId } } = this.props;
-    const { courseId, sectionId } = this.state;
-
-    // set up initial course id
+    const { dispatch, user: { id: userId }, course } = this.props;
+    
     // TODO: prevent user from navigating to any page via URL
-    this.setState({
-      courseId: parseInt(this.props.match.params.id, 10),
-      coursesLoaded: true
-    })
-    dispatch(setCourse(courseId));
-
     // get the courses to which a user belongs
-    dispatch(getCoursesByStudent(userId, this.setCoursesLoaded));
+    dispatch(getCoursesByStudent(userId));
+    if(course) {
+      this.setCourseLoaded()
+    }
 
-    // set up initial section id for the course
-    dispatch(setSection(sectionId));
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    const { courseId, sectionId } = this.state;
-
+    const { dispatch, courseId, } = this.props;
     // load sections for active course
     dispatch(getSections(courseId, this.setSectionsLoaded));
-
-    // testing, testing
-    dispatch(setSection(sectionId));
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    const { sectionId } = this.state;
-    const { dispatch } = this.props;
-
-    if( sectionId !== nextProps.sectionId){
-      dispatch(setSection(sectionId));
-    }
   }
 
   handleClick = (e) => {
@@ -101,9 +75,9 @@ class SectionSelect extends React.Component {
 
 
   render() {
-    let { coursesLoaded, sectionsLoaded, sectionId } = this.state;
+    let { courseLoaded, sectionsLoaded } = this.state;
 
-    if(sectionsLoaded && coursesLoaded) {
+    if(sectionsLoaded && courseLoaded) {
       return(
         <Grid>
           <Grid.Column width={3}>
@@ -114,7 +88,7 @@ class SectionSelect extends React.Component {
                 key={section.id}
                 id={section.id}
                 name={section.title}
-                active={sectionId === section.id}
+                active={this.props.sectionId === section.id}
                 onClick={e => this.handleClick(e)}>
                 </Menu.Item>
                 )
@@ -179,7 +153,8 @@ const mapStateToProps = (state) => {
     sections: state.sections,
     sectionId: state.sectionId,
     section: state.section,
-    courses: state.courses,
+    course: state.course,
+    courseId: state.course.id,
   }
 }
 

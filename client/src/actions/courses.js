@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-export const setCourse = course => {
-  return { type: 'SET_COURSE', course };
+export const setCourse = (courseId) => {
+  return { type: 'SET_COURSE', courseId };
 };
 
 export const getCourses = () => {
