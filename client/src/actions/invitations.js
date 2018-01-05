@@ -8,6 +8,7 @@ export const sendInvitation = (user) => {
   return(dispatch) => {
     axios.post('/api/invitation/send', {user})
       .then( res => {
+        debugger
         const { data, headers } = res;
         dispatch({ type: ADD_USER, user: data, headers });
       })
