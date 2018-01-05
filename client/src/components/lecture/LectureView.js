@@ -10,7 +10,7 @@ class LectureView extends React.Component {
     if(lecture){
       this.setState({lecture});
     } else {
-      this.props.history.push('/course_view');
+      this.props.history.push('/courses');
     }
   }
 

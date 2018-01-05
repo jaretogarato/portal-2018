@@ -7,7 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Dropdown, Image, Menu } from 'semantic-ui-react';
 
 class NavBar extends React.Component {
-  state = { activeItem: 'Course View' };
+  state = { activeItem: 'Course Home' };
 
   componentDidMount = () => {
     const { dispatch, user: { id } } = this.props;
@@ -21,11 +21,11 @@ class NavBar extends React.Component {
       <Dropdown.Item
         key={course.id}
         as={Link}
-        to={`/courses/${course.id}/course_view`}
+        to={`/courses/${course.id}`}
         style={styles.navSecondaryText}
         name={course.course_type}
         text={course.course_type}
-        active={this.state.activeItem === `${course.id}`}
+        // active={this.state.activeItem === `${course.id}`}
         onClick={this.handleItemClick}
       />
     )
