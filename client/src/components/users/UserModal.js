@@ -2,9 +2,9 @@ import React from 'react';
 import UserForm from './UserForm';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 
-class Users extends React.Component {
+class UserModal extends React.Component {
   state = { modalOpen: false };
-  
+
   handleOpen = (e) => this.setState({ modalOpen: true });
 
   handleClose = (e) => this.setState({ modalOpen: false })
@@ -12,10 +12,10 @@ class Users extends React.Component {
   render() {
     return(
       <div>
-        <Modal 
+        <Modal
           trigger={
             <Button basic onClick={this.handleOpen}>
-              <Icon name='add' /> 
+              <Icon name='add' />
               Add User
             </Button>
           }
@@ -26,7 +26,7 @@ class Users extends React.Component {
         >
           <Header as='h1'><Icon name='add user'/> Add User</Header>
           <Modal.Content>
-            <UserForm modalClose={this.handleClose} />
+            <UserForm modalClose={this.handleClose} courseId={this.props.courseId} />
           </Modal.Content>
         </Modal>
         <br/>
@@ -36,4 +36,4 @@ class Users extends React.Component {
   }
 }
 
-export default Users;
+export default UserModal;

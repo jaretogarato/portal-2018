@@ -15,7 +15,7 @@ import Login from './Login';
 import NoMatch from './NoMatch';
 import ProtectedRoute from './ProtectedRoute';
 import UserProfile from './profile/UserProfile';
-import Users from './users/Users';
+import UserModal from './users/UserModal';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
 
@@ -41,12 +41,12 @@ class App extends React.Component {
               <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />
               <ProtectedRoute
                 exact path='/users'
-                component={Users}
+                component={UserModal}
                 adminOnly={true}
               />
               <ProtectedRoute
                 path='/users'
-                component={Users}
+                component={UserModal}
                 adminOnly={true}
               />
               <ProtectedRoute

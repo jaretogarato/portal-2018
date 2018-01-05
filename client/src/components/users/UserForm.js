@@ -6,17 +6,19 @@ import { sendInvitation } from '../../actions/invitations';
 import { Button, Dimmer, Form, Loader, Segment } from 'semantic-ui-react';
 
 class UserForm extends React.Component {
-  state = { firstName: '', lastName: '', email: '', image: '' };
+  state = { firstName: '', lastName: '', email: '', role: '', image: '' };
 
   handleSubmit = () => {
-    const { modalClose, dispatch } = this.props;
-    const { firstName, lastName, email, image } = this.state;
+    const { courseId, modalClose, dispatch } = this.props;
+    const { firstName, lastName, email, image, role } = this.state;
     dispatch(sendInvitation({
       email,
       image,
       first_name: firstName,
       last_name: lastName
-    }));
+    },
+      {role: role, course_id: courseId}
+    ));
     modalClose();
   }
 
@@ -54,15 +56,10 @@ class UserForm extends React.Component {
   }
 
   render() {
-    const { email, firstName, lastName } = this.state;
+    const { email, firstName, lastName, role } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Segment>
-          {this.setImage}
-          <Segment>
-            {this.setImage}
-          </Segment>
-        </Segment>
+        <Segment>{this.setImage}</Segment>
         <Form.Input
           label='First Name'
           placeholder='First Name'
@@ -87,6 +84,36 @@ class UserForm extends React.Component {
           onChange={this.handleChange}
           required
         />
+        <Form.Group inline>
+          <Form.Input
+            type='radio'
+            label='Auditor'
+            name='role'
+            value='Auditor'
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            type='radio'
+            label='Student'
+            name='role'
+            value='Student'
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            type='radio'
+            label='TA'
+            name='role'
+            value='TA'
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            type='radio'
+            label='Teacher'
+            name='role'
+            value='Teacher'
+            onChange={this.handleChange}
+          />
+        </Form.Group>
         <Button type='submit'>Submit</Button>
       </Form>
     )

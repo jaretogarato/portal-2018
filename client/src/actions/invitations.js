@@ -4,13 +4,22 @@ import { setHeaders } from './headers';
 
 export const ADD_USER = 'ADD_USER';
 
-export const sendInvitation = (user) => {
+export const sendInvitation = (user, enrollment) => {
   return(dispatch) => {
-    axios.post('/api/invitation/send', {user})
+    axios.post('/api/invitation/send', { user })
       .then( res => {
         debugger
         const { data, headers } = res;
         dispatch({ type: ADD_USER, user: data, headers });
+        enrollment.user_id = `${data.id}`
+        axios.post('/api/enrollments', { enrollment } )
+          .then( res => {
+            dispatch(setHeaders(res.headers))
+          })
+          .catch( err => {
+            dispatch(setFlash(`Failed to add enrollment data`, 'red'));
+            dispatch(setHeaders(err.headers))
+          })
       })
       .catch( err => {
         const { firstName, lastName } = user;

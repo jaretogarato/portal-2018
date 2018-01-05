@@ -18,8 +18,10 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     resources :sub_sections do
       resources :lectures
     end
+
     resources :assignments
 
+    resources :enrollments, except: [:index, :show]
 
     get  'user_courses/:user_id', to: 'courses#user_courses'
     get  'avatar', to: 'avatar#index'
@@ -30,8 +32,10 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     get '/course/:id/users', to: 'courses#users_by_course_id'
     get '/lectures', to: 'lectures#all_lectures'
     # get '/group_lectures', to: 'sub_sections#group_lectures'
+
   end
 
   #Do not place any routes below this one
   get '*other', to: 'static#index'
+
 end

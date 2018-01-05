@@ -1,12 +1,21 @@
 import React from 'react';
+import UserModal from '../users/UserModal';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { Table, Segment, Image } from 'semantic-ui-react';
+import {
+  Button,
+  Header,
+  Icon,
+  Image,
+  Modal,
+  Table,
+  Segment
+} from 'semantic-ui-react';
 import { getUsersByCourse } from '../../actions/users';
 
 
 class PeopleHome extends React.Component {
-  state = { usersByCourse: [], loaded: false }
+  state = { usersByCourse: [], loaded: false, modalOpen: false }
 
   setUsersLoaded = () => this.setState({ loaded: true })
 
@@ -23,7 +32,7 @@ class PeopleHome extends React.Component {
       return(
         <Table.Row key={user.id}>
           <Table.Cell>
-            <Image src={user.image} 
+            <Image src={user.image}
               size='mini'
               alt={`${fullName}'s profile picture'`}
               style={{display: 'inline'}}
@@ -42,6 +51,7 @@ class PeopleHome extends React.Component {
   render() {
     return (
       <Segment className='container'>
+        <UserModal courseId={this.props.courseId} />
         <Table celled>
           <Table.Header>
             <Table.Row>
