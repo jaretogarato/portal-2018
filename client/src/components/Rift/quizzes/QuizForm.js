@@ -3,6 +3,7 @@ import { Form, Button, Container, Header, Segment, Divider } from 'semantic-ui-r
 import { addQuiz } from '../../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import CreateQuestions from './CreateQuestions'
 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: '1' },
@@ -28,8 +29,7 @@ handleSubmit = (e) => {
     const { title, content, due_date } = this.state
     return(
       <Container> 
-        <Header as="h1" textAlign='center' style={styles.pageTitle}>Create Quiz</Header>
-        <Segment> 
+        <Header as="h3" textAlign='center' style={styles.pageTitle}>Create Quiz</Header>
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
               <Form.Input 
@@ -71,21 +71,22 @@ handleSubmit = (e) => {
               name='content'
               value={content}
               style={ styles.textArea }
-              label='Content' 
+              label='Description' 
               placeholder='Rift Text Editor Placeholder' 
               required 
               onChange={this.handleChange}
               />
+             <Divider />
+              <CreateQuestions /> 
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-            <Button type='submit'> Create </Button> 
+              <Button type='submit'> Create </Button> 
             <Link to={'./quizzes'} > 
-            <Button> Cancel </Button> 
+              <Button> Cancel </Button> 
             </Link>
             </Form.Group>
           </Form> 
-        </Segment>
       </Container> 
     )
   }

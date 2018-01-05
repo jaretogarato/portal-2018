@@ -8,7 +8,6 @@ import NavBar from './FetchCourses';
 import Flash from './Flash';
 import Footer from './shared/Footer';
 import Home from './root/Home';
-
 import InviteConfirmation from './InviteConfirmation';
 import LectureView from './lecture/LectureView';
 import Login from './Login';

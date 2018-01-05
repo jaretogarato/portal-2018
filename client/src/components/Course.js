@@ -1,7 +1,7 @@
 import React from 'react';
 import { setActiveCourse, clearActiveCourse } from '../actions/course';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Container, Grid, Segment } from 'semantic-ui-react';
 import CourseSideNav from './tether/CourseSideNav';
 import People from './tether/People';
@@ -9,7 +9,6 @@ import SectionSelect from './tether/SectionSelect'
 import CourseSettings from './tether/CourseSettings';
 import PeopleProfile from './tether/PeopleProfile';
 import SectionShow from './tether/SectionShow';
-
 import Assignment from './Rift/assignments/Assignment';
 import Quizzes from './Rift/quizzes/Quizzes';
 import QuizForm from './Rift/quizzes/QuizForm';
@@ -43,20 +42,20 @@ class Course extends React.Component {
             </Grid.Column>
             <Grid.Column width={13}>
               <Segment>
-                <Route exact path="/courses/:id" component={SectionShow} />
-                <Route path="/courses/:id/people" component={People} />
-                <Route path="/courses/:id/sections" component={SectionSelect} />
-                <Route path="/courses/:id/settings" component={CourseSettings} />
-                <Route path="/courses/:id/user/:id" component={PeopleProfile} />
-                <Route path="/courses/:id/attendance" component={Attendance} />
-
-                <Route exact path='/courses/:id/quizzes' component={Quizzes} />
-                <Route exact path='/courses/:id/quizform' component={QuizForm} />
-                <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
-                <Route exact path='/courses/:id/lecture-Notes' component={LectureNotes} />
-                <Route exact path='/courses/:id/assignment' component={Assignment} />
-                <Route exact path='/courses/:id/assignment/create' component={CreateAssignment} />
-                <Route exact path='/courses/:id/wiki' component={Wiki} />
+                <Switch>
+                  <Route exact path="/courses/:id" component={SectionShow} />
+                  <Route path="/courses/:id/people" component={People} />
+                  <Route path="/courses/:id/sections" component={SectionSelect} />
+                  <Route path="/courses/:id/settings" component={CourseSettings} />
+                  <Route path="/courses/:id/user/:id" component={PeopleProfile} />
+                  <Route exact path='/courses/:id/quizzes' component={Quizzes} />
+                  <Route exact path='/courses/:id/quizform' component={QuizForm} />
+                  <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
+                  <Route exact path='/courses/:id/lecture-Notes' component={LectureNotes} />
+                  <Route exact path='/courses/:id/assignment' component={Assignment} />
+                  <Route exact path='/courses/:id/assignment/create' component={CreateAssignment} />
+                  <Route exact path='/courses/:id/wiki' component={Wiki} />
+                </Switch>
               </Segment>
             </Grid.Column>
           </Grid>
