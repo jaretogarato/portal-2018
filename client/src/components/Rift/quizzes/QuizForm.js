@@ -12,13 +12,6 @@ const submissionOptions = [
   { key: '4', text: 'External', value: '4' },
 ]
 
-const submissionOptions = [
-  { key: '1', text: 'No Submission', value: '1' },
-  { key: '2', text: 'Online', value: '2' },
-  { key: '3', text: 'On Paper', value: '3' },
-  { key: '4', text: 'External', value: '4' },
-]
-
 class QuizForm extends Component {
 state = { title: '', content: '', due_date:''}
 
