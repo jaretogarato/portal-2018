@@ -1,6 +1,21 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
+export const getSubSections = (sectionId, callback) => {
+  return(dispatch) => {
+    axios.get(`/api/sections/${sectionId}/sub_sections`)
+    .then( res => {
+      dispatch({ type: 'GET_SUB_SECTIONS', subSections: res.data, headers: res.headers })
+    })
+    .then( callback() )
+    .catch( err => {
+      dispatch({ type: 'SET_HEADERS', headers: err.headers });
+      dispatch(setFlash('Failed To Retrieve Sub-Sections', 'red'));
+      console.log(err)
+    });
+  }
+}
+
 export const addSubSection = (subSection) => {
   return(dispatch) => {
     axios.post('/api/sub-sections', { subSection })
@@ -12,19 +27,6 @@ export const addSubSection = (subSection) => {
   }
 }
 
-export const getSubSections = (sectionId, callback) => {
-  return(dispatch) => {
-    axios.get(`/api/sections/${sectionId}/sub-section`)
-      .then( res => {
-        dispatch({ type: 'GET_SUB_SECTIONS', subSections: res.data, headers: res.headers })
-      })
-      .then( callback() )
-      .catch( err => {
-        dispatch({ type: 'SET_HEADERS', headers: err.headers });
-        dispatch(setFlash('Failed To Retrieve Sub-Sections', 'red'));
-    });
-  }
-}
 
 export const updateSubSection = (subSection) => {
   return(dispatch) => {

@@ -4,7 +4,7 @@ class Api::SubSectionsController < Api::ApiController
 
   def index
     sub_sections = @section.sub_sections.all.order(id: :asc)
-    render json: subSections
+    render json: sub_sections
   end
 
   def show
@@ -25,7 +25,7 @@ class Api::SubSectionsController < Api::ApiController
     if @sub_section.update(sub_section_params)
       render json: @sub_section
     else
-      render json: { errors: @sub_section.subSection.full_messages}, status: 422
+      render json: { errors: @sub_section.full_messages}, status: 422
     end
   end
 

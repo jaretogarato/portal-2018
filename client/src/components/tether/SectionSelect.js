@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { getSections } from '../../actions/sections';
 import { setSection } from '../../actions/section';
+import { setSubSection } from '../../actions/subSection';
+import { getSubSections } from '../../actions/subSections';
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
@@ -38,9 +40,12 @@ class SectionSelect extends React.Component {
   }
 
   handleClick = (e) => {
+    let sectionId = e.currentTarget.id
+    const { dispatch } = this.props;
     this.setState({ sectionId: parseInt(e.currentTarget.id, 10) }, () => {
       this.props.dispatch(setSection(this.state.sectionId));
     });
+    dispatch(getSubSections(sectionId, this.setSubSectionLoaded));
   }
 
   handleSubClick = (e, titleProps) => {
@@ -52,8 +57,8 @@ class SectionSelect extends React.Component {
   }
 
   displaySubSections = () => {
-    return subSections.map( ss => (
-      <Accordion fluid styled>
+    return this.props.subSections.map( ss => (
+      <Accordion key={ss.id} fluid styled>
         <Accordion.Title active={this.state.activeIndex === ss.id} index={ss.id} onClick={this.handleSubClick}>
           <Icon name='dropdown' />
           { ss.title }
@@ -67,7 +72,7 @@ class SectionSelect extends React.Component {
 
   displayItems = () => {
     return items.map( (item, index) => (
-      <Link id={index} to='/courses/1/sections'>
+      <Link key={item.id} id={index} to='/courses/1/sections'>
         <Segment>{item.title}</Segment>
       </Link>
     ))
@@ -113,33 +118,6 @@ class SectionSelect extends React.Component {
   }
 }
 
-const subSections = [
-  {
-    id: 0,
-    title: 'Day 1'
-  },
-  {
-    id: 1,
-    title: 'Day 2'
-  },
-  {
-    id: 2,
-    title: 'Day 3'
-  },
-  {
-    id: 3,
-    title: 'Day 4'
-  },
-  {
-    id: 4,
-    title: 'Day 5'
-  },
-  {
-    id: 5,
-    title: 'Week Blah Resources'
-  }
-]
-
 const items = [
   { id: 0, title: 'Lecture Item 1' },
   { id: 1, title: 'Lecture Item 2' },
@@ -155,6 +133,7 @@ const mapStateToProps = (state) => {
     section: state.section,
     course: state.course,
     courseId: state.course.id,
+    subSections: state.subSections,
   }
 }
 

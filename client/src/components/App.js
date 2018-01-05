@@ -8,11 +8,8 @@ import NavBar from './FetchCourses';
 import Flash from './Flash';
 import Footer from './shared/Footer';
 import Home from './root/Home';
-<<<<<<< HEAD
-=======
 import LectureNotes from './Rift/lectureNotes/LectureNotes';
 import LectureForm from './Rift/lectureNotes/LectureForm';
->>>>>>> did a create LN page
 import InviteConfirmation from './InviteConfirmation';
 import LectureView from './lecture/LectureView';
 import Login from './Login';
