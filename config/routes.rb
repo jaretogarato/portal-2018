@@ -2,11 +2,8 @@ Rails.application.routes.draw do
 mount_devise_token_auth_for 'User', at: 'api/auth'
 
   namespace :api do
-<<<<<<< HEAD
     resources :users, only: [:update, :show]
-=======
     resources :users, only: :update
->>>>>>> refactor navbar, move attendance to course view, remove admin dropdown
     resources :quizzes
     resources :courses do
       resources :sections
@@ -24,11 +21,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     end
 
     resources :assignments
-
-<<<<<<< HEAD
     resources :enrollments, except: [:index, :show]
-=======
->>>>>>> refactor navbar, move attendance to course view, remove admin dropdown
 
     get  'user_courses/:user_id', to: 'courses#user_courses'
     get  'avatar', to: 'avatar#index'
