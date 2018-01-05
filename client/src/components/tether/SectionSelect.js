@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { getSections } from '../../actions/sections';
@@ -78,12 +79,23 @@ class SectionSelect extends React.Component {
 
   displaySubSections = () => {
     return subSections.map( ss => (
-      <Accordion defaultActiveIndex={0} styled>
+      <Accordion fluid styled>
         <Accordion.Title active={this.state.activeIndex === ss.id} index={ss.id} onClick={this.handleSubClick}>
           <Icon name='dropdown' />
           { ss.title }
         </Accordion.Title>
+        <Accordion.Content active={this.state.activeIndex === ss.id}>
+          { this.displayItems() }
+        </Accordion.Content>
       </Accordion>
+    ))
+  }
+
+  displayItems = () => {
+    return items.map( (item, index) => (
+      <Link id={index} to='/courses/1/sections'>
+        <Segment>{item.title}</Segment>
+      </Link>
     ))
   }
 
@@ -93,8 +105,8 @@ class SectionSelect extends React.Component {
 
     if(sectionsLoaded && coursesLoaded) {
       return(
-        <Grid columns={6}>
-          <Grid.Column>
+        <Grid>
+          <Grid.Column width={3}>
             <h3>Sections</h3>
             <Menu fluid vertical tabular>
               {this.props.sections.map( section =>
@@ -109,7 +121,7 @@ class SectionSelect extends React.Component {
               }
             </Menu>
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column width={13}>
             <h3>SubSections</h3>
             { this.displaySubSections() }
           </Grid.Column>
@@ -152,6 +164,13 @@ const subSections = [
     id: 5,
     title: 'Week Blah Resources'
   }
+]
+
+const items = [
+  { id: 0, title: 'Lecture Item 1' },
+  { id: 1, title: 'Lecture Item 2' },
+  { id: 2, title: 'Assignment Item' },
+  { id: 3, title: 'File Item' }
 ]
 
 const mapStateToProps = (state) => {
