@@ -42,18 +42,10 @@ class NavBar extends React.Component {
           <Menu.Menu style={styles.navbarPrimary} position='right'>
             <Menu.Item
               as={Link}
-              to='/course_view'
+              to='/courses'
               style={styles.navText}
-              name="Course View"
-              active={this.state.activeItem === 'Course View'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              as={Link}
-              to='/attendance'
-              style={styles.navText}
-              name='Attendance'
-              active={this.state.activeItem === 'Attendance'}
+              name="Courses"
+              active={this.state.activeItem === 'Courses'}
               onClick={this.handleItemClick}
             />
             <Menu.Item
@@ -64,28 +56,15 @@ class NavBar extends React.Component {
               active={this.state.activeItem === 'Profile'}
               onClick={this.handleItemClick}
             />
-            <Dropdown item text='Admin' style={styles.navText }>
-              <Dropdown.Menu style={styles.dropdown} >
-                <Dropdown.Item
-                  as={Link}
-                  to='/courses'
-                  style={styles.navSecondaryText}
-                  name="Courses"
-                  text="Courses"
-                  active={this.state.activeItem === 'Courses'}
-                  onClick={this.handleItemClick}
-                />
-                <Dropdown.Item
-                  as={Link}
-                  to='/users'
-                  style={styles.navSecondaryText}
-                  name="Users"
-                  text="Users"
-                  active={this.state.activeItem === 'Users'}
-                  onClick={this.handleItemClick}
-                />
-              </Dropdown.Menu>
-            </Dropdown>
+            <Menu.Item
+              as={Link}
+              to='/users'
+              style={styles.navText}
+              name="Users"
+              text="Users"
+              active={this.state.activeItem === 'Users'}
+              onClick={this.handleItemClick}
+            />
             <Menu.Item
               name="Logout"
               style={styles.navText}

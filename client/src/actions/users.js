@@ -2,9 +2,9 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from '../actions/headers';
 
-export const getUsers = () => {
+export const getUsers = (id) => {
   return(dispatch) => {
-    axios.get('/api/course_users')
+    axios.get(`/api/course_users/${id}`)
       .then( res => {
         dispatch({ type: 'GET_COURSE_USERS', courseUsers: res.data, headers: res.headers })
       })

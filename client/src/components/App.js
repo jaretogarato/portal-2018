@@ -35,7 +35,6 @@ class App extends React.Component {
 
               <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />
-              <ProtectedRoute exact path='/attendance' component={Attendance} />
               <ProtectedRoute exact path='/user_profile' component={UserProfile} />
               <ProtectedRoute path="/courses/:id" component={Course} />
               <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />

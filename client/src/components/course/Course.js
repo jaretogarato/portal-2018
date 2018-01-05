@@ -16,10 +16,10 @@ const Course = ({ course }) => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button 
-            basic 
-            color='blue' 
-            as={Link} 
+          <Button
+            basic
+            color='blue'
+            as={Link}
             to={`/courses/${course.id}`}
           >
             View

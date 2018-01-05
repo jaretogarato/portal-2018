@@ -12,10 +12,10 @@ class Api::UsersController < Api::ApiController
   def show
     user = User.find(params[:id])
     render json: user
-  end  
+  end
 
   def course_users
-    course = Course.last
+    course = Course.find(params[:id])
     users = course.users.order(last_name: :asc)
     users.map do |user|
       { id: user.id, first_name: user.first_name, last_name: user.last_name, status: nil }

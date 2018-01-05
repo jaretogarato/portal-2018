@@ -7,11 +7,10 @@ import { addAttendance } from '../../actions/attendance';
 import { Button, Container, Header, Icon } from 'semantic-ui-react';
 
 class Attendance extends React.Component {
-  state = { courseId: 10 }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getUsers());
+    const { dispatch, match: { params: { id }} } = this.props;
+    dispatch(getUsers(id));
   }
 
   displayUsers = () => {
@@ -22,10 +21,8 @@ class Attendance extends React.Component {
   }
 
   submitAttendance = () => {
-    const { dispatch, users, currentDate } = this.props;
-    const { courseId } = this.state;
-    // TODO: replace courseId with dynamic number
-    dispatch(addAttendance(courseId, users, currentDate));
+    const { dispatch, users, currentDate, match: { params: { id } } } = this.props;
+    dispatch(addAttendance(id, users, currentDate));
   }
 
   allPresent = () => {
@@ -52,7 +49,7 @@ class Attendance extends React.Component {
     return(
       <Container>
         <Header as='h1' textAlign='center'>Attendance</Header>
-        <DatePicker sendDate={this.sendDate} courseId={this.state.courseId}/>
+        <DatePicker sendDate={this.sendDate} courseId={this.props.match.params.id}/>
         { this.allChosen() }
         <Button basic onClick={this.allPresent}>
           <Icon name='check circle outline' color='green' />
