@@ -8,6 +8,11 @@ import NavBar from './FetchCourses';
 import Flash from './Flash';
 import Footer from './shared/Footer';
 import Home from './root/Home';
+<<<<<<< HEAD
+=======
+import LectureNotes from './Rift/lectureNotes/LectureNotes';
+import LectureForm from './Rift/lectureNotes/LectureForm';
+>>>>>>> did a create LN page
 import InviteConfirmation from './InviteConfirmation';
 import LectureView from './lecture/LectureView';
 import Login from './Login';
@@ -31,11 +36,12 @@ class App extends React.Component {
             <Flash />
             <Switch>
               <Route exact path='/invitation/accept' component={InviteConfirmation} />
-
               <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/user_profile' component={UserProfile} />
               <ProtectedRoute path="/courses/:id" component={Course} />
+              <ProtectedRoute exact path='/lecturenotes' component={LectureNotes} />
+              <ProtectedRoute exact path='/lectureform' component={LectureForm} />
               <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />
               <ProtectedRoute
                 exact path='/users'

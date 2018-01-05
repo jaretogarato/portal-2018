@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List, Container, Header, Grid, Button, Icon, Table } from 'semantic-ui-react';
 import axios from 'axios';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 class LectureNotes extends Component {
   state = { lectureNotes: [] }
@@ -38,10 +40,12 @@ class LectureNotes extends Component {
             <Grid.Column width={14}>
             </Grid.Column>
             <Grid.Column width={2}>
+            <Link to={'./lectureform'}>
              <Button icon labelPosition='left'>
               <Icon name='add' />
               Lecture Note
               </Button> 
+            </Link>
             </Grid.Column>
           </Grid.Row> 
           <Grid.Row>
