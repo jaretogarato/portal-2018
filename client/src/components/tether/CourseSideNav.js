@@ -5,7 +5,8 @@ import { Menu } from 'semantic-ui-react';
 class CourseSideNav extends React.Component {
 
   render() {
-    const links = ['People', 'Attendance', 'Sections'];
+    const links = ['People', 'Attendance', 'Sections',
+                   'Quizzes', 'Lecture-notes', 'Assignment', 'Wiki'];
     const { match: { params: { id }}} = this.props;
     return links.map( (link, i) =>
       <Link key={i} to={`/courses/${id}/${link.toLowerCase()}`}>

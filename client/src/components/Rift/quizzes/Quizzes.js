@@ -25,32 +25,32 @@ displayQuizzes = () => {
       <Table.Row key={quiz.id}>
         <Link to={`./quizzes/${quiz.id}`}>
          <Table.Cell>{quiz.title}</Table.Cell>
-        </Link> 
-        <Table.Cell>{time}</Table.Cell> 
-        <Table.Cell>{date}</Table.Cell> 
+        </Link>
+        <Table.Cell>{time}</Table.Cell>
+        <Table.Cell>{date}</Table.Cell>
       </Table.Row>
     )
   })
 }
   render() {
     return (
-      <Container> 
-       <Header textAlign='center' style={styles.quiz} > Quizzes  </Header> 
+      <Container>
+       <Header textAlign='center' style={styles.quiz} > Quizzes  </Header>
         <Grid>
-          <Grid.Row> 
+          <Grid.Row>
             <Grid.Column width={14}>
             </Grid.Column>
             <Grid.Column width={2}>
-            <Link to={'./quizform'}> 
+            <Link to={'./quizform'}>
               <Button icon labelPosition='left'>
                 <Icon name='add' />
               Quiz
-              </Button> 
+              </Button>
             </Link>
             </Grid.Column>
-          </Grid.Row> 
+          </Grid.Row>
           <Grid.Row>
-            <Grid.Column> 
+            <Grid.Column>
               <Table singleLine>
             <Table.Header>
               <Table.Row>
@@ -62,11 +62,11 @@ displayQuizzes = () => {
             <Table.Body>
               {this.displayQuizzes()}
             </Table.Body>
-          </Table> 
+          </Table>
             </Grid.Column>
           </Grid.Row>
-        </Grid> 
-      </Container> 
+        </Grid>
+      </Container>
     )
   }
 

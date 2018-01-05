@@ -8,12 +8,7 @@ import NavBar from './FetchCourses';
 import Flash from './Flash';
 import Footer from './shared/Footer';
 import Home from './root/Home';
-import Assignment from './Rift/assignments/Assignment';
-import Quizzes from './Rift/quizzes/Quizzes';
-import QuizForm from './Rift/quizzes/QuizForm';
-import SingleQuiz from './Rift/quizzes/SingleQuiz';
-import LectureNotes from './Rift/lectureNotes/LectureNotes';
-import Wiki from './Rift/wiki/Wiki';
+
 import InviteConfirmation from './InviteConfirmation';
 import LectureView from './lecture/LectureView';
 import Login from './Login';
@@ -23,7 +18,6 @@ import UserProfile from './profile/UserProfile';
 import Users from './users/Users';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
-import CreateAssignment from './Rift/assignments/CreateAssignment';
 
 
 // import CreateAssignment from './rift/assignments/CreateAssignment';
@@ -38,13 +32,7 @@ class App extends React.Component {
             <Flash />
             <Switch>
               <Route exact path='/invitation/accept' component={InviteConfirmation} />
-              <Route exact path='/quizzes' component={Quizzes} />
-              <Route exact path='/quizform' component={QuizForm} />
-              <Route exact path='/quizzes/:id' component={SingleQuiz} />
-              <Route exact path='/lecturenote' component={LectureNotes} />
-              <Route exact path='/assignment' component={Assignment} />
-              <Route exact path='/assignment/create' component={CreateAssignment} />
-              <Route exact path='/wiki' component={Wiki} />
+
               <ProtectedRoute exact path='/' component={Home} />
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/attendance' component={Attendance} />
