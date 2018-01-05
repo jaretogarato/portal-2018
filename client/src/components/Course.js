@@ -49,6 +49,7 @@ class Course extends React.Component {
                   <Route path="/courses/:id/sections" component={SectionSelect} />
                   <Route path="/courses/:id/settings" component={CourseSettings} />
                   <Route path="/courses/:id/user/:id" component={PeopleProfile} />
+                  <Route path="/courses/:id/attendance" component={Attendance} />
                   <Route exact path='/courses/:id/quizzes' component={Quizzes} />
                   <Route exact path='/courses/:id/quizform' component={QuizForm} />
                   <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
