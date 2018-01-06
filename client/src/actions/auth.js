@@ -16,8 +16,8 @@ export const registerUser = (email, password, passwordConfirmation, firstName, l
     axios.post('/api/auth', { email, password, firstName, lastName, password_confirmation: passwordConfirmation })
       .then(res => {
         const { data: { data: user }, headers } = res;
-        dispatch(login(user));
         dispatch(setHeaders(headers));
+        dispatch(login(user));
         history.push('/');
       })
       .catch(res => {
@@ -59,9 +59,9 @@ export const handleLogin = (email, password, history) => {
     axios.post('/api/auth/sign_in', { email, password })
       .then(res => {
         const { data: { data: user }, headers } = res;
+        dispatch(setHeaders(headers));
         dispatch(login(user));
         dispatch(setFlash('Logged in successfully!', 'green'));
-        dispatch(setHeaders(headers));
         history.push('/');
       })
       .catch(res => {
@@ -83,8 +83,8 @@ export const validateToken = (callBack = () => {}) => {
     axios.get('/api/auth/validate_token', headers)
       .then(res => {
         const user = res.data.data;
-        dispatch(login(user));
         dispatch(setHeaders(res.headers));
+        dispatch(login(user));
       })
       .catch(() => callBack());
   };
