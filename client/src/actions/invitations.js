@@ -13,17 +13,17 @@ export const sendInvitation = (user, enrollment) => {
         enrollment.user_id = `${data.id}`
         axios.post('/api/enrollments', { enrollment } )
           .then( res => {
-            dispatch(setHeaders(res.headers))
+            dispatch(setHeaders(res.headers));
           })
           .catch( err => {
             dispatch(setFlash(`Failed to add enrollment data`, 'red'));
-            dispatch(setHeaders(err.headers))
+            dispatch(setHeaders(err.headers));
           })
       })
       .catch( err => {
         const { firstName, lastName } = user;
         dispatch(setFlash(`Failed to invite ${firstName} ${lastName}`, 'red'));
-        dispatch(setHeaders(err.headers))
+        dispatch(setHeaders(err.headers));
       });
   }
 }
@@ -33,13 +33,13 @@ export const acceptInvitation = (invite, history) => {
     axios.post('/api/invitation/accept', { invite })
       .then( res => {
         dispatch(setHeaders(res.headers));
-        dispatch(setFlash('Welcome to Portal please log in', 'info'))
+        dispatch(setFlash('Welcome to Portal please log in', 'info'));
         history.push('/login');
       })
       .catch( err => {
         const message = err.response.data.errors;
         dispatch(setFlash(message, 'red'));
         dispatch(setHeaders(err.headers));
-      })
+      });
   }
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108224337) do
+ActiveRecord::Schema.define(version: 20180109002035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20180108224337) do
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_attendances_on_course_id"
     t.index ["user_id"], name: "index_attendances_on_user_id"
+  end
+
+  create_table "avatars", force: :cascade do |t|
+    t.string "url"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_avatars_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -74,6 +82,19 @@ ActiveRecord::Schema.define(version: 20180108224337) do
 
   create_table "notes", force: :cascade do |t|
     t.string "author"
+<<<<<<< HEAD
+=======
+    t.text "content"
+    t.boolean "visable"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.bigint "question_id"
+>>>>>>> Add user image to profile page with dropzone and paperclip gem
     t.text "content"
     t.boolean "visable"
     t.bigint "user_id"
@@ -156,6 +177,7 @@ ActiveRecord::Schema.define(version: 20180108224337) do
     t.string "invited_by_type"
     t.integer "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.string "avatar_url"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
@@ -168,11 +190,17 @@ ActiveRecord::Schema.define(version: 20180108224337) do
   add_foreign_key "assignments", "sub_sections"
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "users"
+  add_foreign_key "avatars", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
   add_foreign_key "notes", "users"
+<<<<<<< HEAD
   add_foreign_key "quiz_questions", "quizzes"
+=======
+  add_foreign_key "options", "questions"
+  add_foreign_key "questions", "quizzes"
+>>>>>>> Add user image to profile page with dropzone and paperclip gem
   add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"
   add_foreign_key "sub_sections", "sections"

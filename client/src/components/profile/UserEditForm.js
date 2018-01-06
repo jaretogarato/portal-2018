@@ -1,29 +1,46 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import defaultAvatar from '../../assets/images/missing-avatar.png'
 import { connect } from 'react-redux';
 import { editUser } from '../../actions/user';
-import { 
-  Button, 
-  Divider, 
-  Form, 
-  Grid, 
-  Header, 
-  Input, 
-  Segment, 
+import { handleUpload } from '../../actions/avatars';
+import {
+  Button,
+  Container,
+  Dimmer,
+  Divider,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Input,
+  Loader,
+  Segment
 } from 'semantic-ui-react';
 
 class UserEditForm extends React.Component {
-  state = { 
-    firstName: '', 
-    lastName: '', 
-    bio: '', 
-    email:  '', 
-    nickname: '' 
+  state = {
+    firstName: '',
+    lastName: '',
+    bio: '',
+    email:  '',
+    nickname: '',
+    fileUploading: false,
   };
 
   componentDidMount() {
     const { first_name, last_name, bio, email, nickname } = this.props.user;
     this.setState({ firstName: first_name, bio, email, nickname, last_name });
+  }
+
+  toggleUploading = () => {
+    this.setState({ fileUploading: !this.state.fileUploading });
+  }
+
+  onDrop = (file) => {
+    const { user } = this.props
+    this.toggleUploading();
+    this.props.dispatch(handleUpload(file[0], user, this.toggleUploading));
   }
 
   handleSubmit = (e) => {
@@ -37,24 +54,41 @@ class UserEditForm extends React.Component {
 
   render()  {
     const { firstName, lastName, bio, email, nickname } = this.state;
+    const { user } = this.props;
+
     return(
       <Form onSubmit={this.handleSubmit}>
         <Segment textAlign='center' basic>
-          <Header as='h2'>{firstName} {lastName}'s  Edit Profile</Header>
+          <Header as='h1'>Edit Profile</Header>
         </Segment>
         <Divider />
         <Grid columns={3} divided>
           <Grid.Row stretched>
             <Grid.Column>
               <Segment basic style={{ display: 'flex', alignSelf: 'center'}}>
-                <Dropzone
-                  onDrop={this.onDrop}
-                />
+                { this.state.fileUploading ?
+                  <Dimmer active>
+                    <Loader>Loading</Loader>
+                  </Dimmer> :
+                  <Dropzone onDrop={this.onDrop}>
+                    <Segment basic style={{alignSelf: 'center'}}>
+                      { user.avatar_url ?
+                        <Image src={`${user.avatar_url}`} /> :
+                        <Image src={`${defaultAvatar}`} />
+                      }
+                      <Header as='h3'
+                        style={{textAlign: 'center'}}
+                      >
+                        Click to update profile picture!
+                      </Header>
+                    </Segment>
+                  </Dropzone>
+                }
               </Segment>
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <Header as='h3'>{firstName}'s Bio</Header>
+                <Header as='h3'>Bio</Header>
                 <Divider />
                   <Form.TextArea
                     name='bio'
@@ -65,7 +99,7 @@ class UserEditForm extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <Header as='h4'>{firstName}'s Email Address: </Header>
+                <Header as='h4'>Email Address: </Header>
                 <Divider />
                 <Input
                   required
@@ -90,7 +124,7 @@ class UserEditForm extends React.Component {
         </Grid>
       </Form>
     )
-  }    
+  }
 }
 
 const mapStateToProps = (state) => {

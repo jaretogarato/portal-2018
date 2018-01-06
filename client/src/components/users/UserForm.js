@@ -1,10 +1,8 @@
 import React from 'react';
-import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
-import { handleUpload } from '../../actions/avatar';
 import { sendInvitation } from '../../actions/invitations';
-import { Button, Dimmer, Form, Loader, Segment, Select } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import { Button, Form, Select } from 'semantic-ui-react';
 
 class UserForm extends React.Component {
   state = { firstName: '', lastName: '', email: '', role: 'Student', image: '' };
@@ -23,37 +21,9 @@ class UserForm extends React.Component {
     ));
   }
 
-  toggleUploading = (image) => {
-    this.setState({ fileUploading: !this.state.fileUploading });
-  }
-
-  setImage = (url) => {
-    this.toggleUploading();
-    this.setState({image: url});
-  }
-
-  onDrop = (avatar) => {
-    this.toggleUploading();
-    this.props.dispatch(handleUpload(avatar[0], this.setImage));
-  }
-
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-  }
-
-  uploadDisplay = () => {
-    if(this.state.fileUploading) {
-      return (
-        <Dimmer active>
-          <Loader>Attempting to Code...Please Wait..</Loader>
-        </Dimmer>
-      );
-    } else {
-      return (
-        <Dropzone onDrop={this.onDrop} />
-      )
-    }
   }
 
   roles = () => {
@@ -66,7 +36,6 @@ class UserForm extends React.Component {
     const { email, firstName, lastName } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Segment>{this.setImage}</Segment>
         <Form.Input
           label='First Name'
           placeholder='First Name'

@@ -1,7 +1,7 @@
 import React from 'react';
+import defaultAvatar from '../../assets/images/missing-avatar.png'
 import UserEditForm from './UserEditForm';
 import { connect } from 'react-redux';
-import { setAvatars } from '../../actions/avatar';
 import {
   Button,
   Container,
@@ -13,21 +13,7 @@ import {
 } from 'semantic-ui-react';
 
 class UserProfile extends React.Component {
-  state = { fileUploading: false, edit: false };
-
-  componentDidMount() {
-    this.props.dispatch(setAvatars());
-  }
-
-  assignAvatar = () => {
-    return this.props.avatars.map( avatar => {
-      return(
-        <Grid.Column key={avatar.id}>
-          <Image src={avatar.url} fluid />
-        </Grid.Column>
-      );
-    });
-  }
+  state = { edit: false };
 
   toggleEdit = () => {
     const { edit } = this.state;
@@ -39,39 +25,43 @@ class UserProfile extends React.Component {
 
     if(this.state.edit) {
       return(
-        <Segment>
+        <Segment basic>
           <Button onClick={this.toggleEdit}>
-            Cancel Editting
+            Cancel Editing
           </Button>
           <UserEditForm toggleEdit={this.toggleEdit}/>
         </Segment>
       )
     } else {
       return (
-        <Container>
+        <Segment basic>
           <Button onClick={this.toggleEdit}>
-            Edit
+            Edit Profile
           </Button>
           <Segment textAlign='center' basic>
-            <Header as='h2'>{user.first_name} {user.last_name}'s Profile</Header>
+            <Header as='h1'>Your Profile</Header>
           </Segment>
           <Divider />
           <Grid columns={3} divided>
             <Grid.Row stretched>
               <Grid.Column>
-                <Segment basic style={{ display: 'flex', alignSelf: 'center'}}>
+                <Segment basic style={{alignSelf: 'center'}}>
+                  { user.avatar_url ?
+                    <Image src={`${user.avatar_url}`} /> :
+                    <Image src={`${defaultAvatar}`} />
+                  }
                 </Segment>
               </Grid.Column>
               <Grid.Column>
                 <Segment basic>
-                  <Header as='h3'>{user.first_name}'s Bio</Header>
+                  <Header as='h3'>Bio</Header>
                   <Divider />
                   {user.bio}
                 </Segment>
               </Grid.Column>
               <Grid.Column>
                 <Segment basic>
-                  <Header as='h4'>{user.first_name}'s Email Address: </Header>
+                  <Header as='h4'>Email Address: </Header>
                   <Divider />
                   <i>{user.email}</i>
                 </Segment>
@@ -83,14 +73,14 @@ class UserProfile extends React.Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </Container>
+        </Segment>
       )
     }
   }
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user, avatars: state.avatars }
+  return { user: state.user }
 }
 
 export default connect(mapStateToProps)(UserProfile);

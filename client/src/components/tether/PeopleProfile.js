@@ -1,7 +1,17 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { getUser } from '../../actions/userId'
-import { Segment, Image, Grid, Divider, Header, Card, Message, Rail } from 'semantic-ui-react'
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { getUser } from '../../actions/userId';
+import {
+  Card,
+  Divider,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Rail,
+  Segment,
+} from 'semantic-ui-react'
 
 class PeopleProfile extends React.Component {
   state = { user: {} }
@@ -23,6 +33,7 @@ class PeopleProfile extends React.Component {
       </Grid.Row>
     )
   }
+
   messageFrom = () => (
     <Rail attached>
       <Segment>Right Rail Content</Segment>
@@ -38,9 +49,6 @@ class PeopleProfile extends React.Component {
       <p>Did you know it's been a while?</p>
     </Message>
   )
-
-
-
 
   render () {
     const { user } = this.props
@@ -64,18 +72,11 @@ class PeopleProfile extends React.Component {
       },
     ]
 
-
     return (
       <Segment basic>
         <Grid className='container'>
           <Grid.Row>
             <Grid.Column width={5}>
-              <Image
-                style={styles.image}
-                size='large'
-                src={user.image}
-                alt={`${fullName}'s profile picture`}
-              />
             </Grid.Column>
             <Grid.Column width={11}>
               <Header as='h1'>
