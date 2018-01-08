@@ -11,7 +11,6 @@ import Home from './root/Home';
 import LectureNotes from './Rift/lectureNotes/LectureNotes';
 import LectureForm from './Rift/lectureNotes/LectureForm';
 import InviteConfirmation from './InviteConfirmation';
-import LectureView from './lecture/LectureView';
 import Login from './Login';
 import NoMatch from './NoMatch';
 import ProtectedRoute from './ProtectedRoute';
@@ -49,10 +48,6 @@ class App extends React.Component {
                 path='/users'
                 component={UserModal}
                 adminOnly={true}
-              />
-              <ProtectedRoute
-                path='/lectures/:id'
-                component={LectureView}
               />
               <Route component={NoMatch} />
             </Switch>

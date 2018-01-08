@@ -36,12 +36,12 @@ class Course extends React.Component {
       <Segment basic>
         <Container fluid style={styles.noBorder}>
           <Grid style={styles.noBorder}>
-            <Grid.Column width={3}>
+            <Grid.Column computer={3}>
               <Segment style={styles.sideBar}>
                 <Route component={CourseSideNav} />
               </Segment>
             </Grid.Column>
-            <Grid.Column width={13}>
+            <Grid.Column computer={13}>
               <Segment>
                 <Switch>
                   <Route exact path="/courses/:id" component={CourseHome} />
