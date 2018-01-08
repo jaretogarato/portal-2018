@@ -40,11 +40,6 @@ class App extends React.Component {
               <ProtectedRoute exact path='/lectureform' component={LectureForm} />
               <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />
               <ProtectedRoute
-                exact path='/users'
-                component={UserModal}
-                adminOnly={true}
-              />
-              <ProtectedRoute
                 path='/users'
                 component={UserModal}
                 adminOnly={true}

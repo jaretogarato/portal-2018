@@ -3,23 +3,24 @@ import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
 import { handleUpload } from '../../actions/avatar';
 import { sendInvitation } from '../../actions/invitations';
-import { Button, Dimmer, Form, Loader, Segment } from 'semantic-ui-react';
+import { Button, Dimmer, Form, Loader, Segment, Select } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 
 class UserForm extends React.Component {
-  state = { firstName: '', lastName: '', email: '', role: '', image: '' };
+  state = { firstName: '', lastName: '', email: '', role: 'Student', image: '' };
 
   handleSubmit = () => {
-    const { courseId, modalClose, dispatch } = this.props;
+    const { match: { params }, dispatch } = this.props;
+    const courseId = params.id;
     const { firstName, lastName, email, image, role } = this.state;
     dispatch(sendInvitation({
-      email,
-      image,
-      first_name: firstName,
-      last_name: lastName
-    },
-      {role: role, course_id: courseId}
+        email,
+        image,
+        first_name: firstName,
+        last_name: lastName
+      },
+      { role, course_id: courseId }
     ));
-    modalClose();
   }
 
   toggleUploading = (image) => {
@@ -55,6 +56,12 @@ class UserForm extends React.Component {
     }
   }
 
+  roles = () => {
+    return ['Student', 'Ta', 'Teacher', 'Auditor'].map( role => {
+      return { key: role, text: role, value: role }
+    });
+  }
+
   render() {
     const { email, firstName, lastName, role } = this.state;
     return (
@@ -84,40 +91,12 @@ class UserForm extends React.Component {
           onChange={this.handleChange}
           required
         />
-        <Form.Group inline>
-          <Form.Input
-            type='radio'
-            label='Auditor'
-            name='role'
-            value='Auditor'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            type='radio'
-            label='Student'
-            name='role'
-            value='Student'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            type='radio'
-            label='TA'
-            name='role'
-            value='TA'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            type='radio'
-            label='Teacher'
-            name='role'
-            value='Teacher'
-            onChange={this.handleChange}
-          />
-        </Form.Group>
+        <Select options={this.roles()} defaultValue="Student" />
+        <br />
         <Button type='submit'>Submit</Button>
       </Form>
     )
   }
 }
 
-export default connect()(UserForm);
+export default withRouter(connect()(UserForm));
