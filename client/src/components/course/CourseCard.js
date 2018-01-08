@@ -3,7 +3,7 @@ import EditCourseModal from './EditCourseModal';
 import { Link } from 'react-router-dom'
 import { Button, Card, Grid } from 'semantic-ui-react';
 
-const Course = ({ course }) => (
+const CourseCard = ({ course }) => (
   <Grid.Column key={course.id}>
     <Card>
       <Card.Content>
@@ -31,4 +31,4 @@ const Course = ({ course }) => (
   </Grid.Column>
 )
 
-export default Course;
+export default CourseCard;

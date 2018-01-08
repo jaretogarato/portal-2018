@@ -1,5 +1,5 @@
 import React from 'react';
-import Course from './Course';
+import CourseCard from './CourseCard';
 import CourseForm from './CourseForm';
 import { connect } from 'react-redux';
 import { getCourses } from '../../actions/courses';
