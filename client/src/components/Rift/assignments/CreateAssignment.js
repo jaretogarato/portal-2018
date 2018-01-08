@@ -1,10 +1,9 @@
-import React, { Component, createFactory } from 'react';
+import React, { Component } from 'react';
 import { Form, Button, Container, Header, Segment, Divider } from 'semantic-ui-react';
 import { addAssignment } from '../../../actions/assignments';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-//testing testing testing 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: '1' },
   { key: '2', text: 'Online', value: '2' },
@@ -19,7 +18,7 @@ class CreateAssignment extends Component {
     const { history, dispatch } = this.props
     e.preventDefault();
     let assignment = { due_date: this.state.due_date, title: this.state.title, content: this.state.content }
-    dispatch(addAssignment(assignment, history) )
+    dispatch(addAssignment(assignment, history))
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -30,63 +29,62 @@ class CreateAssignment extends Component {
     return (
       <Container>
         <Header as="h1" textAlign='center' style={ styles.pageTitle }>Create Assignment</Header>
-        <Segment>
-          <Form onSubmit={ this.handleSubmit } style={ styles.form }>
-            <Form.Group widths='equal'>
-              <Form.Input
-                label='Title'
-                name='title'
-                value={ title }
-                width={ 9 }
-                placeholder='Assignment Title'
-                autoFocus={ true }
-                required
-                onChange={ this.handleChange }>
-              </Form.Input>
-              <Form.Select
-                label='Submission Options'
-                options={ submissionOptions }
-                placeholder='Submission Options'
-                required
-                width={ 2} 
-              />
-            </Form.Group>
-            <Form.Group widths='equal'>
-              <Form.Input
-                name='due_date'
-                value={ due_date }
-                label='Due Date'
-                type='date'
-                width={9}
-                onChange={ this.handleChange }
-              >
-              </Form.Input>
-              <Form.Input
-                label='Points'
-                placeholder='Points'
-                type='number'
-                required
-                width={ 2 } />
-            </Form.Group>
-            <Form.TextArea
-              name='content'
-              value={ content }
-              style={ styles.textArea }
-              label='Content'
-              placeholder='Rift Text Editor Placeholder'
+        <Form onSubmit={ this.handleSubmit } style={ styles.form }>
+          <Form.Group widths='equal'>
+            <Form.Input
+              label='Title'
+              name='title'
+              value={ title }
+              width={ 9 }
+              placeholder='Assignment Title'
+              autoFocus={true}
               required
-              onChange={ this.handleChange }
+              onChange={this.handleChange}>
+            </Form.Input>
+            <Form.Select
+              label='Submission Options'
+              options={ submissionOptions }
+              placeholder='Submission Options'
+              required
+              width={ 2 }
             />
-            <Form.Checkbox label='Published?' />
-            <Divider />
-            <Form.Group>
-              <Button type='submit'>Create</Button>
-              <Link to={ './assignments' }>
-                <Button> Cancel </Button>
-              </Link>
-            </Form.Group>
-          </Form>
-        </Segment>
+          </Form.Group>
+          <Form.Group widths='equal'>
+            <Form.Input
+              name='due_date'
+              value={ due_date }
+              label='Due Date'
+              type='date'
+              width={ 9 }
+              onChange={ this.handleChange }
+            >
+            </Form.Input>
+            <Form.Input
+              label='Points'
+              placeholder='Points'
+              type='number'
+              required
+              width={ 2 } />
+          </Form.Group>
+          <Form.TextArea
+            name='content'
+            value={ content }
+            style={ styles.textArea }
+            label='Description'
+            placeholder='Rift Text Editor Placeholder'
+            required
+            onChange={ this.handleChange }
+          />
+          <Divider />
+          <Form.Checkbox label='Published?' />
+          <Divider />
+          <Form.Group>
+            <Button type='submit'>Create</Button>
+            <Link to={ './assignments' } >
+              <Button>Cancel</Button>
+            </Link>
+          </Form.Group>
+        </Form>
       </Container>
     )
   }
@@ -106,5 +104,3 @@ const styles = {
 
 
 export default connect()(CreateAssignment);
-
-

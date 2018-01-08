@@ -33,7 +33,7 @@ class LectureNotes extends Component {
 
   render() {
     return (
-      <Container> 
+      <div> 
        <Header textAlign='center' style={styles.lectureNotes}>Lecture Notes</Header> 
         <Grid>
           <Grid.Row> 
@@ -65,7 +65,7 @@ class LectureNotes extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid> 
-      </Container> 
+      </div> 
     )
   }
 }

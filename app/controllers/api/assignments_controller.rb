@@ -6,15 +6,17 @@ class Api::AssignmentsController < Api::ApiController
   end
 
   def show
-    render json: Assignment.with_enrollment(@assignnment.id, current_user.id)
+    render json: @assignment
   end
 
   def update
     if @assignment.update(assignment_params)
-      render json: @assignment_params
+      render json: @assignment
     else
-      render json: { errors: @assignment.errors.full_messages}, status: 422
+      render json: { errors: @assignment.errors.full_messages }, status: 422
+    end
   end
+
 
   def create
     assignment = Assignment.new(assignment_params)
@@ -22,15 +24,21 @@ class Api::AssignmentsController < Api::ApiController
       render json: assignment
     else
       render json: { errors: assignment.errors.full_messages }, status: 422
+    end
   end
 
   def destroy
     @assignment.destroy
   end
 
+
   private
     def assignment_params
-      params.require(:assignments).permit(:title, :submission_type, :points, :due_date, :published, :content)
+      params.require(:assignment).permit(
+        :title, :submission_type,
+        :points, :due_date, :published,
+        :content
+      )
     end
 
     def set_assignment

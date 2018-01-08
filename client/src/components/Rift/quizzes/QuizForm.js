@@ -106,5 +106,3 @@ const styles = {
 
 
 export default connect()(QuizForm);
-
-

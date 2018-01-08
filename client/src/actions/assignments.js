@@ -5,10 +5,13 @@ import { setFlash } from './flash';
 export const addAssignment = (assignment, history) => {
   return (dispatch) => {
     axios.post('/api/assignments', { assignment })
-      .then(res => dispatch({ type: 'ADD_ASSIGNMENT', assignments: res.data, headers: res.headers }))
+      .then(res => {
+        dispatch({ type: 'ADD_ASSIGNMENT', assignments: res.data, headers: res.headers })
+        history.push('./assignments')
+      })
       .catch(err => {
         dispatch(setHeaders(err.headers));
-        dispatch(setFlash('Failed To Add Quiz', 'red'));
+        dispatch(setFlash('Failed To Add Assignment', 'red'));
       });
   }
 }

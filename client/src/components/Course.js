@@ -56,7 +56,7 @@ class Course extends React.Component {
                   <Route exact path='/courses/:id/lecture-Notes' component={LectureNotes} />
                   <Route exact path='/courses/:id/assignment' component={Assignment} />
                   <Route exact path='/courses/:id/assignments' component={Assignments} />
-                  <Route exact path='/courses/:id/assignment/create' component={CreateAssignment} />
+                  <Route exact path='/courses/:id/assignments/create' component={CreateAssignment} />
                   <Route exact path='/courses/:id/wiki' component={Wiki} />
                 </Switch>
               </Segment>

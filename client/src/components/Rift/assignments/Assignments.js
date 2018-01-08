@@ -1,39 +1,54 @@
 import React, { Component } from 'react';
-import { Container, Header, Grid, Button, Icon, Table } from 'semantic-ui-react';
+import { Header, Table, Container, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { getAssignments} from '../../../actions/assignments'
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Assignments extends Component {
+  state = { assignments: [] }
 
-  // componentDidMount - axios call
   componentDidMount() {
-    this.props.dispatch(getAssignments())
     axios.get('/api/assignments')
-      .then( res => {
-        console.log("Res: " + res)
-        this.setState({ quizzes: res.data })
-      }).catch( err => {
-        console.log("Error: " + err)
-    });
+      .then(res => {
+        this.setState({ assignments: res.data })
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  displayAssignments = () => {
+    const { id } = this.props.match.params
+    return this.state.assignments.map(assignment => {
+      let time = moment(assignment.created_at).format('MMMM D, YYYY')
+      let date = moment(assignment.due_date).format('MMMM D, YYYY')
+      return (
+        <Table.Row key={assignment.id}>
+          <Table.Cell>
+            <Link to={`/courses/${id}/assignments/${assignment.id}`}>{ assignment.title }</Link>
+          </Table.Cell>
+          <Table.Cell>{time}</Table.Cell>
+          <Table.Cell>{date}</Table.Cell>
+        </Table.Row>
+      )
+    })
   }
 
   render() {
+    const { id } = this.props.match.params
     return (
-      <Container>
-        <Header as="h1" textAlign='center' style={styles.pageTitle}>All Assignments</Header>
+      <div>
+        <Header as='h1' textAlign='center' style={styles.assignment}>Assignments</Header>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
             </Grid.Column>
             <Grid.Column width={2}>
-              <Link to={'/assignment/create'}>
+              <Link to={`/courses/${id}/assignments/create`}>
                 <Button icon labelPosition='left'>
                   <Icon name='add' />
                   Assignment
-                </Button>
+              </Button>
               </Link>
             </Grid.Column>
           </Grid.Row>
@@ -42,31 +57,27 @@ class Assignments extends Component {
               <Table singleLine>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell width={6}>Name</Table.HeaderCell>
-                    <Table.HeaderCell width={4}>Created At</Table.HeaderCell>
-                    <Table.HeaderCell width={4}>Created By</Table.HeaderCell>
+                    <Table.HeaderCell width={6}> Name </Table.HeaderCell>
+                    <Table.HeaderCell width={4}> Created At </Table.HeaderCell>
+                    <Table.HeaderCell width={4}> Due Date </Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                  <Table.Row>
-                    <Table.Cell>First Assignment</Table.Cell>
-                    <Table.Cell>December 21, 2017</Table.Cell>
-                    <Table.Cell>Jace P. Gold</Table.Cell>
-                  </Table.Row>
+                  {this.displayAssignments()}
                 </Table.Body>
               </Table>
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Container>
+      </div>
     )
   }
 }
 
 const styles = {
-  pageTitle: {
+  assignment: {
     paddingTop: '2%',
-  },
+  }
 }
 
-export default connect()(Assignments);
+export default Assignments;
