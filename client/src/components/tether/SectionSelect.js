@@ -71,9 +71,9 @@ class SectionSelect extends React.Component {
   }
 
   displayItems = () => {
-    return items.map( (item, index) => (
-      <Link key={item.id} id={index} to='/courses/1/sections'>
-        <Segment>{item.title}</Segment>
+    return this.props.subSections.map( ss => (
+      <Link key={ss.id} to='/courses/1/sections'>
+        <Segment>{ss.item_title}</Segment>
       </Link>
     ))
   }
@@ -117,13 +117,6 @@ class SectionSelect extends React.Component {
     }
   }
 }
-
-const items = [
-  { id: 0, title: 'Lecture Item 1' },
-  { id: 1, title: 'Lecture Item 2' },
-  { id: 2, title: 'Assignment Item' },
-  { id: 3, title: 'File Item' }
-]
 
 const mapStateToProps = (state) => {
   return {

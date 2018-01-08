@@ -55,7 +55,8 @@ end
       sub_section_title = "Day #{k + 1}: #{sub_section_prog_lang}"
       sub_section = SubSection.create(
         title: sub_section_title,
-        section_id: section.id
+        section_id: section.id,
+        item_title: Faker::Book.title,
       )
       3.times do |l|
         lecture_scientist = Faker::Science.scientist
