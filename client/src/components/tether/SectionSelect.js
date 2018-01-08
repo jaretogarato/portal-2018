@@ -72,7 +72,7 @@ class SectionSelect extends React.Component {
 
   displayItems = () => {
     return this.props.subSections.map( ss => (
-      <Link key={ss.id} to='/courses/1/sections'>
+      <Link key={ss.id} to={`/courses/section/${ss.id}`}>
         <Segment>{ss.item_title}</Segment>
       </Link>
     ))
