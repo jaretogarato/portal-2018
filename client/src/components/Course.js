@@ -9,15 +9,15 @@ import SectionSelect from './tether/SectionSelect'
 import CourseHome from './course/CourseHome';
 import CourseSettings from './tether/CourseSettings';
 import PeopleProfile from './tether/PeopleProfile';
-import Assignment from './Rift/assignments/Assignment';
-import Quizzes from './Quizzes/Quizzes';
-import QuizForm from './Quizzes/QuizForm';
-import SingleQuiz from './Quizzes/SingleQuiz';
+import Assignment from './assignments/Assignment';
+import Quizzes from './quizzes/Quizzes';
+import QuizForm from './quizzes/QuizForm';
+import SingleQuiz from './quizzes/SingleQuiz';
 import LectureNotes from './Rift/lectureNotes/LectureNotes';
 import Wiki from './Rift/wiki/Wiki';
 import Attendance from './attendance/Attendance';
-import Assignments from './Rift/assignments/Assignments';
-import CreateAssignment from './Rift/assignments/CreateAssignment';
+import Assignments from './assignments/Assignments';
+import CreateAssignment from './assignments/CreateAssignment';
 
 
 
