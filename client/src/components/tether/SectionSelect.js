@@ -5,7 +5,8 @@ import { getCoursesByStudent } from '../../actions/courses';
 import { getSections } from '../../actions/sections';
 import { setSection } from '../../actions/section';
 import { getSubSections } from '../../actions/subSections';
-import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment } from 'semantic-ui-react';
+import SectionForm from '../SectionForm'
+import { Accordion, Button, Dimmer, Grid, Loader, Icon, Menu, Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class SectionSelect extends React.Component {
@@ -22,20 +23,14 @@ class SectionSelect extends React.Component {
 
   componentWillMount() {
     const { dispatch, user: { id: userId }, course } = this.props;
-    
     // TODO: prevent user from navigating to any page via URL
-    // get the courses to which a user belongs
     dispatch(getCoursesByStudent(userId));
-    if(course) {
-      this.setCourseLoaded()
-    }
-
+    if(course) this.setCourseLoaded()
   }
 
   componentDidMount() {
-    const { dispatch, courseId, } = this.props;
-    // load sections for active course
-    dispatch(getSections(courseId, this.setSectionsLoaded));
+    const { dispatch, match: { params: { id } } } = this.props;
+    dispatch(getSections(id, this.setSectionsLoaded));
   }
 
   handleClick = (e) => {
@@ -58,7 +53,11 @@ class SectionSelect extends React.Component {
   displaySubSections = () => {
     return this.props.subSections.map( ss => (
       <Accordion key={ss.id} fluid styled>
-        <Accordion.Title active={this.state.activeIndex === ss.id} index={ss.id} onClick={this.handleSubClick}>
+        <Accordion.Title 
+          active={this.state.activeIndex === ss.id} 
+          index={ss.id} 
+          onClick={this.handleSubClick}
+        >
           <Icon name='dropdown' />
           { ss.title }
         </Accordion.Title>
@@ -68,7 +67,7 @@ class SectionSelect extends React.Component {
       </Accordion>
     ))
   }
-
+  
   displayItems = () => {
     return this.props.subSections.map( ss => (
       <Link key={ss.id} to={`/courses/${this.props.course.id}/section/${ss.id}`}>
@@ -76,11 +75,11 @@ class SectionSelect extends React.Component {
       </Link>
     ))
   }
-
-
+  
+  
   render() {
     let { courseLoaded, sectionsLoaded } = this.state;
-
+    
     if(sectionsLoaded && courseLoaded) {
       return(
         <Grid>
@@ -89,29 +88,28 @@ class SectionSelect extends React.Component {
             <Menu fluid vertical tabular>
               {this.props.sections.map( section =>
                 <Menu.Item
-                key={section.id}
-                id={section.id}
-                name={section.title}
-                active={this.props.sectionId === section.id}
-                onClick={e => this.handleClick(e)}>
-                </Menu.Item>
+                  key={section.id}
+                  id={section.id}
+                  name={section.title}
+                  active={this.props.sectionId === section.id}
+                  onClick={e => this.handleClick(e)}>
+                  </Menu.Item>
                 )
               }
+              { this.props.user.is_admin ? <SectionForm /> : "" }
             </Menu>
           </Grid.Column>
           <Grid.Column width={13}>
-            <h3>SubSections</h3>
+            <h3>Subsections</h3>
             { this.displaySubSections() }
           </Grid.Column>
         </Grid>
       );
     } else {
       return(
-        <div>
-          <Dimmer active inverted>
-            <Loader inverted size='large'>Loading</Loader>
-          </Dimmer>
-        </div>
+        <Dimmer active inverted>
+          <Loader inverted size='large'>Loading</Loader>
+        </Dimmer>
       )
     }
   }
@@ -124,7 +122,6 @@ const mapStateToProps = (state) => {
     sectionId: state.sectionId,
     section: state.section,
     course: state.course,
-    courseId: state.course.id,
     subSections: state.subSections,
   }
 }

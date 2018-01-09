@@ -13,15 +13,16 @@ export const getSections = (course_id, callback) => {
   }
 }
 
-export const addSection = (section) => {
+export const addSection = (title, courseId) => {
   return(dispatch) => {
-    axios.post(`/api/courses/1/sections`, { title: section })
-    // TODO: eventually tie in :course_id instead of 1
-      .then( res => dispatch({ type: 'ADD_SECTION', section: res.data, headers: res.headers }))
+    axios.post(`/api/courses/${courseId}/sections`, { title })
+      .then( res => {
+          dispatch({ type: 'ADD_SECTION', section: res.data, headers: res.headers })
+      })
       .catch( err => {
-        dispatch({ type: 'SET_HEADERS', headers: err.headers });
-        dispatch(setFlash('Failed To Add Section', 'red'));
-    });
+          dispatch({ type: 'SET_HEADERS', headers: err.headers });
+          dispatch(setFlash('Failed To Add Section', 'red'));
+      });
   }
 }
 

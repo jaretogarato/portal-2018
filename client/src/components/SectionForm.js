@@ -2,53 +2,64 @@ import React from 'react';
 import axios from 'axios';
 import { addSection } from '../actions/sections.js'
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Menu, Segment } from 'semantic-ui-react';
 
 class SectionForm extends React.Component {
-  state = { title: '' };
+  state = { title: '', showForm: false };
 
   handleSubmit = (e) => {
     const { title } = this.state;
-    this.props.dispatch(addSection(title))
-    this.setState({ title: '' })
+    const { course, dispatch } = this.props
+    dispatch(addSection(title, course.id))
+    this.setState({ title: '', showForm: false })
   }
 
-  handleChange = ({ target: { name, value } }) => this.setState({ [title]: value });
+  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });  
 
   render() {
-    const { title } = this.state;
-    return(
-      <div>
-        <Grid>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Segment raised>
-              <Header>Create a Section</Header>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Field>
-                  <label htmlFor='section'>Section</label>
-                  <input
-                    fluid
-                    name='title'
-                    placeholder='Section'
-                    required
-                    id='section'
-                    value={title}
-                    onChange={this.handleChange}
-                    autoFocus
-                  />
-                </Form.Field>
-                <Button>Submit</Button>
-              </Form>
-            </Segment>
-          </Grid.Column>
-        </Grid>
-      </div>
-    )
+    const { title } = this.state    
+    { return this.state.showForm ?     
+      <Grid>
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Segment raised>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <Form.Input
+                  name='title'
+                  placeholder='Name'
+                  required
+                  id='section'
+                  value={title}
+                  onChange={this.handleChange}
+                  autoFocus
+                />
+              </Form.Field>
+              <Button.Group fluid>
+                <Button 
+                  color='red' 
+                  onClick={() => { this.setState({ title: '', showForm: false }) }} 
+                  content="X"
+                />
+                <Button primary content="Add"/>
+              </Button.Group>
+            </Form>
+          </Segment>
+        </Grid.Column>
+      </Grid> 
+    :     
+      <Menu.Item>
+        <Button
+          fluid
+          onClick={() => { this.setState({ showForm: true }) }} 
+          content="Add Section"
+        />
+      </Menu.Item>
+    }
   }
 }
 
 const mapStateToProps = (state) => {
-  return { sections: state.sections }
+  return { sections: state.sections, course: state.course }
 }
 
 export default connect(mapStateToProps)(SectionForm);

@@ -3,7 +3,7 @@ const sections = (state = [], action) => {
     case 'GET_SECTIONS':
       return action.sections;
     case 'ADD_SECTION':
-      return [...state.sections, action.section]
+      return [...state, action.section]
     case 'UPDATE_SECTION':
       return state.map( section => {
         if(section.id === action.section.id)
