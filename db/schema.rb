@@ -86,23 +86,6 @@ ActiveRecord::Schema.define(version: 20180109002035) do
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
-  create_table "options", force: :cascade do |t|
-    t.bigint "question_id"
-    t.text "content"
-    t.boolean "correct"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_options_on_question_id"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.bigint "quiz_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
-  end
-
   create_table "quiz_questions", force: :cascade do |t|
     t.text "question", default: "", null: false
     t.boolean "multiple_choice", default: true
@@ -119,7 +102,7 @@ ActiveRecord::Schema.define(version: 20180109002035) do
     t.bigint "sub_section_id"
     t.string "title"
     t.text "content"
-    t.date "due_date"
+    t.string "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"
@@ -204,9 +187,9 @@ ActiveRecord::Schema.define(version: 20180109002035) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
+  add_foreign_key "notes", "users"
 <<<<<<< HEAD
 =======
-  add_foreign_key "notes", "users"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "quizzes"
 >>>>>>> master

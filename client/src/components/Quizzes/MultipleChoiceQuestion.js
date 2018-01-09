@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import MultipleChoiceOption from './MultipleChoiceOption'
 import { Form, Select, Segment, Header, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 const options = [
   { key: 2, text: 2, value: 2 },
@@ -28,7 +29,8 @@ class MultipleChoiceQuestion extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { question, options } = this.state
+    const { question } = this.state
+    const { options } = this.props
   }
 
   handleCheck = (_, { thing, name } ) => {
@@ -51,7 +53,7 @@ class MultipleChoiceQuestion extends React.Component {
     const { optionCount } = this.state
     const countArray = new Array(optionCount)
     return Array.from(countArray).map( (_, i) => {
-      return <MultipleChoiceOption key={i} />
+      return <MultipleChoiceOption key={i} id={i}/>
     })
   }
 
@@ -90,6 +92,10 @@ class MultipleChoiceQuestion extends React.Component {
       </Segment>
     )
   }
+}
+
+const mapStateToProps = (state) => {
+  return { options: state.quizOptions }
 }
 
 export default MultipleChoiceQuestion

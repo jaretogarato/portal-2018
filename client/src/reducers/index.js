@@ -15,6 +15,7 @@ import lectures from './lectures';
 import sectionId from './sectionId';
 import currentDate from './currentDate';
 import quizzes from './quizzes';
+import quizOptions from './quizOptions';
 import userId from './userId';
 import notes from './notes';
 
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   quizzes,
   userId,
   notes,
+  quizOptions,
 });
 
 export default rootReducer;
