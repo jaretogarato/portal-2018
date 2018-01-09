@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20180109230403) do
     t.string "title"
     t.text "content"
     t.string "due_date"
-    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"
@@ -203,25 +202,7 @@ ActiveRecord::Schema.define(version: 20180109230403) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
-<<<<<<< HEAD
   add_foreign_key "notes", "users"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  add_foreign_key "options", "questions"
-  add_foreign_key "questions", "quizzes"
->>>>>>> master
-=======
-  add_foreign_key "notes", "users"
->>>>>>> add group model and controller, active status to sections WIP
-=======
-  add_foreign_key "notes", "users"
->>>>>>> quizzes
->>>>>>> quizzes
-=======
-  add_foreign_key "notes", "users"
->>>>>>> quizzes
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"

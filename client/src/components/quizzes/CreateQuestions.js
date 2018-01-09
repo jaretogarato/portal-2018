@@ -15,7 +15,7 @@ const options = [
 
 
 class CreateQuestions extends Component {
-state = { showQuestion: false, activeType: '', question: '', options: [], isHidden: false }
+state = { showQuestion: false, activeType: '', question: '', options: [], isHidden: true }
 
 
   handleSubmit = (e) => {
@@ -36,20 +36,15 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     this.setState({ [name]: value })
   }
 
-  handleChange = (e) => {
-    this.setState({ activeType: e.target.innerText, isHidden: true })
-  }
-
   selectQuestion = () => {
     return(
       <Form.Group>
       <Form.Field
         name='activeType'
         control={Select}
-        label='Question Types'
         options={ options }
         onChange={ this.handleChange }
-        placeholder='Question Types'
+        placeholder='Question Type'
         required
         width={2}
       />
@@ -78,35 +73,34 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     if (this.state.isHidden) {
       return(
         <Segment basic>
-        <Header as="h3" textAlign='center'> Add Questions </Header>
-        { showQuestion && this.selectQuestion() }
-        { this.questionType() }
-        <Button
+          <Header as="h3" textAlign='center'> Add Questions </Header>
+          { showQuestion && this.selectQuestion() }
+          { this.questionType() }
+          <Button
             basic
             color='blue'
             icon
             labelPosition='left'
-            onClick={() => this.setState({ showQuestion: true })}>
-          <Icon name='add' />
-          New Question
-        </Button>
+            onClick={() => this.setState({ showQuestion: true, isHidden: false })}
+          >
+            <Icon name='add' />
+            New Question
+          </Button>
         </Segment>
       )
     } else {
       return(
         <Segment basic>
-        <Header as="h3" textAlign='center'> Add Questions </Header>
-        <Button
+          <Header as="h3" textAlign='center'> Add Questions </Header>
+          { showQuestion && this.selectQuestion() }
+          { this.questionType() }
+          <Button
             basic
-            color='blue'
-            icon
-            labelPosition='left'
-            onClick={() => this.setState({ showQuestion: true })}>
-          <Icon name='add' />
-          New Question
-        </Button>
-        { this.questionType() }
-        { showQuestion && this.selectQuestion() }
+            color='red'
+            onClick={() => this.setState({ showQuestion: false, isHidden: true, activeType: '' })}
+          >
+          Cancel
+          </Button>
         </Segment>
       )
     }
