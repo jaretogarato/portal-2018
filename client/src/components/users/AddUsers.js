@@ -25,8 +25,14 @@ class AddUsers extends React.Component {
     const data = new FormData();
     data.append('file', file)
     axios.post(`/api/invitations/mass_invite?course_id=${courseId}`, data)
-      .then( res => this.props.dispatch(setFlash('Users upload started...', 'green')) )
-      .catch( err => this.props.dispatch(setFlash(err.response.errors, 'red')) )
+      .then( res => {
+        this.props.dispatch(setHeaders(res.headers))
+        this.props.dispatch(setFlash('Users upload started...', 'green')) 
+      })
+      .catch( err => {
+        this.props.dispatch(setFlash(err.response.errors, 'red')) 
+        this.props.dispatch(setHeaders(err.headers))
+      })
   }
 
   render() {
