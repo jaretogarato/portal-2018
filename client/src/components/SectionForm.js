@@ -1,8 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { addSection } from '../actions/sections.js'
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Header, Menu, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Menu, Segment } from 'semantic-ui-react';
 
 class SectionForm extends React.Component {
   state = { title: '', showForm: false };

@@ -7,8 +7,6 @@ import NavBar from './FetchCourses';
 import Flash from './Flash';
 import Footer from './shared/Footer';
 import Home from './root/Home';
-import LectureNotes from './Rift/lectureNotes/LectureNotes';
-import LectureForm from './Rift/lectureNotes/LectureForm';
 import InviteConfirmation from './InviteConfirmation';
 import Login from './Login';
 import NoMatch from './NoMatch';
@@ -32,8 +30,7 @@ class App extends React.Component {
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/user_profile' component={UserProfile} />
               <ProtectedRoute path="/courses/:id" component={Course} />
-              <ProtectedRoute exact path='/lecturenotes' component={LectureNotes} />
-              <ProtectedRoute exact path='/lectureform' component={LectureForm} />
+
               <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />
               <ProtectedRoute
                 path='/users'

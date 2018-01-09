@@ -20,10 +20,8 @@ class MultipleChoiceQuestion extends React.Component {
 
   handleOptionChange = (_, { thing, name, value } ) => {
     let correct = false
-    let text = ''
     if (this.state.options[thing]) {
       correct = this.state.options[thing][name]
-      text = this.state.options[thing]['text']
     }
     this.setState({
       options:
@@ -79,7 +77,6 @@ class MultipleChoiceQuestion extends React.Component {
             onChange={this.handleQuestion}
             name='question'
             value={question}
-            onChange={this.handleChange}
             required
           />
           <Form.Field

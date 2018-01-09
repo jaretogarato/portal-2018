@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Segment, Form, Header, Button, Icon, Select } from 'semantic-ui-react';
-import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 import EssayQuestion from './EssayQuestion'
 import MultipleAnswer from './MultipleAnswer'
 import TrueFalse from './TrueFalse'

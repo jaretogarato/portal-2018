@@ -11,13 +11,12 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :sections
       resources :attendances, only: [:index, :create]
     end
-
+    
     resources :sections do
       resources :sub_sections
       resources :groups
-      resources :create_assignments
     end
-
+    
     resources :sub_sections do
       resources :lectures
     end

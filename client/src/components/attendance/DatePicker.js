@@ -20,10 +20,6 @@ class DatePicker extends React.Component {
     dispatch(updateDate(newDate));
   }
 
-  componentDidMount() {
-    this.hasCourse()
-  }
-
   componentDidUpdate() {
     this.hasCourse()
   }

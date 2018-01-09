@@ -79,10 +79,10 @@ class CreateAssignment extends Component {
           <Form.Checkbox label='Published?' />
           <Divider />
           <Form.Group>
-            <Button type='submit'>Create</Button>
-            <Link to={ './assignments' } >
-              <Button>Cancel</Button>
+            <Link to={`/courses/{this.props.id}/assignments`} >
+              <Button>Create</Button>
             </Link>
+            <Button onClick={this.props.history.goBack}>Cancel</Button>
           </Form.Group>
         </Form>
       </Container>
@@ -101,6 +101,5 @@ const styles = {
     minHeight: '150px',
   },
 }
-
 
 export default connect()(CreateAssignment);

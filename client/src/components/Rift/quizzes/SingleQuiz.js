@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Header, Container, Grid, Button, Segment, Form, List } from 'semantic-ui-react';
+import { Header, Button, Segment, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'; 
 import CreateQuestions from './CreateQuestions'
 import axios from 'axios';
@@ -31,37 +31,36 @@ class SingleQuiz extends Component{
   }
 
 render(){ 
-  const { id, deleteQuiz, content, points, due_date, created_at } = this.state.quiz
+  const { id, content, points, due_date, created_at } = this.state.quiz
   let time = moment(due_date).format('MMMM D, YYYY')
   let created = moment(created_at).format('MMMM D, YYYY')
   return(
-    <Segment basic>
-       <Header textAlign='center'> {this.state.quiz.title}  </Header> 
-        <List>
-          <List.Item>
+        <Segment basic>
+          <Header textAlign='center'>{this.state.quiz.title}</Header> 
+          <List>
+            <List.Item>
               Description: {content}
-          </List.Item>
-          <List.Item>
+            </List.Item>
+            <List.Item>
               Created: {created}
-          </List.Item>
-          <List.Item>
-              Due Date: {time} 
-          </List.Item>
-          <List.Item>
+            </List.Item>
+            <List.Item>
+            Due Date: {time} 
+            </List.Item>
+            <List.Item>
               Points: {points}
-          </List.Item>
-        </List> 
-        <Segment> 
-        <CreateQuestions quizId={id}/> 
+            </List.Item>
+          </List> 
+          <Segment> 
+            <CreateQuestions quizId={id}/> 
+          </Segment>
+          <Button basic color='red' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
+          <Link to={'./'} > 
+            <Button basic color='yellow'>Cancel</Button> 
+          </Link>
         </Segment>
-        <Button basic color='red' name='delete' onClick={() => this.deleteQuiz(id)}> Delete </Button>
-        <Link to={'./'} > 
-          <Button basic color='yellow'> Cancel </Button> 
-       </Link>
-      </Segment>
-      )
+      );
     }
 }
-
 
 export default SingleQuiz;

@@ -25,7 +25,7 @@ class Assignments extends Component {
       return (
         <Table.Row key={assignment.id}>
           <Table.Cell>
-            <Link to={`/courses/${id}/assignments/${assignment.id}`}>{ assignment.title }</Link>
+            <Link to={`/courses/${id}/assignments/${assignment.id}`}> {assignment.title} </Link>
           </Table.Cell>
           <Table.Cell>{time}</Table.Cell>
           <Table.Cell>{date}</Table.Cell>
@@ -38,7 +38,7 @@ class Assignments extends Component {
     const { id } = this.props.match.params
     return (
       <div>
-        <Header as='h1' textAlign='center' style={styles.assignment}>Assignments</Header>
+        <Header textAlign='center' style={styles.pageTitle}>Assignments</Header>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
@@ -57,9 +57,9 @@ class Assignments extends Component {
               <Table singleLine>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell width={6}> Name </Table.HeaderCell>
-                    <Table.HeaderCell width={4}> Created At </Table.HeaderCell>
-                    <Table.HeaderCell width={4}> Due Date </Table.HeaderCell>
+                    <Table.HeaderCell width={6}>Name</Table.HeaderCell>
+                    <Table.HeaderCell width={4}>Created At</Table.HeaderCell>
+                    <Table.HeaderCell width={4}>Due Date</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -75,7 +75,7 @@ class Assignments extends Component {
 }
 
 const styles = {
-  assignment: {
+  pageTitle: {
     paddingTop: '2%',
   }
 }
