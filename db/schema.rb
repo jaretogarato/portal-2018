@@ -17,10 +17,6 @@ ActiveRecord::Schema.define(version: 20180108224337) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
-    t.string "submission_type"
-    t.integer "points"
-    t.string "due_date"
-    t.boolean "published"
     t.text "content"
     t.bigint "sub_section_id"
     t.datetime "created_at", null: false
