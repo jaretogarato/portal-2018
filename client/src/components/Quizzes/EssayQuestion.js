@@ -27,13 +27,15 @@ class EssayQuestion extends Component {
       console.log(err);
   });
   }
+
+
   
   render(){
     return ( 
     <Segment> 
         <Form onSubmit={this.handleSubmit}> 
-        <Form.TextArea onChange={this.handleQuestion} name='question' value={this.state.question} label='Essay'> </Form.TextArea> 
-        <Button basic type='submit'> save question </Button> 
+        <Form.TextArea onChange={this.handleQuestion} name='question' value={this.state.question} label='Question'> </Form.TextArea> 
+        <Button basic type='submit' onClick={ () => this.displayQuestion()}> save question </Button> 
         </Form>
       </Segment> 
     )

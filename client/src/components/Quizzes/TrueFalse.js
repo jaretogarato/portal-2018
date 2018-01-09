@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button, Checkbox, Form} from 'semantic-ui-react';
+import { Segment, Grid, Button, Checkbox, Form, Radio } from 'semantic-ui-react';
 
 
 class TrueFalse extends Component {
-state={question: ''}
+state={question: '' }
+
+handleChange = (e, { value }) => this.setState({ value })
 
   render(){
     return ( 
@@ -18,9 +20,17 @@ state={question: ''}
           <p> False </p> 
           </Grid.Column> 
           <Grid.Column>  
-          <Checkbox name='True' />
+          <Radio 
+            value='true'
+            name='radioGroup' 
+            checked={this.state.value === 'true'}
+            onChange={this.handleChange} />
           <p> </p>
-          <Checkbox name='False' />
+          <Radio 
+            value='false'
+            name='radioGroup'
+            checked={this.state.value === 'false'}
+            onChange={this.handleChange} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

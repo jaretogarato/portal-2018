@@ -5,7 +5,7 @@ class CreateQuizzes < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :content
       t.string :due_date
-
+      t.integer :points
       t.timestamps
     end
   end
