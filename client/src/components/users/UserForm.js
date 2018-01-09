@@ -29,8 +29,13 @@ class UserForm extends React.Component {
   }
 
   roles = () => {
-    return ['Student', 'Ta', 'Teacher', 'Auditor'].map( role => {
-      return { key: role, text: role, value: role }
+    return [
+      { value: 'student', text: 'Student' },
+      { value: 'ta', text: 'TA', },
+      { value: 'teacher', text: 'Teacher' }, 
+      { value: 'auditor', text: 'Auditor' }
+    ].map( role => {
+      return { key: role.value, text: role.text, value: role.value }
     });
   }
 

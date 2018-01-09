@@ -14,7 +14,7 @@ const styles = {
 class AddUsers extends React.Component {
   makeFile = () => {
     const data = [
-      'first_name, last_name, email, role\nJane, Doe, jane@doe.com, Student/TA/Teacher/Auditor'
+      'first_name, last_name, email, role\nJane, Doe, jane@doe.com, student/ta/teacher/auditor'
     ]
     fileDownload(data, 'users.csv')
   }

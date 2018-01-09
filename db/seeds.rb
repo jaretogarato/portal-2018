@@ -83,7 +83,7 @@ end
     end
   end
   Enrollment.create(
-    role: 'Teacher',
+    role: 'teacher',
     sub_role: 'JS Ninja',
     user_id: @teacher.id,
     course_id: @course.id
@@ -104,7 +104,7 @@ end
       invitation_accepted_at: Time.now
     )
     Enrollment.create(
-      role: 'Student',
+      role: 'student',
       sub_role: Faker::Company.bs,
       user_id: student.id,
       course_id: @course.id
@@ -128,7 +128,7 @@ end
 
     )
     Enrollment.create(
-      role: 'TA',
+      role: 'ta',
       sub_role: Faker::Company.bs,
       user_id: ta.id,
       course_id: @course.id
@@ -171,7 +171,7 @@ end
   )
   3.times do |i|
     Enrollment.create(
-      role: 'Student',
+      role: 'student',
       sub_role: Faker::Company.bs,
       user_id: student.id,
       course_id: "#{i + 1}".to_i

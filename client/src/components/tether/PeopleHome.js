@@ -23,6 +23,13 @@ class PeopleHome extends React.Component {
     dispatch(getUsersByCourse(courseId, this.setUsersLoaded))
   }
 
+  normalizeText = (role) => {
+    if (role === 'ta')
+      return 'TA'
+    else
+      return `${role[0].toUpperCase()}${role.substring(1)}`
+  }
+
 
   displayUsers = () => {
     const { courseId } = this.props
@@ -42,7 +49,7 @@ class PeopleHome extends React.Component {
           </Table.Cell>
           <Table.Cell>{user.email}</Table.Cell>
           <Table.Cell>{user.nickname}</Table.Cell>
-          <Table.Cell>{user.role}</Table.Cell>
+          <Table.Cell>{this.normalizeText(user.role)}</Table.Cell>
         </Table.Row>
       )
     });
@@ -62,6 +69,7 @@ class PeopleHome extends React.Component {
                 <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
                 <Table.HeaderCell>Nickname</Table.HeaderCell>
+                <Table.HeaderCell>Role</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
