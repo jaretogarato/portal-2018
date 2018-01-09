@@ -4,6 +4,8 @@ const subSections = (state = [], action) => {
       return action.subSection;
     case 'GET_SUB_SECTIONS':
       return action.subSections;
+    case 'CLEAR_SUB_SECTIONS':
+      return action.subSections;
     case 'ADD_SUB_SECTION':
       return [...state, action.subSection]
     case 'UPDATE_SUB_SECTION':

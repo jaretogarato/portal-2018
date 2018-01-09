@@ -34,12 +34,13 @@ class SectionSelect extends React.Component {
   }
 
   handleClick = (e) => {
-    let sectionId = e.currentTarget.id
-    const { dispatch } = this.props;
-    this.setState({ sectionId: parseInt(e.currentTarget.id, 10) }, () => {
-      this.props.dispatch(setSection(this.state.sectionId));
-    });
-    dispatch(getSubSections(sectionId, this.setSubSectionLoaded));
+    const sectionId = parseInt(e.currentTarget.id)
+    const { dispatch, subSections } = this.props;
+    this.props.dispatch(setSection(sectionId));
+    if( subSections.length === 0 )
+      dispatch(getSubSections(sectionId, this.setSubSectionLoaded));
+    else if( subSections[0].section_id !== sectionId )
+      dispatch(getSubSections(sectionId, this.setSubSectionLoaded));
   }
 
   handleSubClick = (e, titleProps) => {
@@ -76,6 +77,10 @@ class SectionSelect extends React.Component {
     ))
   }
   
+  deleteButtonClick = (section) => {
+    if( window.confirm("Are you sure?"))
+      this.props.dispatch(deleteSection(section))
+  }
   
   render() {
     let { courseLoaded, sectionsLoaded } = this.state;
@@ -91,17 +96,17 @@ class SectionSelect extends React.Component {
                   key={section.id}
                   id={section.id}
                   active={this.props.sectionId === section.id}
-                  onClick={e => this.handleClick(e)}>
+                  onClick={e => this.handleClick(e)}
+                >
                   {section.title}
                   { this.props.user.is_admin && 
                     <Button 
                       floated='right' 
-                      onClick={() => this.props.dispatch(deleteSection(section))} 
+                      onClick={() => this.deleteButtonClick(section) } 
                       size='mini' 
                       color='red'
-                    >
-                      X
-                    </Button>
+                      content='X'
+                    />
                   }
                 </Menu.Item>
                 )
