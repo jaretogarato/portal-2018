@@ -7,6 +7,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     resources :quizzes do
       resources :quiz_questions, except: [:index, :show]
     end
+
     resources :courses do
       resources :sections
       resources :attendances, only: [:index, :create]
@@ -23,6 +24,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
 
     resources :assignments
     resources :enrollments, except: [:index, :show]
+    resources :notes, only: [:create, :index]
 
     put 'update_profile_pic', to: 'profiles#update_profile_pic'
 
@@ -34,6 +36,9 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     get  '/course_users/:id', to: 'users#course_users'
     get '/course/:id/users', to: 'courses#users_by_course_id'
     get '/lectures', to: 'lectures#all_lectures'
+
+    get '/notes/:user_id', to: 'notes#recipient_notes'
+    get '/sender/:user_id', to: 'notes#senders_user_data'
     # get '/group_lectures', to: 'sub_sections#group_lectures'
 
     post 'avatars', to: 'avatars#create'

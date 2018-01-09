@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
   has_many :enrollments
   has_many :attendances
   has_many :courses, :through=>:enrollments, :source=>"course"
+  has_one :avatar
+
+
+  has_many :notes, class_name: "Note", foreign_key: "recipient_id"
+  has_many :sent_notes, class_name: "Note", foreign_key: "sender_id"
+
 
   validates_presence_of :first_name, :last_name
 

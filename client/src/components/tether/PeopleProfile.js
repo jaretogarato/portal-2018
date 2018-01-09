@@ -12,6 +12,8 @@ import {
   Rail,
   Segment,
 } from 'semantic-ui-react'
+import NoteForm from './noteForm'
+import Notes from './notes'
 
 class PeopleProfile extends React.Component {
   state = { user: {} }
@@ -21,37 +23,8 @@ class PeopleProfile extends React.Component {
     this.props.dispatch(getUser(id))
   }
 
-  userMessages = () => {
-    return(
-      <Grid.Row>
-        <Grid.Column width={4}>
-          {this.messageFrom()}
-        </Grid.Column>
-        <Grid.Column width={12}>
-          { this.messageProper() }
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
-
-  messageFrom = () => (
-    <Rail attached>
-      <Segment>Right Rail Content</Segment>
-    </Rail>
-  )
-
-  messageProper = () => (
-    <Message info>
-      <Message.Header>Was this what you wanted?</Message.Header>
-      <p>Did you know it's been a while?</p>
-      <p>Did you know it's been a while?</p>
-      <p>Did you know it's been a while?</p>
-      <p>Did you know it's been a while?</p>
-    </Message>
-  )
-
   render () {
-    const { user } = this.props
+    const { user, match: { params: { id } } } = this.props
     const fullName = `${user.first_name} ${user.last_name}`
     const badges = [
       {
@@ -79,16 +52,10 @@ class PeopleProfile extends React.Component {
             <Grid.Column width={5}>
             </Grid.Column>
             <Grid.Column width={11}>
-              <Header as='h1'>
-                {fullName}
-              </Header>
-              <Header as='h3'>
-                {user.email}
-              </Header>
+              <Header as='h1'>{fullName}</Header>
+              <Header as='h3'>{user.email}</Header>
               <Divider />
-              <Header as='h4'>
-                Badges?
-              </Header>
+              <Header as='h4'>Badges?</Header>
               <Grid>
                 <Grid.Row>
                   <Grid.Column width={16}>
@@ -102,16 +69,17 @@ class PeopleProfile extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Header as='h2'>
-                Bio
-              </Header>
+              <Header as='h2'>Bio</Header>
               <Divider />
               {user.bio}
             </Grid.Column>
           </Grid.Row>
-          { this.userMessages() }
-          { this.userMessages() }
-          { this.userMessages() }
+          <Grid.Row>
+            <Grid.Column withd={16}>
+              <NoteForm userId={id}/>
+            </Grid.Column>
+          </Grid.Row>
+          <Notes userId={id}/>
         </Grid>
       </Segment>
     )

@@ -36,12 +36,8 @@ class Api::CoursesController < Api::ApiController
     @course.destroy
   end
 
-  # Style.joins(:style_features).where(style_features: { feature_id: [1, 2, 3] })
-  #grabs all users associated with a course id
-  #need to join tables here, to get users roles
   def users_by_course_id
-    users_ids = Course.find(params[:id]).enrollments.map { |u| u.user_id }
-    render json: User.find(users_ids)
+    render json: Course.associated_users(params[:id])
   end
 
 

@@ -81,26 +81,13 @@ ActiveRecord::Schema.define(version: 20180109002035) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.string "author"
-<<<<<<< HEAD
-=======
-    t.text "content"
-    t.boolean "visable"
-    t.bigint "user_id"
+    t.string "title", default: "", null: false
+    t.text "content", default: "", null: false
+    t.boolean "visible", default: false, null: false
+    t.integer "sender_id", null: false
+    t.integer "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notes_on_user_id"
-  end
-
-  create_table "options", force: :cascade do |t|
-    t.bigint "question_id"
->>>>>>> Add user image to profile page with dropzone and paperclip gem
-    t.text "content"
-    t.boolean "visable"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "quiz_questions", force: :cascade do |t|
@@ -194,13 +181,7 @@ ActiveRecord::Schema.define(version: 20180109002035) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
-  add_foreign_key "notes", "users"
-<<<<<<< HEAD
   add_foreign_key "quiz_questions", "quizzes"
-=======
-  add_foreign_key "options", "questions"
-  add_foreign_key "questions", "quizzes"
->>>>>>> Add user image to profile page with dropzone and paperclip gem
   add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"
   add_foreign_key "sub_sections", "sections"

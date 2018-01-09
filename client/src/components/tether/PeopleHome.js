@@ -42,6 +42,7 @@ class PeopleHome extends React.Component {
           </Table.Cell>
           <Table.Cell>{user.email}</Table.Cell>
           <Table.Cell>{user.nickname}</Table.Cell>
+          <Table.Cell>{user.role}</Table.Cell>
         </Table.Row>
       )
     });
@@ -77,7 +78,7 @@ class PeopleHome extends React.Component {
       { name: 'All Users', selector: 'all', icon: 'users' },
       { name: 'Add User', selector: 'add_user', icon: 'add user' },
       { name: 'Add Users', selector: 'add_users', icon: 'file excel outline' },
-    ].map( button => 
+    ].map( button =>
       <Button
         key={button.name}
         labelPosition="left"
@@ -95,6 +96,20 @@ class PeopleHome extends React.Component {
       <Segment className='container'>
         { this.buttons() }
         { this.view() }
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Name</Table.HeaderCell>
+              <Table.HeaderCell>Email</Table.HeaderCell>
+              <Table.HeaderCell>Nickname</Table.HeaderCell>
+              <Table.HeaderCell>Role</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            { this.state.loaded ? this.displayUsers() : null}
+          </Table.Body>
+        </Table>
       </Segment>
     );
   }

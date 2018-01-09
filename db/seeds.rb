@@ -39,6 +39,19 @@ course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
   )
 end
 
+
+@teacher = User.create(
+  email: 'dj@teacher.com',
+  password: 'password',
+  first_name: 'Dave',
+  last_name: 'Jungst',
+  bio: "Experienced Co-Founder with a demonstrated history of working in the computer software industry. Skilled in Web Development, Scalability, Agile Methodologies, QA, and Application Programming Interfaces. Strong engineering professional with a background in education and a passion for social impact projects. OSS maintainer / contributor. Educator and JavaScript enthusiast.",
+  image: "https://media-exp2.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKLAAAAJGZlMDA2Nzk5LWNjNzItNDk3Mi05ZDZhLTQ1M2RlNTRjM2MxYQ.jpg",
+  nickname: 'Crypto King',
+  invitation_accepted_at: Time.now
+)
+
+
 10.times do |i|
   @course = Course.create(
     course_type: course_type[i],
@@ -69,6 +82,58 @@ end
       end
     end
   end
+  Enrollment.create(
+    role: 'Teacher',
+    sub_role: 'JS Ninja',
+    user_id: @teacher.id,
+    course_id: @course.id
+  )
+  10.times do
+    student = User.create(
+      email: Faker::Internet.email,
+      password: 'password',
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      bio: "#{Faker::Demographic.race},
+      #{Faker::Demographic.educational_attainment},
+      #{Faker::Demographic.marital_status},
+      #{Faker::Demographic.sex},
+      #{Faker::Demographic.height}",
+      image: "https://robohash.org/#{Faker::Number.number(3)}",
+      nickname: Faker::Pokemon.name,
+      invitation_accepted_at: Time.now
+    )
+    Enrollment.create(
+      role: 'Student',
+      sub_role: Faker::Company.bs,
+      user_id: student.id,
+      course_id: @course.id
+    )
+  end
+  3.times do
+    ta = User.create(
+      email: Faker::Internet.email,
+      password: 'password',
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      bio: "#{Faker::Demographic.race},
+      #{Faker::Demographic.educational_attainment},
+      #{Faker::Demographic.marital_status},
+      #{Faker::Demographic.sex},
+      #{Faker::Demographic.height}",
+
+      nickname: Faker::Pokemon.name,
+      invitation_accepted_at: Time.now,
+      image: "https://robohash.org/#{Faker::Number.number(1)}?set=set4"
+
+    )
+    Enrollment.create(
+      role: 'TA',
+      sub_role: Faker::Company.bs,
+      user_id: ta.id,
+      course_id: @course.id
+    )
+  end
 end
 
 puts "5 assignments seeded"
@@ -76,6 +141,10 @@ puts "10 courses seeded"
 puts "11 sections seeded"
 puts "5 sub_sections seeded"
 puts "3 lectures seeded"
+
+puts "10 students seeded with enrollment, plus faker email and password password. For Each Course"
+puts "Teacher seeded with enrollment to every course. password: password"
+puts "3 ta's seeded with enrollment, plus faker email and password password. For Each Course"
 
 1.times do
   admin = User.create(
@@ -85,7 +154,8 @@ puts "3 lectures seeded"
     password: 'password',
     bio: "This is a really good bio don't ya know...",
     nickname: 'Spencer is BOSS',
-    is_admin: true
+    is_admin: true,
+    image: "https://robohash.org/#{Faker::Number.number(1)}?set=set2"
   )
 end
 
@@ -101,7 +171,7 @@ end
   )
   3.times do |i|
     Enrollment.create(
-      role: 'student',
+      role: 'Student',
       sub_role: Faker::Company.bs,
       user_id: student.id,
       course_id: "#{i + 1}".to_i
@@ -112,54 +182,8 @@ end
 puts "Test Admin seeded email: admin@admin.com and password: password"
 puts "Test Student seeded email: test@test.com and password: password"
 
-25.times do
-  student = User.create(
-    email: Faker::Internet.email,
-    password: 'password',
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    bio: "#{Faker::Demographic.race},
-    #{Faker::Demographic.educational_attainment},
-    #{Faker::Demographic.marital_status},
-    #{Faker::Demographic.sex},
-    #{Faker::Demographic.height}",
-    image: "https://robohash.org/#{Faker::Number.number(3)}",
-    nickname: Faker::Pokemon.name,
-    invitation_accepted_at: Time.now
-  )
-    Enrollment.create(
-      role: 'student',
-      sub_role: Faker::Company.bs,
-      user_id: student.id,
-      course_id: @course.id
-    )
-end
 
-puts "25 students seeded with enrollment, plus faker email and password password."
 
-5.times do
-  ta = User.create(
-    email: Faker::Internet.email,
-    password: 'password',
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    bio: "#{Faker::Demographic.race},
-    #{Faker::Demographic.educational_attainment},
-    #{Faker::Demographic.marital_status},
-    #{Faker::Demographic.sex},
-    #{Faker::Demographic.height}",
 
-    nickname: Faker::Pokemon.name,
-    invitation_accepted_at: Time.now
-  )
-    Enrollment.create(
-      role: 'TA',
-      sub_role: Faker::Company.bs,
-      user_id: ta.id,
-      course_id: @course.id
-    )
-end
-
-puts "5 ta's seeded with enrollment, plus faker email and password password."
 
 # SOME NOTES TEEHEE
