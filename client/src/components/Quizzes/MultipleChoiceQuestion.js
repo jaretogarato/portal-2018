@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+import MultipleChoiceOption from './MultipleChoiceOption'
 import { Form, Select, Segment, Header, Button } from 'semantic-ui-react'
 
 const options = [
@@ -11,6 +13,12 @@ const options = [
   { key: 8, text: 8, value: 8 }
 ]
 
+const LabelGroup = styled(Segment) `
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+`
+
 class MultipleChoiceQuestion extends React.Component {
   state = { question: '', optionCount: 0, options: {} }
 
@@ -18,18 +26,9 @@ class MultipleChoiceQuestion extends React.Component {
     this.setState({ [name]: value })
   }
 
-  handleOptionChange = (_, { thing, name, value } ) => {
-    let correct = false
-    if (this.state.options[thing]) {
-      correct = this.state.options[thing][name]
-    }
-    this.setState({
-      options:
-      {
-        ...this.state.options,
-        [thing]: { [name]: value, correct }
-      }
-    })
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { question, options } = this.state
   }
 
   handleCheck = (_, { thing, name } ) => {
@@ -50,21 +49,10 @@ class MultipleChoiceQuestion extends React.Component {
 
   optionGenerator = () => {
     const { optionCount } = this.state
-    let optionForms = []
-    for (let i = 0; i < optionCount; i++ ) {
-      optionForms.push(
-        <Form.Group key={i}>
-          <Form.Input
-            placeholder='Option Text'
-            name='text'
-            thing={i}
-            onChange={this.handleOptionChange}
-          />
-          <Form.Checkbox thing={i} name='correct' onChange={this.handleCheck}/>
-        </Form.Group>
-      )
-    }
-    return optionForms.map( o => { return o } )
+    const countArray = new Array(optionCount)
+    return Array.from(countArray).map( (_, i) => {
+      return <MultipleChoiceOption key={i} />
+    })
   }
 
   render() {
@@ -74,9 +62,9 @@ class MultipleChoiceQuestion extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <Header as='h3'>Question Text</Header>
           <Form.TextArea
-            onChange={this.handleQuestion}
             name='question'
             value={question}
+            onChange={this.handleChange}
             required
           />
           <Form.Field
@@ -88,6 +76,12 @@ class MultipleChoiceQuestion extends React.Component {
             placeholder='Number of Options'
             required
           />
+          { optionCount > 0 &&
+            <LabelGroup basic>
+              <label>Option Text</label>
+              <label>Correct</label>
+            </LabelGroup>
+          }
           {
             optionCount > 0 && this.optionGenerator()
           }

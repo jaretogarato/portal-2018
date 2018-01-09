@@ -2,21 +2,22 @@ import React, {Component} from 'react';
 import { Segment, Form, Header, Button, Icon, Select } from 'semantic-ui-react';
 import EssayQuestion from './EssayQuestion'
 import MultipleAnswer from './MultipleAnswer'
+import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 import TrueFalse from './TrueFalse'
 import axios from 'axios';
 
 const options = [
-  { key: '1', text: 'Essay/Code', value: '1' },
-  { key: '2', text: 'Multiple Choice', value: '2' },
-  { key: '3', text: 'Multiple Answer', value: '3' },
-  { key: '4', text: 'True/False', value: '4' },
+  { key: '1', text: 'Essay/Code', value: 'Essay/Code' },
+  { key: '2', text: 'Multiple Choice', value: 'Multiple Choice' },
+  { key: '3', text: 'Multiple Answer', value: 'Multiple Answer' },
+  { key: '4', text: 'True/False', value: 'True/False' },
 ]
 
 
 class CreateQuestions extends Component {
 state = { showQuestion: false, activeType: '', question: '', options: [] }
 
-  
+
   handleSubmit = (e) => {
     const id = this.props.quizId
     e.preventDefault();
@@ -31,25 +32,22 @@ state = { showQuestion: false, activeType: '', question: '', options: [] }
   });
   }
 
-  handleQuestion = (e, {name, value}) => {
+  handleChange = (_, { name, value }) => {
     this.setState({ [name]: value })
-  }
-
-  handleChange = (e) => {
-    this.setState({ activeType: e.target.innerText })
   }
 
   selectQuestion = () => {
     return(
       <Form.Group>
       <Form.Field
-      control={Select}
-      label='Question Types'
-      options={ options }
-      onChange={ this.handleChange }
-      placeholder='Question Types'
-      required
-      width={2}
+        name='activeType'
+        control={Select}
+        label='Question Types'
+        options={ options }
+        onChange={ this.handleChange }
+        placeholder='Question Types'
+        required
+        width={2}
       />
     </Form.Group>
     )
@@ -61,7 +59,7 @@ state = { showQuestion: false, activeType: '', question: '', options: [] }
       case 'Essay/Code':
         return <EssayQuestion />
       case 'Multiple Choice':
-        return this.multipleChoice();
+        return <MultipleChoiceQuestion />;
       case 'Multiple Answer':
         return <MultipleAnswer />
       case 'True/False':
@@ -86,7 +84,8 @@ state = { showQuestion: false, activeType: '', question: '', options: [] }
         New Question
       </Button>
       { showQuestion && this.selectQuestion() }
-      { this.questionType() }
+      //{ this.questionType() }
+      <MultipleChoiceQuestion />
       </Segment>
     )
   }
