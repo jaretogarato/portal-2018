@@ -1,5 +1,5 @@
 import React from 'react';
-import { setActiveCourse, clearActiveCourse } from '../actions/course';
+import { setActiveCourse } from '../actions/course';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { Container, Grid, Segment } from 'semantic-ui-react';

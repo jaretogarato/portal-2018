@@ -27,7 +27,7 @@ class DatePicker extends React.Component {
             <Grid.Column>
               <Header as='h1'>
                 Full-Time Summer 2017
-                //TODO: Get current course name somehow
+                {/*TODO: Get current course name somehow */}
               </Header>
             </Grid.Column>
             <Grid.Column>

@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import {
   Button,
-  Header,
   Icon,
   Image,
-  Modal,
   Table,
   Segment
 } from 'semantic-ui-react';

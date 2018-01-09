@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Header, Container, Grid, Button, Segment, Form } from 'semantic-ui-react';
+import { Header, Button, Segment, Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'; 
 import axios from 'axios';
 
@@ -30,7 +30,7 @@ class SingleQuiz extends Component{
   }
 
 render(){ 
-  const { id, deleteQuiz } = this.state.quiz
+  const { id } = this.state.quiz
   return(
     <Segment basic>
        <Header textAlign='center'> {this.state.quiz.title}  </Header> 

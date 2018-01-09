@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Icon, Grid, Table, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Container, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 class Assignment extends Component {

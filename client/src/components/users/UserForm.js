@@ -63,7 +63,7 @@ class UserForm extends React.Component {
   }
 
   render() {
-    const { email, firstName, lastName, role } = this.state;
+    const { email, firstName, lastName } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Segment>{this.setImage}</Segment>

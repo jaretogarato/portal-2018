@@ -1,5 +1,4 @@
 import React from 'react';
-import Attendance from './attendance/Attendance';
 import AuthRoute from './AuthRoute';
 import Courses from './course/Courses';
 import Course from './Course';
@@ -18,9 +17,6 @@ import UserProfile from './profile/UserProfile';
 import UserModal from './users/UserModal';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
-import Assignments from './Rift/assignments/Assignments';
-import Assignment from './Rift/assignments/Assignment';
-import CreateAssignment from './Rift/assignments/CreateAssignment';
 
 class App extends React.Component {
   render() {

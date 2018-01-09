@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { getSections } from '../../actions/sections';
 import { setSection } from '../../actions/section';
-import { setSubSection } from '../../actions/subSection';
 import { getSubSections } from '../../actions/subSections';
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';

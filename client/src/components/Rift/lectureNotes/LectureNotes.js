@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { List, Container, Header, Grid, Button, Icon, Table } from 'semantic-ui-react';
+import { Header, Grid, Button, Icon, Table } from 'semantic-ui-react';
 import axios from 'axios';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 class LectureNotes extends Component {
