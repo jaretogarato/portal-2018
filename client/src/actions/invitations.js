@@ -16,7 +16,7 @@ export const sendInvitation = (user, enrollment) => {
             dispatch(setHeaders(res.headers));
           })
           .catch( err => {
-            dispatch(setFlash(`Failed to add enrollment data`, 'red'));
+            dispatch(setFlash(err.response.data.errors, 'red'));
             dispatch(setHeaders(err.headers));
           })
       })

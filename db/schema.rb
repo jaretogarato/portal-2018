@@ -17,10 +17,6 @@ ActiveRecord::Schema.define(version: 20180109002035) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
-    t.string "submission_type"
-    t.integer "points"
-    t.string "due_date"
-    t.boolean "published"
     t.text "content"
     t.bigint "sub_section_id"
     t.datetime "created_at", null: false
@@ -81,13 +77,30 @@ ActiveRecord::Schema.define(version: 20180109002035) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.text "content", default: "", null: false
-    t.boolean "visible", default: false, null: false
-    t.integer "sender_id", null: false
-    t.integer "recipient_id", null: false
+    t.string "author"
+    t.text "content"
+    t.boolean "visable"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.bigint "question_id"
+    t.text "content"
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
   create_table "quiz_questions", force: :cascade do |t|
@@ -106,7 +119,7 @@ ActiveRecord::Schema.define(version: 20180109002035) do
     t.bigint "sub_section_id"
     t.string "title"
     t.text "content"
-    t.string "due_date"
+    t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"
@@ -191,10 +204,9 @@ ActiveRecord::Schema.define(version: 20180109002035) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
-<<<<<<< HEAD
-=======
   add_foreign_key "notes", "users"
->>>>>>> add group model and controller, active status to sections WIP
+  add_foreign_key "options", "questions"
+  add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"

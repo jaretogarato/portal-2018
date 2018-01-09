@@ -6,7 +6,7 @@ class Api::EnrollmentsController < Api::ApiController
     if enrollment.save
       render json: enrollment
     else
-      render json: { errors: enrollment.errors.full_messages }, status: 422
+      render json: { errors: enrollment.errors.full_messages.join(', ') }, status: 422
     end
   end
 

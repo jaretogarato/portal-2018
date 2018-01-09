@@ -7,4 +7,6 @@ class Enrollment < ApplicationRecord
       message: "%{value} is not a valid role"
   }
 
+  validates_uniqueness_of :user_id, scope: :course_id
+
 end

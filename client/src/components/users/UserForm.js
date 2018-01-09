@@ -5,7 +5,8 @@ import { withRouter } from 'react-router-dom';
 import { Button, Form, Select } from 'semantic-ui-react';
 
 class UserForm extends React.Component {
-  state = { firstName: '', lastName: '', email: '', role: 'Student', image: '' };
+  defaultState = { firstName: '', lastName: '', email: '', role: '', image: '' }
+  state = {...this.defaultState};
 
   handleSubmit = () => {
     const { match: { params }, dispatch } = this.props;
@@ -19,6 +20,7 @@ class UserForm extends React.Component {
       },
       { role, course_id: courseId }
     ));
+    this.setState({...this.defaultState})
   }
 
   handleChange = (e) => {

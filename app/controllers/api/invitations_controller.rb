@@ -1,7 +1,7 @@
 class Api::InvitationsController < Api::ApiController
 
   def invite
-    user = User.invite!(user_params)
+    user = User.find_by(email: params[:user][:email]) || User.invite!(user_params)
     render json: user, status: 200
   end
 
