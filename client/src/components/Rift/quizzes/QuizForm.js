@@ -3,22 +3,16 @@ import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
 import { addQuiz } from '../../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import CreateQuestions from './CreateQuestions'
 
-const submissionOptions = [
-  { key: '1', text: 'No Submission', value: '1' },
-  { key: '2', text: 'Online', value: '2' },
-  { key: '3', text: 'On Paper', value: '3' },
-  { key: '4', text: 'External', value: '4' },
-]
 
 class QuizForm extends Component {
-state = { title: '', content: '', due_date:''}
+state = { title: '', content: '', due_date:'', points: '' }
 
 handleSubmit = (e) => {
   const { history, dispatch } = this.props
+  const { due_date, title, content, points } = this.state
   e.preventDefault();
-  let quiz = { due_date: this.state.due_date, title: this.state.title, content: this.state.content}
+  let quiz = { due_date: due_date, title: title, content: content, points: points }
   dispatch(addQuiz(quiz, history))
 }
 
@@ -26,7 +20,7 @@ handleSubmit = (e) => {
 
  
   render(){
-    const { title, content, due_date } = this.state
+    const { title, content, due_date, points } = this.state
     return(
       <Container> 
         <Header as="h3" textAlign='center' style={styles.pageTitle}>Create Quiz</Header>
@@ -42,13 +36,7 @@ handleSubmit = (e) => {
                 required
                 onChange={this.handleChange}>
               </Form.Input>
-              <Form.Select 
-                label='Submission Options' 
-                options={ submissionOptions } 
-                placeholder='Submission Options' 
-                required 
-                width={2} 
-              />
+      
             </Form.Group>
             <Form.Group widths='equal'>
               <Form.Input 
@@ -63,8 +51,11 @@ handleSubmit = (e) => {
               <Form.Input 
                 label='Points'
                 placeholder='Points' 
+                name='points'
+                value={points}
                 type='number' 
                 required 
+                onChange={this.handleChange}
                 width={2} />
             </Form.Group>
             <Form.TextArea 
@@ -76,14 +67,13 @@ handleSubmit = (e) => {
               required 
               onChange={this.handleChange}
               />
-             <Divider />
-              <CreateQuestions /> 
+            <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-              <Button type='submit'> Create </Button> 
-            <Link to={'./quizzes'} > 
-              <Button> Cancel </Button> 
+              <Button basic color='green' type='submit'> Create </Button> 
+            <Link to={`./quizzes`} > 
+              <Button basic color='yellow'> Cancel </Button> 
             </Link>
             </Form.Group>
           </Form> 

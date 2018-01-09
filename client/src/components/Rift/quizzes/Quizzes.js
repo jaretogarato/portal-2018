@@ -45,8 +45,12 @@ class Quizzes extends Component {
             </Grid.Column>
             <Grid.Column width={2}>
             <Link to={`/courses/${id}/quizform`}>
-              <Button icon labelPosition='left'>
-              <Icon name='add' />
+              <Button 
+                basic
+                color='blue' 
+                icon 
+                labelPosition='left'>
+                <Icon name='add' />
               Quiz
               </Button>
             </Link>

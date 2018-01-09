@@ -7,7 +7,7 @@ export const addQuiz = (quiz, history) => {
     axios.post('/api/quizzes', { quiz })
       .then( res => {
         dispatch({ type: 'ADD_QUIZ', quizzes: res.data, headers: res.headers })
-        history.push('./quizzes')
+        history.push(`./quizzes/${res.data.id}`)
       })
       .catch( err => {
         dispatch(setHeaders(err.headers));
