@@ -96,20 +96,6 @@ class PeopleHome extends React.Component {
       <Segment className='container'>
         { this.buttons() }
         { this.view() }
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Email</Table.HeaderCell>
-              <Table.HeaderCell>Nickname</Table.HeaderCell>
-              <Table.HeaderCell>Role</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            { this.state.loaded ? this.displayUsers() : null}
-          </Table.Body>
-        </Table>
       </Segment>
     );
   }

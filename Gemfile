@@ -9,6 +9,7 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'devise_invitable'
 gem 'cloudinary'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
