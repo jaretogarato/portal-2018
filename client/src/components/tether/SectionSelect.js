@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
-import { getSections } from '../../actions/sections';
+import { getSections, deleteSection } from '../../actions/sections';
 import { setSection } from '../../actions/section';
 import { getSubSections } from '../../actions/subSections';
 import SectionForm from '../SectionForm'
-import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment } from 'semantic-ui-react';
+import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class SectionSelect extends React.Component {
@@ -90,13 +90,23 @@ class SectionSelect extends React.Component {
                 <Menu.Item
                   key={section.id}
                   id={section.id}
-                  name={section.title}
                   active={this.props.sectionId === section.id}
                   onClick={e => this.handleClick(e)}>
-                  </Menu.Item>
+                  {section.title}
+                  { this.props.user.is_admin && 
+                    <Button 
+                      floated='right' 
+                      onClick={() => this.props.dispatch(deleteSection(section))} 
+                      size='mini' 
+                      color='red'
+                    >
+                      X
+                    </Button>
+                  }
+                </Menu.Item>
                 )
               }
-              { this.props.user.is_admin ? <SectionForm /> : "" }
+              { this.props.user.is_admin && <SectionForm /> }
             </Menu>
           </Grid.Column>
           <Grid.Column width={13}>
