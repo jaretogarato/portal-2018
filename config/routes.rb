@@ -4,6 +4,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
   namespace :api do
     resources :users, only: [:update, :show]
     resources :users, only: :update
+    resources :lectures
     resources :quizzes do
       resources :quiz_questions, except: [:index, :show]
     end
@@ -17,10 +18,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :sub_sections
       resources :groups
     end
-
-    resources :sub_sections do
-      resources :lectures
-    end
+    
 
     resources :assignments
     resources :enrollments, except: [:index, :show]

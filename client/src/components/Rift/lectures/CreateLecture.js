@@ -8,23 +8,24 @@ const submissionOptions = [
   { key: '1', text: 'PLACEHOLDER', value: '1' },
 ]
 
-class LectureForm extends Component {
-state = { title: '', content: '' }
+class CreateLecture extends Component {
+  state = { title: '', content: '' }
 
-handleSubmit = (e) => {
-  const { history, dispatch } = this.props
-  e.preventDefault();
-  let lecture = { title: this.state.title, content: this.state.content}
-  dispatch(addLecture(lecture, history))
-}
+  handleSubmit = (e) => {
+    const { history, dispatch } = this.props
+    const { title, content } = this.state
+    e.preventDefault();
+    let lecture = { title: this.state.title, content: this.state.content}
+    dispatch(addLecture(lecture, history))
+  }
 
-handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   render(){
     const { title, content } = this.state
     return(
-      <Container> 
-        <Header as="h1" textAlign='center' style={styles.pageTitle}>Create Lecture</Header>
+      <Segment basic>
+        <Header as='h1' textAlign='center' style={styles.pageTitle}>Create Lecture</Header>
         <Segment> 
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
@@ -54,18 +55,18 @@ handleChange = (e, { name, value }) => this.setState({ [name]: value })
               placeholder='Rift Text Editor Placeholder' 
               required 
               onChange={this.handleChange}
-              />
+            />
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-            <Button type='submit'> Create </Button> 
-            <Link to={'./lecturenotes'} > 
-            <Button> Cancel </Button> 
-            </Link>
+              <Button basic color='green' type='submit'>Create</Button> 
+              <Link to={'./lectures'}>
+                <Button onClick={this.props.history.goBack}>Cancel</Button> 
+              </Link>
             </Form.Group>
           </Form> 
         </Segment>
-      </Container> 
+      </Segment> 
     )
   }
 }
@@ -76,6 +77,8 @@ const styles = {
   },
   pageTitle: {
     paddingTop: '2%',
+    textDecoration: 'underline',
+    fontWeight: 'bolder',
   },
   textArea: {
     minHeight: '150px',
@@ -83,4 +86,4 @@ const styles = {
 }
 
 
-export default connect()(LectureForm);
+export default connect()(CreateLecture);

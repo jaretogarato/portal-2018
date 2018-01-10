@@ -9,11 +9,13 @@ import SectionSelect from './tether/SectionSelect'
 import CourseHome from './course/CourseHome';
 import CourseSettings from './tether/CourseSettings';
 import PeopleProfile from './tether/PeopleProfile';
-import Assignment from './assignments/Assignment';
-import Quizzes from './quizzes/Quizzes';
-import QuizForm from './quizzes/QuizForm';
-import SingleQuiz from './quizzes/SingleQuiz';
-import LectureNotes from './Rift/lectureNotes/LectureNotes';
+import Assignment from './Rift/assignments/Assignment';
+import Quizzes from './Rift/quizzes/Quizzes';
+import QuizForm from './Rift/quizzes/QuizForm';
+import SingleQuiz from './Rift/quizzes/SingleQuiz';
+import Lectures from './Rift/lectures/Lectures';
+import Lecture from './Rift/lectures/Lecture';
+import CreateLecture from './Rift/lectures/CreateLecture';
 import Wiki from './Rift/wiki/Wiki';
 import Attendance from './attendance/Attendance';
 import Assignments from './assignments/Assignments';
@@ -53,7 +55,9 @@ class Course extends React.Component {
                   <Route exact path='/courses/:id/quizzes' component={Quizzes} />
                   <Route exact path='/courses/:id/quizform' component={QuizForm} />
                   <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
-                  <Route exact path='/courses/:id/lecture-Notes' component={LectureNotes} />
+                  <Route exact path='/courses/:id/lectures' component={Lectures} />
+                  <Route exact path='/courses/:id/lectures/create' component={CreateLecture} />                  
+                  <Route exact path='/courses/:id/lectures/:id' component={Lecture} />
                   <Route exact path='/courses/:id/assignment' component={Assignment} />
                   <Route exact path='/courses/:id/assignments' component={Assignments} />
                   <Route exact path='/courses/:id/assignments/create' component={CreateAssignment} />

@@ -71,7 +71,7 @@ handleSubmit = (e) => {
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-              <Button basic color='green' type='submit'> Create </Button> 
+              <Button basic color='green' type='submit'>Create</Button> 
             <Link to={`./quizzes`} > 
               <Button basic color='yellow'> Cancel </Button> 
             </Link>

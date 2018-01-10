@@ -1,31 +1,43 @@
 class Api::LecturesController < Api::ApiController
-  before_action :set_sub_section, only: [:index]
+  before_action :set_lecture, only: [ :destroy, :update, :show ]
 
   def index
-    lectures = @sub_section.lectures.all.order(id: :asc)
+    render json: Lecture.all # Set to descend
+  end
 
-    lectures.map do |lecture|
-      { id: lecture.id, title: lecture.title, content: lecture.content}
+  def show
+    render json: @lecture
+  end
+
+  def update
+    if @lecture.update(quiz_params)
+      render json: @lecture
+    else
+      render json: { errors: @lecture.errors.full_messages }, status: 422
     end
-
-    render json: lectures
   end
 
-  def all_lectures 
-    render json: Lecture.all
+
+  def create
+    lecture = Lecture.new(lecture_params)
+    if lecture.save
+      render json: lecture
+    else
+      render json: { errors: lecture.errors.full_messages }, status: 422
+    end
   end
+
+  def destroy
+    @lecture.destroy
+  end
+
 
   private
     def lecture_params
-      params.require(:lectures).permit(:title, :sub_section_id, :content)
+      params.require(:lecture).permit(:title, :content)
     end
 
-    def set_lectures
-      @lectures = @sub_section.lectures.find(params[:id])
+    def set_lecture
+      @lecture = Lecture.find(params[:id])
     end
-
-    def set_sub_section
-      @sub_section = SubSection.find(params[:sub_section_id])
-    end
-
 end

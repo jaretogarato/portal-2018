@@ -71,14 +71,18 @@ end
         section_id: section.id,
         item_title: Faker::Book.title,
       )
-      3.times do |l|
+      1.times do |l|
         lecture_scientist = Faker::Science.scientist
         lecture_moon = Faker::Space.moon
         lecture = Lecture.create(
-          title: "Lecture #{l + 1}: #{sub_section_prog_lang}--the #{lecture_scientist} of #{lecture_moon}",
-          content: lecture_seed.sample,
-          sub_section_id: sub_section.id
+          title: "Lecture #{l + 1}: + #{Faker::Lorem.sentence}",
+          content: Faker::Lorem.paragraph(2)
         )
+        # lecture = Lecture.create(
+        #   title: "Lecture #{l + 1}: #{sub_section_prog_lang}--the #{lecture_scientist} of #{lecture_moon}",
+        #   content: lecture_seed.sample,
+        #   sub_section_id: sub_section.id
+        # )
       end
     end
   end
