@@ -1,6 +1,6 @@
 class Api::SubSectionsController < Api::ApiController
   before_action :set_sub_section, only: [:show, :update, :destroy]
-  before_action :set_section, only: [:index, :create]
+  before_action :set_section
 
   def index
     sub_sections = @section.sub_sections.all.order(id: :asc)
@@ -35,11 +35,11 @@ class Api::SubSectionsController < Api::ApiController
 
   private
     def sub_section_params
-      params.require(:sub_sections).permit(:title)
+      params.require(:sub_section).permit(:title)
     end
 
     def set_sub_section
-      @sub_section = @section.sub_sections.find(params[:id])
+      @sub_section = SubSection.find(params[:id])
     end
 
     def set_section

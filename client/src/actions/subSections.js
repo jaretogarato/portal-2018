@@ -39,10 +39,10 @@ export const updateSubSection = (subSection) => {
   }
 }
 
-export const deleteSubSection = (subSection) => {
+export const deleteSubSection = (sectionId) => {
   return(dispatch) => {
-    axios.delete(`/api/sub-sections/${subSection.id}`)
-      .then( res => dispatch({ type: 'DELETE_SUB_SECTION', subSection, headers: res.headers }))
+    axios.delete(`/api/sections/${sectionId.section_id}/sub_sections/${sectionId.id}`)
+      .then( res => dispatch({ type: 'DELETE_SUB_SECTION', sectionId, headers: res.headers }))
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Delete Sub-Sections', 'red'));

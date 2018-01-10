@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { getSections, deleteSection } from '../../actions/sections';
 import { setSection } from '../../actions/section';
-import { getSubSections } from '../../actions/subSections';
+import { getSubSections, deleteSubSection } from '../../actions/subSections';
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
@@ -59,9 +59,21 @@ class SectionSelect extends React.Component {
 
   checkActiveIndex = (index) => this.state.activeIndexes.includes(index)
 
+  deleteSubClick = (ss) => {
+    if( window.confirm("Are You Sure?"))
+      this.props.dispatch(deleteSubSection(ss))
+  }
+
   displaySubSections = () => {
     return this.props.subSections.map( ss => (
       <Accordion key={ss.id} fluid styled>
+        <Button 
+          floated='right' 
+          size='mini' 
+          color='red'
+          content='X'
+          onClick={ () => this.deleteSubClick(ss)}
+        />
         <Accordion.Title 
           active={this.state.activeIndexes === ss.id} 
           index={ss.id} 
@@ -115,7 +127,7 @@ class SectionSelect extends React.Component {
                         size='mini' 
                         color='red'
                         content='X'
-                        />
+                      />
                       <SectionEditForm />
                     </Button.Group>
                   }
