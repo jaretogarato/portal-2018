@@ -1,5 +1,5 @@
 import React from 'react';
-import Editor from './Editor';
+import EditorOld from './EditorOld';
 import {
   Button,
   Container,
@@ -9,7 +9,7 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-const LectureContent = () => (
+const LectureContentOld = () => (
   <Container>
     <Segment basic>
       <Grid columns={2}>
@@ -26,8 +26,8 @@ const LectureContent = () => (
       </Grid>
     </Segment>
     <Divider />
-    <Editor placeholder='Write something...' />
+    <EditorOld placeholder='Write something...' />
   </Container>
 )
 
-export default LectureContent;
+export default LectureContentOld;

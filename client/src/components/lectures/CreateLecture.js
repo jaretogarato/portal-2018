@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Header, Segment, Divider } from 'semantic-ui-react';
-import { addLecture } from '../../../actions/lectures';
+import { addLecture } from '../../actions/lectures';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 

@@ -8,7 +8,7 @@ import {
 } from 'semantic-ui-react';
 import 'react-quill/dist/quill.snow.css';
 
-class Editor extends React.Component {
+class EditorOld extends React.Component {
   state = { text: '' };
 
   handleChange = (value) => {
@@ -59,4 +59,4 @@ Editor.formats = [
   'link', 'image', 'video'
 ]
 
-export default Editor;
+export default EditorOld;
