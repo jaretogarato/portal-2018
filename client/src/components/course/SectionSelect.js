@@ -108,13 +108,16 @@ class SectionSelect extends React.Component {
                 >
                   {section.title}
                   { this.props.user.is_admin && 
-                    <Button 
-                      floated='right' 
-                      onClick={() => this.deleteButtonClick(section) } 
-                      size='mini' 
-                      color='red'
-                      content='X'
-                    />
+                    <Button.Group>
+                      <Button 
+                        floated='right' 
+                        onClick={() => this.deleteButtonClick(section) } 
+                        size='mini' 
+                        color='red'
+                        content='X'
+                        />
+                      <SectionEditForm />
+                    </Button.Group>
                   }
                 </Menu.Item>
                 )
