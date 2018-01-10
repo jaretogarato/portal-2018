@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Segment, Form, Header, Button, Icon, Select } from 'semantic-ui-react';
 import EssayQuestion from './EssayQuestion'
-import MultipleAnswer from './MultipleAnswer'
 import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 import TrueFalse from './TrueFalse'
 import axios from 'axios';
@@ -57,10 +56,9 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     switch(activeType) {
       case 'Essay/Code':
         return <EssayQuestion quizId={this.props.quizId} hideForm={this.hideForm}/>
+      case 'Multiple Answer':
       case 'Multiple Choice':
         return <MultipleChoiceQuestion hideForm={this.hideForm}/>
-      case 'Multiple Answer':
-        return <MultipleAnswer hideForm={this.hideForm}/>
       case 'True/False':
         return <TrueFalse hideForm={this.hideForm}/>;
       default:

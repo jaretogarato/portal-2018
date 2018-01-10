@@ -29,8 +29,6 @@ class MultipleChoiceQuestion extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { question } = this.state
-    const { options } = this.props
   }
 
   handleCheck = (_, { thing, name } ) => {
@@ -98,4 +96,4 @@ const mapStateToProps = (state) => {
   return { options: state.quizOptions }
 }
 
-export default MultipleChoiceQuestion
+export default connect(mapStateToProps)(MultipleChoiceQuestion)

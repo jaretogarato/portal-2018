@@ -17,7 +17,6 @@ class EssayQuestion extends Component {
 
   handleSubmit = (e) => {
     const { quizId, dispatch, hideForm } = this.props
-    debugger
     e.preventDefault();
     const { question } = this.state
     const quiz_question = { question, multiple_choice: false }
