@@ -6,6 +6,7 @@ import { getSections, deleteSection } from '../../actions/sections';
 import { setSection } from '../../actions/section';
 import { getSubSections } from '../../actions/subSections';
 import SectionForm from '../SectionForm'
+import SectionEditForm from '../SectionEditForm'
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 

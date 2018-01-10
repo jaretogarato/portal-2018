@@ -1,5 +1,5 @@
 class Api::SectionsController < Api::ApiController
-  before_action :set_section, only: [ :destroy, :udpate, :show ]
+  before_action :set_section, only: [ :destroy, :update, :show ]
   # need this to show for only current user or school, how ?
 
   def index
@@ -25,7 +25,6 @@ class Api::SectionsController < Api::ApiController
   def create
     course = Course.find(params[:course_id])
     section = course.sections.new(section_params)
-
     if section.save
       render json: section
     else
@@ -39,7 +38,7 @@ class Api::SectionsController < Api::ApiController
 
   private
     def section_params
-      params.require(:title, :active, :section_id, :course_id)
+      params.require(:section).permit(:title)
     end
 
     def set_section

@@ -26,9 +26,9 @@ export const addSection = (title, courseId) => {
   }
 }
 
-export const updateSection = (section) => {
+export const updateSection = (sectionId, section) => {
   return(dispatch) => {
-    axios.put(`/api/sections/${section.id}`, { section })
+    axios.put(`/api/sections/${sectionId}`, { section })
       .then( res => dispatch({ type: 'UPDATE_SECTION', section: res.data, headers: res.headers }))
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });

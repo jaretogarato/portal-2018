@@ -1,23 +1,25 @@
 import React from 'react';
-import { addSection } from '../actions/sections.js';
+import { updateSection } from '../actions/sections';
 import { connect } from 'react-redux';
 import { Button, Form, Grid, Menu, Segment } from 'semantic-ui-react';
 
-class SectionForm extends React.Component {
-  state = { title: '', showForm: false };
+
+class SectionEditForm extends React.Component {
+  state = { showForm: false };
 
   handleSubmit = (e) => {
-    const { title } = this.state;
-    const { course, dispatch } = this.props
-    dispatch(addSection(title, course.id))
+    const { sectionId, dispatch, sections } = this.props
+    const section = sections.find((s) => s.id === sectionId)
+    console.log(section)
+    dispatch(updateSection(section.id, {title: this.state.title }))
     this.setState({ title: '', showForm: false })
   }
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });  
 
   render() {
-    const { title } = this.state    
-    { return this.state.showForm ?     
+    const { title } = this.state
+    { return this.state.showForm ?
       <Grid>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Segment raised>
@@ -25,32 +27,30 @@ class SectionForm extends React.Component {
               <Form.Field>
                 <Form.Input
                   name='title'
-                  placeholder='Name'
                   required
-                  id='section'
                   value={title}
                   onChange={this.handleChange}
                   autoFocus
                 />
               </Form.Field>
-              <Button.Group fluid>
+              <Button.Group>
                 <Button 
                   color='red' 
-                  onClick={() => { this.setState({ title: '', showForm: false }) }} 
+                  onClick={() => { this.setState({ showForm: false }) }} 
                   content="X"
                 />
-                <Button primary content="Add"/>
+                <Button primary fluid content="Update" />
               </Button.Group>
             </Form>
           </Segment>
         </Grid.Column>
-      </Grid> 
-    :     
+      </Grid>
+    :
       <Menu.Item>
         <Button
           fluid
-          onClick={() => { this.setState({ showForm: true }) }} 
-          content="Add Section"
+          onClick={() => { this.setState({ showForm: true }) }}
+          content='Edit'
         />
       </Menu.Item>
     }
@@ -58,7 +58,10 @@ class SectionForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { sections: state.sections, course: state.course }
+  return { 
+    sections: state.sections,
+    sectionId: state.sectionId,
+  }
 }
 
-export default connect(mapStateToProps)(SectionForm);
+export default connect(mapStateToProps)(SectionEditForm);
