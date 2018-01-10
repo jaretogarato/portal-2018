@@ -19,7 +19,7 @@ class Section extends React.Component {
   displayItems = (content) => {
     return content.map( cc => (
       <Link key={cc.id} to={`/courses/${this.props.course.id}/section/${cc.id}`}>
-        <Segment>{cc.id}</Segment>
+        <Segment>{cc.title}</Segment>
       </Link>
     ))
   }
@@ -46,7 +46,10 @@ class Section extends React.Component {
     content.filter( content => {
       return content.sub_section_id === ssid 
     }).map( content => {
-      filtered.push(content)
+      this.props.quizzes.map(quiz => {
+        if(quiz.id === content.quiz_id)
+          filtered.push(quiz)
+      })
     })
     return filtered
   }
@@ -90,6 +93,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     course: state.course,
     content: state.courseContent,
+    quizzes: state.quizzes
   }
 }
 

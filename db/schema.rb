@@ -143,8 +143,9 @@ ActiveRecord::Schema.define(version: 20180112225822) do
   create_table "quiz_questions", force: :cascade do |t|
     t.text "question", default: "", null: false
     t.boolean "multiple_choice", default: true
+    t.jsonb "options"
+    t.jsonb "correct_answers"
     t.boolean "multiple_correct", default: false
-    t.boolean "true_false", default: false
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
