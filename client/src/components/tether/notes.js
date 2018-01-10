@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchNotes } from '../../actions/notes'
-import { Grid, Message, Loader, Label, Header, Divider, Button,
+import { Grid, Message, Loader, Header, Divider, Button,
          Dimmer, Icon, Image, Card } from 'semantic-ui-react'
 
 

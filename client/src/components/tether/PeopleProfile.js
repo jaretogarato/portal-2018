@@ -6,8 +6,6 @@ import {
   Divider,
   Grid,
   Header,
-  Message,
-  Rail,
   Segment,
 } from 'semantic-ui-react'
 import NoteForm from './noteForm'
