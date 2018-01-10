@@ -1,27 +1,25 @@
 import React from 'react';
-import { updateSection } from '../actions/sections';
+import { addSubSection } from '../../actions/subSections.js';
 import { connect } from 'react-redux';
 import { Button, Form, Grid, Menu, Segment } from 'semantic-ui-react';
 
+class SubSectionForm extends React.Component {
+  state = { title: '', showForm: false };
 
-class SectionEditForm extends React.Component {
-  state = { showForm: false };
-
-  handleSubmit = (e) => {
-    const { sectionId, dispatch, sections } = this.props
-    const section = sections.find((s) => s.id === sectionId)
-    console.log(section)
-    dispatch(updateSection(section.id, {title: this.state.title }))
+  handleSubmit = () => {
+    const { title } = this.state;
+    const { dispatch, sectionId } = this.props
+    dispatch(addSubSection(title, sectionId))
     this.setState({ title: '', showForm: false })
   }
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });  
 
   render() {
-    const { title } = this.state
+    const { title } = this.state    
     return (
-      <div>
-        { this.state.showForm ?
+      <Segment basic>
+        { this.state.showForm ?     
           <Grid>
             <Grid.Column style={{ maxWidth: 450 }}>
               <Segment raised>
@@ -29,43 +27,42 @@ class SectionEditForm extends React.Component {
                   <Form.Field>
                     <Form.Input
                       name='title'
+                      placeholder='Name'
                       required
+                      id='section'
                       value={title}
                       onChange={this.handleChange}
                       autoFocus
                     />
                   </Form.Field>
-                  <Button.Group>
+                  <Button.Group fluid>
                     <Button 
                       color='red' 
-                      onClick={() => { this.setState({ showForm: false }) }} 
-                      content="X"
+                      onClick={() => { this.setState({ title: '', showForm: false }) }} 
+                      content="Cancel"
                     />
-                    <Button primary fluid content="Update" />
+                    <Button primary content="Add"/>
                   </Button.Group>
                 </Form>
               </Segment>
             </Grid.Column>
-          </Grid>
-        :
+          </Grid> 
+        :     
           <Menu.Item>
             <Button
-              fluid
-              onClick={() => { this.setState({ showForm: true }) }}
-              content='Edit'
+              floated="right"
+              onClick={() => { this.setState({ showForm: true }) }} 
+              content="Add Subsection"
             />
           </Menu.Item>
         }
-      </div>
+      </Segment>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { 
-    sections: state.sections,
-    sectionId: state.sectionId,
-  }
+  return { sectionId: state.sectionId }
 }
 
-export default connect(mapStateToProps)(SectionEditForm);
+export default connect(mapStateToProps)(SubSectionForm);

@@ -17,43 +17,47 @@ class SectionForm extends React.Component {
 
   render() {
     const { title } = this.state    
-    { return this.state.showForm ?     
-      <Grid>
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Segment raised>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Field>
-                <Form.Input
-                  name='title'
-                  placeholder='Name'
-                  required
-                  id='section'
-                  value={title}
-                  onChange={this.handleChange}
-                  autoFocus
-                />
-              </Form.Field>
-              <Button.Group fluid>
-                <Button 
-                  color='red' 
-                  onClick={() => { this.setState({ title: '', showForm: false }) }} 
-                  content="X"
-                />
-                <Button primary content="Add"/>
-              </Button.Group>
-            </Form>
-          </Segment>
-        </Grid.Column>
-      </Grid> 
-    :     
-      <Menu.Item>
-        <Button
-          fluid
-          onClick={() => { this.setState({ showForm: true }) }} 
-          content="Add Section"
-        />
-      </Menu.Item>
-    }
+    return (
+      <Segment basic>
+        { this.state.showForm ?
+          <Grid>
+            <Grid.Column style={{ maxWidth: 450 }}>
+              <Segment raised>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Field>
+                    <Form.Input
+                      name='title'
+                      placeholder='Name'
+                      required
+                      id='section'
+                      value={title}
+                      onChange={this.handleChange}
+                      autoFocus
+                    />
+                  </Form.Field>
+                  <Button.Group fluid>
+                    <Button 
+                      color='red' 
+                      onClick={() => { this.setState({ title: '', showForm: false }) }} 
+                      content="X"
+                    />
+                    <Button primary content="Add"/>
+                  </Button.Group>
+                </Form>
+              </Segment>
+            </Grid.Column>
+          </Grid> 
+        :     
+          <Menu.Item>
+            <Button
+              fluid
+              onClick={() => { this.setState({ showForm: true }) }} 
+              content="Add Section"
+            />
+          </Menu.Item>
+        }
+      </Segment> 
+    )
   }
 }
 

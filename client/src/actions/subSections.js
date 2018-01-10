@@ -16,9 +16,9 @@ export const getSubSections = (sectionId, callback) => {
   }
 }
 
-export const addSubSection = (subSection) => {
+export const addSubSection = (title, sectionId) => {
   return(dispatch) => {
-    axios.post('/api/sub-sections', { subSection })
+    axios.post(`/api/sections/${sectionId}/sub_sections`, { title })
       .then( res => dispatch({ type: 'ADD_SUB_SECTION', subSection: res.data, headers: res.headers }))
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });

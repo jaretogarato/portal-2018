@@ -7,6 +7,7 @@ import { setSection } from '../../actions/section';
 import { getSubSections, deleteSubSection } from '../../actions/subSections';
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
+import SubSectionForm from './SubSectionForm';
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
@@ -15,12 +16,12 @@ class SectionSelect extends React.Component {
     activeIndexes: [],
     courseLoaded: false,
     sectionsLoaded: false,
-    subSectionLoaded: false,
+    subSectionsLoaded: false,
   };
 
   setCourseLoaded = () => this.setState({ courseLoaded: true });
   setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
-  setSubSectionLoaded = () => this.setState({ subSectionsLoaded: true });
+  setSubSectionsLoaded = () => this.setState({ subSectionsLoaded: true });
 
   componentWillMount() {
     const { dispatch, user: { id: userId }, course } = this.props;
@@ -35,18 +36,17 @@ class SectionSelect extends React.Component {
   }
 
   handleClick = (e) => {
-    const sectionId = parseInt(e.currentTarget.id)
+    const sectionId = parseInt(e.currentTarget.id, 10)
     const { dispatch, subSections } = this.props;
     this.props.dispatch(setSection(sectionId));
     if( subSections.length === 0 )
-      dispatch(getSubSections(sectionId, this.setSubSectionLoaded));
+      dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
     else if( subSections[0].section_id !== sectionId )
-      dispatch(getSubSections(sectionId, this.setSubSectionLoaded));
+      dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
   }
 
   // what happens when you click on a subsection accordion 
   handleSubClick = (e, titleProps) => {
-    const { index } = titleProps;
     const { activeIndexes } = this.state;
     const newIndex = titleProps.index;
     // checks to see if the index of the subsection is in the array, if not it adds it and if so it removes it
@@ -103,23 +103,23 @@ class SectionSelect extends React.Component {
   }
   
   render() {
-    let { courseLoaded, sectionsLoaded } = this.state;
-    
+    let { courseLoaded, sectionsLoaded, subSectionsLoaded } = this.state;
+    const { user: { is_admin }, sectionId, sections } = this.props
     if(sectionsLoaded && courseLoaded) {
       return(
         <Grid>
           <Grid.Column width={3}>
             <h3>Sections</h3>
             <Menu fluid vertical tabular>
-              {this.props.sections.map( section =>
+              {sections.map( section =>
                 <Menu.Item
                   key={section.id}
                   id={section.id}
-                  active={this.props.sectionId === section.id}
+                  active={sectionId === section.id}
                   onClick={e => this.handleClick(e)}
                 >
                   {section.title}
-                  { this.props.user.is_admin && 
+                  { is_admin && 
                     <Button.Group>
                       <Button 
                         floated='right' 
@@ -134,12 +134,13 @@ class SectionSelect extends React.Component {
                 </Menu.Item>
                 )
               }
-              { this.props.user.is_admin && <SectionForm /> }
+              { is_admin && <SectionForm /> }
             </Menu>
           </Grid.Column>
           <Grid.Column width={13}>
             <h3>Subsections</h3>
             { this.displaySubSections() }
+            { is_admin && subSectionsLoaded && <SubSectionForm/> } 
           </Grid.Column>
         </Grid>
       );
