@@ -36,15 +36,12 @@ handleSubmit = (e) => {
                 required
                 onChange={this.handleChange}>
               </Form.Input>
-      
-            </Form.Group>
-            <Form.Group widths='equal'>
               <Form.Input 
                 name='due_date'
                 value={due_date}
                 label='Due Date' 
                 type='date' 
-                width={9}
+                width={4}
                 onChange={this.handleChange}
                  >
               </Form.Input>
@@ -56,8 +53,10 @@ handleSubmit = (e) => {
                 type='number' 
                 required 
                 onChange={this.handleChange}
-                width={2} />
+                width={3} />
             </Form.Group>
+
+           
             <Form.TextArea 
               name='content'
               value={content}

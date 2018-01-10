@@ -9,10 +9,10 @@ import SectionSelect from './tether/SectionSelect'
 import CourseHome from './course/CourseHome';
 import CourseSettings from './tether/CourseSettings';
 import PeopleProfile from './tether/PeopleProfile';
-import Assignment from './Rift/assignments/Assignment';
-import Quizzes from './Rift/quizzes/Quizzes';
-import QuizForm from './Rift/quizzes/QuizForm';
-import SingleQuiz from './Rift/quizzes/SingleQuiz';
+import Assignment from './assignments/Assignment';
+import Quizzes from './quizzes/Quizzes';
+import QuizForm from './quizzes/QuizForm';
+import SingleQuiz from './quizzes/SingleQuiz';
 import Lectures from './Rift/lectures/Lectures';
 import Lecture from './Rift/lectures/Lecture';
 import CreateLecture from './Rift/lectures/CreateLecture';

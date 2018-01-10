@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button, Checkbox, Form, Radio } from 'semantic-ui-react';
+import { Segment, Grid, Button, Form, Radio } from 'semantic-ui-react';
 
 
 class TrueFalse extends Component {
