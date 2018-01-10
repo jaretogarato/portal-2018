@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 
 class SectionSelect extends React.Component {
   state = {
-    activeIndex: 0,
+    activeIndexes: [],
     courseLoaded: false,
     sectionsLoaded: false,
     subSectionLoaded: false,
@@ -44,26 +44,33 @@ class SectionSelect extends React.Component {
       dispatch(getSubSections(sectionId, this.setSubSectionLoaded));
   }
 
+  // what happens when you click on a subsection accordion 
   handleSubClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
-
-    this.setState({ activeIndex: newIndex })
+    const { index } = titleProps;
+    const { activeIndexes } = this.state;
+    const newIndex = titleProps.index;
+    // checks to see if the index of the subsection is in the array, if not it adds it and if so it removes it
+    if(activeIndexes.includes(newIndex)) {
+      this.setState({ activeIndexes: activeIndexes.filter(i => i !== newIndex) });
+    } else {
+      this.setState({ activeIndexes: [...activeIndexes, newIndex] });
+    }
   }
+
+  checkActiveIndex = (index) => this.state.activeIndexes.includes(index)
 
   displaySubSections = () => {
     return this.props.subSections.map( ss => (
       <Accordion key={ss.id} fluid styled>
         <Accordion.Title 
-          active={this.state.activeIndex === ss.id} 
+          active={this.state.activeIndexes === ss.id} 
           index={ss.id} 
           onClick={this.handleSubClick}
         >
           <Icon name='dropdown' />
           { ss.title }
         </Accordion.Title>
-        <Accordion.Content active={this.state.activeIndex === ss.id}>
+        <Accordion.Content active={this.checkActiveIndex(ss.id)}>
           { this.displayItems() }
         </Accordion.Content>
       </Accordion>
