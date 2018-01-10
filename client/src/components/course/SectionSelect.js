@@ -67,13 +67,15 @@ class SectionSelect extends React.Component {
   displaySubSections = () => {
     return this.props.subSections.map( ss => (
       <Accordion key={ss.id} fluid styled>
-        <Button 
-          floated='right' 
-          size='mini' 
-          color='red'
-          content='X'
-          onClick={ () => this.deleteSubClick(ss)}
-        />
+        { this.props.user.is_admin && 
+          <Button 
+            floated='right' 
+            size='mini' 
+            color='red'
+            content='X'
+            onClick={ () => this.deleteSubClick(ss)}
+          />
+        }
         <Accordion.Title 
           active={this.state.activeIndexes === ss.id} 
           index={ss.id} 
