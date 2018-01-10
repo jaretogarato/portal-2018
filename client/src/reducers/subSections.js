@@ -15,8 +15,7 @@ const subSections = (state = [], action) => {
         return subSection;
       })
     case 'DELETE_SUB_SECTION':
-    debugger
-      return state.filter( sectionId => sectionId.id !== action.sectionId.id)
+      return state.filter( ss => ss.id !== action.ss.id)
     default:
       return state;
   }
