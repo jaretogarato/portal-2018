@@ -6,7 +6,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     resources :users, only: :update
     resources :lectures
     resources :quizzes do
-      resources :quiz_questions, except: [:index, :show]
+      resources :quiz_questions, except: [:show]
     end
 
     resources :courses do

@@ -1,6 +1,11 @@
 class Api::QuizQuestionsController < ApplicationController
   before_action :set_quiz
   before_action :set_quiz_question, only: [:edit]
+
+  def index
+    render json: @quiz.quiz_questions.all
+  end
+
   def create
     quiz_question = @quiz.quiz_questions.new(quiz_question_params)
     if quiz_question.save

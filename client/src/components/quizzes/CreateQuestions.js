@@ -56,17 +56,19 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     const { activeType } = this.state
     switch(activeType) {
       case 'Essay/Code':
-        return <EssayQuestion quizId={this.props.quizId}/>
+        return <EssayQuestion quizId={this.props.quizId} hideForm={this.hideForm}/>
       case 'Multiple Choice':
-        return <MultipleChoiceQuestion />
+        return <MultipleChoiceQuestion hideForm={this.hideForm}/>
       case 'Multiple Answer':
-        return <MultipleAnswer />
+        return <MultipleAnswer hideForm={this.hideForm}/>
       case 'True/False':
-        return <TrueFalse />;
+        return <TrueFalse hideForm={this.hideForm}/>;
       default:
         return null
     }
   }
+
+  hideForm = () => this.setState({ showQuestion: false, isHidden: true, activeType: '' })
 
   render() {
     const { showQuestion } = this.state
@@ -97,7 +99,7 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
           <Button
             basic
             color='red'
-            onClick={() => this.setState({ showQuestion: false, isHidden: true, activeType: '' })}
+            onClick={this.hideForm}
           >
           Cancel
           </Button>

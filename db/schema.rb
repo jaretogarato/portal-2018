@@ -17,6 +17,10 @@ ActiveRecord::Schema.define(version: 20180109230403) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
+    t.string "submission_type"
+    t.integer "points"
+    t.string "due_date"
+    t.boolean "published"
     t.text "content"
     t.bigint "sub_section_id"
     t.datetime "created_at", null: false
@@ -92,13 +96,13 @@ ActiveRecord::Schema.define(version: 20180109230403) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.string "author"
-    t.text "content"
-    t.boolean "visable"
-    t.bigint "user_id"
+    t.string "title", default: "", null: false
+    t.text "content", default: "", null: false
+    t.boolean "visible", default: false, null: false
+    t.integer "sender_id", null: false
+    t.integer "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "quiz_questions", force: :cascade do |t|
@@ -115,9 +119,10 @@ ActiveRecord::Schema.define(version: 20180109230403) do
 
   create_table "quizzes", force: :cascade do |t|
     t.bigint "sub_section_id"
-    t.string "title"
-    t.text "content"
-    t.string "due_date"
+    t.string "title", default: "", null: false
+    t.text "content", default: "", null: false
+    t.string "due_date", default: "", null: false
+    t.integer "points", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"
@@ -202,7 +207,6 @@ ActiveRecord::Schema.define(version: 20180109230403) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
-  add_foreign_key "notes", "users"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"

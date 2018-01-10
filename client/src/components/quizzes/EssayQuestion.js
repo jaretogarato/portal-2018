@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
-import axios from 'axios'
+import { addQuestion } from '../../actions/quizQuestions';
+import { connect } from 'react-redux';
 
 class EssayQuestion extends Component {
-  state={ question: '' }
+  state = { question: '' }
 
 
   handleQuestion = (e, {name, value}) => {
@@ -15,31 +16,27 @@ class EssayQuestion extends Component {
   }
 
   handleSubmit = (e) => {
-    const id = this.props.quizId
+    const { quizId, dispatch, hideForm } = this.props
+    debugger
     e.preventDefault();
     const { question } = this.state
-    axios.post(`/api/quizzes/${id}/quiz_questions`, { question })
-    .then( res => {
-      console.log(res.data)
-      // this.setState({ quiz_questions: res.data});
-    })
-    .catch( err => {
-      console.log(err);
-  });
+    const quiz_question = { question, multiple_choice: false }
+    dispatch(addQuestion(quizId, quiz_question))
+    hideForm()
   }
 
 
-  
+
   render(){
-    return ( 
-    <Segment> 
-        <Form onSubmit={this.handleSubmit}> 
-        <Form.TextArea onChange={this.handleQuestion} name='question' value={this.state.question} label='Question'> </Form.TextArea> 
-        <Button basic type='submit' onClick={ () => this.displayQuestion()}> save question </Button> 
+    return (
+    <Segment>
+        <Form onSubmit={this.handleSubmit}>
+        <Form.TextArea onChange={this.handleQuestion} name='question' value={this.state.question} label='Question'> </Form.TextArea>
+        <Button basic type='submit'> save question </Button>
         </Form>
-      </Segment> 
+      </Segment>
     )
   }
 }
 
-export default EssayQuestion;
+export default connect()(EssayQuestion);
