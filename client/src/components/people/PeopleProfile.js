@@ -7,7 +7,10 @@ import {
   Grid,
   Header,
   Segment,
+  Icon,
+  Button
 } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 import NoteForm from './noteForm'
 import Notes from './notes'
 
@@ -19,28 +22,54 @@ class PeopleProfile extends React.Component {
     this.props.dispatch(getUser(id))
   }
 
-  render () {
-    const { user, match: { params: { id } } } = this.props
-    const fullName = `${user.first_name} ${user.last_name}`
+  displayBadges = () => {
     const badges = [
       {
         header: 'Badge 1',
-        meta: 'badge things',
+        meta: 'Team Player',
       },
       {
         header: 'Badge 2',
-        meta: 'badge things',
+        meta: 'Leadership',
       },
       {
         header: 'Badge 3',
-        meta: 'badge things',
+        meta: 'Coding Aptitude',
       },
       {
         header: 'Badge 4',
-        meta: 'badge things',
+        meta: '95% Attendance',
+      },
+      {
+        header: 'Badge 5',
+        meta: '100% Homework',
       },
     ]
+      return badges.map( badges => {
+        return(
+            <Card>
+            <Card.Content>
+                <Card.Header>
+                  {badges.header}
+                </Card.Header>
+                <Card.Meta>
+                  {badges.meta}
+                </Card.Meta>
+              </Card.Content>
+              <Card.Content extra>
+                <div>
+                  <Button basic color='blue'>Delete Badge</Button>
+                </div>
+              </Card.Content>
+            </Card>
+        );
+      })
+    }
+  
 
+  render () {
+    const { user, match: { params: { id } } } = this.props
+    const fullName = `${user.first_name} ${user.last_name}`
     return (
       <Segment basic>
         <Grid className='container'>
@@ -51,12 +80,23 @@ class PeopleProfile extends React.Component {
               <Header as='h1'>{fullName}</Header>
               <Header as='h3'>{user.email}</Header>
               <Divider />
-              <Header as='h4'>Badges?</Header>
+              <Link to={``}>
+                <Button 
+                  basic
+                  color='blue' 
+                  icon 
+                  labelPosition='left'>
+                  <Icon name='add' />
+                Add Badges
+                </Button>
+              </Link>
               <Grid>
                 <Grid.Row>
                   <Grid.Column width={16}>
                     <Segment basic>
-                      <Card.Group itemsPerRow={4} items={badges} />
+                      <Card.Group itemsPerRow={5}>
+                        { this.displayBadges() }
+                      </Card.Group> 
                     </Segment>
                   </Grid.Column>
                 </Grid.Row>

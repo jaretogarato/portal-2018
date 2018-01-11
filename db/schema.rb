@@ -117,8 +117,9 @@ ActiveRecord::Schema.define(version: 20180110235032) do
   create_table "quiz_questions", force: :cascade do |t|
     t.text "question", default: "", null: false
     t.boolean "multiple_choice", default: true
+    t.jsonb "options"
+    t.jsonb "correct_answers"
     t.boolean "multiple_correct", default: false
-    t.boolean "true_false", default: false
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -127,10 +128,9 @@ ActiveRecord::Schema.define(version: 20180110235032) do
 
   create_table "quizzes", force: :cascade do |t|
     t.bigint "sub_section_id"
-    t.string "title", default: "", null: false
-    t.text "content", default: "", null: false
-    t.string "due_date", default: "", null: false
-    t.integer "points", default: 0, null: false
+    t.string "title"
+    t.text "content"
+    t.string "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"
