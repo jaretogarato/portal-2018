@@ -7,12 +7,13 @@ import {
   Grid,
   Header,
   Segment,
+  Image,
+  Button,
   Icon,
-  Button
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import NoteForm from './noteForm'
-import Notes from './notes'
+import NoteList from './NoteList'
 
 class PeopleProfile extends React.Component {
   state = { user: {} }
@@ -65,7 +66,7 @@ class PeopleProfile extends React.Component {
         );
       })
     }
-  
+
 
   render () {
     const { user, match: { params: { id } } } = this.props
@@ -75,16 +76,21 @@ class PeopleProfile extends React.Component {
         <Grid className='container'>
           <Grid.Row>
             <Grid.Column width={5}>
+              <Image
+                circular='true'
+                bordered
+                src={user.image}
+              />
             </Grid.Column>
             <Grid.Column width={11}>
               <Header as='h1'>{fullName}</Header>
               <Header as='h3'>{user.email}</Header>
               <Divider />
               <Link to={``}>
-                <Button 
+                <Button
                   basic
-                  color='blue' 
-                  icon 
+                  color='blue'
+                  icon
                   labelPosition='left'>
                   <Icon name='add' />
                 Add Badges
@@ -96,7 +102,7 @@ class PeopleProfile extends React.Component {
                     <Segment basic>
                       <Card.Group itemsPerRow={5}>
                         { this.displayBadges() }
-                      </Card.Group> 
+                      </Card.Group>
                     </Segment>
                   </Grid.Column>
                 </Grid.Row>
@@ -112,10 +118,10 @@ class PeopleProfile extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column withd={16}>
-              <NoteForm userId={id}/>
+              { this.props.current_user.role === 'ta' || 'teacher' ? <NoteForm userId={id}/> : null }
             </Grid.Column>
           </Grid.Row>
-          <Notes userId={id}/>
+          { this.props.current_user.role === 'ta' || 'teacher' ? <NoteList userId={id}/> : null }
         </Grid>
       </Segment>
     )
@@ -123,7 +129,10 @@ class PeopleProfile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.userId }
+  return {
+    user: state.userId,
+    current_user: state.user
+   }
 }
 
 export default connect(mapStateToProps)(PeopleProfile);

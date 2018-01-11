@@ -1,9 +1,5 @@
 class Api::NotesController < Api::ApiController
-  before_action :set_recipient, only: [:recipient_notes, :new, :create]
-
-  def index
-    notes = current_user.notes
-  end
+  before_action :set_recipient, only: [:recipient_notes, :create, :destroy, :update]
 
   def create
     note = current_user.sent_notes.new(note_params)
@@ -16,10 +12,16 @@ class Api::NotesController < Api::ApiController
   end
 
   def update
+    note = @recipient.notes.find(params[:id])
+    if note.update(note_params)
+      render json: note
+    else
+      render json: {errors: @recipient.notes.error.full_messages.join(',')}, status: 422
+    end
   end
 
   def destroy
-    current_user.notes.destroy(params[:id])
+    @recipient.notes.destroy(params[:id])
   end
 
   def recipient_notes

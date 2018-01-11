@@ -22,7 +22,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
 
     resources :assignments
     resources :enrollments, except: [:index, :show]
-    resources :notes, only: [:create, :index]
+    resources :notes, only: [:create, :update, :destroy]
 
     put 'update_profile_pic', to: 'profiles#update_profile_pic'
 
@@ -38,7 +38,6 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     get '/lectures', to: 'lectures#all_lectures'
 
     get '/notes/:user_id', to: 'notes#recipient_notes'
-    get '/sender/:user_id', to: 'notes#senders_user_data'
     # get '/group_lectures', to: 'sub_sections#group_lectures'
 
     post 'avatars', to: 'avatars#create'

@@ -113,7 +113,7 @@ class Course extends React.Component {
               </Grid.Column>
               <Grid.Column mobile={16} tablet={16} computer={14}>
                 <Sidebar.Pushable style={styles.pusher}>
-                  <Sidebar 
+                  <Sidebar
                     as={Menu}
                     animation='push'
                     width='thin'

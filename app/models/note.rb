@@ -10,5 +10,6 @@ class Note < ApplicationRecord
     .from('notes')
     .joins('INNER JOIN users u ON u.id = notes.sender_id')
     .where('notes.recipient_id = ?', recipient)
+    .order(created_at: :desc)
   end
 end

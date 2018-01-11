@@ -29,14 +29,27 @@ export const fetchNotes = (id, cb = {}) => {
   }
 }
 
-export const fetchSenderData = (id) => {
+export const deleteNote = (id, recipientId) => {
   return(dispatch) => {
-    axios.get(`/api/sender/${id}`)
+    axios.delete(`/api/notes/${id}?user_id=${recipientId}`)
       .then(res => {
-        dispatch({type: 'FETCH_SENDERS_DATA', senders: res.data, headers: res.headers})
+        dispatch({type: 'DELETE_NOTE', id, headers: res.headers})
       })
       .catch(err => {
-        dispatch(setFlash('Failed to find who sent these notes', 'red'))
+        dispatch(setFlash('Failed to delete note', 'red'))
+        dispatch(setHeaders(err.headers))
+      })
+  }
+}
+
+export const editNote = (note, recipientId) => {
+  return(dispatch) => {
+    axios.put(`/api/notes/${note.id}?user_id=${recipientId}`, { note })
+      .then(res => {
+        dispatch({type: 'EDIT_NOTE', note: res.data, headers: res.headers})
+      })
+      .catch(err => {
+        dispatch(setFlash('Failed to update note', 'red'))
         dispatch(setHeaders(err.headers))
       })
   }
