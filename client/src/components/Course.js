@@ -10,11 +10,13 @@ import SectionSelect from './course/SectionSelect'
 import CourseHome from './course/CourseHome';
 import CourseSettings from './course/CourseSettings';
 import PeopleProfile from './people/PeopleProfile';
+import Wiki from './Rift/wiki/Wiki';
 import Quizzes from './quizzes/Quizzes';
 import QuizForm from './quizzes/QuizForm';
 import SingleQuiz from './quizzes/SingleQuiz';
 import Lectures from './lectures/Lectures';
-import Wiki from './Rift/wiki/Wiki';
+import CreateLecture from './lectures/CreateLecture';
+import Lecture from './lectures/Lecture';
 import Attendance from './attendance/Attendance';
 import Assignments from './assignments/Assignments';
 import Assignment from './assignments/Assignment';
@@ -72,6 +74,8 @@ class Course extends React.Component {
         <Route exact path='/courses/:id/quizform' component={QuizForm} />
         <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
         <Route exact path='/courses/:id/lectures' component={Lectures} />
+        <Route exact path='/courses/:id/lectures/create' component={CreateLecture} />
+        <Route exact path='/courses/:id/lectures/:id' component={Lecture} />
         <Route exact path='/courses/:id/assignments' component={Assignments} />
         <Route exact path='/courses/:id/assignments/create' component={CreateAssignment} />
         <Route exact path='/courses/:id/assignments/:id' component={Assignment} />

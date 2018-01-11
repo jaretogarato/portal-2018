@@ -34,17 +34,17 @@ class Lecture extends Component {
     let time = moment(due_date).format('MMMM D, YYYY')
     let created = moment(created_at).format('MMMM D, YYYY')
     return (
-      <Segment basic name="lecture">
+      <Segment name="lecture">
         <Header as='h1' textAlign='center' style={styles.pageTitle}>{title}</Header>
         <List>
           <List.Item>
-            Description: {content}
+            <Header as='h2' style={ styles.listItemHeader }>Description:</Header> {content}
           </List.Item>
           <List.Item>
-            Created: {created}
+            <Header as='h2' style={ styles.listItemHeader }>Created:</Header> {created}
           </List.Item>
           <List.Item>
-            Due Date: {time}
+            <Header as='h3' style={ styles.listItemHeader }>Sub Section Placeholder</Header>
           </List.Item>
          
         </List>
@@ -62,6 +62,9 @@ const styles = {
     paddingTop: '2%',
     textDecoration: 'underline',
     fontWeight: 'bolder',
+  },
+  listItemHeader: {
+    display: 'inline-block',
   },
 }
 
