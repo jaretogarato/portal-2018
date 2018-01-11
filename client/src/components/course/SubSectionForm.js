@@ -1,25 +1,33 @@
 import React from 'react';
-import { addSubSection } from '../../actions/subSections.js';
+import { addSubSection, updateSubSection } from '../../actions/subSections.js';
 import { connect } from 'react-redux';
 import { Button, Form, Grid, Menu, Segment } from 'semantic-ui-react';
 
 class SubSectionForm extends React.Component {
-  state = { title: '', showForm: false };
+  state = { title: '' };
 
-  handleSubmit = () => {
+  componentDidMount() {
+    if( this.props.showForm && !this.state.showForm )
+      this.setState({ showForm: true })
+  }
+
+  handleSubmit = (e) => {
     const { title } = this.state;
-    const { dispatch, sectionId } = this.props
-    dispatch(addSubSection(title, sectionId))
+    const { dispatch, sectionId, editing, id } = this.props
+    if( editing )
+      dispatch(updateSubSection( id, title, sectionId ))
+    else
+      dispatch(addSubSection(title, sectionId))
     this.setState({ title: '', showForm: false })
   }
 
-  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });  
+  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value }); 
 
   render() {
-    const { title } = this.state    
+    const { title } = this.state
     return (
-      <Segment basic>
-        { this.state.showForm ?     
+      <div>
+        { this.state.showForm ?
           <Grid>
             <Grid.Column style={{ maxWidth: 450 }}>
               <Segment raised>
@@ -48,15 +56,12 @@ class SubSectionForm extends React.Component {
             </Grid.Column>
           </Grid> 
         :     
-          <Menu.Item>
-            <Button
-              floated="right"
-              onClick={() => { this.setState({ showForm: true }) }} 
-              content="Add Subsection"
-            />
-          </Menu.Item>
+          <Button
+            onClick={() => { this.setState({ showForm: true }) }} 
+            content={ this.props.editing ? "Edit" : "Add Subsection" }
+          />
         }
-      </Segment>
+      </div>
     )
   }
 }
