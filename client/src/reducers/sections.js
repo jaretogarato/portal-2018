@@ -4,6 +4,8 @@ const sections = (state = [], action) => {
       return action.sections;
     case 'ADD_SECTION':
       return [...state, action.section]
+    case 'CLEAR_SECTIONS':
+      return action.sections;
     case 'UPDATE_SECTION':
       return state.map( section => {
         if(section.id === action.section.id)

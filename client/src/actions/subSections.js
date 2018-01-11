@@ -49,3 +49,7 @@ export const deleteSubSection = (ss) => {
     });
   }
 }
+
+export const clearSubSections = () => {
+  return({ type: "CLEAR_SUB_SECTIONS", subSections: [] })
+}

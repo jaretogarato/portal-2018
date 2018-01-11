@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
-import { getSections, deleteSection } from '../../actions/sections';
-import { setSection } from '../../actions/section';
-import { getSubSections, deleteSubSection } from '../../actions/subSections';
+import { getSections, deleteSection, clearSections } from '../../actions/sections';
+import { setSection, clearSection } from '../../actions/section';
+import { getSubSections, deleteSubSection, clearSubSections } from '../../actions/subSections';
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
@@ -33,6 +33,13 @@ class SectionSelect extends React.Component {
   componentDidMount() {
     const { dispatch, match: { params: { id } } } = this.props;
     dispatch(getSections(id, this.setSectionsLoaded));
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props
+    dispatch(clearSections())
+    dispatch(clearSubSections())
+    dispatch(clearSection())
   }
 
   handleClick = (e) => {

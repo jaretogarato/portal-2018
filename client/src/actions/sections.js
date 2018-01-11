@@ -54,3 +54,7 @@ export const deleteSection = (section) => {
 export const toggleActiveSection = (id) => {
   return { type: 'TOGGLE_SECTION', id }
 }
+
+export const clearSections = () => {
+  return ({ type: "CLEAR_SECTIONS", sections: [] })
+}
