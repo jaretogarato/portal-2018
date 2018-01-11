@@ -2,7 +2,7 @@ class Api::AssignmentsController < Api::ApiController
   before_action :set_assignment, only: [:destroy, :update, :show]
 
   def index
-    render json: Assignment.all
+    render json: Assignment.all.order(title: :desc)
   end
 
   def show

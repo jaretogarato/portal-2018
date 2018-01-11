@@ -2,7 +2,7 @@ class Api::LecturesController < Api::ApiController
   before_action :set_lecture, only: [ :destroy, :update, :show ]
 
   def index
-    render json: Lecture.all # Set to descend
+    render json: Lecture.all.order(title: :desc)
   end
 
   def show

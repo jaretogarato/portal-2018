@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
+import { Segment, Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
@@ -20,14 +20,12 @@ class Assignments extends Component {
   displayAssignments = () => {
     const { id } = this.props.match.params
     return this.state.assignments.map(assignment => {
-      let time = moment(assignment.created_at).format('MMMM D, YYYY')
-      let date = moment(assignment.due_date).format('MMMM D, YYYY')
+      let date = moment(assignment.created_at).format('MMMM D, YYYY')
       return (
         <Table.Row key={assignment.id}>
           <Table.Cell>
-            <Link to={`/courses/${id}/assignments/${assignment.id}`}> {assignment.title} </Link>
+            <Link to={`/courses/${id}/assignments/${assignment.id}`}>{assignment.title}</Link>
           </Table.Cell>
-          <Table.Cell>{time}</Table.Cell>
           <Table.Cell>{date}</Table.Cell>
         </Table.Row>
       )
@@ -37,18 +35,22 @@ class Assignments extends Component {
   render() {
     const { id } = this.props.match.params
     return (
-      <div>
-        <Header textAlign='center' style={styles.pageTitle}>Assignments</Header>
+      <Segment basic>
+        <Header as='h1' textAlign='center' style={styles.pageTitle}>All Assignments</Header>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
             </Grid.Column>
             <Grid.Column width={2}>
               <Link to={`/courses/${id}/assignments/create`}>
-                <Button icon labelPosition='left'>
+                <Button
+                  basic
+                  color='blue'
+                  icon
+                  labelPosition='left'>
                   <Icon name='add' />
                   Assignment
-              </Button>
+                </Button>
               </Link>
             </Grid.Column>
           </Grid.Row>
@@ -59,7 +61,7 @@ class Assignments extends Component {
                   <Table.Row>
                     <Table.HeaderCell width={6}>Name</Table.HeaderCell>
                     <Table.HeaderCell width={4}>Created At</Table.HeaderCell>
-                    <Table.HeaderCell width={4}>Due Date</Table.HeaderCell>
+                    <Table.HeaderCell width={4}>Course</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -69,7 +71,7 @@ class Assignments extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </div>
+      </Segment>
     )
   }
 }
@@ -77,7 +79,9 @@ class Assignments extends Component {
 const styles = {
   pageTitle: {
     paddingTop: '2%',
-  }
+    textDecoration: 'underline',
+    fontWeight: 'bolder',
+  },
 }
 
 export default Assignments;

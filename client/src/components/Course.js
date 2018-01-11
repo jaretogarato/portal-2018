@@ -10,7 +10,6 @@ import SectionSelect from './course/SectionSelect'
 import CourseHome from './course/CourseHome';
 import CourseSettings from './course/CourseSettings';
 import PeopleProfile from './people/PeopleProfile';
-import Assignment from './assignments/Assignment';
 import Quizzes from './quizzes/Quizzes';
 import QuizForm from './quizzes/QuizForm';
 import SingleQuiz from './quizzes/SingleQuiz';
@@ -20,6 +19,7 @@ import CreateLecture from './lectures/CreateLecture';
 import Wiki from './Rift/wiki/Wiki';
 import Attendance from './attendance/Attendance';
 import Assignments from './assignments/Assignments';
+import Assignment from './assignments/Assignment';
 import CreateAssignment from './assignments/CreateAssignment';
 
 class Course extends React.Component {
@@ -74,9 +74,9 @@ class Course extends React.Component {
         <Route exact path='/courses/:id/quizform' component={QuizForm} />
         <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
         <Route exact path='/courses/:id/lectures' component={Lectures} />
-        <Route exact path='/courses/:id/assignment' component={Assignment} />
         <Route exact path='/courses/:id/assignments' component={Assignments} />
         <Route exact path='/courses/:id/assignments/create' component={CreateAssignment} />
+        <Route exact path='/courses/:id/assignments/:id' component={Assignment} />
         <Route exact path='/courses/:id/wiki' component={Wiki} />
       </Switch>
     </Segment>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
+import { Segment, Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
-import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
 
 class Lectures extends Component {
   state = { lectures: [] }
