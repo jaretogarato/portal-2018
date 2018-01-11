@@ -30,8 +30,7 @@ class Lecture extends Component {
   }
 
   render() {
-    const { title, id, content, due_date, created_at } = this.state.lecture
-    let time = moment(due_date).format('MMMM D, YYYY')
+    const { title, id, content, created_at } = this.state.lecture
     let created = moment(created_at).format('MMMM D, YYYY')
     return (
       <Segment name="lecture">
