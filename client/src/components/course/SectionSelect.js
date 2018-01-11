@@ -76,7 +76,7 @@ class SectionSelect extends React.Component {
       <Accordion key={ss.id} fluid styled>
         { this.props.user.is_admin && 
           <Button.Group floated="right">
-            <SubSectionForm id={ss.id} editing={true} />
+            <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
             <Button 
               color='red'
               content='X'
@@ -137,6 +137,8 @@ class SectionSelect extends React.Component {
                         size='mini' 
                         color='red'
                         content='X'
+                        //Prevents console warnings on click
+                        type='button'
                       />
                       <SectionEditForm />
                     </Button.Group>

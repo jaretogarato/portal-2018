@@ -10,7 +10,6 @@ class SectionEditForm extends React.Component {
   handleSubmit = (e) => {
     const { sectionId, dispatch, sections } = this.props
     const section = sections.find((s) => s.id === sectionId)
-    console.log(section)
     dispatch(updateSection(section.id, {title: this.state.title }))
     this.setState({ title: '', showForm: false })
   }
@@ -19,6 +18,7 @@ class SectionEditForm extends React.Component {
 
   render() {
     const { title } = this.state
+    const { sectionId, sections } = this.props    
     return (
       <div>
         { this.state.showForm ?
@@ -30,6 +30,7 @@ class SectionEditForm extends React.Component {
                     <Form.Input
                       name='title'
                       required
+                      placeholder={ sections.find((s) => s.id === sectionId).title || "test" }
                       value={title}
                       onChange={this.handleChange}
                       autoFocus
@@ -40,6 +41,8 @@ class SectionEditForm extends React.Component {
                       color='red' 
                       onClick={() => { this.setState({ showForm: false }) }} 
                       content="X"
+                      //Prevents console warnings on click
+                      type='button'
                     />
                     <Button primary fluid content="Update" />
                   </Button.Group>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { addSubSection, updateSubSection } from '../../actions/subSections.js';
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Menu, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Segment } from 'semantic-ui-react';
 
 class SubSectionForm extends React.Component {
   state = { title: '' };
@@ -35,7 +35,7 @@ class SubSectionForm extends React.Component {
                   <Form.Field>
                     <Form.Input
                       name='title'
-                      placeholder='Name'
+                      placeholder={ this.props.originalTitle || "Name" }
                       required
                       id='section'
                       value={title}

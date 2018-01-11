@@ -46,17 +46,16 @@ class Course extends React.Component {
     ]
     return navs.map(nav => {
       return (
-        <Link to={nav.path}>
-          <Menu.Item
-            key={nav.name}
-            position='right'
-            name={nav.name}
-            onClick={() => {
-              if (this.state.sidebar)
-                this.setState({ sidebar: false });
-            }}
-          />
-        </Link>
+        <Menu.Item 
+          key={nav.name}
+          as={Link} to={nav.path}
+          position='right'
+          name={nav.name}
+          onClick={() => {
+            if (this.state.sidebar)
+              this.setState({ sidebar: false });
+          }}
+        />
       )
     })
   }
