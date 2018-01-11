@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Header, Segment, Divider } from 'semantic-ui-react';
+import { Form, Button, Header, Segment, Divider } from 'semantic-ui-react';
 import { addLecture } from '../../actions/lectures';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ class CreateLecture extends Component {
     const { history, dispatch } = this.props
     const { title, content } = this.state
     e.preventDefault();
-    let lecture = { title: this.state.title, content: this.state.content}
+    let lecture = { title, content }
     dispatch(addLecture(lecture, history))
   }
 

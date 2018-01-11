@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
+import { Segment, Form, Button, Header, Divider } from 'semantic-ui-react';
 import { addAssignment } from '../../actions/assignments';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,13 +11,29 @@ const submissionOptions = [
   { key: '4', text: 'External', value: '4' },
 ]
 
+
 class CreateAssignment extends Component {
-  state = { title: '', content: '', due_date: '' }
+  state = {
+    title: '', submission_type: '', points: 0,
+    due_date: '', published: false, content: '',
+    created_at: '', updated_at: ''
+  }
 
   handleSubmit = (e) => {
     const { history, dispatch } = this.props
+    const {
+      title, submission_type, points,
+      due_date, published, content,
+      created_at, updated_at
+    } = this.state
     e.preventDefault();
-    let assignment = { due_date: this.state.due_date, title: this.state.title, content: this.state.content }
+    
+    let assignment = {
+      title, submission_type,
+      points, due_date, published,
+      content, created_at, updated_at
+    }
+    console.log(assignment)
     dispatch(addAssignment(assignment, history))
   }
 
@@ -25,10 +41,15 @@ class CreateAssignment extends Component {
 
 
   render() {
-    const { title, content, due_date } = this.state
+    const {
+      title, submission_type,
+      published, content
+    } = this.state
     return (
-      <Container>
-        <Header as="h1" textAlign='center' style={ styles.pageTitle }>Create Assignment</Header>
+      <Segment basic>
+        <Header as="h1" textAlign='center' style={ styles.pageTitle }>
+          Create Assignment
+        </Header>
         <Form onSubmit={ this.handleSubmit } style={ styles.form }>
           <Form.Group widths='equal'>
             <Form.Input
@@ -39,24 +60,25 @@ class CreateAssignment extends Component {
               placeholder='Assignment Title'
               autoFocus={true}
               required
-              onChange={this.handleChange}>
+              onChange={ this.handleChange }>
             </Form.Input>
             <Form.Select
               label='Submission Options'
+              name={ submission_type }
               options={ submissionOptions }
               placeholder='Submission Options'
               required
               width={ 2 }
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group widths='equal'>
             <Form.Input
               name='due_date'
-              value={ due_date }
               label='Due Date'
               type='date'
               width={ 9 }
-              onChange={ this.handleChange }
+              onChange={ this.handleChange } 
             >
             </Form.Input>
             <Form.Input
@@ -64,7 +86,9 @@ class CreateAssignment extends Component {
               placeholder='Points'
               type='number'
               required
-              width={ 2 } />
+              width={ 2 }
+              onChange={ this.handleChange }
+            />
           </Form.Group>
           <Form.TextArea
             name='content'
@@ -76,16 +100,16 @@ class CreateAssignment extends Component {
             onChange={ this.handleChange }
           />
           <Divider />
-          <Form.Checkbox label='Published?' />
+          <Form.Checkbox label='Published?' value={ published } />
           <Divider />
           <Form.Group>
-            <Link to={`/courses/{this.props.id}/assignments`} >
-              <Button>Create</Button>
+            <Button basic color='green' type='submit'>Create</Button> 
+            <Link to={'./assignments'}>
+              <Button onClick={this.props.history.goBack}>Cancel</Button>
             </Link>
-            <Button onClick={this.props.history.goBack}>Cancel</Button>
           </Form.Group>
         </Form>
-      </Container>
+      </Segment>
     )
   }
 }
@@ -96,10 +120,13 @@ const styles = {
   },
   pageTitle: {
     paddingTop: '2%',
+    textDecoration: 'underline',
+    fontWeight: 'bolder',
   },
   textArea: {
     minHeight: '150px',
   },
 }
+
 
 export default connect()(CreateAssignment);

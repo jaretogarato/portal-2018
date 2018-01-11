@@ -3,11 +3,12 @@ import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
 export const addAssignment = (assignment, history) => {
+  console.log('addAssignment is ' + assignment)
   return (dispatch) => {
     axios.post('/api/assignments', { assignment })
       .then(res => {
         dispatch({ type: 'ADD_ASSIGNMENT', assignments: res.data, headers: res.headers })
-        history.push('./assignments')
+        history.push(`./${res.data.id}`)
       })
       .catch(err => {
         dispatch(setHeaders(err.headers));
@@ -26,6 +27,6 @@ export const getAssignments = () => {
       .catch(err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Assignments', 'red'));
-      });
+    });
   }
 }

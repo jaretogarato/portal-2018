@@ -46,7 +46,6 @@ class Assignment extends Component {
           <List.Item>
             Due Date: {time}
           </List.Item>
-
         </List>
         <Button basic color='red' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>
         <Link to={'./'} >

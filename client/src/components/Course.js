@@ -14,8 +14,6 @@ import Quizzes from './quizzes/Quizzes';
 import QuizForm from './quizzes/QuizForm';
 import SingleQuiz from './quizzes/SingleQuiz';
 import Lectures from './lectures/Lectures';
-import Lecture from './lectures/Lecture';
-import CreateLecture from './lectures/CreateLecture';
 import Wiki from './Rift/wiki/Wiki';
 import Attendance from './attendance/Attendance';
 import Assignments from './assignments/Assignments';
