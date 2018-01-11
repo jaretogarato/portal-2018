@@ -32,8 +32,8 @@ class PeopleHome extends React.Component {
 
 
   displayUsers = () => {
-    const { courseId } = this.props
-    return this.props.usersByCourse.map(user => {
+    const { courseId, usersByCourse } = this.props
+    return usersByCourse.map(user => {
       const fullName = `${user.first_name} ${user.last_name}`
       return(
         <Table.Row key={user.id}>

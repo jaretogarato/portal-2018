@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from './DatePicker';
 import StudentRecord from './StudentRecord';
 import { connect } from 'react-redux';
-import { getUsers, markAllPresent } from '../../actions/users';
+import { getUsersByCourse, markAllPresent } from '../../actions/users';
 import { addAttendance } from '../../actions/attendance';
 import { Button, Container, Header, Icon } from 'semantic-ui-react';
 
@@ -10,13 +10,15 @@ class Attendance extends React.Component {
 
   componentDidMount() {
     const { dispatch, match: { params: { id }} } = this.props;
-    dispatch(getUsers(id));
+    dispatch(getUsersByCourse(id));
   }
 
   displayUsers = () => {
     const { users } = this.props;
     return users.map( user => {
-      return <StudentRecord key={user.id} user={user} status={user.status} />
+      if (user.role === 'student')
+        return <StudentRecord key={user.id} user={user} status={user.status} />
+      return null
     })
   }
 
