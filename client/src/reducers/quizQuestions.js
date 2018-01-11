@@ -3,7 +3,7 @@ const quizQuestions = (state = [], action) => {
     case 'GET_QUESTIONS':
       return action.questions
     case 'ADD_QUESTION':
-      return [...state.questions, action.question]
+      return [...state, action.question]
     case 'UPDATE_QUESTION':
       return state.questions.map( q => {
         const { question } = action

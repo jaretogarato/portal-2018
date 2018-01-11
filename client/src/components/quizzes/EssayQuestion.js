@@ -19,8 +19,8 @@ class EssayQuestion extends Component {
     const { quizId, dispatch, hideForm } = this.props
     e.preventDefault();
     const { question } = this.state
-    const quiz_question = { question, multiple_choice: false }
-    dispatch(addQuestion(quizId, quiz_question))
+    const quizQuestion = { question, multiple_choice: false }
+    dispatch(addQuestion(quizId, quizQuestion))
     hideForm()
   }
 

@@ -10,8 +10,6 @@ const quizOptions = (state = [], action) => {
       })
     case 'DELETE_OPTION':
       return state.filter( option => option.id !== action.id)
-    case 'CLEAR_OPTIONS':
-      return []
     default:
       return state
   }

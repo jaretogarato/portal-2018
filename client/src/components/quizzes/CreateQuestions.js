@@ -58,9 +58,9 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
         return <EssayQuestion quizId={this.props.quizId} hideForm={this.hideForm}/>
       case 'Multiple Answer':
       case 'Multiple Choice':
-        return <MultipleChoiceQuestion hideForm={this.hideForm}/>
+        return <MultipleChoiceQuestion quizId={this.props.quizId} hideForm={this.hideForm}/>
       case 'True/False':
-        return <TrueFalse hideForm={this.hideForm}/>;
+        return <TrueFalse quizId={this.props.quizId} hideForm={this.hideForm}/>;
       default:
         return null
     }

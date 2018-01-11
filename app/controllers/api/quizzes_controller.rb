@@ -13,7 +13,7 @@ class Api::QuizzesController < ApplicationController
     if @quiz.update(quiz_params)
       render json: @quiz
     else
-      render json: { errors: @quiz.errors.full_messages }, status: 422
+      json_error(@quiz)
     end
   end
 
@@ -23,7 +23,7 @@ class Api::QuizzesController < ApplicationController
     if quiz.save
       render json: quiz
     else
-      render json: { errors: quiz.errors.full_messages }, status: 422
+      json_error(quiz)
     end
   end
 

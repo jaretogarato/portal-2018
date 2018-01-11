@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import MultipleChoiceOption from './MultipleChoiceOption'
 import { Form, Select, Segment, Header, Button } from 'semantic-ui-react'
+import { addQuestion } from '../../actions/quizQuestions'
 import { connect } from 'react-redux'
 
 const options = [
@@ -29,22 +30,19 @@ class MultipleChoiceQuestion extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-  }
-
-  handleCheck = (_, { thing, name } ) => {
-    let correct = false
-    let text = ''
-    if (this.state.options[thing]) {
-      correct = this.state.options[thing][name]
-      text = this.state.options[thing]['text']
-    }
-    this.setState({
-      options:
-      {
-        ...this.state.options,
-        [thing]: { text: text, [name]: !correct }
-      }
+    const { options, dispatch, quizId, hideForm } = this.props
+    const { question } = this.state
+    let multiple_correct = false
+    let trues = 0
+    options.forEach( o => {
+      if (o.correct)
+        trues++
+      if (trues > 1)
+        multiple_correct = true
     })
+    const mcQuestion = { question, options, multiple_correct }
+    dispatch(addQuestion(quizId, mcQuestion))
+    hideForm()
   }
 
   optionGenerator = () => {

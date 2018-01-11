@@ -10,6 +10,7 @@ gem 'devise_token_auth'
 gem 'devise_invitable'
 gem 'cloudinary'
 gem 'delayed_job_active_record'
+gem 'jbuilder', '~> 2.7.0'
 
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console

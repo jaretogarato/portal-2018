@@ -9,7 +9,3 @@ export const updateOption = (option) => (
 export const deleteOption = (id) => (
   { type: 'DELETE_OPTION', id }
 )
-
-export const clearOptions = () => (
-  { type: 'CLEAR_OPTIONS' }
-)

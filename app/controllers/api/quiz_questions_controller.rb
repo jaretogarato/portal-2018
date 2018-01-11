@@ -3,15 +3,18 @@ class Api::QuizQuestionsController < ApplicationController
   before_action :set_quiz_question, only: [:edit]
 
   def index
-    render json: @quiz.quiz_questions.all
+    @quiz_questions = @quiz.quiz_questions
   end
 
   def create
     quiz_question = @quiz.quiz_questions.new(quiz_question_params)
     if quiz_question.save
+      if params[:options]
+        QuizQuestion.save_options(quiz_question, params[:options])
+      end
       render json: quiz_question
     else
-      render json: { errors: quiz_question.errors.full_messages.join(', ')}, status: 422
+      json_error(quiz_question)
     end
   end
 
@@ -19,7 +22,7 @@ class Api::QuizQuestionsController < ApplicationController
     if @quiz_question.update(quiz_question_params)
       render json: @quiz_question
     else
-      render json: { errors: @quiz_question.errors.full_messages.join(', ')}, status: 422
+      json_error(@quiz_question)
     end
   end
 
@@ -32,8 +35,7 @@ class Api::QuizQuestionsController < ApplicationController
   def quiz_question_params
     params.require(:quiz_question).permit(:question,
                                           :multiple_choice,
-                                          :options,
-                                          :correct_answers,
+                                          :true_false,
                                           :multiple_correct)
   end
 

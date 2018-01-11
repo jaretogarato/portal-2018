@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109230403) do
+ActiveRecord::Schema.define(version: 20180110235032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,12 +105,20 @@ ActiveRecord::Schema.define(version: 20180109230403) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "question_options", force: :cascade do |t|
+    t.string "content", default: "", null: false
+    t.boolean "correct", default: false
+    t.bigint "quiz_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_question_id"], name: "index_question_options_on_quiz_question_id"
+  end
+
   create_table "quiz_questions", force: :cascade do |t|
     t.text "question", default: "", null: false
     t.boolean "multiple_choice", default: true
-    t.jsonb "options"
-    t.jsonb "correct_answers"
     t.boolean "multiple_correct", default: false
+    t.boolean "true_false", default: false
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -207,6 +215,7 @@ ActiveRecord::Schema.define(version: 20180109230403) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
+  add_foreign_key "question_options", "quiz_questions"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"

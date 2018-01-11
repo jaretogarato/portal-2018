@@ -19,7 +19,7 @@ export const addQuestion = (quizId, question) => {
   return (dispatch) => {
     axios.post(`/api/quizzes/${quizId}/quiz_questions`, question)
       .then( res => {
-        dispatch({ type: 'ADD_QUESTION', question, headers: res.headers})
+        dispatch({ type: 'ADD_QUESTION', question: res.data, headers: res.headers})
       })
       .catch( err => {
         dispatch(setFlash('Failed to add question', 'red'))
@@ -32,7 +32,7 @@ export const updateQuestion = (quizId, question) => {
   return (dispatch) => {
     axios.put(`/api/quizzes/${quizId}/questions/${question.id}`, question)
       .then( res => {
-        dispatch({ type: 'UPDATE_QUESTION', question, headers: res.headers})
+        dispatch({ type: 'UPDATE_QUESTION', question: res.data, headers: res.headers})
       })
       .catch( err => {
         dispatch(setFlash('Failed to update question', 'red'))
