@@ -8,7 +8,9 @@ import {
   Grid,
   Header,
   Image,
-  Segment
+  Segment,
+  Dropdown,
+  Menu,
 } from 'semantic-ui-react';
 
 class UserProfile extends React.Component {
@@ -25,18 +27,40 @@ class UserProfile extends React.Component {
     if(this.state.edit) {
       return(
         <Segment basic>
-          <Button onClick={this.toggleEdit}>
-            Cancel Editing
-          </Button>
+          <Button.Group>
+            <Button onClick={this.toggleEdit}>
+              Cancel Editing
+            </Button>
+            <Menu vertical floated='right'>
+              <Dropdown item text='Announcements'>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Receive Text</Dropdown.Item>
+                  <Dropdown.Item>Receive Email</Dropdown.Item>
+                  <Dropdown.Item>None</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu>
+          </Button.Group>
           <UserEditForm toggleEdit={this.toggleEdit}/>
         </Segment>
       )
     } else {
       return (
         <Segment basic>
-          <Button onClick={this.toggleEdit}>
-            Edit Profile
-          </Button>
+          <Button.Group>
+            <Button onClick={this.toggleEdit}>
+              Edit Profile
+            </Button>
+            <Menu vertical floated='right'>
+              <Dropdown item text='Announcements'>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Receive Text</Dropdown.Item>
+                  <Dropdown.Item>Receive Email</Dropdown.Item>
+                  <Dropdown.Item>None</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu>
+          </Button.Group>
           <Segment textAlign='center' basic>
             <Header as='h1'>Your Profile</Header>
           </Segment>
