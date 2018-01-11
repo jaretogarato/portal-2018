@@ -1,9 +1,9 @@
 class Api::QuizQuestionsController < ApplicationController
   before_action :set_quiz
-  before_action :set_quiz_question, only: [:edit]
+  before_action :set_quiz_question, except: [:index, :create]
 
   def index
-    @quiz_questions = @quiz.quiz_questions
+    render json: @quiz.quiz_questions
   end
 
   def create

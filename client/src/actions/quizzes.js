@@ -10,8 +10,8 @@ export const addQuiz = (quiz, history) => {
         history.push(`./quizzes/${res.data.id}`)
       })
       .catch( err => {
-        dispatch(setHeaders(err.headers));
         dispatch(setFlash('Failed To Add Quiz', 'red'));
+        dispatch(setHeaders(err.headers));
       });
   }
 }

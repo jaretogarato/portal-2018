@@ -3,9 +3,9 @@ import { Segment, Form, Button } from 'semantic-ui-react';
 import { addQuestion } from '../../actions/quizQuestions';
 import { connect } from 'react-redux';
 
+
 class EssayQuestion extends Component {
   state = { question: '' }
-
 
   handleQuestion = (e, {name, value}) => {
     this.setState({ [name]: value })
@@ -23,8 +23,6 @@ class EssayQuestion extends Component {
     dispatch(addQuestion(quizId, quizQuestion))
     hideForm()
   }
-
-
 
   render(){
     return (

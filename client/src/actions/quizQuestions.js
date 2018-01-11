@@ -22,15 +22,15 @@ export const addQuestion = (quizId, question) => {
         dispatch({ type: 'ADD_QUESTION', question: res.data, headers: res.headers})
       })
       .catch( err => {
-        dispatch(setFlash('Failed to add question', 'red'))
         dispatch(setHeaders(err.headers))
+        dispatch(setFlash('Failed to add question', 'red'))
       })
   }
 }
 
 export const updateQuestion = (quizId, question) => {
   return (dispatch) => {
-    axios.put(`/api/quizzes/${quizId}/questions/${question.id}`, question)
+    axios.put(`/api/quizzes/${quizId}/quiz_questions/${question.id}`, question)
       .then( res => {
         dispatch({ type: 'UPDATE_QUESTION', question: res.data, headers: res.headers})
       })
@@ -38,5 +38,20 @@ export const updateQuestion = (quizId, question) => {
         dispatch(setFlash('Failed to update question', 'red'))
         dispatch(setHeaders(err.headers))
       })
+    }
   }
+
+export const deleteQuestion = (quizId, questionId) => {
+  return(dispatch) => {
+    axios.delete(`/api/quizzes/${quizId}/quiz_questions/${questionId}`)
+      .then(res => {
+        dispatch({type: 'DELETE_QUESTION', questionId , headers: res.headers})
+      })
+      .catch(err => {
+        dispatch(setFlash('Failed to delete question', 'red'))
+        dispatch(setHeaders(err.headers))
+      })
+    }
 }
+
+
