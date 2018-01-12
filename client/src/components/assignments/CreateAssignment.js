@@ -3,48 +3,55 @@ import { Segment, Form, Button, Header, Divider } from 'semantic-ui-react';
 import { addAssignment } from '../../actions/assignments';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 const submissionOptions = [
-  { key: '1', text: 'No Submission', value: '1' },
-  { key: '2', text: 'Online', value: '2' },
-  { key: '3', text: 'On Paper', value: '3' },
-  { key: '4', text: 'External', value: '4' },
+  { key: '1', text: 'No Submission', value: 'No Submission' },
+  { key: '2', text: 'Online', value: 'Online' },
+  { key: '3', text: 'On Paper', value: 'On Paper' },
+  { key: '4', text: 'External', value: 'External' },
 ]
 
 
 class CreateAssignment extends Component {
   state = {
     title: '', submission_type: '', points: 0,
-    due_date: '', published: false, content: '',
-    created_at: '', updated_at: ''
+    due_date: '', created_at: moment().format('LL'),
+    published: false, content: ''
+  }
+  
+  handleChange = (e) => {
+    const { value, name } = e.target
+    this.setState({ [name]: value })
   }
 
+  handleClick = (e) => {
+    const { published } = this.state;
+    this.setState({ published: !published })
+  }
+  
   handleSubmit = (e) => {
     const { history, dispatch } = this.props
     const {
       title, submission_type, points,
-      due_date, published, content,
-      created_at, updated_at
+      created_at, due_date, published, content
     } = this.state
     e.preventDefault();
     
     let assignment = {
       title, submission_type,
       points, due_date, published,
-      content, created_at, updated_at
+      created_at, content
     }
-    console.log(assignment)
     dispatch(addAssignment(assignment, history))
   }
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-
   render() {
     const {
-      title, submission_type,
+      title,
       published, content
     } = this.state
+
     return (
       <Segment basic>
         <Header as="h1" textAlign='center' style={ styles.pageTitle }>
@@ -64,12 +71,13 @@ class CreateAssignment extends Component {
             </Form.Input>
             <Form.Select
               label='Submission Options'
-              name={ submission_type }
+              name= "submission_type"
+              
               options={ submissionOptions }
               placeholder='Submission Options'
               required
               width={ 2 }
-              onChange={this.handleChange}
+              onChange={(e, data) => this.setState({ submission_type: data.value })}
             />
           </Form.Group>
           <Form.Group widths='equal'>
@@ -84,28 +92,35 @@ class CreateAssignment extends Component {
             <Form.Input
               label='Points'
               placeholder='Points'
+              name="points"
               type='number'
-              required
               width={ 2 }
               onChange={ this.handleChange }
+              required
             />
           </Form.Group>
           <Form.TextArea
             name='content'
+            label='Description'
             value={ content }
             style={ styles.textArea }
-            label='Description'
             placeholder='Rift Text Editor Placeholder'
             required
             onChange={ this.handleChange }
           />
           <Divider />
-          <Form.Checkbox label='Published?' value={ published } />
+          <Form.Checkbox
+            name='published'
+            label='Published?'
+            value={ published }
+            onClick={ this.handleClick }
+            onChange={ this.handleChange }
+          />
           <Divider />
           <Form.Group>
             <Button basic color='green' type='submit'>Create</Button> 
             <Link to={'./assignments'}>
-              <Button onClick={this.props.history.goBack}>Cancel</Button>
+              <Button onClick={ this.props.history.goBack }>Cancel</Button>
             </Link>
           </Form.Group>
         </Form>

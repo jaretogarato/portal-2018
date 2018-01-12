@@ -20,6 +20,7 @@ class Api::AssignmentsController < Api::ApiController
 
   def create
     assignment = Assignment.new(assignment_params)
+    binding.pry
     if assignment.save
       render json: assignment
     else
@@ -37,8 +38,8 @@ class Api::AssignmentsController < Api::ApiController
       params.require(:assignment).permit(
         :title, :submission_type,
         :points, :due_date,
-        :published, :content,
-        :created_at, :updated_at
+        :created_at,
+        :published, :content
       )
     end
 

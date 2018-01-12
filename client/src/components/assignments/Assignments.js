@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Segment, Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import axios from 'axios';
 
 class Assignments extends Component {
@@ -11,6 +10,7 @@ class Assignments extends Component {
     axios.get('/api/assignments')
       .then(res => {
         this.setState({ assignments: res.data })
+        console.log(res)
       })
       .catch(err => {
         console.log(err);
@@ -20,13 +20,12 @@ class Assignments extends Component {
   displayAssignments = () => {
     const { id } = this.props.match.params
     return this.state.assignments.map(assignment => {
-      let date = moment(assignment.created_at).format('MMMM D, YYYY')
       return (
         <Table.Row key={assignment.id}>
           <Table.Cell>
             <Link to={`/courses/${id}/assignments/${assignment.id}`}>{assignment.title}</Link>
           </Table.Cell>
-          <Table.Cell>{date}</Table.Cell>
+          { /*<Table.Cell>{date}</Table.Cell> */ }
         </Table.Row>
       )
     })

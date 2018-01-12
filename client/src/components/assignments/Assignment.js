@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Header, Button, Segment, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import moment from 'moment';
 
 class Assignment extends Component {
   state = { assignment: [] };
@@ -30,24 +29,31 @@ class Assignment extends Component {
   }
 
   render() {
-    const { title, id, content, due_date, created_at } = this.state.assignment
-    let time = moment(due_date).format('MMMM D, YYYY')
-    let created = moment(created_at).format('MMMM D, YYYY')
+    const { title, id, points, content, published, created_at, submission_type, due_date } = this.state.assignment;
     return (
       <Segment name="assignment">
         <Header as='h1' textAlign='center' style={styles.pageTitle}>{title}</Header>
         <List>
-          <List.Item>
-            Description: {content}
-          </List.Item>
-          <List.Item>
-            Created: {created}
-          </List.Item>
-          <List.Item>
-            Due Date: {time}
-          </List.Item>
+        <List.Item>
+          Created: { created_at }
+        </List.Item>
+        <List.Item>
+          Due Date: { due_date }
+        </List.Item>
+        <List.Item>
+          Points: { points }
+        </List.Item>
+        <List.Item>
+          Submission Type: { submission_type }
+        </List.Item>
+        <List.Item>
+          Status: { published ? "Published" : "Unpublished" }
+        </List.Item>
+        <List.Item>
+          Description: { content }
+        </List.Item>
         </List>
-        <Button basic color='red' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>
+        <Button basic color='red' name='delete' onClick={ () => this.deleteAssignment(id) }>Delete</Button>
         <Link to={'./'} >
           <Button basic color='yellow'>Cancel</Button>
         </Link>
