@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getQuiz } from '../../actions/singleQuiz'
 import { getQuestions, deleteQuestion } from '../../actions/quizQuestions'
 import CreateQuestions from './CreateQuestions'
-import QuizForm from './QuizForm'
+import EditQuizForm from './EditQuizForm'
 import axios from 'axios';
 import moment from 'moment'
 
@@ -58,7 +58,7 @@ displayQuiz = () => {
         <Button basic onClick={this.toggleEdit}>
           Cancel Editing
         </Button>
-        <QuizForm toggleEdit={this.toggleEdit}/>
+        <EditQuizForm toggleEdit={this.toggleEdit}/>
       </Segment>
     )
   } else {

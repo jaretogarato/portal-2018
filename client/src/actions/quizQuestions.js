@@ -54,4 +54,3 @@ export const deleteQuestion = (quizId, questionId) => {
     }
 }
 
-

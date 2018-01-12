@@ -15,11 +15,11 @@ export const getQuiz = (id) => {
   }
 }
 
-export const updateQuiz = (quiz) => {
+export const updateQuiz = (quiz, id) => {
   return (dispatch) => {
-    axios.put(`/api/quizzes/${quiz.id}`, quiz)
+    axios.put(`/api/quizzes/${id}`, {quiz})
       .then( res => {
-        dispatch({ type: 'UPDATE_QUIZ', quiz, headers: res.headers })
+        dispatch({ type: 'UPDATE_QUIZ', quiz: res.data , headers: res.headers })
       })
       .catch( err => {
         dispatch(setFlash('Failed to update quiz', 'red'))
