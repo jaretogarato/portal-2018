@@ -29,14 +29,15 @@ class SingleQuiz extends Component{
   }
 
   deleteQuiz = () => {
-    window.confirm("Delete Quiz?")
-    axios.delete(`/api/quizzes/${this.props.quiz.id}`)
-      .then( res => {
-        this.props.history.push('./')
-      })
-      .catch( err => {
-        console.log(err)
-      });
+    const deleted = window.confirm("Delete Quiz?")
+    if (deleted)
+      axios.delete(`/api/quizzes/${this.props.quiz.id}`)
+        .then( res => {
+          this.props.history.push('./')
+        })
+        .catch( err => {
+          console.log(err)
+        });
   }
 
   toggleEdit = () => {
