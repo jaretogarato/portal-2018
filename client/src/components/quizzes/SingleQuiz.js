@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Header, Button, Segment, List, Dimmer, Loader, Input, Icon } from 'semantic-ui-react';
+import { Header, Button, Segment, List, Dimmer, Loader, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getQuiz } from '../../actions/singleQuiz'
@@ -23,7 +23,6 @@ class SingleQuiz extends Component{
     this.checkLoaded()
   }
 
-
   checkLoaded = () => {
     if (!this.state.loaded && this.props.quiz && this.props.questions)
       this.setState({ loaded: true })
@@ -40,13 +39,10 @@ class SingleQuiz extends Component{
       });
   }
 
-
-
   toggleEdit = () => {
     const { edit } = this.state;
     this.setState({ edit: !edit })
   }
- 
 
 displayQuiz = () => {
   const { id, content, points, due_date, created_at, title } = this.props.quiz
@@ -63,8 +59,13 @@ displayQuiz = () => {
     )
   } else {
   return (
-    <Segment basic>
+    <Segment basic clearing >
       <Header textAlign='center'>{title}</Header>
+      <Link to={'./'} >
+        <Button basic color='yellow' floated='right'>Cancel</Button>
+      </Link>
+      <Button basic floated='right' color='red' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
+      <Button basic color='blue' floated='right' onClick={this.toggleEdit }> Edit </Button> 
       <List>
         <List.Item>
           Description: {content}
@@ -80,35 +81,34 @@ displayQuiz = () => {
         </List.Item>
       </List>
       <Segment basic>
+        <Header textAlign='center'>Quiz Questions</Header>
         {this.displayQuestions()}
-      </Segment>
-      <Segment>
         <CreateQuestions quizId={id}/>
       </Segment>
-      <Button basic color='red' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
-        <Button basic color='blue' onClick={this.toggleEdit }> Edit </Button> 
+      <Divider />
       <Link to={'./'} >
-        <Button basic color='yellow'>Cancel</Button>
+        <Button basic color='green'>Save Quiz</Button>
       </Link>
-    </Segment>
+        </Segment>
   );
 }
 }
 
 displayQuestions= () => {
   const { questions } = this.props
-  let quizNumber = 1
   if(questions.length > 0)
     return questions.map((q,i) => {
+      console.log(q.content)
       return(
-        <Segment key={q.id} > 
-          {(i + 1)} 
+        <Segment clearing key={q.id} > 
+         <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div> 
           {q.question} 
-          <Icon link name='delete' textAlign='right'
-           onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} />
+          <Button basic floated='right' 
+           onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} > 
+           Delete
+           </Button>
         </Segment> 
       )
-      quizNumber++
     })
   return null
 }

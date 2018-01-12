@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Segment, Form, Header, Button, Icon, Select } from 'semantic-ui-react';
+import { Segment, Form, Button, Icon, Select } from 'semantic-ui-react';
 import EssayQuestion from './EssayQuestion'
 import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 import TrueFalse from './TrueFalse'
@@ -73,7 +73,6 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     if (this.state.isHidden) {
       return(
         <Segment basic>
-          <Header as="h3" textAlign='center'> Add Questions </Header>
           { showQuestion && this.selectQuestion() }
           { this.questionType() }
           <Button
@@ -84,14 +83,13 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
             onClick={() => this.setState({ showQuestion: true, isHidden: false })}
           >
             <Icon name='add' />
-            New Question
+            Question
           </Button>
         </Segment>
       )
     } else {
       return(
-        <Segment basic>
-          <Header as="h3" textAlign='center'> Add Questions </Header>
+        <Segment basic >
           { showQuestion && this.selectQuestion() }
           { this.questionType() }
           <Button
