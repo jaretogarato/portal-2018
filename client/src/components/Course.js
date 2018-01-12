@@ -10,10 +10,11 @@ import SectionSelect from './course/SectionSelect'
 import CourseHome from './course/CourseHome';
 import CourseSettings from './course/CourseSettings';
 import PeopleProfile from './people/PeopleProfile';
+import ProtectedRoute from './ProtectedRoute';
 import Wiki from './Rift/wiki/Wiki';
 import Quizzes from './quizzes/Quizzes';
 import QuizForm from './quizzes/QuizForm';
-import SingleQuiz from './quizzes/SingleQuiz';
+import QuizRoute from './QuizRoute';
 import Lectures from './lectures/Lectures';
 import CreateLecture from './lectures/CreateLecture';
 import Lecture from './lectures/Lecture';
@@ -46,7 +47,7 @@ class Course extends React.Component {
     ]
     return navs.map(nav => {
       return (
-        <Menu.Item 
+        <Menu.Item
           key={nav.name}
           as={Link} to={nav.path}
           position='right'
@@ -63,22 +64,22 @@ class Course extends React.Component {
   renderRoutes = () => (
     <Segment basic>
       <Switch>
-        <Route exact path="/courses/:id" component={CourseHome} />
-        <Route path="/courses/:id/people" component={People} />
-        <Route path="/courses/:id/sections" component={SectionSelect} />
-        <Route path="/courses/:id/settings" component={CourseSettings} />
-        <Route path="/courses/:id/user/:id" component={PeopleProfile} />
-        <Route path="/courses/:id/attendance" component={Attendance} />
-        <Route exact path='/courses/:id/quizzes' component={Quizzes} />
-        <Route exact path='/courses/:id/quizform' component={QuizForm} />
-        <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
-        <Route exact path='/courses/:id/lectures' component={Lectures} />
-        <Route exact path='/courses/:id/lectures/create' component={CreateLecture} />
-        <Route exact path='/courses/:id/lectures/:id' component={Lecture} />
-        <Route exact path='/courses/:id/assignments' component={Assignments} />
-        <Route exact path='/courses/:id/assignments/create' component={CreateAssignment} />
-        <Route exact path='/courses/:id/assignments/:id' component={Assignment} />
-        <Route exact path='/courses/:id/wiki' component={Wiki} />
+        <ProtectedRoute exact path="/courses/:id" component={CourseHome} />
+        <ProtectedRoute path="/courses/:id/people" component={People} />
+        <ProtectedRoute path="/courses/:id/sections" component={SectionSelect} />
+        <ProtectedRoute path="/courses/:id/settings" component={CourseSettings} />
+        <ProtectedRoute path="/courses/:id/user/:id" component={PeopleProfile} />
+        <ProtectedRoute path="/courses/:id/attendance" component={Attendance} />
+        <ProtectedRoute exact path='/courses/:id/quizzes/:id' component={QuizRoute} />
+        <ProtectedRoute exact path='/courses/:id/quizzes' component={Quizzes} />
+        <ProtectedRoute adminOnly={true} exact path='/courses/:id/quizform' component={QuizForm} />
+        <ProtectedRoute exact path='/courses/:id/lectures' component={Lectures} />
+        <ProtectedRoute exact path='/courses/:id/lectures/create' component={CreateLecture} />
+        <ProtectedRoute exact path='/courses/:id/lectures/:id' component={Lecture} />
+        <ProtectedRoute exact path='/courses/:id/assignments' component={Assignments} />
+        <ProtectedRoute exact path='/courses/:id/assignments/create' component={CreateAssignment} />
+        <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />
+        <ProtectedRoute exact path='/courses/:id/wiki' component={Wiki} />
       </Switch>
     </Segment>
   )
