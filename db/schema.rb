@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110235032) do
+ActiveRecord::Schema.define(version: 20180112225404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20180110235032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_avatars_on_user_id"
+  end
+
+  create_table "course_contents", force: :cascade do |t|
+    t.bigint "sub_section_id"
+    t.bigint "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_course_contents_on_quiz_id"
+    t.index ["sub_section_id"], name: "index_course_contents_on_sub_section_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -126,14 +135,12 @@ ActiveRecord::Schema.define(version: 20180110235032) do
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.bigint "sub_section_id"
     t.string "title", default: "", null: false
     t.text "content", default: "", null: false
     t.string "due_date", default: "", null: false
     t.integer "points", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sub_section_id"], name: "index_quizzes_on_sub_section_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -212,12 +219,13 @@ ActiveRecord::Schema.define(version: 20180110235032) do
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "users"
   add_foreign_key "avatars", "users"
+  add_foreign_key "course_contents", "quizzes"
+  add_foreign_key "course_contents", "sub_sections"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "sub_sections"
   add_foreign_key "question_options", "quiz_questions"
   add_foreign_key "quiz_questions", "quizzes"
-  add_foreign_key "quizzes", "sub_sections"
   add_foreign_key "sections", "courses"
   add_foreign_key "sub_sections", "sections"
   add_foreign_key "ta_groups", "sections"
