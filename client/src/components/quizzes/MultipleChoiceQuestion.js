@@ -49,7 +49,7 @@ class MultipleChoiceQuestion extends React.Component {
     const { optionCount } = this.state
     const countArray = new Array(optionCount)
     return Array.from(countArray).map( (_, i) => {
-      return <MultipleChoiceOption id={i} />
+      return <MultipleChoiceOption id={i} key={i}/>
     })
   }
 
