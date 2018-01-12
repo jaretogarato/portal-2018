@@ -3,8 +3,6 @@ import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
 import { updateQuiz, getQuiz } from '../../actions/singleQuiz';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
-
 
 class EditQuizForm extends Component {
 state = { title: '', content: '', due_date:'', points: '' }
@@ -25,65 +23,65 @@ handleSubmit = (e) => {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
- 
+
   render(){
     const { title, content, due_date, points } = this.props.quiz
     return(
-      <Container> 
+      <Container>
         <Header as="h3" textAlign='center' style={styles.pageTitle}>Update Quiz</Header>
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
-              <Form.Input 
+              <Form.Input
                 label='Title'
                 name='title'
-                defaultValue={title}  
+                defaultValue={title}
                 width={9}
-                placeholder='Quiz Title' 
+                placeholder='Quiz Title'
                 autoFocus={true}
                 required
                 onChange={this.handleChange}>
               </Form.Input>
-              <Form.Input 
+              <Form.Input
                 name='due_date'
                 defaultValue={due_date}
-                label='Due Date' 
-                type='date' 
+                label='Due Date'
+                type='date'
                 width={4}
                 onChange={this.handleChange}
                  >
               </Form.Input>
-              <Form.Input 
+              <Form.Input
                 label='Points'
-                placeholder='Points' 
+                placeholder='Points'
                 name='points'
                 defaultValue={points}
-                type='number' 
-                required 
+                type='number'
+                required
                 onChange={this.handleChange}
                 width={3} />
             </Form.Group>
 
-           
-            <Form.TextArea 
+
+            <Form.TextArea
               name='content'
               defaultValue={content}
               style={ styles.textArea }
-              label='Description' 
-              placeholder='Rift Text Editor Placeholder' 
-              required 
+              label='Description'
+              placeholder='Rift Text Editor Placeholder'
+              required
               onChange={this.handleChange}
               />
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-              <Button basic color='green' type='submit'  >Update</Button> 
-            <Link to={`./`} > 
-              <Button basic color='yellow'> Cancel </Button> 
+              <Button basic color='green' type='submit'  >Update</Button>
+            <Link to={`./`} >
+              <Button basic color='yellow'> Cancel </Button>
             </Link>
             </Form.Group>
-          </Form> 
-      </Container> 
+          </Form>
+      </Container>
     )
   }
 }

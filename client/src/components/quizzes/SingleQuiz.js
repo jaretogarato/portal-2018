@@ -65,7 +65,7 @@ displayQuiz = () => {
         <Button basic color='yellow' floated='right'>Cancel</Button>
       </Link>
       <Button basic floated='right' color='red' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
-      <Button basic color='blue' floated='right' onClick={this.toggleEdit }> Edit </Button> 
+      <Button basic color='blue' floated='right' onClick={this.toggleEdit }> Edit </Button>
       <List>
         <List.Item>
           Description: {content}
@@ -100,14 +100,14 @@ displayQuestions= () => {
     return questions.map((q,i) => {
       console.log(q.content)
       return(
-        <Segment clearing key={q.id} > 
-         <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div> 
-          {q.question} 
-          <Button basic floated='right' 
-           onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} > 
+        <Segment clearing key={q.id} >
+         <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
+          {q.question}
+          <Button basic floated='right'
+           onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} >
            Delete
            </Button>
-        </Segment> 
+        </Segment>
       )
     })
   return null
@@ -116,7 +116,7 @@ displayQuestions= () => {
 render() {
   const { loaded } = this.state
   if (loaded)
-    return this.displayQuiz() 
+    return this.displayQuiz()
   else
     return(
       <Dimmer active>

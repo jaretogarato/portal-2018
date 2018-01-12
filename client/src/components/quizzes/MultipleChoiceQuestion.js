@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Form, Select, Segment, Header, Button } from 'semantic-ui-react'
+import MultipleChoiceOption from './MultipleChoiceOption'
 import { addQuestion } from '../../actions/quizQuestions'
 import { connect } from 'react-redux'
 
@@ -48,6 +49,7 @@ class MultipleChoiceQuestion extends React.Component {
     const { optionCount } = this.state
     const countArray = new Array(optionCount)
     return Array.from(countArray).map( (_, i) => {
+      return <MultipleChoiceOption id={i} />
     })
   }
 

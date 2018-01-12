@@ -3,18 +3,18 @@ class Api::QuizQuestionsController < ApplicationController
   before_action :set_quiz_question, except: [:index, :create]
 
   def index
-    render json: @quiz.quiz_questions
+    @quiz_questions = @quiz.quiz_questions
   end
 
   def create
-    quiz_question = @quiz.quiz_questions.new(quiz_question_params)
-    if quiz_question.save
+    @quiz_question = @quiz.quiz_questions.new(quiz_question_params)
+    if @quiz_question.save
       if params[:options]
-        QuizQuestion.save_options(quiz_question, params[:options])
+        QuizQuestion.save_options(@quiz_question, params[:options])
       end
-      render json: quiz_question
+      render 'show'
     else
-      json_error(quiz_question)
+      json_error(@quiz_question)
     end
   end
 
