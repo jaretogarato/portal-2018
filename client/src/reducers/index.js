@@ -22,7 +22,7 @@ import singleQuiz from './singleQuiz';
 import userId from './userId';
 import notes from './notes';
 import permissions from './permissions';
-
+import groups from './groups';
 
 const rootReducer = combineReducers({
   user,
@@ -47,7 +47,8 @@ const rootReducer = combineReducers({
   singleQuiz,
   quizQuestions,
   quizResponses,
-  permissions,  
+  permissions,
+  groups,
 });
 
 export default rootReducer;

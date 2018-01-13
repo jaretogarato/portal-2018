@@ -2,6 +2,9 @@ class Enrollment < ApplicationRecord
   belongs_to :user
   belongs_to :course
 
+  has_many :group_memberships
+  has_many :ta_groups, through: :group_memberships
+
   validates :role, inclusion: {
     in: %w(student ta teacher auditor),
       message: "%{value} is not a valid role"

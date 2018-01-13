@@ -5,7 +5,7 @@ class Api::SectionsController < Api::ApiController
   def index
     course = Course.find(params[:course_id])
     sections = course.sections.all
-    render json: sections
+    render json: sections.order(:id)
   end
 
   def show
@@ -38,7 +38,7 @@ class Api::SectionsController < Api::ApiController
 
   private
     def section_params
-      params.require(:section).permit(:title)
+      params.require(:section).permit(:title, :active)
     end
 
     def set_section

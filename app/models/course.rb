@@ -30,6 +30,18 @@ class Course < ApplicationRecord
 		.where("courses.id = #{course_id} AND u.id = #{user_id}")
 	end
 
+	def self.associated_groups(course_id)
+		select('u.first_name, u.last_name, u.email,
+						u.image, e.role, s.title,
+						u.id, t.section_id, g.ta_group_id')
+		.joins('INNER JOIN enrollments e ON e.course_id = courses.id
+						INNER JOIN users u ON u.id = e.user_id
+						INNER JOIN group_memberships g ON g.enrollment_id = e.id
+						INNER JOIN ta_groups t ON t.id = g.ta_group_id
+						INNER JOIN sections s ON s.id = t.section_id')
+		.where('courses.id = ?', course_id)
+	end
+
 	# Imperfect fix, but this will sort by year and keep same-term courses together
 	def self.all_sorted_courses
 		select("id, course_type, term, year")

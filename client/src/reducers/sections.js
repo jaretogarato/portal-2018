@@ -14,12 +14,6 @@ const sections = (state = [], action) => {
       })
     case 'DELETE_SECTION':
       return state.filter( section => section.id !== action.section.id )
-    case 'TOGGLE_SECTION':
-      return state.map( section => {
-        if (section.id === action.id)
-          return {...section, active: !section.active}
-        return section
-      });
     default:
       return state;
   }

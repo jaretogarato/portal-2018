@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-export const getSections = (course_id, callback) => {
+export const getSections = (courseId, callback) => {
   return(dispatch) => {
-    axios.get(`/api/courses/${course_id}/sections`)
+    axios.get(`/api/courses/${courseId}/sections`)
       .then( res => dispatch({ type: 'GET_SECTIONS', sections: res.data, headers: res.headers }))
       .then( callback() )
       .catch( err => {
@@ -26,9 +26,9 @@ export const addSection = (title, courseId) => {
   }
 }
 
-export const updateSection = (sectionId, section) => {
+export const updateSection = (section) => {
   return(dispatch) => {
-    axios.put(`/api/sections/${sectionId}`, { section })
+    axios.put(`/api/sections/${section.id}`, {section})
       .then( res => dispatch({ type: 'UPDATE_SECTION', section: res.data, headers: res.headers }))
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
@@ -50,11 +50,6 @@ export const deleteSection = (section) => {
       });
   }
 }
-
-export const toggleActiveSection = (id) => {
-  return { type: 'TOGGLE_SECTION', id }
-}
-
 export const clearSections = () => {
   return ({ type: "CLEAR_SECTIONS", sections: [] })
 }

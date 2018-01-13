@@ -24,7 +24,6 @@ import Assignment from './assignments/Assignment';
 import CreateAssignment from './assignments/CreateAssignment';
 import FetchEnrollment from './course/FetchEnrollment';
 
-
 class Course extends React.Component {
   state = { sidebar: false };
 
@@ -65,29 +64,29 @@ class Course extends React.Component {
   }
 
   renderRoutes = () => (
-    <Segment basic>
-      <FetchEnrollment>
-        <Switch>
-          <ProtectedRoute exact path="/courses/:id" component={CourseHome} />
-          <ProtectedRoute path="/courses/:id/people" component={People} />
-          <ProtectedRoute path="/courses/:id/sections" component={SectionSelect} />
-          <ProtectedRoute path="/courses/:id/settings" component={CourseSettings} />
-          <ProtectedRoute path="/courses/:id/user/:id" component={PeopleProfile} />
-          <ProtectedRoute path="/courses/:id/attendance" component={Attendance} />
-          <ProtectedRoute exact path='/courses/:id/quizzes/:id' component={QuizRoute} />
-          <ProtectedRoute exact path='/courses/:id/quizzes' component={Quizzes} />
-          <ProtectedRoute adminOnly={true} exact path='/courses/:id/quizform' component={QuizForm} />
-          <ProtectedRoute exact path='/courses/:id/lectures' component={Lectures} />
-          <ProtectedRoute exact path='/courses/:id/lectures/create' component={CreateLecture} />
-          <ProtectedRoute exact path='/courses/:id/lectures/:id' component={Lecture} />
-          <ProtectedRoute exact path='/courses/:id/assignments' component={Assignments} />
-          <ProtectedRoute exact path='/courses/:id/assignments/create' component={CreateAssignment} />
-          <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />
-          <ProtectedRoute exact path='/courses/:id/wiki' component={Wiki} />
-        </Switch>
-      </FetchEnrollment>
-    </Segment>
-  )
+      <Segment basic>
+        <FetchEnrollment>
+          <Switch>
+            <ProtectedRoute exact path="/courses/:id" component={CourseHome} />
+            <ProtectedRoute path="/courses/:id/people" component={People} />
+            <ProtectedRoute path="/courses/:id/sections" component={SectionSelect} />
+            <ProtectedRoute path="/courses/:id/settings" component={CourseSettings} />
+            <ProtectedRoute path="/courses/:id/user/:id" component={PeopleProfile} />
+            <ProtectedRoute path="/courses/:id/attendance" component={Attendance} />
+            <ProtectedRoute exact path='/courses/:id/quizzes/:id' component={QuizRoute} />
+            <ProtectedRoute exact path='/courses/:id/quizzes' component={Quizzes} />
+            <ProtectedRoute adminOnly={true} exact path='/courses/:id/quizform' component={QuizForm} />
+            <ProtectedRoute exact path='/courses/:id/lectures' component={Lectures} />
+            <ProtectedRoute exact path='/courses/:id/lectures/create' component={CreateLecture} />
+            <ProtectedRoute exact path='/courses/:id/lectures/:id' component={Lecture} />
+            <ProtectedRoute exact path='/courses/:id/assignments' component={Assignments} />
+            <ProtectedRoute exact path='/courses/:id/assignments/create' component={CreateAssignment} />
+            <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />
+            <ProtectedRoute exact path='/courses/:id/wiki' component={Wiki} />
+          </Switch>
+        </FetchEnrollment>
+      </Segment>
+    )
 
   render() {
     const { sidebar } = this.state;

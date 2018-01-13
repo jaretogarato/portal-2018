@@ -10,15 +10,15 @@ class SectionEditForm extends React.Component {
   handleSubmit = (e) => {
     const { sectionId, dispatch, sections } = this.props
     const section = sections.find((s) => s.id === sectionId)
-    dispatch(updateSection(section.id, {title: this.state.title }))
+    dispatch(updateSection({...section, title: this.state.title }))
     this.setState({ title: '', showForm: false })
   }
 
-  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });  
+  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
   render() {
     const { title } = this.state
-    const { sectionId, sections } = this.props    
+    const { sectionId, sections } = this.props
     return (
       <div>
         { this.state.showForm ?
@@ -37,9 +37,9 @@ class SectionEditForm extends React.Component {
                     />
                   </Form.Field>
                   <Button.Group>
-                    <Button 
-                      color='red' 
-                      onClick={() => { this.setState({ showForm: false }) }} 
+                    <Button
+                      color='red'
+                      onClick={() => { this.setState({ showForm: false }) }}
                       content="X"
                       //Prevents console warnings on click
                       type='button'
@@ -65,7 +65,7 @@ class SectionEditForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     sections: state.sections,
     sectionId: state.sectionId,
   }
