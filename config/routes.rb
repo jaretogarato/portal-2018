@@ -19,10 +19,10 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :groups
     end
 
-
     resources :assignments
     resources :enrollments, except: [:index, :show]
-    resources :notes, only: [:create, :update, :destroy]
+    resources :notes, only: [:create, :index]
+    resources :badges
 
     put 'update_profile_pic', to: 'profiles#update_profile_pic'
 
@@ -41,6 +41,9 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     # get '/group_lectures', to: 'sub_sections#group_lectures'
 
     post 'avatars', to: 'avatars#create'
+    post 'user_badges', to: 'user_badges#create'
+
+    delete 'user_badges', to: 'user_badges#destroy'
 
   end
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Icon } from 'semantic-ui-react';
 
-class Badges extends React.Component {
+class Badge extends React.Component {
   state = { badges: [] }
 
   render() {
@@ -27,7 +27,7 @@ class Badges extends React.Component {
     return (
       <Card>
         <Card.Content>
-         <Icon name='star' size='huge'/>
+         <Icon name='lab' size='huge'/>
         </Card.Content>
         <Card.Content description={description} />
       </Card>
@@ -37,4 +37,4 @@ class Badges extends React.Component {
 }
 
 
-export default Badges;
+export default Badge;

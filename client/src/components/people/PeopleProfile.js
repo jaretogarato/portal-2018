@@ -1,4 +1,5 @@
 import React from 'react';
+import BadgeForm from './BadgeForm';
 import { connect } from 'react-redux';
 import { getUser } from '../../actions/userId';
 import {
@@ -10,18 +11,26 @@ import {
   Image,
   Button,
   Icon,
+  Dropdown
 } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
 import NoteForm from './noteForm'
 import NoteList from './NoteList'
 
 class PeopleProfile extends React.Component {
-  state = { user: {} }
+  // some boolean state that checks if form is shown
+  state = { user: {}, showForm: false }
 
   componentDidMount() {
     const { id } = this.props.match.params
     this.props.dispatch(getUser(id))
   }
+
+  // toggleForm = () => {
+  //   const {showForm} = this.state
+  //   this.setState({showForm: !showForm})
+  // }
+
+  toggleForm = () => this.setState({showForm: !this.state.showForm});
 
   displayBadges = () => {
     const badges = [
@@ -46,20 +55,31 @@ class PeopleProfile extends React.Component {
         meta: '100% Homework',
       },
     ]
-      return badges.map( badges => {
+
+    // deleteBadge = () => {
+    //   axios.delete(`/api/badges/${this.state.badge.id}`)
+    //     .then( res => {
+    //        this.props.history.push('/dashboard')
+    //     })
+    //     .catch( err => {
+    //       console.log(err)
+    //     })
+    // }
+
+      return badges.map( badge => {
         return(
-            <Card>
+          <Card>
             <Card.Content>
                 <Card.Header>
-                  {badges.header}
+                  {badge.header}
                 </Card.Header>
                 <Card.Meta>
-                  {badges.meta}
+                  {badge.meta}
                 </Card.Meta>
               </Card.Content>
               <Card.Content extra>
                 <div>
-                  <Button basic color='blue'>Delete Badge</Button>
+                  <Button basic color='blue' onClick={this.deleteBadge}>Delete Badge</Button>
                 </div>
               </Card.Content>
             </Card>
@@ -67,6 +87,8 @@ class PeopleProfile extends React.Component {
       })
     }
 
+
+  
 
   render () {
     const { user, match: { params: { id } } } = this.props
@@ -86,16 +108,24 @@ class PeopleProfile extends React.Component {
               <Header as='h1'>{fullName}</Header>
               <Header as='h3'>{user.email}</Header>
               <Divider />
-              <Link to={``}>
-                <Button
-                  basic
-                  color='blue'
-                  icon
-                  labelPosition='left'>
-                  <Icon name='add' />
-                Add Badges
-                </Button>
-              </Link>
+              <Dropdown text='Add Badges'>
+                <Dropdown.Menu>
+                  
+                    <Button 
+                      basic
+                      color='blue' 
+                      icon 
+                      labelPosition='left'
+                      onClick={this.toggleForm}
+                    >
+                      <Icon name='add' />
+                      Add Badges
+                    </Button>
+                </Dropdown.Menu>
+              </Dropdown>
+                {this.state.showForm ? <BadgeForm /> : null }
+              {/* do some sort of conditional rendering */}
+              {/* terneries are nice for this */}
               <Grid>
                 <Grid.Row>
                   <Grid.Column width={16}>
@@ -117,8 +147,8 @@ class PeopleProfile extends React.Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column withd={16}>
-              { this.props.current_user.role === 'ta' || 'teacher' ? <NoteForm userId={id}/> : null }
+            <Grid.Column width={16}>
+              <NoteForm userId={id}/>
             </Grid.Column>
           </Grid.Row>
           { this.props.current_user.role === 'ta' || 'teacher' ? <NoteList userId={id}/> : null }

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20180112225822) do
+=======
 ActiveRecord::Schema.define(version: 20180112225404) do
+>>>>>>> origin/master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +51,14 @@ ActiveRecord::Schema.define(version: 20180112225404) do
     t.index ["user_id"], name: "index_avatars_on_user_id"
   end
 
+<<<<<<< HEAD
+  create_table "badges", force: :cascade do |t|
+    t.string "icon"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+=======
   create_table "course_contents", force: :cascade do |t|
     t.bigint "sub_section_id"
     t.bigint "quiz_id"
@@ -54,6 +66,7 @@ ActiveRecord::Schema.define(version: 20180112225404) do
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_course_contents_on_quiz_id"
     t.index ["sub_section_id"], name: "index_course_contents_on_sub_section_id"
+>>>>>>> origin/master
   end
 
   create_table "courses", force: :cascade do |t|
@@ -135,6 +148,10 @@ ActiveRecord::Schema.define(version: 20180112225404) do
   end
 
   create_table "quizzes", force: :cascade do |t|
+<<<<<<< HEAD
+    t.bigint "sub_section_id"
+=======
+>>>>>>> origin/master
     t.string "title", default: "", null: false
     t.text "content", default: "", null: false
     t.string "due_date", default: "", null: false
@@ -168,6 +185,15 @@ ActiveRecord::Schema.define(version: 20180112225404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["section_id"], name: "index_ta_groups_on_section_id"
+  end
+
+  create_table "user_badges", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "badge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_user_badges_on_badge_id"
+    t.index ["user_id"], name: "index_user_badges_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -229,4 +255,6 @@ ActiveRecord::Schema.define(version: 20180112225404) do
   add_foreign_key "sections", "courses"
   add_foreign_key "sub_sections", "sections"
   add_foreign_key "ta_groups", "sections"
+  add_foreign_key "user_badges", "badges"
+  add_foreign_key "user_badges", "users"
 end
