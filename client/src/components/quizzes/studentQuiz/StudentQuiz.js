@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Header } from 'semantic-ui-react';
+import { Segment, Header, List, Button, Grid, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import EssayQuestion from './EssayQuestion';
 import MultipleChoice from './MultipleChoice';
@@ -8,6 +8,7 @@ import TrueFalse from './TrueFalse';
 import { getQuiz } from '../../../actions/singleQuiz';
 import { getQuestions } from '../../../actions/quizQuestions';
 
+
 class StudentQuiz extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params
@@ -15,19 +16,46 @@ class StudentQuiz extends React.Component {
     this.props.dispatch(getQuestions(id))
   }
 
+  displayList = () => {
+    const { questions } = this.props
+    return questions.map((q, i) => (
+        <List.Item key={q.id} >
+        <a href={`#${q.id}`} > 
+          Question: {(i + 1) }
+       </a> 
+        </List.Item> 
+    ))
+  }
+
   displayQuestions = () => {
     const { questions } = this.props
     return questions.map( q => {
       if(q.multiple_choice) {
         if(q.true_false) {
-          return <TrueFalse key={q.id} question={q}/>
+          return (
+            <Header as='a' id={q.id} key={q.id}>
+              <TrueFalse key={q.id} question={q}/>
+            </Header>
+          )
         } else if(q.multiple_correct) {
-          return <MultipleAnswer key={q.id} question={q}/>
+          return (
+            <Header as='a' id={q.id} key={q.id}>
+              <MultipleAnswer key={q.id} id={q.id} question={q}/>
+            </Header>
+          )
         } else {
-          return <MultipleChoice key={q.id} question={q}/>
+          return (
+            <Header as='a' id={q.id} key={q.id}>
+              <MultipleChoice key={q.id} id={q.id} question={q}/>
+            </Header>
+          )
         }
       } else {
-        return <EssayQuestion key={q.id} question={q}/>
+        return (
+          <Header as='a' id={q.id} key={q.id}>
+            <EssayQuestion key={q.id} id={q.id} question={q}/>
+          </Header>
+         )    
       }
     })
   }
@@ -36,8 +64,17 @@ class StudentQuiz extends React.Component {
     const { quiz } = this.props
     return(
       <Segment basic>
-        <Header as ='h2' textAlign='center'>{quiz.title}</Header>
-        {this.displayQuestions()}
+        <Grid> 
+          <Grid.Column width={13}> 
+           <Header as ='h2' textAlign='center'>{quiz.title}</Header>
+            {this.displayQuestions()}
+          </Grid.Column> 
+          <Grid.Column width={3}> 
+           {this.displayList()}
+          </Grid.Column> 
+        </Grid> 
+        <Button color='green'> Submit </Button> 
+        <Button color='blue'> Save Quiz </Button> 
       </Segment>
     )
   }

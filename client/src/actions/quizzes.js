@@ -13,6 +13,7 @@ export const addQuiz = (quiz, history) => {
         dispatch(setFlash('Failed To Add Quiz', 'red'));
         dispatch(setHeaders(err.headers));
       });
+    // axios.post('/api/')
   }
 }
 

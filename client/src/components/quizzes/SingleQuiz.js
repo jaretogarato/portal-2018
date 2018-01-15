@@ -40,6 +40,7 @@ class SingleQuiz extends Component{
         });
   }
 
+ 
   toggleEdit = () => {
     const { edit } = this.state;
     this.setState({ edit: !edit })
@@ -52,9 +53,6 @@ displayQuiz = () => {
   if(this.state.edit) {
     return(
       <Segment basic>
-        <Button basic onClick={this.toggleEdit}>
-          Cancel Editing
-        </Button>
         <EditQuizForm toggleEdit={this.toggleEdit}/>
       </Segment>
     )
@@ -63,10 +61,10 @@ displayQuiz = () => {
     <Segment basic clearing >
       <Header textAlign='center'>{title}</Header>
       <Link to={'./'} >
-        <Button basic color='yellow' floated='right'>Cancel</Button>
+        <Button basic color='yellow' floated='right'>All Quizzes</Button>
       </Link>
       <Button basic floated='right' color='red' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
-      <Button basic color='blue' floated='right' onClick={this.toggleEdit }> Edit </Button>
+      <Button basic color='blue' floated='right' onClick={this.toggleEdit}> Edit </Button>
       <List>
         <List.Item>
           Description: {content}
@@ -99,11 +97,20 @@ displayQuestions= () => {
   const { questions } = this.props
   if(questions.length > 0)
     return questions.map((q,i) => {
-      console.log(q.content)
       return(
         <Segment clearing key={q.id} >
          <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
           {q.question}
+          { q.multiple_choice && 
+            q.options.map((option, i) => {
+              return(
+                <List.Item key={option.id} style={{paddingLeft: '5%'}}>  
+                <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
+                {option.content} 
+                </List.Item> 
+                )
+            })
+          }
           <Button basic floated='right'
            onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} >
            Delete
@@ -134,3 +141,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(SingleQuiz);
+

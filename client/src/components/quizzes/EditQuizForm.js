@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
 import { updateQuiz, getQuiz } from '../../actions/singleQuiz';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class EditQuizForm extends Component {
@@ -60,8 +59,6 @@ handleSubmit = (e) => {
                 onChange={this.handleChange}
                 width={3} />
             </Form.Group>
-
-
             <Form.TextArea
               name='content'
               defaultValue={content}
@@ -75,10 +72,10 @@ handleSubmit = (e) => {
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-              <Button basic color='green' type='submit'  >Update</Button>
-            <Link to={`./`} >
-              <Button basic color='yellow'> Cancel </Button>
-            </Link>
+            <Button basic color='green' type='submit'>Update</Button>
+            <Button basic onClick={this.toggleEdit}>
+                Cancel Editing
+            </Button>
             </Form.Group>
           </Form>
       </Container>
