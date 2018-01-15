@@ -48,6 +48,17 @@ course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
 end
 
 
+@admin = User.create(
+  first_name: 'admin',
+  last_name: 'admin',
+  email: 'admin@admin.com',
+  password: 'password',
+  bio: "This is a really good bio don't ya know...",
+  nickname: 'Spencer is BOSS',
+  is_admin: true,
+  image: "https://robohash.org/#{Faker::Number.number(1)}?set=set2"
+)
+
 @teacher = User.create(
   email: 'dj@teacher.com',
   password: 'password',
@@ -98,6 +109,12 @@ end
     role: 'teacher',
     sub_role: 'JS Ninja',
     user_id: @teacher.id,
+    course_id: @course.id
+  )
+  Enrollment.create(
+    role: 'teacher',
+    sub_role: 'JS Ninja',
+    user_id: @admin.id,
     course_id: @course.id
   )
   10.times do
@@ -167,18 +184,6 @@ puts "10 students seeded with enrollment, plus faker email and password password
 puts "Teacher seeded with enrollment to every course. password: password"
 puts "3 ta's seeded with enrollment, plus faker email and password password. For Each Course"
 
-1.times do
-  admin = User.create(
-    first_name: 'admin',
-    last_name: 'admin',
-    email: 'admin@admin.com',
-    password: 'password',
-    bio: "This is a really good bio don't ya know...",
-    nickname: 'Spencer is BOSS',
-    is_admin: true,
-    image: "https://robohash.org/#{Faker::Number.number(1)}?set=set2"
-  )
-end
 
 1.times do
   student = User.create(

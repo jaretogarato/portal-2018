@@ -27,6 +27,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
 
     put 'update_profile_pic', to: 'profiles#update_profile_pic'
 
+    get 'courses/:id/permissions', to: 'courses#single_user_with_enrollment'
     get  'user_courses/:user_id', to: 'courses#user_courses'
     get  'avatar', to: 'avatar#index'
     post 'avatars', to: 'avatars#create'

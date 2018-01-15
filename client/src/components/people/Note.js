@@ -3,14 +3,18 @@ import { connect } from 'react-redux'
 import { Grid, Message, Header, Divider, Button, Form,
          Icon, Image, Card } from 'semantic-ui-react'
 import { editNote, deleteNote} from '../../actions/notes'
+import { isAdmin } from '../../utils/permissions'
 
 
 class Note extends React.Component {
   state = {
     editing: false,
-    title: this.props.title,
-    content: this.props.content,
-    visible: this.props.visible,
+    visible: false,
+  }
+
+  componentDidMount() {
+    const { sender_id, updated_at, image, first_name, last_name, id, title, content } = this.props
+    this.setState({ sender_id, updated_at, image, first_name, last_name, id, title, content })
   }
 
   renderEditButton = () => {
@@ -36,15 +40,16 @@ class Note extends React.Component {
 
   //Todo: format time
   displayNote = () => {
-    const {id, title, content, user, sender_id, updated_at, image, first_name, last_name } = this.props
+    const { user, permission } = this.props
+    const { sender_id, updated_at, image, first_name, last_name, id, title, content } = this.state
       const fullName = `${first_name} ${last_name}`
       return(
         <Grid.Row key={id} style={styles.message}>
           <Message info fluid='true'>
             <Card.Content>
-              {user.is_admin && this.renderDeleteButton(id)}
+              {isAdmin(permission) && this.renderDeleteButton(id)}
               {user.id === sender_id && this.renderEditButton(id)}
-              <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={image} /> { }
+              <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={image} />
                 <Header as='h4'>
                  {fullName}
                 </Header>
@@ -59,7 +64,7 @@ class Note extends React.Component {
             </Card.Content>
           </Message>
       </Grid.Row>
-      )
+    )
   }
 
   handleSubmit = (e) => {
@@ -67,13 +72,14 @@ class Note extends React.Component {
     const { userId, dispatch, id } = this.props;
     const { title, content, visible } = this.state;
     const note = { title, content, visible, id };
-    this.setState( { title: '', content: '', visible: false, editing: false } );
+    this.setState( {editing: false } );
     dispatch(editNote(note, userId));
   }
 
   handleChecked = (e) => {
     this.setState({ visible: !this.state.visible })
   }
+
 
   handleChange = (e) => {
     const { name, value } = e.target
@@ -146,6 +152,7 @@ const styles = {
 
 const mapStateToProps = (state) => {
   return {
+    permission: state.permissions,
     user: state.user
   }
 }

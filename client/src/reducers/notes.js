@@ -11,7 +11,6 @@ const notes = (state = [], action) => {
     case 'DELETE_NOTE':
       return state.filter( note => note.id !== action.id )
     case 'EDIT_NOTE':
-      debugger
       return state.map( note => {
         if(note.id === action.note.id)
           return action.note;

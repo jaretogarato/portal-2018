@@ -1,5 +1,5 @@
 class Api::CoursesController < Api::ApiController
-  before_action :set_course, only: [ :destroy, :update, :show ]
+  before_action :set_course, only: [ :destroy, :update, :show, :single_user_with_enrollment]
   # need this to show for only current user or school, how ?
 
   def index
@@ -40,6 +40,10 @@ class Api::CoursesController < Api::ApiController
     render json: Course.associated_users(params[:id])
   end
 
+  def single_user_with_enrollment
+    enroll = Course.current_user_with_enrollment(params[:id], current_user.id)
+    render json: enroll
+  end
 
   private
     def course_params
