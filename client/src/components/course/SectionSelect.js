@@ -8,6 +8,7 @@ import { getSubSections, deleteSubSection, clearSubSections } from '../../action
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
+import SectionSelectMobile from './SectionSelectMobile';
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
@@ -118,42 +119,47 @@ class SectionSelect extends React.Component {
     if(sectionsLoaded && courseLoaded) {
       return(
         <Grid>
-          <Grid.Column width={3}>
-            <h3>Sections</h3>
-            <Menu fluid vertical tabular>
-              {sections.map( section =>
-                <Menu.Item
-                  key={section.id}
-                  id={section.id}
-                  active={sectionId === section.id}
-                  onClick={e => this.handleClick(e)}
-                >
-                  {section.title}
-                  { is_admin && 
-                    <Button.Group>
-                      <Button 
-                        floated='right' 
-                        onClick={() => this.deleteButtonClick(section) } 
-                        size='mini' 
-                        color='red'
-                        content='X'
-                        //Prevents console warnings on click
-                        type='button'
-                      />
-                      <SectionEditForm />
-                    </Button.Group>
-                  }
-                </Menu.Item>
-                )
-              }
-              { is_admin && <SectionForm /> }
-            </Menu>
-          </Grid.Column>
-          <Grid.Column width={13}>
-            <h3>Subsections</h3>
-            { this.displaySubSections() }
-            { is_admin && subSectionsLoaded && <SubSectionForm/> } 
-          </Grid.Column>
+          <Grid.Row only='tablet computer'>
+            <Grid.Column width={3}>
+              <h3>Sections</h3>
+              <Menu fluid vertical tabular>
+                {sections.map( section =>
+                  <Menu.Item
+                    key={section.id}
+                    id={section.id}
+                    active={sectionId === section.id}
+                    onClick={e => this.handleClick(e)}
+                  >
+                    {section.title}
+                    { is_admin && 
+                      <Button.Group>
+                        <Button 
+                          floated='right' 
+                          onClick={() => this.deleteButtonClick(section) } 
+                          size='mini' 
+                          color='red'
+                          content='X'
+                        />
+                        <SectionEditForm />
+                      </Button.Group>
+                    }
+                  </Menu.Item>
+                  )
+                }
+                { is_admin && <SectionForm /> }
+              </Menu>
+            </Grid.Column>
+            <Grid.Column width={13}>
+              <h3>Subsections</h3>
+              { this.displaySubSections() }
+              { is_admin && subSectionsLoaded && <SubSectionForm/> } 
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row only='mobile'>
+            <Grid.Column width={16}>
+              <SectionSelectMobile />
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       );
     } else {
