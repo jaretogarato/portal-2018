@@ -65,7 +65,6 @@ class PeopleProfile extends React.Component {
     options.forEach( option => {
       axios.post(`/api/users/${id}/user_badges`, { badge_id: badges[option] })
         .then( res => {
-          const r = res.data;
           newBadges.push(res.data)
           dispatch(setHeaders(res.headers))
         })
