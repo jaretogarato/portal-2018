@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 mount_devise_token_auth_for 'User', at: 'api/auth'
 
   namespace :api do
-    resources :users, only: [:update, :show]
-    resources :users, only: :update
+    resources :users, only: [:update, :show] do
+      resources :user_badges, except: [:update, :show]
+    end
     resources :lectures
     resources :quizzes do
       resources :quiz_questions, except: [:show]
@@ -41,9 +42,6 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     # get '/group_lectures', to: 'sub_sections#group_lectures'
 
     post 'avatars', to: 'avatars#create'
-    post 'user_badges', to: 'user_badges#create'
-
-    delete 'user_badges', to: 'user_badges#destroy'
 
   end
 

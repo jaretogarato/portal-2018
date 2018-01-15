@@ -1,7 +1,10 @@
 import React from 'react';
 import BadgeForm from './BadgeForm';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../actions/userId';
+import { setHeaders } from '../../actions/headers';
+import { setFlash } from '../../actions/flash';
 import {
   Card,
   Divider,
@@ -11,17 +14,26 @@ import {
   Image,
   Button,
   Icon,
-  Dropdown
-} from 'semantic-ui-react'
-import NoteForm from './noteForm'
-import NoteList from './NoteList'
+  Dropdown,
+  Form,
+} from 'semantic-ui-react';
+import Badge from './Badge';
+import NoteForm from './noteForm';
+import NoteList from './NoteList';
 
 class PeopleProfile extends React.Component {
-  // some boolean state that checks if form is shown
-  state = { user: {}, showForm: false }
+  state = { user: {}, showForm: false, badges: [], options: [] }
 
   componentDidMount() {
-    const { id } = this.props.match.params
+    const { dispatch, match: { params: { id } } } = this.props
+    axios.get(`/api/users/${id}/user_badges`)
+      .then( res => {
+        this.setState({ badges: res.data })
+        dispatch(setHeaders(res.headers))
+      })
+      .catch( err => {
+        dispatch(setFlash('Failed to get badges.', 'red'))
+      })
     this.props.dispatch(getUser(id))
   }
 
@@ -33,65 +45,57 @@ class PeopleProfile extends React.Component {
   toggleForm = () => this.setState({showForm: !this.state.showForm});
 
   displayBadges = () => {
-    const badges = [
-      {
-        header: 'Badge 1',
-        meta: 'Team Player',
-      },
-      {
-        header: 'Badge 2',
-        meta: 'Leadership',
-      },
-      {
-        header: 'Badge 3',
-        meta: 'Coding Aptitude',
-      },
-      {
-        header: 'Badge 4',
-        meta: '95% Attendance',
-      },
-      {
-        header: 'Badge 5',
-        meta: '100% Homework',
-      },
-    ]
+    const { badges } = this.state
+    return badges.map( badge => {
+      return(
+        <Badge key={badge.id} badge={badge} deleteBadge={this.deleteBadge}/>
+      )
+    })
+  }
 
-    // deleteBadge = () => {
-    //   axios.delete(`/api/badges/${this.state.badge.id}`)
-    //     .then( res => {
-    //        this.props.history.push('/dashboard')
-    //     })
-    //     .catch( err => {
-    //       console.log(err)
-    //     })
-    // }
+  handleChange = (e, { value }) => {
+    this.setState({ options: value })
+  }
 
-      return badges.map( badge => {
-        return(
-          <Card>
-            <Card.Content>
-                <Card.Header>
-                  {badge.header}
-                </Card.Header>
-                <Card.Meta>
-                  {badge.meta}
-                </Card.Meta>
-              </Card.Content>
-              <Card.Content extra>
-                <div>
-                  <Button basic color='blue' onClick={this.deleteBadge}>Delete Badge</Button>
-                </div>
-              </Card.Content>
-            </Card>
-        );
-      })
-    }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { options } = this.state
+    const { dispatch, match: { params: { id } } } = this.props
+    let newBadges = this.state.badges
+    options.forEach( option => {
+      axios.post(`/api/users/${id}/user_badges`, { badge_id: badges[option] })
+        .then( res => {
+          const r = res.data;
+          newBadges.push(res.data)
+          dispatch(setHeaders(res.headers))
+        })
+        .then( () => {
+          this.setState({ options: [], badges: newBadges })
+        })
+        .catch( err => {
+          dispatch(setFlash('Failed to add badge.', 'red'))
+        })
+    })
+  }
 
 
-  
+deleteBadge = (badgeId) => {
+  const { dispatch, match: { params: { id } } } = this.props
+  const newBadges = this.state.badges.filter( badge => badgeId !== badge.user_badge_id )
+  axios.delete(`/api/users/${id}/user_badges/${badgeId}`)
+    .then( res => {
+      this.setState({ badges: newBadges })
+      dispatch(setHeaders(res.headers))
+    })
+    .catch( err => {
+      dispatch(setFlash('Failed to delete badge', 'red'))
+    })
+}
+
 
   render () {
     const { user, match: { params: { id } } } = this.props
+    const { options } = this.state
     const fullName = `${user.first_name} ${user.last_name}`
     return (
       <Segment basic>
@@ -108,22 +112,20 @@ class PeopleProfile extends React.Component {
               <Header as='h1'>{fullName}</Header>
               <Header as='h3'>{user.email}</Header>
               <Divider />
-              <Dropdown text='Add Badges'>
-                <Dropdown.Menu>
-                  
-                    <Button 
-                      basic
-                      color='blue' 
-                      icon 
-                      labelPosition='left'
-                      onClick={this.toggleForm}
-                    >
-                      <Icon name='add' />
-                      Add Badges
-                    </Button>
-                </Dropdown.Menu>
-              </Dropdown>
-                {this.state.showForm ? <BadgeForm /> : null }
+              <Form onSubmit={this.handleSubmit}>
+                <Dropdown
+                  multiple
+                  selection
+                  placeholder='Add Badges'
+                  options={badgeOptions}
+                  onChange={this.handleChange}
+                  value={options}
+                />
+                <Button type='submit' primary icon onClick={this.addBadge}>
+                  <Icon name='add' />
+                </Button>
+              </Form>
+              {this.state.showForm ? <BadgeForm /> : null }
               {/* do some sort of conditional rendering */}
               {/* terneries are nice for this */}
               <Grid>
@@ -156,6 +158,22 @@ class PeopleProfile extends React.Component {
       </Segment>
     )
   }
+}
+
+const badgeOptions = [
+  { text: 'Leadership', value: 'leader' },
+  { text: 'Team Player', value: 'teamwork' },
+  { text: 'Coding Aptitude', value: 'coder' },
+  { text: '95% Attendance', value: 'attendance' },
+  { text: '100% Homework', value: 'homework' },
+]
+
+const badges = {
+  'teamwork': 1,
+  'leader': 2,
+  'coder': 3,
+  'attendance': 4,
+  'homework': 5,
 }
 
 const mapStateToProps = (state) => {

@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   has_many :attendances
   has_many :courses, :through=>:enrollments, :source=>"course"
   has_one :avatar
+  has_many :user_badges, dependent: :destroy
   has_many :badges, through: :user_badges
-  has_many :user_badges
 
 
   has_many :notes, class_name: "Note", foreign_key: "recipient_id"

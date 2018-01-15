@@ -26,6 +26,14 @@ course_term = [
   'Spring',
 ]
 
+badges = [
+  { title: 'Team Player', icon: 'teamwork', description: 'Works well in a team setting.' },
+  { title: 'Leadership', icon: 'leader', description: 'Shows good leadership qualities' },
+  { title: 'Coding Aptitude', icon: 'coder', description: 'Shows considerable coding aptitude' },
+  { title: '95% Attendance', icon: 'attendance', description: '95% or greater attendance' },
+  { title: '100% Homework', icon: 'homework', description: '100% of homework turned in' },
+]
+
 course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
 
 5.times do |a|
@@ -140,11 +148,20 @@ end
   end
 end
 
+badges.each do |badge|
+  Badge.create(
+    title: badge[:title],
+    icon: badge[:icon],
+    description: badge[:description]
+  )
+end
+
 puts "5 assignments seeded"
 puts "10 courses seeded"
 puts "11 sections seeded"
 puts "5 sub_sections seeded"
 puts "3 lectures seeded"
+puts "5 badges seeded"
 
 puts "10 students seeded with enrollment, plus faker email and password password. For Each Course"
 puts "Teacher seeded with enrollment to every course. password: password"
