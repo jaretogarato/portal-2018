@@ -1,39 +1,50 @@
 import React, { Component } from 'react';
 import { Header, Button, Segment, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { getLecture, deleteLecture } from '../../actions/lectures';
+import EditLecture from './EditLecture';
 import axios from 'axios';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 class Lecture extends Component {
-  state = { lecture: [] };
+  state = { edit: false };
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    axios.get(`/api/lectures/${id}`)
-      .then(res => {
-        this.setState({ lecture: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const { id } = this.props.match.params
+    this.props.dispatch(getLecture(id))
   }
 
-  deleteLecture = () => {
-    window.confirm("Delete Lecture?")
-    axios.delete(`/api/lectures/${this.state.lecture.id}`)
-      .then(res => {
-        this.props.history.push('./')
-      })
-      .catch(err => {
-        console.log(err)
-      });
+  toggleEdit = () => {
+    const { edit } = this.state
+    this.setState({ edit: !edit})
+  }
+  
+  deleteLecture = (id) => {
+    window.confirm('Are you sure you want to delete?')
+    this.props.dispatch(deleteLecture(id, this.props.history ))
   }
 
   render() {
-    const { title, id, content, created_at } = this.state.lecture
+    const { title, id, content, created_at } = this.props.lecture
     let created = moment(created_at).format('MMMM D, YYYY')
+    if(this.state.edit) {
+      return(
+        <Segment basic>
+          <Button basic onClick={this.toggleEdit}>
+            Cancel Editing
+          </Button>
+        <EditLecture toggleEdit={this.toggleEdit}/>
+        </Segment>
+      )
+    } else {
     return (
-      <Segment name="lecture">
+      <Segment basic name="lecture">
+        <Link to={'./'} >
+          <Button floated='right' basic color='yellow'>Cancel</Button>
+        </Link>
+        <Button floated='right' basic color='red' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
+        <Button floated='right' basic color='purple' onClick={this.toggleEdit}>Edit</Button>
         <Header as='h1' textAlign='center' style={styles.pageTitle}>{title}</Header>
         <List>
           <List.Item>
@@ -42,18 +53,11 @@ class Lecture extends Component {
           <List.Item>
             <Header as='h2' style={ styles.listItemHeader }>Created:</Header> {created}
           </List.Item>
-          <List.Item>
-            <Header as='h3' style={ styles.listItemHeader }>Sub Section Placeholder</Header>
-          </List.Item>
-         
         </List>
-        <Button basic color='red' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
-        <Link to={'./'} >
-          <Button basic color='yellow'>Cancel</Button>
-        </Link>
       </Segment>
     );
   }
+}
 }
 
 const styles = {
@@ -67,4 +71,10 @@ const styles = {
   },
 }
 
-export default Lecture;
+const mapStateToProps = (state) => {
+  return { lecture: state.lectures }
+}
+
+export default connect(mapStateToProps)(Lecture);
+
+

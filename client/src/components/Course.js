@@ -8,16 +8,18 @@ import CourseSideNav from './course/CourseSideNav';
 import People from './people/People';
 import SectionSelect from './course/SectionSelect'
 import CourseHome from './course/CourseHome';
-import CourseSettings from './course/CourseSettings';
-import PeopleProfile from './people/PeopleProfile';
-import ProtectedRoute from './ProtectedRoute';
+import CourseSettings from './tether/CourseSettings';
+import PeopleProfile from './tether/PeopleProfile';
+import Assignment from './assignments/Assignment';
 import Wiki from './Rift/wiki/Wiki';
 import Quizzes from './quizzes/Quizzes';
 import QuizForm from './quizzes/QuizForm';
+import SingleQuiz from './quizzes/SingleQuiz';
 import QuizRoute from './QuizRoute';
-import Lectures from './lectures/Lectures';
-import CreateLecture from './lectures/CreateLecture';
-import Lecture from './lectures/Lecture';
+import Lectures from './Rift/lectures/Lectures';
+import Lecture from './Rift/lectures/Lecture';
+import CreateLecture from './Rift/lectures/CreateLecture';
+import EditLecture from './Rift/lectures/EditLecture';
 import Attendance from './attendance/Attendance';
 import Assignments from './assignments/Assignments';
 import Assignment from './assignments/Assignment';
@@ -64,6 +66,7 @@ class Course extends React.Component {
   renderRoutes = () => (
     <Segment basic>
       <Switch>
+<<<<<<< HEAD
         <ProtectedRoute exact path="/courses/:id" component={CourseHome} />
         <ProtectedRoute path="/courses/:id/people" component={People} />
         <ProtectedRoute path="/courses/:id/sections" component={SectionSelect} />
@@ -80,6 +83,25 @@ class Course extends React.Component {
         <ProtectedRoute exact path='/courses/:id/assignments/create' component={CreateAssignment} />
         <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />
         <ProtectedRoute exact path='/courses/:id/wiki' component={Wiki} />
+=======
+        <Route exact path="/courses/:id" component={CourseHome} />
+        <Route path="/courses/:id/people" component={People} />
+        <Route path="/courses/:id/sections" component={SectionSelect} />
+        <Route path="/courses/:id/settings" component={CourseSettings} />
+        <Route path="/courses/:id/user/:id" component={PeopleProfile} />
+        <Route path="/courses/:id/attendance" component={Attendance} />
+        <Route exact path='/courses/:id/quizzes' component={Quizzes} />
+        <Route exact path='/courses/:id/quizform' component={QuizForm} />
+        <Route exact path='/courses/:id/quizzes/:id' component={SingleQuiz} />
+        <Route exact path='/courses/:id/lectures' component={Lectures} />
+        <Route exact path='/courses/:id/lectures/create' component={CreateLecture} />
+        <Route exact path='/courses/:id/lectures/:id' component={Lecture} />
+        <Route exact path='/courses/:id/lectures/:id/edit' component={EditLecture} />  
+        <Route exact path='/courses/:id/assignments' component={Assignments} />
+        <Route exact path='/courses/:id/assignments/create' component={CreateAssignment} />
+        <Route exact path='/courses/:id/assignments/:id' component={Assignment} />
+        <Route exact path='/courses/:id/wiki' component={Wiki} />
+>>>>>>> more change
       </Switch>
     </Segment>
   )

@@ -10,7 +10,7 @@ class Api::LecturesController < Api::ApiController
   end
 
   def update
-    if @lecture.update(quiz_params)
+    if @lecture.update(lecture_params)
       render json: @lecture
     else
       render json: { errors: @lecture.errors.full_messages }, status: 422
