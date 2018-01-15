@@ -17,39 +17,46 @@ class CreateAssignment extends Component {
   state = {
     title: '', submission_type: '', points: 0,
     due_date: '', created_at: moment().format('LL'),
-    published: false, content: ''
+    published: false, content: '', group_assignment: false
   }
   
   handleChange = (e) => {
-    const { value, name } = e.target
+    const { value, name } = e.target;
     this.setState({ [name]: value })
   }
 
-  handleClick = (e) => {
+  handlePublishedClick = (e) => {
     const { published } = this.state;
+    // this.setState({ published: !published })
     this.setState({ published: !published })
+  }
+
+  handleGroupClick = (e) => {
+    const { group_assignment } = this.state;
+    // this.setState({ published: !published })
+    this.setState({ group_assignment: !group_assignment })
   }
   
   handleSubmit = (e) => {
     const { history, dispatch } = this.props
     const {
       title, submission_type, points,
-      created_at, due_date, published, content
+      created_at, due_date, published,
+      content, group_assignment
     } = this.state
     e.preventDefault();
     
     let assignment = {
       title, submission_type,
       points, due_date, published,
-      created_at, content
+      created_at, content, group_assignment
     }
     dispatch(addAssignment(assignment, history))
   }
 
   render() {
     const {
-      title,
-      published, content
+      title, published, group_assignment, content
     } = this.state
 
     return (
@@ -113,10 +120,17 @@ class CreateAssignment extends Component {
             name='published'
             label='Published?'
             value={ published }
-            onClick={ this.handleClick }
+            onClick={ this.handlePublishedClick }
             onChange={ this.handleChange }
           />
           <Divider />
+          <Form.Checkbox
+            name='group_assignment'
+            label="Group Assignment?"
+            value={ group_assignment }
+            onClick={ this.handleGroupClick }
+            onChange={ this.handleChange }
+          />
           <Form.Group>
             <Button basic color='green' type='submit'>Create</Button> 
             <Link to={'./assignments'}>

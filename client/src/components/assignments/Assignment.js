@@ -11,10 +11,9 @@ class Assignment extends Component {
     axios.get(`/api/assignments/${id}`)
       .then(res => {
         this.setState({ assignment: res.data });
-      })
-      .catch(err => {
+      }).catch(err => {
         console.log(err);
-      });
+    });
   }
 
   deleteAssignment = () => {
@@ -22,14 +21,13 @@ class Assignment extends Component {
     axios.delete(`/api/assignments/${this.state.assignment.id}`)
       .then(res => {
         this.props.history.push('./')
-      })
-      .catch(err => {
+      }).catch(err => {
         console.log(err)
-      });
+    });
   }
 
   render() {
-    const { title, id, points, content, published, created_at, submission_type, due_date } = this.state.assignment;
+    const { title, id, points, content, published, group_assignment, created_at, submission_type, due_date } = this.state.assignment;
     return (
       <Segment name="assignment">
         <Header as='h1' textAlign='center' style={styles.pageTitle}>{title}</Header>
@@ -44,7 +42,7 @@ class Assignment extends Component {
           Points: { points }
         </List.Item>
         <List.Item>
-          Submission Type: { submission_type }
+          Submission Type: { submission_type } { group_assignment ? " - Group Assignment" : "" }
         </List.Item>
         <List.Item>
           Status: { published ? "Published" : "Unpublished" }
@@ -53,6 +51,7 @@ class Assignment extends Component {
           Description: { content }
         </List.Item>
         </List>
+        <Button primary>Edit</Button>
         <Button basic color='red' name='delete' onClick={ () => this.deleteAssignment(id) }>Delete</Button>
         <Link to={'./'} >
           <Button basic color='yellow'>Cancel</Button>
