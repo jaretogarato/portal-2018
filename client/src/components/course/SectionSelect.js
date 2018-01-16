@@ -4,20 +4,19 @@ import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { getSections, deleteSection, clearSections } from '../../actions/sections';
 import { setSection, clearSection } from '../../actions/section';
-import { getSubSections, deleteSubSection, clearSubSections } from '../../actions/subSections';
+import { getSubSections, clearSubSections } from '../../actions/subSections';
 import { getCourseContent, clearCourseContent } from '../../actions/courseContent';
 import { getQuizzes, clearQuizzes } from '../../actions/quizzes';
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
+import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';
-import AddCourseContent from './AddCourseContent';
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class SectionSelect extends React.Component {
   state = {
-    activeIndexes: [],
     courseLoaded: false,
     sectionsLoaded: false,
     subSectionsLoaded: false,
@@ -60,61 +59,6 @@ class SectionSelect extends React.Component {
       dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
   }
 
-  // what happens when you click on a subsection accordion 
-  handleSubClick = (e, titleProps) => {
-    const { activeIndexes } = this.state;
-    const newIndex = titleProps.index;
-    // checks to see if the index of the subsection is in the array, if not it adds it and if so it removes it
-    if(activeIndexes.includes(newIndex)) {
-      this.setState({ activeIndexes: activeIndexes.filter(i => i !== newIndex) });
-    } else {
-      this.setState({ activeIndexes: [...activeIndexes, newIndex] });
-    }
-  }
-
-  checkActiveIndex = (index) => this.state.activeIndexes.includes(index)
-
-  deleteSubClick = (ss) => {
-    if( window.confirm("Are You Sure?"))
-      this.props.dispatch(deleteSubSection(ss))
-  }
-
-  displaySubSections = () => {
-    return this.props.subSections.map( ss => (
-      <Accordion key={ss.id} fluid styled>
-        { this.props.user.is_admin && 
-          <Button.Group floated="right">
-            <AddCourseContent id={ss.id} />
-            <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
-            <Button 
-              color='red'
-              content='X'
-              onClick={ () => this.deleteSubClick(ss)}              
-            />
-          </Button.Group>
-        }
-        <Accordion.Title 
-          active={this.state.activeIndexes === ss.id} 
-          index={ss.id} 
-          onClick={this.handleSubClick}
-        >
-          <Icon name='dropdown' />
-          { ss.title }
-        </Accordion.Title>
-        <Accordion.Content active={this.checkActiveIndex(ss.id)}>
-          { this.displayItems() }
-        </Accordion.Content>
-      </Accordion>
-    ))
-  }
-  
-  displayItems = () => {
-    return this.props.subSections.map( ss => (
-      <Link key={ss.id} to={`/courses/${this.props.course.id}/section/${ss.id}`}>
-        <Segment>{ss.item_title}</Segment>
-      </Link>
-    ))
-  }
   
   deleteButtonClick = (section) => {
     if( window.confirm("Are you sure?"))
@@ -159,7 +103,7 @@ class SectionSelect extends React.Component {
             </Grid.Column>
             <Grid.Column width={13}>
               <h3>Subsections</h3>
-              { this.displaySubSections() }
+              <Section />
               { is_admin && subSectionsLoaded && <SubSectionForm/> } 
             </Grid.Column>
           </Grid.Row>
