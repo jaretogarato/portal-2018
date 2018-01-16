@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20180112225822) do
     t.integer "points"
     t.string "due_date"
     t.boolean "published"
-    t.boolean "group_assignment"
     t.text "content"
     t.bigint "sub_section_id"
     t.datetime "created_at", null: false
