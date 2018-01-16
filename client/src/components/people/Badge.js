@@ -14,7 +14,7 @@ const icons = {
   teamwork
 }
 
-const Badge = ({ badge: { user_badge_id, badge }, deleteBadge }) => (
+const Badge = ({ badgeId, badge, deleteBadge }) => (
   <Popup
     trigger={
       <Card>
@@ -25,7 +25,7 @@ const Badge = ({ badge: { user_badge_id, badge }, deleteBadge }) => (
           />
         </Card.Content>
         <Card.Content extra>
-          <Button basic color='blue' onClick={ () => deleteBadge(user_badge_id) }>Delete Badge</Button>
+          <Button basic color='blue' onClick={ () => deleteBadge(badgeId) }>Delete Badge</Button>
         </Card.Content>
       </Card>
     }

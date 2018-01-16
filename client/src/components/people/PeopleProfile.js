@@ -48,7 +48,12 @@ class PeopleProfile extends React.Component {
     const { badges } = this.state
     return badges.map( badge => {
       return(
-        <Badge key={badge.user_badge_id} badge={badge} deleteBadge={this.deleteBadge}/>
+        <Badge
+          key={badge.user_badge_id}
+          badge={badge.badge}
+          badgeId={badge.user_badge_id}
+          deleteBadge={this.deleteBadge}
+        />
       )
     })
   }
@@ -78,19 +83,29 @@ class PeopleProfile extends React.Component {
   }
 
 
-deleteBadge = (badgeId) => {
-  const { dispatch, match: { params: { id } } } = this.props
-  const newBadges = this.state.badges.filter( badge => badgeId !== badge.user_badge_id )
-  axios.delete(`/api/users/${id}/user_badges/${badgeId}`)
-    .then( res => {
-      this.setState({ badges: newBadges })
-      dispatch(setHeaders(res.headers))
-    })
-    .catch( err => {
-      dispatch(setFlash('Failed to delete badge', 'red'))
-    })
-}
+  deleteBadge = (badgeId) => {
+    const { dispatch, match: { params: { id } } } = this.props
+    const newBadges = this.state.badges.filter( badge => badgeId !== badge.user_badge_id )
+    axios.delete(`/api/users/${id}/user_badges/${badgeId}`)
+      .then( res => {
+        this.setState({ badges: newBadges })
+        dispatch(setHeaders(res.headers))
+      })
+      .catch( err => {
+        dispatch(setFlash('Failed to delete badge', 'red'))
+      })
+  }
 
+  dropdownOptions = () => {
+    return badgeOptions.filter( badgeOption => {
+      let hasBadge = false
+      this.state.badges.forEach( badge => {
+        if (badgeOption.value === badge.badge.icon)
+          hasBadge = true
+      })
+      return !hasBadge
+    })
+  }
 
   render () {
     const { user, match: { params: { id } } } = this.props
@@ -116,7 +131,7 @@ deleteBadge = (badgeId) => {
                   multiple
                   selection
                   placeholder='Add Badges'
-                  options={badgeOptions}
+                  options={this.dropdownOptions()}
                   onChange={this.handleChange}
                   value={options}
                 />
