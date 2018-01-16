@@ -6,6 +6,12 @@ import { addQuestion } from '../../actions/quizQuestions';
 class TrueFalse extends Component {
 state={ question: '', isTrue: '' }
 
+componentDidMount() {
+  const { text, editing, truth } = this.props
+  if(editing)
+    this.setState({ question: text, isTrue: truth })
+}
+
 handleChange = (_, { name, value }) => this.setState({ [name]: value })
 
 handleCheck = (_, { value }) => {
@@ -54,7 +60,7 @@ handleSubmit = (e) => {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-          <Button basic type='submit'> save question </Button>
+          { !this.props.editing && <Button basic type='submit'> save question </Button> }
         </Form>
       </Segment>
     )

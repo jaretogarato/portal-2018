@@ -7,6 +7,12 @@ import { connect } from 'react-redux';
 class EssayQuestion extends Component {
   state = { question: '' }
 
+  componentDidMount() {
+    const { editing, text } = this.props
+    if (editing)
+      this.setState({ question: text })
+  }
+
   handleQuestion = (e, {name, value}) => {
     this.setState({ [name]: value })
   }
@@ -29,7 +35,7 @@ class EssayQuestion extends Component {
     <Segment>
         <Form onSubmit={this.handleSubmit}>
         <Form.TextArea onChange={this.handleQuestion} name='question' value={this.state.question} label='Question'> </Form.TextArea>
-        <Button basic type='submit'> save question </Button>
+        { !this.props.editing && <Button basic type='submit'> save question </Button> }
         </Form>
       </Segment>
     )

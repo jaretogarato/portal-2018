@@ -6,11 +6,13 @@ import { getQuiz, deleteQuiz } from '../../actions/singleQuiz'
 import { getQuestions, deleteQuestion } from '../../actions/quizQuestions'
 import CreateQuestions from './CreateQuestions'
 import EditQuizForm from './EditQuizForm'
-import axios from 'axios';
+import MultipleChoiceQuestion from './MultipleChoiceQuestion'
+import EssayQuestion from './EssayQuestion'
+import TrueFalse from './TrueFalse'
 import moment from 'moment'
 
 class SingleQuiz extends Component{
-  state = { loaded: false, edit: false };
+  state = { loaded: false, quizEdit: false, questionsEdit: false };
 
   componentDidMount() {
     const { id } = this.props.match.params
@@ -34,17 +36,22 @@ class SingleQuiz extends Component{
     this.props.dispatch(deleteQuiz(id, this.props.history ))
   }
 
- 
+
   toggleEdit = () => {
-    const { edit } = this.state;
-    this.setState({ edit: !edit })
+    const { quizEdit } = this.state;
+    this.setState({ quizEdit: !quizEdit })
+  }
+
+  toggleQuestionEdit = () => {
+    const { questionsEdit } = this.state;
+    this.setState({ questionsEdit: !questionsEdit })
   }
 
 displayQuiz = () => {
   const { id, content, points, due_date, created_at, title } = this.props.quiz
   let time = moment(due_date).format('MMMM D, YYYY')
   let created = moment(created_at).format('MMMM D, YYYY')
-  if(this.state.edit) {
+  if(this.state.quizEdit) {
     return(
       <Segment basic>
         <EditQuizForm toggleEdit={this.toggleEdit}/>
@@ -75,7 +82,13 @@ displayQuiz = () => {
       </List>
       <Segment basic>
         <Header textAlign='center'>Quiz Questions</Header>
+        <Button basic primary onClick={this.toggleQuestionEdit}>
+          { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
+        </Button>
         {this.displayQuestions()}
+        <Button basic primary onClick={this.toggleQuestionEdit}>
+          { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
+        </Button>
         <CreateQuestions quizId={id}/>
       </Segment>
       <Divider />
@@ -89,28 +102,57 @@ displayQuiz = () => {
 
 displayQuestions= () => {
   const { questions } = this.props
+  const { questionsEdit } = this.state
   if(questions.length > 0)
     return questions.map((q,i) => {
-      return(
-        <Segment clearing key={q.id} >
-         <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
-          {q.question}
-          { q.multiple_choice && 
-            q.options.map((option, i) => {
-              return(
-                <List.Item key={option.id} style={{paddingLeft: '5%'}}>  
-                <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
-                <span style={ option.correct ? styles.correct : {} } > {option.content} </span> 
-                </List.Item> 
-                )
-            })
-          }
-          <Button basic floated='right'
-           onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} >
-           Delete
-           </Button>
-        </Segment>
-      )
+      if (!questionsEdit) {
+          return(
+          <Segment clearing key={q.id} >
+           <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
+            {q.question}
+            { q.multiple_choice &&
+              q.options.map((option, i) => {
+                return(
+                  <List.Item key={option.id} style={{paddingLeft: '5%'}}>
+                  <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
+                  <span style={ option.correct ? styles.correct : {} } > {option.content} </span>
+                  </List.Item>
+                  )
+              })
+            }
+            <Button basic floated='right'
+             onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} >
+             Delete
+             </Button>
+          </Segment>
+        )
+      } else {
+        if (q.multiple_choice)
+          if (q.true_false)
+            return <TrueFalse
+              key={q.id}
+              quizId={this.props.quiz.id}
+              text={q.question}
+              truth={q.options[0].correct ? 'true' : 'false'}
+              editing={true}
+            />
+          else
+            return <MultipleChoiceQuestion
+              key={q.id}
+              quizId={this.props.quiz.id}
+              questionId={q.id}
+              text={q.question}
+              quizOptions={q.options}
+              editing={true}
+            />
+        else
+          return <EssayQuestion
+            text={q.question} 
+            key={q.id} 
+            quizId={this.props.quiz.id} 
+            editing={true} 
+          />
+      }
     })
   return null
 }
@@ -142,4 +184,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(SingleQuiz);
-

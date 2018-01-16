@@ -24,6 +24,12 @@ const LabelGroup = styled(Segment) `
 class MultipleChoiceQuestion extends React.Component {
   state = { question: '', optionCount: 0, options: {} }
 
+  componentDidMount() {
+    const { quizOptions, text } = this.props
+    if (quizOptions)
+      this.setState({ question: text, optionCount: quizOptions.length })
+  }
+
   handleChange = ( _, { name, value} ) => {
     this.setState({ [name]: value })
   }
@@ -47,10 +53,23 @@ class MultipleChoiceQuestion extends React.Component {
 
   optionGenerator = () => {
     const { optionCount } = this.state
+    const { quizOptions, questionId } = this.props
     const countArray = new Array(optionCount)
-    return Array.from(countArray).map( (_, i) => {
-      return <MultipleChoiceOption id={i} key={i}/>
-    })
+    if (quizOptions)
+      return quizOptions.map( op => {
+        return (
+          <MultipleChoiceOption
+            key={op.id}
+            questionId={questionId}
+            id={op.id}
+            option={op}
+          />
+        )
+      })
+    else
+      return Array.from(countArray).map( (_, i) => {
+        return <MultipleChoiceOption id={i} key={i}/>
+      })
   }
 
   render() {
@@ -83,7 +102,7 @@ class MultipleChoiceQuestion extends React.Component {
           {
             optionCount > 0 && this.optionGenerator()
           }
-          <Button type='submit'>Save</Button>
+          { !this.props.editing && <Button type='submit'>Save</Button> }
         </Form>
       </Segment>
     )

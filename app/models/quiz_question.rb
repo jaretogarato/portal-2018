@@ -9,4 +9,10 @@ class QuizQuestion < ApplicationRecord
       quiz_question.question_options.create(content: option[:text], correct: option[:correct])
     end
   end
+
+  def self.update_options(quiz_question, options)
+    options.each do |option|
+      quiz_question.question_options.find(option.id).update(option)
+    end
+  end
 end

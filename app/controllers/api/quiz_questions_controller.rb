@@ -18,6 +18,17 @@ class Api::QuizQuestionsController < ApplicationController
     end
   end
 
+  def update
+    if @quiz_question.save
+      if params[:options]
+        QuizQuestion.update_options(@quiz_question, params[:options])
+      end
+      render 'show'
+    else
+      json_error(@quiz_question)
+    end
+  end
+
   def edit
     if @quiz_question.update(quiz_question_params)
       render json: @quiz_question

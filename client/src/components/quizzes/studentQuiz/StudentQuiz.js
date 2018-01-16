@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Header, List, Button, Grid, Container, Sticky } from 'semantic-ui-react';
+import { Segment, Header, List, Button, Grid, Sticky } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import EssayQuestion from './EssayQuestion';
 import MultipleChoice from './MultipleChoice';
@@ -70,20 +70,20 @@ class StudentQuiz extends React.Component {
     return(
       <Segment basic>
         <div ref={this.handleContextRef}>
-        <Grid> 
-          <Grid.Column width={13}> 
+        <Grid>
+          <Grid.Column width={13}>
            <Header as ='h2' textAlign='center'>{quiz.title}</Header>
             {this.displayQuestions()}
-          </Grid.Column> 
-          <Grid.Column width={3}> 
+          </Grid.Column>
+          <Grid.Column width={3}>
           <Sticky context={this.state.contextRef}>
            {this.displayList()}
            </Sticky>
-          </Grid.Column> 
-        </Grid> 
-        <Button color='green'> Submit </Button> 
-        <Button color='blue'> Save Quiz </Button> 
-        </div> 
+          </Grid.Column>
+        </Grid>
+        <Button color='green'> Submit </Button>
+        <Button color='blue'> Save Quiz </Button>
+        </div>
       </Segment>
     )
   }
