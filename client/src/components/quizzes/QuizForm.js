@@ -3,7 +3,7 @@ import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
 import { addQuiz } from '../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import RiftEditor from '../Rift/riftEditor/RiftEditor';
+import RiftEditor from '../Rift/riftEditor/RiftEditor';
 
 
 class QuizForm extends Component {
@@ -58,16 +58,7 @@ handleSubmit = (e) => {
             </Form.Group>
 
            
-            <Form.TextArea 
-              name='content'
-              value={content}
-              style={ styles.textArea }
-              label='Description' 
-              placeholder='Rift Text Editor Placeholder' 
-              required 
-              onChange={this.handleChange}
-              />
-        
+           <RiftEditor />
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
