@@ -48,7 +48,7 @@ class PeopleProfile extends React.Component {
     const { badges } = this.state
     return badges.map( badge => {
       return(
-        <Badge key={badge.id} badge={badge} deleteBadge={this.deleteBadge}/>
+        <Badge key={badge.user_badge_id} badge={badge} deleteBadge={this.deleteBadge}/>
       )
     })
   }

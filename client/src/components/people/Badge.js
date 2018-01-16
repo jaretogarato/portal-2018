@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Button } from 'semantic-ui-react';
+import { Card, Image, Button, Popup } from 'semantic-ui-react';
 import attendance from '../../assets/badge_icons/attendance.png';
 import coder from '../../assets/badge_icons/coder.png';
 import homework from '../../assets/badge_icons/homework.png';
@@ -15,23 +15,22 @@ const icons = {
 }
 
 const Badge = ({ badge: { user_badge_id, badge }, deleteBadge }) => (
-  <Card>
-    <Card.Content>
-      <Image
-        src={icons[badge.icon]}
-        size='mini'
-      />
-      <Card.Header>
-        {badge.title}
-      </Card.Header>
-      <Card.Meta>
-        {badge.description}
-      </Card.Meta>
-    </Card.Content>
-    <Card.Content extra>
-      <Button basic color='blue' onClick={ () => deleteBadge(user_badge_id) }>Delete Badge</Button>
-    </Card.Content>
-  </Card>
+  <Popup
+    trigger={
+      <Card>
+        <Card.Content textAlign='center'>
+          <Image
+            src={icons[badge.icon]}
+            size='mini'
+          />
+        </Card.Content>
+        <Card.Content extra>
+          <Button basic color='blue' onClick={ () => deleteBadge(user_badge_id) }>Delete Badge</Button>
+        </Card.Content>
+      </Card>
+    }
+    content={badge.description}
+  />
 )
 
 export default Badge;
