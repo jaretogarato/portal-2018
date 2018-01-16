@@ -21,9 +21,11 @@ class Lecture extends Component {
   }
   
   deleteLecture = (id) => {
-    window.confirm('Are you sure you want to delete?')
+    const deleted = window.confirm('Delete Lecture?')
+    if (deleted)
     this.props.dispatch(deleteLecture(id, this.props.history ))
   }
+
 
   render() {
     const { title, id, content, created_at } = this.props.lecture
@@ -41,7 +43,7 @@ class Lecture extends Component {
     return (
       <Segment basic name="lecture">
         <Link to={'./'} >
-          <Button floated='right' basic color='yellow'>Cancel</Button>
+          <Button floated='right' basic color='yellow'>All Lectures</Button>
         </Link>
         <Button floated='right' basic color='red' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
         <Button floated='right' basic color='purple' onClick={this.toggleEdit}>Edit</Button>

@@ -3,9 +3,9 @@ const lectures = (state = [], action) => {
     case 'GET_LECTURES':
       return action.lectures;
     case 'ADD_LECTURE':
-      return [action.lecture, ...state];
+      return [ action.lecture, ...state ];
     case 'DELETE_LECTURE':
-      return {...state, lectures: action.lectures }
+      return {...state, lectures: action.lectures };
     case 'GET_LECTURE':
       return action.lecture;
     case 'EDIT_LECTURE':
