@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Header, List, Button, Grid } from 'semantic-ui-react';
+import { Segment, Header, List, Button, Grid, Container, Sticky } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import EssayQuestion from './EssayQuestion';
 import MultipleChoice from './MultipleChoice';
@@ -10,15 +10,20 @@ import { getQuestions } from '../../../actions/quizQuestions';
 
 
 class StudentQuiz extends React.Component {
+  state = {}
+
   componentDidMount() {
     const { id } = this.props.match.params
     this.props.dispatch(getQuiz(id))
     this.props.dispatch(getQuestions(id))
   }
 
+  handleContextRef = contextRef => this.setState({ contextRef })
+
   displayList = () => {
     const { questions } = this.props
     return questions.map((q, i) => (
+
         <List.Item key={q.id} >
         <a href={`#${q.id}`} >
           Question: {(i + 1) }
@@ -64,17 +69,21 @@ class StudentQuiz extends React.Component {
     const { quiz } = this.props
     return(
       <Segment basic>
-        <Grid>
-          <Grid.Column width={13}>
+        <div ref={this.handleContextRef}>
+        <Grid> 
+          <Grid.Column width={13}> 
            <Header as ='h2' textAlign='center'>{quiz.title}</Header>
             {this.displayQuestions()}
-          </Grid.Column>
-          <Grid.Column width={3}>
+          </Grid.Column> 
+          <Grid.Column width={3}> 
+          <Sticky context={this.state.contextRef}>
            {this.displayList()}
-          </Grid.Column>
-        </Grid>
-        <Button color='green'> Submit </Button>
-        <Button color='blue'> Save Quiz </Button>
+           </Sticky>
+          </Grid.Column> 
+        </Grid> 
+        <Button color='green'> Submit </Button> 
+        <Button color='blue'> Save Quiz </Button> 
+        </div> 
       </Segment>
     )
   }

@@ -73,7 +73,7 @@ handleSubmit = (e) => {
             <Divider />
             <Form.Group>
             <Button basic color='green' type='submit'>Update</Button>
-            <Button basic onClick={this.toggleEdit}>
+            <Button basic onClick={this.props.toggleEdit}>
                 Cancel Editing
             </Button>
             </Form.Group>

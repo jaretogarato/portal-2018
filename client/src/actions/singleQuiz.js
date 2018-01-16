@@ -27,3 +27,18 @@ export const updateQuiz = (quiz, id) => {
       })
   }
 }
+
+
+export const deleteQuiz = (id, history) => {
+  return(dispatch) => {
+    axios.delete(`/api/quizzes/${id}`)
+      .then( res => {
+        dispatch({ type: 'DELETE_QUIZ', id, headers: res.headers })
+        history.push(`/courses/${id}/quizzes/`)
+      })
+      .catch( err => {
+        dispatch(setFlash('Failed to Delete Quiz!', 'red'));
+        dispatch(setHeaders(err.headers));
+      });
+  }
+}

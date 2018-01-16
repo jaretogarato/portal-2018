@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Header, Button, Segment, List, Dimmer, Loader, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getQuiz } from '../../actions/singleQuiz'
+import { getQuiz, deleteQuiz } from '../../actions/singleQuiz'
 import { getQuestions, deleteQuestion } from '../../actions/quizQuestions'
 import CreateQuestions from './CreateQuestions'
 import EditQuizForm from './EditQuizForm'
@@ -28,16 +28,10 @@ class SingleQuiz extends Component{
       this.setState({ loaded: true })
   }
 
-  deleteQuiz = () => {
+  deleteQuiz = (id) => {
     const deleted = window.confirm("Delete Quiz?")
     if (deleted)
-      axios.delete(`/api/quizzes/${this.props.quiz.id}`)
-        .then( res => {
-          this.props.history.push('./')
-        })
-        .catch( err => {
-          console.log(err)
-        });
+    this.props.dispatch(deleteQuiz(id, this.props.history ))
   }
 
  
@@ -106,7 +100,7 @@ displayQuestions= () => {
               return(
                 <List.Item key={option.id} style={{paddingLeft: '5%'}}>  
                 <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
-                {option.content} 
+                <span style={ option.correct ? styles.correct : {} } > {option.content} </span> 
                 </List.Item> 
                 )
             })
@@ -121,20 +115,27 @@ displayQuestions= () => {
   return null
 }
 
-render() {
-  const { loaded } = this.state
-  if (loaded)
-    return this.displayQuiz()
-  else
-    return(
-      <Dimmer active>
-        <Loader>Loading...</Loader>
-      </Dimmer>
-   )
+  render() {
+    const { loaded } = this.state
+    if (loaded)
+      return this.displayQuiz()
+    else
+      return(
+        <Dimmer active>
+          <Loader>Loading...</Loader>
+        </Dimmer>
+    )
+  }
 }
 
 
+const styles = {
+  correct: {
+    fontWeight: 'bold',
+    color: 'green',
+  }
 }
+
 
 const mapStateToProps = (state) => {
   return { quiz: state.singleQuiz, questions: state.quizQuestions }
