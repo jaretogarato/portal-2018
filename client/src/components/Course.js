@@ -45,7 +45,8 @@ class Course extends React.Component {
       { name: 'Quizzes', path: `/courses/${courseId}/quizzes` },
       { name: 'Lectures', path: `/courses/${courseId}/lectures` },
       { name: 'Assignments', path: `/courses/${courseId}/assignments` },
-      { name: 'Wiki', path: `/courses/${courseId}/wiki` }
+      { name: 'Wiki', path: `/courses/${courseId}/wiki` },
+      { name: 'Settings', path: `/courses/${courseId}/settings` }
     ]
     return navs.map(nav => {
       return (

@@ -7,7 +7,7 @@ class CourseSideNav extends React.Component {
   render() {
     const links = [
       'Home', 'People', 'Attendance', 'Sections',
-      'Quizzes', 'Lectures', 'Assignments', 'Wiki'
+      'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
     ];
     const { match: { params: { id }}} = this.props;
     return links.map( (link, i) =>
