@@ -30,3 +30,7 @@ export const getQuizzes = () => {
       });
   }
 }
+
+export const clearQuizzes = () => {
+  return ({ type: "CLEAR_QUIZZES", quizzes: [] })
+}

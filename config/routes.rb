@@ -10,6 +10,8 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :quiz_questions, except: [:show]
     end
 
+    resources :course_contents, only: [:index, :create, :destroy]
+
     resources :courses do
       resources :sections
       resources :attendances, only: [:index, :create]

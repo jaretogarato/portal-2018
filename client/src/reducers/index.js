@@ -23,6 +23,8 @@ import userId from './userId';
 import notes from './notes';
 import permissions from './permissions';
 import groups from './groups';
+import courseContent from './courseContent'
+
 
 const rootReducer = combineReducers({
   user,
@@ -49,6 +51,7 @@ const rootReducer = combineReducers({
   quizResponses,
   permissions,
   groups,
+  courseContent
 });
 
 export default rootReducer;

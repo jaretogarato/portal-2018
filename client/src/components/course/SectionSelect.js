@@ -5,10 +5,13 @@ import { getCoursesByStudent } from '../../actions/courses';
 import { getSections, deleteSection, clearSections } from '../../actions/sections';
 import { setSection, clearSection } from '../../actions/section';
 import { getSubSections, deleteSubSection, clearSubSections } from '../../actions/subSections';
+import { getCourseContent, clearCourseContent } from '../../actions/courseContent';
+import { getQuizzes, clearQuizzes } from '../../actions/quizzes';
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
 import SectionSelectMobile from './SectionSelectMobile';
+import AddCourseContent from './AddCourseContent';
 import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
@@ -34,6 +37,8 @@ class SectionSelect extends React.Component {
   componentDidMount() {
     const { dispatch, match: { params: { id } } } = this.props;
     dispatch(getSections(id, this.setSectionsLoaded));
+    dispatch(getQuizzes());
+    dispatch(getCourseContent());
   }
 
   componentWillUnmount() {
@@ -41,6 +46,8 @@ class SectionSelect extends React.Component {
     dispatch(clearSections())
     dispatch(clearSubSections())
     dispatch(clearSection())
+    dispatch(clearQuizzes())
+    dispatch(clearCourseContent())
   }
 
   handleClick = (e) => {
@@ -77,6 +84,7 @@ class SectionSelect extends React.Component {
       <Accordion key={ss.id} fluid styled>
         { this.props.user.is_admin && 
           <Button.Group floated="right">
+            <AddCourseContent id={ss.id} />
             <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
             <Button 
               color='red'
@@ -180,6 +188,7 @@ const mapStateToProps = (state) => {
     section: state.section,
     course: state.course,
     subSections: state.subSections,
+    courseContent: state.courseContent,
   }
 }
 
