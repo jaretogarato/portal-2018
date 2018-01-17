@@ -57,15 +57,6 @@ class NavBar extends React.Component {
               onClick={this.handleItemClick}
             />
             <Menu.Item
-              as={Link}
-              to='/users'
-              style={styles.navText}
-              name="Users"
-              text="Users"
-              active={this.state.activeItem === 'Users'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
               name="Logout"
               style={styles.navText}
               onClick={() => dispatch(handleLogout(history))}

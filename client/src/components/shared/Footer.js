@@ -19,12 +19,7 @@ const Footer = () => (
           <Link to='/' style={styles.leftNav}>
             <p>
               Home /
-          </p>
-          </Link>
-          <Link to='/users' style={styles.leftNav}>
-            <p>
-              Users /
-          </p>
+            </p>
           </Link>
           <Link to='/' style={styles.leftNav}>
             <p>
