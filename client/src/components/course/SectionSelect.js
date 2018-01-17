@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { getSections, deleteSection, clearSections } from '../../actions/sections';
@@ -12,7 +11,7 @@ import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
 import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';
-import { Accordion, Dimmer, Grid, Loader, Icon, Menu, Segment, Button } from 'semantic-ui-react';
+import { Dimmer, Grid, Loader, Menu, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class SectionSelect extends React.Component {

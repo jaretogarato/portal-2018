@@ -1,14 +1,14 @@
 class Api::CourseContentsController < ApplicationController
 
-  before_action :set_course_content, only: [:create, :destroy]
+  before_action :set_course_content, only: [:destroy]
 
   def index
     render json: CourseContent.all
   end
 
   def create
-    @course_content = CourseContent.new(course_content_params)
-    @course_content.save ? (render json: course_content) : (json_error(course_content))
+    course_content = CourseContent.new(course_content_params)
+    course_content.save ? (render json: course_content) : (json_error(course_content))
   end
 
   def destroy

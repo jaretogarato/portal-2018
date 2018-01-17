@@ -1,35 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import ContentForm from './ContentForm';
+import { Button, Modal } from 'semantic-ui-react';
 
 class AddCourseContent extends React.Component {
+  state = { modalOpen: false };
 
-  state = { quizzes: [], showForm: false }
-
-  componentDidMount() {
-    const { id, content, quizzes } = this.props
-    const filteredQuizzes = []
-    content.filter( content => {
-      return content.sub_section_id === id 
-    }).map( content => {
-      quizzes.map( quiz => {
-        if( quiz.id === content.quiz_id )
-        filteredQuizzes.push(quiz)
-      })
-    })
-    this.setState({ quizzes: [...filteredQuizzes], showForm: true })
+  toggleModal = (e) => {
+    const { modalOpen } = this.state
+    this.setState({ modalOpen: !modalOpen })
   }
 
-  render() {
+  render(){
+    const { modalOpen } = this.state;
     return(
-      <Button content="Log Options" onClick={() => console.log(this.state.quizzes)}/>
-    )
+      <Modal
+        open={ modalOpen }
+        onClose={ this.toggleModal }
+        trigger={
+          <Button onClick={this.toggleModal} content="Add Content" />
+        }
+      >
+        <ContentForm 
+          content={this.props.content} 
+          subSectionId={this.props.subSectionId} 
+          toggleModal={this.toggleModal}
+        />
+      </Modal>
+    );
   }
-
 }
 
-const mapStateToProps = (state) => {
-  return { content: state.courseContent, quizzes: state.quizzes }
-}
-
-export default connect(mapStateToProps)(AddCourseContent);
+export default AddCourseContent;

@@ -61,7 +61,7 @@ class Section extends React.Component {
         return <Accordion key={ss.id} content={this.mapContents(ss.id)} fluid styled>
           { this.props.user.is_admin && 
             <Button.Group floated="right">
-              <AddCourseContent id={ss.id} />
+              <AddCourseContent content={content} subSectionId={ss.id} />
               <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
               <Button 
                 color='red'

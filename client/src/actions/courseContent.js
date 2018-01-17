@@ -15,6 +15,19 @@ export const getCourseContent = () => {
   }
 }
 
+export const addCourseContent = (course_content) => {
+  return(dispatch) => {
+    axios.post('/api/course_contents', { course_content } )
+      .then( ({data, headers}) => {
+        dispatch({ type: "ADD_COURSE_CONTENT", courseContent: data, headers })
+      })
+      .catch( err => {
+        dispatch(setFlash('Failed To Add Course Content', 'red'))
+        dispatch(setHeaders(err.headers))  
+      })
+  }
+}
+
 export const clearCourseContent = () => {
   return ({ type: "CLEAR_COURSE_CONTENT", courseContent: [] })
 }
