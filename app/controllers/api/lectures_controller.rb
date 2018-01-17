@@ -34,7 +34,7 @@ class Api::LecturesController < Api::ApiController
 
   private
     def lecture_params
-      params.require(:lecture).permit(:title, :content)
+      params.require(:lecture).permit(:title, :content, :published)
     end
 
     def set_lecture

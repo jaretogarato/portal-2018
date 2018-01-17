@@ -1,72 +1,115 @@
 import React, { Component } from 'react';
-import { Header, Button, Segment, List } from 'semantic-ui-react';
+import { Header, Button, Segment, List, Dimmer, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAssignment } from '../../actions/assignment';
+import EditAssignment from './EditAssignment';
 import axios from 'axios';
 
 class Assignment extends Component {
-  state = { assignment: [] };
+  state = { loaded: false, edit: false };
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    axios.get(`/api/assignments/${id}`)
-      .then(res => {
-        this.setState({ assignment: res.data });
-      }).catch(err => {
-        console.log(err);
-    });
+    console.log(this.props.match.params.id)
+    const { id } = this.props.match.params
+    this.props.dispatch(getAssignment(id))
+    this.checkLoaded()
+  }
+
+  componentDidUpdate() {
+    this.checkLoaded()
+  }
+
+  checkLoaded = () => {
+    if (!this.state.loaded && this.props.currentAssignment) {
+      this.setState({ loaded: true })
+    }
   }
 
   deleteAssignment = () => {
-    window.confirm("Delete Assignment?")
-    axios.delete(`/api/assignments/${this.state.assignment.id}`)
-      .then(res => {
-        this.props.history.push('./')
-      }).catch(err => {
-        console.log(err)
-    });
+    const deleted = window.confirm("Delete Assignment?")
+    if (deleted) {
+      axios.delete(`/api/assignments/${this.props.currentAssignment.id}`)
+        .then(res => {
+          this.props.history.push('./')
+        }).catch(err => {
+          console.log(err)
+      });
+    }
+  }
+
+  toggleEdit = () => {
+    const { edit } = this.state;
+    this.setState({ edit: !edit })
+  }
+
+  displayAssignment = () => {
+    const {
+      title, id, points, content,
+      published, group_assignment,
+      created_at,
+      submission_type, due_date
+    } = this.props.currentAssignment;
+
+    if (this.state.edit) {
+      return (
+        <Segment basic>
+          <Button basic onClick={this.toggleEdit}>
+            Cancel Editing
+        </Button>
+          <EditAssignment toggleEdit={this.toggleEdit} />
+        </Segment>
+      )
+    } else {
+      return (
+        <Segment clearing >
+          <Header as='h1' textAlign='center'>{title}</Header>
+          <Link to={'./'} >
+            <Button basic color='yellow' floated='right'>Cancel</Button>
+          </Link>
+          <Button basic floated='right' color='red' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>
+          <Button basic color='blue' floated='right' onClick={this.toggleEdit}>Edit</Button>
+          <List>
+            <List.Item>
+              Points: {points}
+            </List.Item>
+            <List.Item>
+              Status: {published ? "Published" : "Unpublished"}
+            </List.Item>
+            <List.Item>
+              Created: {created_at}
+            </List.Item>
+            <List.Item>
+              Due Date: {due_date}
+            </List.Item>
+            <List.Item>
+              Submission Type: {submission_type} {group_assignment ? " - Group Assignment" : ""}
+            </List.Item>
+            <List.Item>
+              Description: {content}
+            </List.Item>
+          </List>
+        </Segment>
+      );
+    }
   }
 
   render() {
-    const { title, id, points, content, published, group_assignment, created_at, submission_type, due_date } = this.state.assignment;
-    return (
-      <Segment name="assignment">
-        <Header as='h1' textAlign='center' style={styles.pageTitle}>{title}</Header>
-        <List>
-        <List.Item>
-          Created: { created_at }
-        </List.Item>
-        <List.Item>
-          Due Date: { due_date }
-        </List.Item>
-        <List.Item>
-          Points: { points }
-        </List.Item>
-        <List.Item>
-          Submission Type: { submission_type } { group_assignment ? " - Group Assignment" : "" }
-        </List.Item>
-        <List.Item>
-          Status: { published ? "Published" : "Unpublished" }
-        </List.Item>
-        <List.Item>
-          Description: { content }
-        </List.Item>
-        </List>
-        <Button primary>Edit</Button>
-        <Button basic color='red' name='delete' onClick={ () => this.deleteAssignment(id) }>Delete</Button>
-        <Link to={'./'} >
-          <Button basic color='yellow'>Cancel</Button>
-        </Link>
-      </Segment>
-    );
+    const { loaded } = this.state;
+    if (loaded) {
+      return this.displayAssignment()      
+    } else {
+      return (
+        <Dimmer active>
+          <Loader>Loading...</Loader>
+        </Dimmer>
+      )
+    }
   }
 }
 
-const styles = {
-  pageTitle: {
-    paddingTop: '2%',
-    textDecoration: 'underline',
-    fontWeight: 'bolder',
-  },
+const mapStateToProps = (state) => {
+  return { currentAssignment: state.assignments }
 }
 
-export default Assignment;
+export default connect(mapStateToProps)(Assignment);

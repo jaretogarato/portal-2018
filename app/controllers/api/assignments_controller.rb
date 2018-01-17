@@ -11,7 +11,7 @@ class Api::AssignmentsController < Api::ApiController
 
   def update
     if @assignment.update(assignment_params)
-      render json: @assginment
+      render json: @assignment
     else
       render json: { errors: @assignment.errors.full_messages }, status: 422
     end
@@ -30,7 +30,6 @@ class Api::AssignmentsController < Api::ApiController
   def destroy
     @assignment.destroy
   end
-
 
   private
     def assignment_params

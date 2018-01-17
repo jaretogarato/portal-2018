@@ -80,7 +80,7 @@ class Course extends React.Component {
             <ProtectedRoute exact path='/courses/:id/lectures/create' component={CreateLecture} />
             <ProtectedRoute exact path='/courses/:id/lectures/:id' component={Lecture} />
             <ProtectedRoute exact path='/courses/:id/assignments' component={Assignments} />
-            <ProtectedRoute exact path='/courses/:id/assignments/create' component={CreateAssignment} />
+            <ProtectedRoute adminOnly={true} exact path='/courses/:id/assignments/create' component={CreateAssignment} />
             <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />
             <ProtectedRoute exact path='/courses/:id/wiki' component={Wiki} />
           </Switch>
