@@ -2,9 +2,9 @@ export const isAdmin = (currentUser) => {
   return currentUser.is_admin
 }
 
-export const isStaff = (current_user) => {
+export const isStaff = (currentUser) => {
   let regex = new RegExp('(^ta$|^teacher$)')
-  return currentUser.is_admin || regext.test(currentUser.role);
+  return currentUser.is_admin || regex.test(currentUser.role);
 }
 
 export const isTeacher = (currentUser) => {
