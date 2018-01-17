@@ -1,13 +1,14 @@
 import React from 'react';
-import GroupForm from './groupForm';
+import GroupForm from './GroupForm';
+import TaGroups from './TaGroups';
 import { connect } from 'react-redux';
 import { getGroups } from '../../actions/groups';
 import { getSections } from '../../actions/sections';
+import { isAdmin } from '../../utils/permissions'
 import { Link } from 'react-router-dom';
 import {
   Accordion,
   Button,
-  Card,
   Grid,
   Header,
   Icon,
@@ -16,7 +17,7 @@ import {
 } from 'semantic-ui-react';
 
 class GroupsHome extends React.Component {
-  state = { sectionsLoaded: false, groupsLoaded: false, activeIndex: 0, view: 'all' };
+  state = { sectionsLoaded: false, groupsLoaded: false, activeIndex: 0, view: 'all' }
 
   setGroupsLoaded = () => this.setState({ groupsLoaded: true });
   setSectionsLoaded = () => this.setState({ sectionsLoaded: true });
@@ -28,10 +29,10 @@ class GroupsHome extends React.Component {
   }
 
   handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index
-    this.setState({ activeIndex: newIndex })
+    this.setState({ activeIndex: newIndex });
   }
 
   displayGroupsBySections = () => {
@@ -46,45 +47,10 @@ class GroupsHome extends React.Component {
           { s.title }
         </Accordion.Title>
         <Accordion.Content active={this.state.activeIndex === s.id}>
-          <Card.Group>
-            { this.displayGroups(s) }
-          </Card.Group>
+          { this.displayGroups(s) }
         </Accordion.Content>
       </Accordion>
     ))
-  }
-
-  displayTA = (member) => {
-    return (
-      <Segment>
-        <Header as='h3'>
-          <strong>TA: {member.first_name} {member.last_name}</strong>
-        </Header>
-        { member.email }
-      </Segment>
-    );
-  }
-
-  displayGroupMembers = (memberships) => {
-    const { course } = this.props;
-    return memberships.map( (member) => {
-      const fullName = `${member.first_name} ${member.last_name}`
-      return (
-        <Item.Group key={member.id}>
-          <Item.Content>
-            <Item.Image size='tiny' src={member.image} />
-          </Item.Content>
-            <Item.Content>
-              { member.role === 'ta' ?
-                this.displayTA(member) :
-                <Link to={`/courses/${course.id}/user/${member.id}`}>
-                  {fullName}
-                </Link>
-              }
-            </Item.Content>
-        </Item.Group>
-      );
-    });
   }
 
   sectionGroups = (s) => {
@@ -107,11 +73,49 @@ class GroupsHome extends React.Component {
       });
   }
 
+  displayGroupMembers = (memberships) => {
+    const { course } = this.props;
+    return memberships.map( (member) => {
+      const fullName = `${member.first_name} ${member.last_name}`
+      return (
+        <Item.Group key={member.id}>
+          <Item.Content>
+            <Item.Image size='tiny' src={member.image} />
+          </Item.Content>
+          <Item.Content>
+            { member.role === 'ta' ?
+              this.displayTA(member) :
+              <Link to={`/courses/${course.id}/user/${member.id}`}>
+                {fullName}
+              </Link>
+            }
+          </Item.Content>
+        </Item.Group>
+      );
+    });
+  }
+
+  displayTA = (member) => {
+    return (
+      <Segment>
+        <Header as='h3'>
+          <strong>TA: {member.first_name} {member.last_name}</strong>
+        </Header>
+        { member.email }
+      </Segment>
+    );
+  }
+
+  getView = () => {
+    const { permissions } = this.props;
+    const allGroups = { name: 'All Groups', selector: 'all', icon: 'users' }
+    const adminView = [ allGroups, { name: 'Generate Groups', selector: 'generateGroups', icon: 'plus' } ]
+    const taView = [ allGroups, { name: 'View My Groups', selector: 'taGroups', icon: 'eye'} ]
+    return isAdmin(permissions) ? adminView : taView
+  }
+
   groupSelectors = () => {
-    return [
-      { name: 'All Groups', selector: 'all', icon: 'users' },
-      { name: 'Generate Groups', selector: 'generateGroups', icon: 'plus' },
-    ].map( button =>
+    return this.getView().map( button =>
       <Button
         key={button.name}
         labelPosition="left"
@@ -129,6 +133,8 @@ class GroupsHome extends React.Component {
     switch (this.state.view) {
       case 'generateGroups':
         return <GroupForm />
+      case 'taGroups':
+        return <TaGroups />
       default:
         return (
           <Segment basic textAlign='center'>
@@ -150,7 +156,12 @@ class GroupsHome extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { sections: state.sections, course: state.course, groups: state.groups }
+  return {
+           sections: state.sections,
+           course: state.course,
+           groups: state.groups,
+           permissions: state.permissions,
+         }
 }
 
 export default connect(mapStateToProps)(GroupsHome);
