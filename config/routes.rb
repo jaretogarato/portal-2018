@@ -52,6 +52,8 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
 
     post 'avatars', to: 'avatars#create'
 
+    get '/courses/:course_id/announcements', to: 'announcements#index'
+
   end
 
   #Do not place any routes below this one

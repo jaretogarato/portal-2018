@@ -6,7 +6,7 @@ class CourseSideNav extends React.Component {
 
   render() {
     const links = [
-      'Home', 'People', 'Attendance', 'Sections',
+      'Home', 'Announcements', 'People', 'Attendance', 'Sections',
       'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
     ];
     const { match: { params: { id }}} = this.props;
@@ -24,7 +24,5 @@ class CourseSideNav extends React.Component {
     )
   }
 }
-
-
 
 export default CourseSideNav

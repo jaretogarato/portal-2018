@@ -211,3 +211,15 @@ end
 
 puts "\nTest Admin seeded email: admin@admin.com and password: password"
 puts "Test Student seeded email: test@test.com and password: password \n "
+
+5.times do |i|
+  Announcement.create(title: "Test Announcement #{i + 1}", body: "This is some test announcement data...")
+end
+
+puts '5 Announcements seeded'
+
+5.times do |i|
+  CourseAnnouncement.create(course_id: 1, announcement_id: i + 1)
+end
+
+puts '5 Course Announcements seeded'

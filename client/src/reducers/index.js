@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import user from './user';
 import users from './users';
 import flash from './flash';
+import announcements from './announcements';
 import avatars from './avatars';
 import courses from './courses';
 import course from './course';
@@ -55,7 +56,8 @@ const rootReducer = combineReducers({
   assignments,
   permissions,
   groups,
-  courseContent
+  courseContent,
+  announcements,
 });
 
 export default rootReducer;

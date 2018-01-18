@@ -3,7 +3,9 @@ class Course < ApplicationRecord
 	has_many :users, through: :enrollments
 	has_many :sections
 	has_many :attendances
-
+	has_many :course_announcements
+	has_many :announcements, through: :course_announcements
+	
 	validates_presence_of :course_type, :term, :year
 
 	validates_numericality_of :year, :only_integer => true

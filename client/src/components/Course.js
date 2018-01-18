@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { setActiveCourse } from '../actions/course';
 import { Route, Switch } from 'react-router-dom';
 import { Container, Grid, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
+import Announcements from './course/Announcements';
 import CourseSideNav from './course/CourseSideNav';
 import People from './people/People';
 import SectionSelect from './course/SectionSelect'
@@ -39,6 +40,7 @@ class Course extends React.Component {
     const { match: { params: { id: courseId } } } = this.props;
     const navs = [
       { name: 'Home', path: `/courses/${courseId}` },
+      { name: 'Announcements', path: `/courses/${courseId}/announcements` },
       { name: 'People', path: `/courses/${courseId}/people` },
       { name: 'Attendance', path: `/courses/${courseId}/attendance` },
       { name: 'Sections', path: `/courses/${courseId}/sections` },
@@ -74,6 +76,7 @@ class Course extends React.Component {
             <ProtectedRoute path="/courses/:id/settings" component={CourseSettings} />
             <ProtectedRoute path="/courses/:id/user/:id" component={PeopleProfile} />
             <ProtectedRoute path="/courses/:id/attendance" component={Attendance} />
+            <ProtectedRoute path="/courses/:id/announcements" component={Announcements} />
             <ProtectedRoute exact path='/courses/:id/quizzes/:id' component={QuizRoute} />
             <ProtectedRoute exact path='/courses/:id/quizzes' component={Quizzes} />
             <ProtectedRoute adminOnly={true} exact path='/courses/:id/quizform' component={QuizForm} />
