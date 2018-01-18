@@ -30,7 +30,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
 
     resources :assignments
     resources :enrollments, except: [:index, :show]
-    resources :notes, only: [:create, :index]
+    resources :notes, only: [:create, :index, :update]
     resources :badges
 
     put 'update_profile_pic', to: 'profiles#update_profile_pic'

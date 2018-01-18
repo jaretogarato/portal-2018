@@ -20,6 +20,7 @@ import {
 import Badge from './Badge';
 import NoteForm from './noteForm';
 import NoteList from './NoteList';
+import { isStudent } from '../../utils/permissions'
 
 class PeopleProfile extends React.Component {
   state = { user: {}, showForm: false, badges: [], options: [] }
@@ -106,9 +107,14 @@ class PeopleProfile extends React.Component {
       return !hasBadge
     })
   }
+  whoCanSeeNotes = () => {
+    const { current_user, permission, match: { params: { id } } } = this.props
+    if(!isStudent(permission) || current_user.id === parseInt(id))
+      return <NoteList userId={id}/>
+  }
 
   render () {
-    const { user, match: { params: { id } } } = this.props
+    const { user, match: { params: { id } }, permission } = this.props
     const { options } = this.state
     const fullName = `${user.first_name} ${user.last_name}`
     return (
@@ -164,10 +170,10 @@ class PeopleProfile extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <NoteForm userId={id}/>
+              {!isStudent(permission) && <NoteForm userId={id}/>}
             </Grid.Column>
           </Grid.Row>
-          { this.props.current_user.role === 'ta' || 'teacher' ? <NoteList userId={id}/> : null }
+          { this.whoCanSeeNotes() }
         </Grid>
       </Segment>
     )
@@ -193,7 +199,8 @@ const badges = {
 const mapStateToProps = (state) => {
   return {
     user: state.userId,
-    current_user: state.user
+    current_user: state.user,
+    permission: state.permissions,
    }
 }
 

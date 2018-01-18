@@ -56,6 +56,12 @@ class NoteForm extends React.Component {
               required
               onChange={this.handleChange}
             />
+            <Form.Field
+              label='Visible to student?'
+              control='input'
+              type='checkbox'
+              onChange={this.handleChecked}
+            />
           </Card.Header>
           <Divider fitted />
           <Card.Description>

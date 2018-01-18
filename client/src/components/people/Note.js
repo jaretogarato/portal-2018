@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Grid, Message, Header, Divider, Button, Form,
          Icon, Image, Card } from 'semantic-ui-react'
 import { editNote, deleteNote} from '../../actions/notes'
-import { isAdmin } from '../../utils/permissions'
+import { isAdmin, isStudent } from '../../utils/permissions'
 
 
 class Note extends React.Component {
@@ -13,8 +13,8 @@ class Note extends React.Component {
   }
 
   componentDidMount() {
-    const { sender_id, updated_at, image, first_name, last_name, id, title, content } = this.props
-    this.setState({ sender_id, updated_at, image, first_name, last_name, id, title, content })
+    const { sender_id, updated_at, image, first_name, last_name, id, title, content, visible } = this.props
+    this.setState({ sender_id, updated_at, image, first_name, last_name, id, title, content, visible })
   }
 
   renderEditButton = () => {
@@ -41,7 +41,7 @@ class Note extends React.Component {
   //Todo: format time
   displayNote = () => {
     const { user, permission } = this.props
-    const { sender_id, updated_at, image, first_name, last_name, id, title, content } = this.state
+    const { sender_id, updated_at, image, first_name, last_name, id, title, content, visible } = this.state
       const fullName = `${first_name} ${last_name}`
       return(
         <Grid.Row key={id} style={styles.message}>
@@ -60,6 +60,7 @@ class Note extends React.Component {
               </Card.Description>
             </Card.Content>
             <Card.Content>
+              { !this.props.visible && <Icon name='hide' />}
               <Header as='h6' floated='right'>{updated_at}</Header>
             </Card.Content>
           </Message>
@@ -79,7 +80,6 @@ class Note extends React.Component {
   handleChecked = (e) => {
     this.setState({ visible: !this.state.visible })
   }
-
 
   handleChange = (e) => {
     const { name, value } = e.target
@@ -120,6 +120,13 @@ class Note extends React.Component {
               width={7}
               onChange={this.handleChange}
             />
+            <Form.Field
+              label='Visible to student?'
+              checked={this.state.visible}
+              control='input'
+              type='checkbox'
+              onChange={this.handleChecked}
+            />
           </Card.Header>
           <Divider fitted />
           <Card.Description>
@@ -135,10 +142,29 @@ class Note extends React.Component {
     )
   }
 
+  whoCanSeeNotes = () => {
+    const { permission } = this.props
+    const { visible, editing } = this.state
+    if(isStudent(permission)){
+      return (
+        <div>
+          { visible && this.displayNote() }
+        </div>
+      )
+    }
+    else {
+      return(
+        <div>
+          { this.state.editing ? this.editNote() : this.displayNote() }
+        </div>
+      )
+    }
+  }
+
   render () {
     return(
       <Grid.Column width={16}>
-        { this.state.editing ? this.editNote() : this.displayNote() }
+        { this.whoCanSeeNotes() }
       </Grid.Column>
     )
   }
