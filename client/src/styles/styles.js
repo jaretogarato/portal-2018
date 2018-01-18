@@ -105,6 +105,7 @@ export const FooterStyled = styled.div`
   bottom: 0px;
   left: 0px;
   right: 0px;
+  background-color: #424242
 `;
 
 export const FlexContainer = styled.div`

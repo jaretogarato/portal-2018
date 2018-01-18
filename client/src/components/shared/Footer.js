@@ -8,7 +8,7 @@ import {
 
 const Footer = () => (
   <FooterStyled>
-    <Segment inverted color='grey' attached='top'>
+    <Segment style={styles.footer} attached='top'>
       <Grid columns={2}>
         <Grid.Column textAlign='left'>
           <p style={styles.text}>
@@ -34,8 +34,9 @@ const Footer = () => (
 
 const styles = {
   footer: {
-    backgroundColor: '#FFF',
-    position: 'relative'
+    backgroundColor: '#424242',
+    position: 'relative',
+    border: 'none'
   },
   container: {
     padding: '0',

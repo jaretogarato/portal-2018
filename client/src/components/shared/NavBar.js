@@ -134,7 +134,7 @@ const styles = {
     color: '#fff',
   },
   navbarPrimary: {
-    background: 'linear-gradient(#00bef2, #00a6d4)',
+    background: 'linear-gradient(#9575CD, #614d7b)',
     border: 'none',
   }
 }
