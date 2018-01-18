@@ -17,7 +17,7 @@ class Api::CourseContentsController < ApplicationController
 
   private
     def course_content_params
-      params.require(:course_content).permit(:sub_section_id, :quiz_id, :assignment_id)
+      params.require(:course_content).permit(:sub_section_id, :quiz_id, :lecture_id, :assignment_id)
     end
 
     def set_course_content

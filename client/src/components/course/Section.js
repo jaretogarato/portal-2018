@@ -18,8 +18,8 @@ class Section extends React.Component {
   checkActiveIndex = (index) => this.state.activeIndexes.includes(index)
 
   displayItems = (content) => {
-    return content.map( cc => (
-      <Link key={cc.id} to={`/courses/${this.props.course.id}/section/${cc.id}`}>
+    return content.map( (cc, i) => (
+      <Link key={i} to={`/courses/${this.props.course.id}/section/${cc.id}`}>
         <Segment>{cc.title}</Segment>
       </Link>
     ))

@@ -15,7 +15,7 @@ class ContentForm extends React.Component {
 
   getItems = (e, { value }) => {
     this.setState({ type: value })
-    //TODO: add functionality for assignments and lectures
+    //TODO: Condense this
     switch(value) {
       case "assignment":
         const assignmentOptions = this.props.assignments.map( content => {
@@ -24,7 +24,11 @@ class ContentForm extends React.Component {
         this.setState({ itemOptions: assignmentOptions })
         break
       case "lecture":
-        this.setState({ itemOptions: [{ text: "No Lectures" }] })
+        // const lectureOptions = this.props.lectures.map( content => {
+        //   return { id: content.id, text: content.title, value: content.id }
+        // })
+        // this.setState({ itemOptions: lectureOptions })        
+        this.setState({ itemOptions: [{ text: "No Content" }] })        
         break
       case "quiz":
         const quizOptions = this.props.quizzes.map( content => {
@@ -42,6 +46,7 @@ class ContentForm extends React.Component {
     const { itemId, type } = this.state;
     let courseContent = null
     e.preventDefault();
+    //TODO: Condense this
     switch(type) {
       case 'assignment':
         courseContent = { sub_section_id: subSectionId, assignment_id: itemId }
@@ -74,6 +79,7 @@ class ContentForm extends React.Component {
               <Form.Group>
                 <Form.Field
                   control={Select}
+                  key={1}
                   label='Type'
                   options={typeOptions}
                   placeholder='Select a Type'
@@ -84,6 +90,7 @@ class ContentForm extends React.Component {
                 />
                 <Form.Field
                   control={Select}
+                  key={2}
                   label='Item'
                   options={this.state.itemOptions}
                   placeholder='Select an Item'

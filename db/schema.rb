@@ -57,10 +57,11 @@ ActiveRecord::Schema.define(version: 20180118030214) do
   end
 
   create_table "course_contents", force: :cascade do |t|
-    t.bigint "sub_section_id"
+    t.bigint "sub_section_id", null: false
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "lecture_id"
     t.bigint "assignment_id"
     t.index ["assignment_id"], name: "index_course_contents_on_assignment_id"
     t.index ["quiz_id"], name: "index_course_contents_on_quiz_id"
@@ -118,10 +119,8 @@ ActiveRecord::Schema.define(version: 20180118030214) do
   create_table "lectures", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.bigint "sub_section_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sub_section_id"], name: "index_lectures_on_sub_section_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -247,13 +246,13 @@ ActiveRecord::Schema.define(version: 20180118030214) do
   add_foreign_key "attendances", "users"
   add_foreign_key "avatars", "users"
   add_foreign_key "course_contents", "assignments"
+  add_foreign_key "course_contents", "lectures"
   add_foreign_key "course_contents", "quizzes"
   add_foreign_key "course_contents", "sub_sections"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "group_memberships", "enrollments"
   add_foreign_key "group_memberships", "ta_groups"
-  add_foreign_key "lectures", "sub_sections"
   add_foreign_key "question_options", "quiz_questions"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "sections", "courses"
