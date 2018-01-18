@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AddCourseContent from './AddCourseContent';
 import SubSectionForm from './SubSectionForm';
 import { deleteSubSection } from '../../actions/subSections';
+import { getAssignments } from '../../actions/assignments';
 import {
   Accordion,
   Button,
@@ -50,6 +51,14 @@ class Section extends React.Component {
         if(quiz.id === content.quiz_id)
           filtered.push(quiz)
       })
+      this.props.assignments.map(assignment => {
+        if(assignment.id === content.assignment_id)
+          filtered.push(assignment)
+      })
+      this.props.lectures.map(lecture => {
+        if(lecture.id === content.lecture_id)
+          filtered.push(lecture)
+      })
     })
     return filtered
   }
@@ -93,7 +102,9 @@ const mapStateToProps = (state) => {
     user: state.user,
     course: state.course,
     content: state.courseContent,
-    quizzes: state.quizzes
+    quizzes: state.quizzes,
+    lectures: state.lectures,
+    assignments: state.assignments,
   }
 }
 

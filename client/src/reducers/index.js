@@ -24,7 +24,7 @@ import notes from './notes';
 import permissions from './permissions';
 import groups from './groups';
 import courseContent from './courseContent';
-import assignments from './assignments';
+import assignments from './assignment';
 
 
 const rootReducer = combineReducers({

@@ -18,16 +18,19 @@ class ContentForm extends React.Component {
     //TODO: add functionality for assignments and lectures
     switch(value) {
       case "assignment":
-        this.setState({ itemOptions: [{ text: "No Assignments" }] })
+        const assignmentOptions = this.props.assignments.map( content => {
+          return { id: content.id, text: content.title, value: content.id }
+        })
+        this.setState({ itemOptions: assignmentOptions })
         break
       case "lecture":
         this.setState({ itemOptions: [{ text: "No Lectures" }] })
         break
       case "quiz":
-        const itemOptions = this.props.quizzes.map( content => {
+        const quizOptions = this.props.quizzes.map( content => {
           return { id: content.id, text: content.title, value: content.id }
         })
-        this.setState({ itemOptions })
+        this.setState({ itemOptions: quizOptions })
         break
       default:
         break 
@@ -36,8 +39,23 @@ class ContentForm extends React.Component {
 
   handleSubmit = (e) => {
     const { dispatch, subSectionId, toggleModal } = this.props;
+    const { itemId, type } = this.state;
+    let courseContent = null
     e.preventDefault();
-    const courseContent = { sub_section_id: subSectionId, quiz_id: this.state.itemId }
+    switch(type) {
+      case 'assignment':
+        courseContent = { sub_section_id: subSectionId, assignment_id: itemId }
+        break
+      case 'quiz':
+        courseContent = { sub_section_id: subSectionId, quiz_id: itemId }
+        break
+      case 'lecture':
+        courseContent = { sub_section_id: subSectionId, lecture_id: itemId }
+        break
+      default:
+        courseContent =  null
+        break
+      }
     dispatch(addCourseContent(courseContent))
     toggleModal()
   }
@@ -91,8 +109,10 @@ export const typeOptions = [
 ]
 
 const mapStateToProps = ( state ) => {
-  return { quizzes: state.quizzes }
+  return { 
+    quizzes: state.quizzes,
+    assignments: state.assignments, 
+  }
 }
-
 
 export default connect(mapStateToProps)(ContentForm);

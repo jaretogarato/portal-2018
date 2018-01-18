@@ -13,6 +13,7 @@ import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';
 import { Dimmer, Grid, Loader, Menu, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import { getAssignments } from '../../actions/assignments';
 
 class SectionSelect extends React.Component {
   state = {
@@ -37,6 +38,7 @@ class SectionSelect extends React.Component {
     dispatch(getSections(id, this.setSectionsLoaded));
     dispatch(getQuizzes());
     dispatch(getCourseContent());
+    dispatch(getAssignments());
   }
 
   componentWillUnmount() {
@@ -132,6 +134,7 @@ const mapStateToProps = (state) => {
     course: state.course,
     subSections: state.subSections,
     courseContent: state.courseContent,
+    assignments: state.assignments,
   }
 }
 

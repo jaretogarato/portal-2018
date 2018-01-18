@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112225822) do
+ActiveRecord::Schema.define(version: 20180118030214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20180112225822) do
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "assignment_id"
+    t.index ["assignment_id"], name: "index_course_contents_on_assignment_id"
     t.index ["quiz_id"], name: "index_course_contents_on_quiz_id"
     t.index ["sub_section_id"], name: "index_course_contents_on_sub_section_id"
   end
@@ -244,6 +246,7 @@ ActiveRecord::Schema.define(version: 20180112225822) do
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "users"
   add_foreign_key "avatars", "users"
+  add_foreign_key "course_contents", "assignments"
   add_foreign_key "course_contents", "quizzes"
   add_foreign_key "course_contents", "sub_sections"
   add_foreign_key "enrollments", "courses"

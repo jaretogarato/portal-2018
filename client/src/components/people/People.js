@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import GroupsHome from './GroupsHome';
+import GroupsHome from './groupsHome';
 import PeopleHome from './PeopleHome'; 
 
 

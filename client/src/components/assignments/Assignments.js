@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import { Segment, Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { getAssignments } from '../../actions/assignments';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Assignments extends Component {
   state = { assignments: [] }
 
   componentDidMount() {
-    axios.get('/api/assignments')
-      .then(res => {
-        this.setState({ assignments: res.data })
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.dispatch(getAssignments())
   }
 
   displayAssignments = () => {
     const { id } = this.props.match.params
-    return this.state.assignments.map(assignment => {
+    return this.props.assignments.map(assignment => {
       return (
         <Table.Row key={assignment.id}>
           <Table.Cell>
@@ -83,4 +78,10 @@ const styles = {
   },
 }
 
-export default Assignments;
+const mapStateToProps = (state) => {
+  return {
+    assignments: state.assignments,
+  }
+}
+
+export default connect(mapStateToProps)(Assignments);
