@@ -6,6 +6,7 @@ import { setSection, clearSection } from '../../actions/section';
 import { getSubSections, clearSubSections } from '../../actions/subSections';
 import { getCourseContent, clearCourseContent } from '../../actions/courseContent';
 import { getQuizzes, clearQuizzes } from '../../actions/quizzes';
+import { getLectures, clearLectures } from '../../actions/lectures';
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
@@ -39,6 +40,7 @@ class SectionSelect extends React.Component {
     dispatch(getQuizzes());
     dispatch(getCourseContent());
     dispatch(getAssignments());
+    dispatch(getLectures());
   }
 
   componentWillUnmount() {
@@ -48,6 +50,7 @@ class SectionSelect extends React.Component {
     dispatch(clearSection())
     dispatch(clearQuizzes())
     dispatch(clearCourseContent())
+    dispatch(clearLectures())
   }
 
   handleClick = (e) => {

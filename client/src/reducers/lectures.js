@@ -2,6 +2,8 @@ const lectures = (state = [], action) => {
   switch (action.type) {
     case 'GET_LECTURES':
       return action.lectures;
+    case 'CLEAR_LECTURES':
+      return action.lectures
     case 'ADD_LECTURE':
       return [ action.lecture, ...state ];
     case 'DELETE_LECTURE':

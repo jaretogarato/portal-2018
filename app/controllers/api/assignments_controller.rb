@@ -2,7 +2,7 @@ class Api::AssignmentsController < Api::ApiController
   before_action :set_assignment, only: [ :destroy, :update, :show ]
 
   def index
-    render json: Assignment.all.order(title: :desc)
+    render json: Assignment.all
   end
 
   def show
@@ -16,7 +16,6 @@ class Api::AssignmentsController < Api::ApiController
       render json: { errors: @assignment.errors.full_messages }, status: 422
     end
   end
-
 
   def create
     assignment = Assignment.new(assignment_params)

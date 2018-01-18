@@ -2,7 +2,7 @@ class Api::LecturesController < Api::ApiController
   before_action :set_lecture, only: [ :destroy, :update, :show ]
 
   def index
-    render json: Lecture.all.order(title: :desc)
+    render json: Lecture.all
   end
 
   def show
@@ -17,7 +17,6 @@ class Api::LecturesController < Api::ApiController
     end
   end
 
-
   def create
     lecture = Lecture.new(lecture_params)
     if lecture.save
@@ -30,7 +29,6 @@ class Api::LecturesController < Api::ApiController
   def destroy
     @lecture.destroy
   end
-
 
   private
     def lecture_params

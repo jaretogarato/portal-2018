@@ -24,11 +24,10 @@ class ContentForm extends React.Component {
         this.setState({ itemOptions: assignmentOptions })
         break
       case "lecture":
-        // const lectureOptions = this.props.lectures.map( content => {
-        //   return { id: content.id, text: content.title, value: content.id }
-        // })
-        // this.setState({ itemOptions: lectureOptions })        
-        this.setState({ itemOptions: [{ text: "No Content" }] })        
+        const lectureOptions = this.props.lectures.map( content => {
+          return { id: content.id, text: content.title, value: content.id }
+        })
+        this.setState({ itemOptions: lectureOptions })        
         break
       case "quiz":
         const quizOptions = this.props.quizzes.map( content => {
@@ -86,7 +85,7 @@ class ContentForm extends React.Component {
                   onChange={this.getItems}
                   id='type'
                   required
-                  width={8}
+                  width={4}
                 />
                 <Form.Field
                   control={Select}
@@ -96,7 +95,7 @@ class ContentForm extends React.Component {
                   placeholder='Select an Item'
                   onChange={this.handleChange}
                   id='item'
-                  width={8}
+                  width={12}
                   required
                 />
               </Form.Group>
@@ -110,15 +109,16 @@ class ContentForm extends React.Component {
 }
 
 export const typeOptions = [
-  { text: 'Assignments', value: 'assignment' },
-  { text: 'Lectures', value: 'lecture' },
-  { text: 'Quizzes', value: 'quiz' }
+  { text: 'Assignment', value: 'assignment' },
+  { text: 'Lecture', value: 'lecture' },
+  { text: 'Quiz', value: 'quiz' }
 ]
 
 const mapStateToProps = ( state ) => {
   return { 
     quizzes: state.quizzes,
     assignments: state.assignments, 
+    lectures: state.lectures
   }
 }
 

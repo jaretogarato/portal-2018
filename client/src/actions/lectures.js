@@ -29,6 +29,10 @@ export const getLectures = () => {
   }
 }
 
+export const clearLectures = () => {
+  return { type: 'CLEAR_LECTURES', lectures: [] }
+}
+
 export const getLecture = (id) => {
   return (dispatch) => {
     axios.get(`/api/lectures/${id}`)

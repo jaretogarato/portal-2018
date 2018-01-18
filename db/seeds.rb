@@ -13,6 +13,7 @@ course_type = [
   'U of U Pro Ed Web Development',
   'Full Stack Web Development',
 ]
+
 course_term = [
   'Winter',
   'Spring',
@@ -36,17 +37,7 @@ badges = [
 
 course_year = [2017, 2017, 2017, 2017, 2018, 2018, 2018, 2018, 2019, 2019]
 
-5.times do |a|
-  assignment = Assignment.create(
-    title: "Seeded Assignment #{a}",
-    submission_type: 'Online',
-    points: 100,
-    due_date: 'June 9th, 2018',
-    published: true,
-    content: Faker::Lorem.paragraph
-  )
-end
-
+puts "Seeding database...\n "
 
 @admin = User.create(
   first_name: 'admin',
@@ -70,7 +61,6 @@ end
   invitation_accepted_at: Time.now
 )
 
-
 10.times do |i|
   @course = Course.create(
     course_type: course_type[i],
@@ -83,28 +73,13 @@ end
       course_id: @course.id
     )
     5.times do |k|
-      sub_section_prog_lang = Faker::ProgrammingLanguage.name
-      sub_section_title = "Day #{k + 1}: #{sub_section_prog_lang}"
       sub_section = SubSection.create(
-        title: sub_section_title,
+        title: "Day #{k + 1}",
         section_id: section.id,
-        item_title: Faker::Book.title,
       )
-      1.times do |l|
-        lecture_scientist = Faker::Science.scientist
-        lecture_moon = Faker::Space.moon
-        lecture = Lecture.create(
-          title: "Lecture #{l + 1}: + #{Faker::Lorem.sentence}",
-          content: Faker::Lorem.paragraph(2)
-        )
-        # lecture = Lecture.create(
-        #   title: "Lecture #{l + 1}: #{sub_section_prog_lang}--the #{lecture_scientist} of #{lecture_moon}",
-        #   content: lecture_seed.sample,
-        #   sub_section_id: sub_section.id
-        # )
-      end
     end
   end
+
   Enrollment.create(
     role: 'teacher',
     sub_role: 'JS Ninja',
@@ -139,6 +114,7 @@ end
       course_id: @course.id
     )
   end
+
   3.times do
     ta = User.create(
       email: Faker::Internet.email,
@@ -173,16 +149,44 @@ badges.each do |badge|
   )
 end
 
-puts "5 assignments seeded"
+25.times do |l|
+  Lecture.create(
+    title: "Lecture #{l + 1}: #{Faker::Lorem.sentence}",
+    content: Faker::Lorem.paragraph(2)
+  )
+end
+
+5.times do |l|
+  Quiz.create(
+    title: "Quiz #{l + 1}: #{Faker::Lorem.sentence}",
+    content: Faker::Lorem.paragraph(2),
+    due_date: "Jan 18, 2018",
+    points: 100
+  )
+end
+
+5.times do |a|
+  Assignment.create(
+    title: "Assignment #{a + 1}: #{Faker::Lorem.sentence}",
+    submission_type: 'Online',
+    points: 100,
+    due_date: 'June 9th, 2018',
+    published: true,
+    content: Faker::Lorem.paragraph
+  )
+end
+
 puts "10 courses seeded"
 puts "11 sections seeded"
 puts "5 sub_sections seeded"
-puts "3 lectures seeded"
 puts "5 badges seeded"
+puts "25 lectures seeded"
+puts "5 quizzes seeded"
+puts "5 assignments seeded"
 
-puts "10 students seeded with enrollment, plus faker email and password password. For Each Course"
-puts "Teacher seeded with enrollment to every course. password: password"
-puts "3 ta's seeded with enrollment, plus faker email and password password. For Each Course"
+puts "\n10 students seeded with enrollment for each course"
+puts "3 TAs seeded with enrollment for each course"
+puts "1 teacher seeded with enrollment to every course."
 
 
 1.times do
@@ -205,11 +209,5 @@ puts "3 ta's seeded with enrollment, plus faker email and password password. For
   end
 end
 
-puts "Test Admin seeded email: admin@admin.com and password: password"
-puts "Test Student seeded email: test@test.com and password: password"
-
-
-
-
-
-# SOME NOTES TEEHEE
+puts "\nTest Admin seeded email: admin@admin.com and password: password"
+puts "Test Student seeded email: test@test.com and password: password \n "
