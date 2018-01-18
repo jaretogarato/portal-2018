@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import GroupsHome from './groupsHome';
-import PeopleHome from './PeopleHome'; 
+import GroupsHome from './GroupsHome';
+import PeopleHome from './PeopleHome';
 
 
 class People extends React.Component {
