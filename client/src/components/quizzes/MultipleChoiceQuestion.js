@@ -1,9 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Form, Select, Segment, Header, Button } from 'semantic-ui-react'
-import MultipleChoiceOption from './MultipleChoiceOption'
-import { addQuestion } from '../../actions/quizQuestions'
-import { connect } from 'react-redux'
+import React from 'react';
+import styled from 'styled-components';
+import { Form, Select, Segment, Header, Button } from 'semantic-ui-react';
+import MultipleChoiceOption from './MultipleChoiceOption';
+import { addQuestion } from '../../actions/quizQuestions';
+import { addUpdate, editUpdate } from '../../actions/questionUpdates';
+import { connect } from 'react-redux';
 
 const options = [
   { key: 2, text: 2, value: 2 },
@@ -22,7 +23,7 @@ const LabelGroup = styled(Segment) `
 `
 
 class MultipleChoiceQuestion extends React.Component {
-  state = { question: '', optionCount: 0, options: {} }
+  state = { question: '', optionCount: 0, options: {}, hasUpdate: false }
 
   componentDidMount() {
     const { quizOptions, text } = this.props
@@ -30,8 +31,21 @@ class MultipleChoiceQuestion extends React.Component {
       this.setState({ question: text, optionCount: quizOptions.length })
   }
 
+  sendUpdate = () => {
+    let { dispatch, editing, questionId } = this.props
+    if (editing) {
+      const question = { id: questionId, question: this.state.question, multiple_choice: true }
+      if (!this.state.hasUpdate) {
+        dispatch(addUpdate(question))
+        this.setState({ hasUpdate: true })
+      } else {
+        dispatch(editUpdate(question))
+      }
+    }
+  }
+
   handleChange = ( _, { name, value} ) => {
-    this.setState({ [name]: value })
+    this.setState({ [name]: value }, this.sendUpdate)
   }
 
   handleSubmit = (e) => {
@@ -63,6 +77,8 @@ class MultipleChoiceQuestion extends React.Component {
             questionId={questionId}
             id={op.id}
             option={op}
+            sendUpdate={this.sendUpdate}
+            editing={true}
           />
         )
       })
@@ -84,15 +100,17 @@ class MultipleChoiceQuestion extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <Form.Field
-            control={Select}
-            name='optionCount'
-            label='Number of Options'
-            options={ options }
-            onChange={ this.handleChange }
-            placeholder='Number of Options'
-            required
-          />
+          { !this.props.editing &&
+            <Form.Field
+              control={Select}
+              name='optionCount'
+              label='Number of Options'
+              options={ options }
+              onChange={ this.handleChange }
+              placeholder='Number of Options'
+              required
+            />
+          }
           { optionCount > 0 &&
             <LabelGroup basic>
               <label>Option Text</label>

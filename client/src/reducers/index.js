@@ -19,6 +19,7 @@ import quizQuestions from './quizQuestions';
 import quizOptions from './quizOptions';
 import quizResponses from './quizResponses';
 import singleQuiz from './singleQuiz';
+import questionUpdates from './questionUpdates';
 import userId from './userId';
 import notes from './notes';
 import permissions from './permissions';
@@ -49,6 +50,7 @@ const rootReducer = combineReducers({
   quizOptions,
   singleQuiz,
   quizQuestions,
+  questionUpdates,
   quizResponses,
   assignments,
   permissions,

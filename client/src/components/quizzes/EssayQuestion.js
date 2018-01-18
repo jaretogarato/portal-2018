@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
 import { addQuestion } from '../../actions/quizQuestions';
+import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
 
 
 class EssayQuestion extends Component {
-  state = { question: '' }
+  state = { question: '', hasUpdate: false }
 
   componentDidMount() {
     const { editing, text } = this.props
@@ -13,12 +14,19 @@ class EssayQuestion extends Component {
       this.setState({ question: text })
   }
 
-  handleQuestion = (e, {name, value}) => {
-    this.setState({ [name]: value })
-  }
-
-  handleChange = (e) => {
-    this.setState({ activeType: e.target.innerText })
+  handleChange = (e, {name, value}) => {
+  const { dispatch, editing, questionId } = this.props
+    this.setState({ [name]: value }, () => {
+      if (editing) {
+        const question = { id: questionId, question: this.state.question, multiple_choice: false }
+        if (!this.state.hasUpdate) {
+          dispatch(addUpdate(question))
+          this.setState({ hasUpdate: true })
+        } else {
+          dispatch(editUpdate(question))
+        }
+      }
+    })
   }
 
   handleSubmit = (e) => {
@@ -34,7 +42,7 @@ class EssayQuestion extends Component {
     return (
     <Segment>
         <Form onSubmit={this.handleSubmit}>
-        <Form.TextArea onChange={this.handleQuestion} name='question' value={this.state.question} label='Question'> </Form.TextArea>
+        <Form.TextArea onChange={this.handleChange} name='question' value={this.state.question} label='Question'> </Form.TextArea>
         { !this.props.editing && <Button basic type='submit'> save question </Button> }
         </Form>
       </Segment>

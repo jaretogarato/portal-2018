@@ -132,6 +132,7 @@ displayQuestions= () => {
             return <TrueFalse
               key={q.id}
               quizId={this.props.quiz.id}
+              questionId={q.id}
               text={q.question}
               truth={q.options[0].correct ? 'true' : 'false'}
               editing={true}
@@ -147,10 +148,11 @@ displayQuestions= () => {
             />
         else
           return <EssayQuestion
-            text={q.question} 
-            key={q.id} 
-            quizId={this.props.quiz.id} 
-            editing={true} 
+            text={q.question}
+            key={q.id}
+            quizId={this.props.quiz.id}
+            questionId={q.id}
+            editing={true}
           />
       }
     })
@@ -180,7 +182,7 @@ const styles = {
 
 
 const mapStateToProps = (state) => {
-  return { quiz: state.singleQuiz, questions: state.quizQuestions }
+  return { quiz: state.singleQuiz, questions: state.quizQuestions, updates: state.questionUpdates }
 }
 
 export default connect(mapStateToProps)(SingleQuiz);

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Segment, Grid, Button, Form, Radio } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addQuestion } from '../../actions/quizQuestions';
+import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 
 class TrueFalse extends Component {
-state={ question: '', isTrue: '' }
+state = { question: '', isTrue: '', hasUpdate: false }
 
 componentDidMount() {
   const { text, editing, truth } = this.props
@@ -12,10 +13,32 @@ componentDidMount() {
     this.setState({ question: text, isTrue: truth })
 }
 
-handleChange = (_, { name, value }) => this.setState({ [name]: value })
+sendUpdate = () => {
+  const { dispatch, editing, questionId } = this.props
+  const { question, isTrue } = this.state
+  const truthy = (isTrue === 'true')
+  const falsy = (isTrue === 'false')
+  const options = [
+    { text: 'True', correct: truthy },
+    { text: 'False', correct: falsy },
+  ]
+  if (editing) {
+    const tfQuestion = { id: questionId, question, options, true_false: true }
+    if (!this.state.hasUpdate) {
+      dispatch(addUpdate(tfQuestion))
+      this.setState({ hasUpdate: true })
+    } else {
+      dispatch(editUpdate(tfQuestion))
+    }
+  }
+}
+
+handleChange = (_, { name, value }) => {
+  this.setState({ [name]: value }, this.sendUpdate)
+}
 
 handleCheck = (_, { value }) => {
-  this.setState({ isTrue: value })
+  this.setState({ isTrue: value }, this.sendUpdate)
 }
 
 handleSubmit = (e) => {

@@ -23,9 +23,12 @@ class MultipleChoiceOption extends React.Component {
 
   sendOption = () => {
     const { text, correct } = this.state
-    const { questionId } = this.props
+    const { questionId, editing, sendUpdate } = this.props
     const option = { questionId, id: this.props.id, text, correct }
     this.props.dispatch(updateOption(option))
+    if (editing)
+      sendUpdate()
+
   }
 
   handleChange = (_, { name, value } ) => {
