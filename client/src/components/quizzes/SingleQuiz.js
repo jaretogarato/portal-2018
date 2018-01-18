@@ -2,24 +2,28 @@ import React, {Component} from 'react';
 import { Header, Button, Segment, List, Dimmer, Loader, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getQuiz, deleteQuiz } from '../../actions/singleQuiz'
-import { getQuestions, deleteQuestion } from '../../actions/quizQuestions'
-import CreateQuestions from './CreateQuestions'
-import EditQuizForm from './EditQuizForm'
-import MultipleChoiceQuestion from './MultipleChoiceQuestion'
-import EssayQuestion from './EssayQuestion'
-import TrueFalse from './TrueFalse'
-import moment from 'moment'
+import { getQuiz, deleteQuiz } from '../../actions/singleQuiz';
+import { getQuestions, deleteQuestion } from '../../actions/quizQuestions';
+import CreateQuestions from './CreateQuestions';
+import EditQuizForm from './EditQuizForm';
+import MultipleChoiceQuestion from './MultipleChoiceQuestion';
+import EssayQuestion from './EssayQuestion';
+import TrueFalse from './TrueFalse';
+import moment from 'moment';
+import { stateFromHTML } from 'draft-js-import-html';
+import { EditorState, ContentState, convertFromRaw } from 'draft-js';
+
 
 class SingleQuiz extends Component{
   state = { loaded: false, quizEdit: false, questionsEdit: false };
 
   componentDidMount() {
     const { id } = this.props.match.params
-    this.props.dispatch(getQuiz(id))
+    this.props.dispatch(getQuiz(id)) 
     this.props.dispatch(getQuestions(id))
     this.checkLoaded()
   }
+
 
   componentDidUpdate() {
     this.checkLoaded()
@@ -47,17 +51,26 @@ class SingleQuiz extends Component{
     this.setState({ questionsEdit: !questionsEdit })
   }
 
-displayQuiz = () => {
-  const { id, content, points, due_date, created_at, title } = this.props.quiz
-  let time = moment(due_date).format('MMMM D, YYYY')
-  let created = moment(created_at).format('MMMM D, YYYY')
-  if(this.state.quizEdit) {
-    return(
-      <Segment basic>
-        <EditQuizForm toggleEdit={this.toggleEdit}/>
-      </Segment>
-    )
-  } else {
+  displayQuiz = () => {
+    // const contentState = convertFromRaw( JSON.parse( this.props.quiz) );
+  
+  // if(this.props.quiz.content){
+  //   let qz = this.props.quiz.content
+  //   let json = JSON.parse(qz) 
+  //   const contentState = convertFromRaw(json)
+  // }
+ 
+    const { id, content, points, due_date, created_at, title } = this.props.quiz
+    let time = moment(due_date).format('MMMM D, YYYY')
+    let created = moment(created_at).format('MMMM D, YYYY')
+    if(this.state.quizEdit) {
+      return(
+        <Segment basic>
+          <EditQuizForm toggleEdit={this.toggleEdit}/>
+        </Segment>
+      )
+    } else {
+
   return (
     <Segment basic clearing >
       <Header textAlign='center'>{title}</Header>

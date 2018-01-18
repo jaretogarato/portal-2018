@@ -1,25 +1,27 @@
 import React, { Component } from 'react'
 import { Grid, Button } from 'semantic-ui-react';
-import {Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils } from 'draft-js';
 import './Style.css';
 import BlockStyleControls from './BlockStyles';
 import InlineStyleControls from './InlineStyles';
-
-
+import { stateToHTML } from 'draft-js-export-html';
+import { convertToRaw } from 'draft-js'
 
 class RiftEditor extends Component {
-   constructor(props) {
-    super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+  state = { editorState: EditorState.createEmpty() };
 
-    this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
+    focus = () => this.refs.editor.focus();
+    onChange = (editorState) => {
+      this.props.riftChange(JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent())))
+      // console.log(convertToRaw(this.state.editorState.getCurrentContent()))
+      this.setState({editorState});
+    }
 
-    this.handleKeyCommand = (command) => this._handleKeyCommand(command);
-    this.onTab = (e) => this._onTab(e);
-    this.toggleBlockType = (type) => this._toggleBlockType(type);
-    this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
-  }
+    handleKeyCommand = (command) => this._handleKeyCommand(command);
+    onTab = (e) => this._onTab(e);
+    toggleBlockType = (type) => this._toggleBlockType(type);
+    toggleInlineStyle = (style) => this._toggleInlineStyle(style);
+  
 
   _handleKeyCommand(command) {
     const {editorState} = this.state;

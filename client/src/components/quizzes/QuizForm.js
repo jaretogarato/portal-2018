@@ -19,9 +19,12 @@ handleSubmit = (e) => {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
+  riftChange = (rift) => {
+    this.setState({ content: rift })
+  }
  
   render(){
-    const { title, content, due_date, points } = this.state
+    const { title, due_date, points } = this.state
     return(
       <Container> 
         <Header as="h3" textAlign='center' style={styles.pageTitle}>Create Quiz</Header>
@@ -58,7 +61,7 @@ handleSubmit = (e) => {
             </Form.Group>
 
            
-           <RiftEditor />
+           <RiftEditor riftChange={this.riftChange}/>
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />

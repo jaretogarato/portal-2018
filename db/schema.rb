@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20180118030214) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "title", default: "", null: false
-    t.text "content", default: "", null: false
+    t.json "content", default: {}, null: false
     t.string "due_date", default: "", null: false
     t.integer "points", default: 0, null: false
     t.datetime "created_at", null: false

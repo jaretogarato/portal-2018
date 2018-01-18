@@ -19,6 +19,7 @@ class Api::QuizzesController < ApplicationController
 
 
   def create
+    binding.pry
     quiz = Quiz.new(quiz_params)
     if quiz.save
       render json: quiz

@@ -3,7 +3,6 @@ import { Header, Button, Segment, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { getLecture, deleteLecture } from '../../actions/lectures';
 import EditLecture from './EditLecture';
-import axios from 'axios';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
