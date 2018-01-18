@@ -13,7 +13,6 @@ export const isTeacher = (currentUser) => {
 
 export const isTa = (currentUser) => {
   return currentUser.role === 'ta' ? true : false
-
 }
 
 export const isStudent = (currentUser) => {

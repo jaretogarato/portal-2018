@@ -25,8 +25,8 @@ class Course < ApplicationRecord
 
 	def self.current_user_with_enrollment(course_id, user_id)
 		select('u.is_admin, u.first_name, u.last_name, e.*')
-		.joins('INNER JOIN enrollments e ON e.course_id = courses.id
-						INNER JOIN users u ON e.user_id = u.id')
+		.joins("INNER JOIN enrollments e ON e.course_id = courses.id
+            INNER JOIN users u ON e.user_id = u.id")
 		.where("courses.id = #{course_id} AND u.id = #{user_id}")
 	end
 

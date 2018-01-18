@@ -11,6 +11,7 @@ import {
 import { getUsersByCourse } from '../../actions/users';
 import UserForm from '../users/UserForm';
 import AddUsers from '../users/AddUsers';
+import { isStaff } from '../../utils/permissions';
 
 
 class PeopleHome extends React.Component {
@@ -56,7 +57,10 @@ class PeopleHome extends React.Component {
   }
 
   view = () => {
-    switch (this.state.view) {
+    let { view } = this.state;
+    let { permissions } = this.props;
+    let permitted = isStaff(permissions) ? view : 'default';
+    switch (permitted) {
       case 'add_user':
         return <UserForm />
       case 'add_users':
@@ -82,11 +86,16 @@ class PeopleHome extends React.Component {
   }
 
   buttons = () => {
-    return [
-      { name: 'All Users', selector: 'all', icon: 'users' },
-      { name: 'Add User', selector: 'add_user', icon: 'add user' },
-      { name: 'Add Users', selector: 'add_users', icon: 'file excel outline' },
-    ].map( button =>
+    let { permissions } = this.props;
+    let buttons = [];
+    if (isStaff(permissions)) {
+      buttons = [
+        { name: 'All Users', selector: 'all', icon: 'users' },
+        { name: 'Add User', selector: 'add_user', icon: 'add user' },
+        { name: 'Add Users', selector: 'add_users', icon: 'file excel outline' },
+      ]
+    }
+    return buttons.map( button =>
       <Button
         key={button.name}
         labelPosition="left"
@@ -112,6 +121,7 @@ class PeopleHome extends React.Component {
 const mapStateToProps = (state) => {
   return {
     usersByCourse: state.users,
+    permissions: state.permissions,
   }
 }
 
