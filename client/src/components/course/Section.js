@@ -88,7 +88,7 @@ class Section extends React.Component {
             { ss.title }
           </Accordion.Title>
           <Accordion.Content active={this.checkActiveIndex(ss.id)}>
-            { this.displayItems(content) }
+            { content.length ? this.displayItems(content) : "No Content" }
           </Accordion.Content>
         </Accordion>
       })
