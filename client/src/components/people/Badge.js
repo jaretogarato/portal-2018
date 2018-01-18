@@ -15,12 +15,14 @@ const icons = {
 }
 
 const styles = {
-  pointer: { cursor: 'pointer' }
-}
+  pointer: { cursor: 'pointer' },
+  badge: { padding: '2%' },
+  }
+
 
 const Badge = ({ badgeId, badge, deleteBadge }) => {
   return (
-    <div>
+    <div style={styles.badge}>
       <Icon name='x' onClick={ () => deleteBadge(badgeId)} style={styles.pointer}/>
       <Popup
         trigger={
