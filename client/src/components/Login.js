@@ -30,8 +30,8 @@ class Login extends Component {
         <HomeBody bgImage={HomeBg}>
           <HomeWrapper>
             <Segment basic textAlign='center'>
-              <Grid textAlign='center' style={{ maxWidth: 450, padding: '5%', margin: '0 auto'}}>
-                <Grid.Column style={styles.login_container}>
+              <Grid textAlign='center' style={styles.login_grid}>
+                <Grid.Column style={styles.login_container} mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
                   <Header as="h2">Login</Header>
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
@@ -75,7 +75,12 @@ const styles = {
   login_container: {
     backgroundColor: 'rgba(255, 255, 255, .55)',
     padding: '30px 20px',
-    maxWidth: '450px',
+    maxWidth: '100%',
+  },
+  login_grid: {
+    // maxWidth: '45%',
+    padding: '5%',
+    margin: '0 auto',
   },
 }
 
