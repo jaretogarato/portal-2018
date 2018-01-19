@@ -10,12 +10,16 @@ import { getQuestions } from '../../../actions/quizQuestions';
 
 
 class StudentQuiz extends React.Component {
-  state = {}
+  state = { ready: false }
 
   componentDidMount() {
     const { id } = this.props.match.params
     this.props.dispatch(getQuiz(id))
     this.props.dispatch(getQuestions(id))
+  }
+
+  ready = () => {
+    this.setState({ready: !this.state.ready}) 
   }
 
   handleContextRef = contextRef => this.setState({ contextRef })
@@ -67,25 +71,33 @@ class StudentQuiz extends React.Component {
 
   render() {
     const { quiz } = this.props
-    return(
-      <Segment basic>
-        <div ref={this.handleContextRef}>
-        <Grid>
-          <Grid.Column width={13}>
-           <Header as ='h2' textAlign='center'>{quiz.title}</Header>
-            {this.displayQuestions()}
-          </Grid.Column>
-          <Grid.Column width={3}>
-          <Sticky context={this.state.contextRef}>
-           {this.displayList()}
-           </Sticky>
-          </Grid.Column>
-        </Grid>
-        <Button color='green'> Submit </Button>
-        <Button color='blue'> Save Quiz </Button>
-        </div>
-      </Segment>
-    )
+    if (!this.state.ready){
+      return(
+      <div>
+        <Button basic onClick={ this.ready }>Click to Start Quiz</Button>
+      </div>
+      )
+    } else {
+      return(
+        <Segment basic>
+          <div ref={this.handleContextRef}>
+          <Grid> 
+            <Grid.Column width={13}> 
+             <Header as ='h2' textAlign='center'>{quiz.title}</Header>
+              {this.displayQuestions()}
+            </Grid.Column> 
+            <Grid.Column width={3}> 
+            <Sticky context={this.state.contextRef}>
+             {this.displayList()}
+             </Sticky>
+            </Grid.Column> 
+          </Grid> 
+          <Button color='green'> Submit </Button> 
+          <Button color='blue'> Save Quiz </Button> 
+          </div> 
+        </Segment>
+      )
+    }
   }
 }
 

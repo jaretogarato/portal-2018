@@ -23,6 +23,8 @@ class RiftEditor extends Component {
     toggleInlineStyle = (style) => this._toggleInlineStyle(style);
   
 
+  
+
   _handleKeyCommand(command) {
     const {editorState} = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);

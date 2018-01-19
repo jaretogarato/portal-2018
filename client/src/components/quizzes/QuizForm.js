@@ -61,7 +61,7 @@ handleSubmit = (e) => {
             </Form.Group>
 
            
-           <RiftEditor riftChange={this.riftChange}/>
+           <RiftEditor riftChange={this.riftChange} />
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
