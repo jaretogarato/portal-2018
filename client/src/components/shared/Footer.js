@@ -18,9 +18,10 @@ const Footer = () => (
         <Grid.Column textAlign='right'>
           <Link to='/' style={styles.leftNav}>
             <p>
-              Home /
+              Home 
             </p>
           </Link>
+          &nbsp;
           <Link to='/' style={styles.leftNav}>
             <p>
               Support

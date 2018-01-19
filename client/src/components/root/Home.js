@@ -22,7 +22,7 @@ class Home extends React.Component {
   render () {
     return(
       <Container fluid>
-        <HomeBody bgImage={HomeBg}>
+        <HomeBody bgImage={HomeBg} style={styles.heroImage}>
           <HomeWrapper>
             <HomeLogo bgImage={PortalLogo}>
             </HomeLogo>
@@ -31,6 +31,13 @@ class Home extends React.Component {
       </Container>
     )
   }
+}
+
+const styles = {
+  heroImage: {
+    position: 'fixed',
+    top: 0, bottom: 0, left: 0, right: 0,
+  },
 }
 
 const mapStateToProps = (state) => {

@@ -136,7 +136,7 @@ const styles = {
   navbarPrimary: {
     background: 'linear-gradient(#9575CD, #614d7b)',
     border: 'none',
-  }
+  },
 }
 
 const mapStateToProps = state => {
