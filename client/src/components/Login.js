@@ -3,9 +3,7 @@ import HomeBg from '../assets/images/home-image-2880w.jpg';
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
 import { Button, Container, Form, Header, Grid, Segment } from 'semantic-ui-react';
-import { HomeBody, HomeLogo, HomeWrapper } from '../styles/home-images.js';
-
-import PortalLogo from '../assets/images/dps-portal-logo.png';
+import { HomeBody, HomeWrapper } from '../styles/home-images.js';
 
 
 class Login extends Component {
