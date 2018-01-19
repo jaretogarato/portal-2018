@@ -65,7 +65,9 @@ export const handleLogin = (email, password, history) => {
         history.push('/');
       })
       .catch(res => {
-        const errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
+        let errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
+        if (Array.isArray(errors))
+          errors = { full_messages: errors }
         const messages =
           errors.full_messages.map((message,i) =>
             <div key={i}>{message}</div>);
