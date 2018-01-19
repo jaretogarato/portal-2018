@@ -5,7 +5,7 @@ const quizQuestions = (state = [], action) => {
     case 'ADD_QUESTION':
       return [...state, action.question]
     case 'UPDATE_QUESTION':
-      return state.questions.map( q => {
+      return state.map( q => {
         const { question } = action
         if (q.id === question.id)
           return question

@@ -35,6 +35,7 @@ export const updateQuestion = (quizId, question) => {
         dispatch({ type: 'UPDATE_QUESTION', question: res.data, headers: res.headers})
       })
       .catch( err => {
+        console.log(err)
         dispatch(setFlash('Failed to update question', 'red'))
         dispatch(setHeaders(err.headers))
       })

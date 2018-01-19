@@ -19,7 +19,7 @@ class Api::QuizQuestionsController < ApplicationController
   end
 
   def update
-    if @quiz_question.save
+    if @quiz_question.update(quiz_question_params)
       if params[:options]
         QuizQuestion.update_options(@quiz_question, params[:options])
       end

@@ -14,16 +14,16 @@ componentDidMount() {
 }
 
 sendUpdate = () => {
-  const { dispatch, editing, questionId } = this.props
+  const { dispatch, editing, questionId, options } = this.props
   const { question, isTrue } = this.state
   const truthy = (isTrue === 'true')
   const falsy = (isTrue === 'false')
-  const options = [
-    { text: 'True', correct: truthy },
-    { text: 'False', correct: falsy },
+  const newOptions = [
+    { id: options[0].id, text: 'True', correct: truthy },
+    { id: options[1].id, text: 'False', correct: falsy },
   ]
   if (editing) {
-    const tfQuestion = { id: questionId, question, options, true_false: true }
+    const tfQuestion = { id: questionId, question, options: newOptions, true_false: true }
     if (!this.state.hasUpdate) {
       dispatch(addUpdate(tfQuestion))
       this.setState({ hasUpdate: true })

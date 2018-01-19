@@ -3,7 +3,8 @@ import { Header, Button, Segment, List, Dimmer, Loader, Divider } from 'semantic
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getQuiz, deleteQuiz } from '../../actions/singleQuiz';
-import { getQuestions, deleteQuestion } from '../../actions/quizQuestions';
+import { getQuestions, deleteQuestion, updateQuestion } from '../../actions/quizQuestions';
+import { clearUpdates } from '../../actions/questionUpdates';
 import CreateQuestions from './CreateQuestions';
 import EditQuizForm from './EditQuizForm';
 import MultipleChoiceQuestion from './MultipleChoiceQuestion';
@@ -19,7 +20,7 @@ class SingleQuiz extends Component{
 
   componentDidMount() {
     const { id } = this.props.match.params
-    this.props.dispatch(getQuiz(id)) 
+    this.props.dispatch(getQuiz(id))
     this.props.dispatch(getQuestions(id))
     this.checkLoaded()
   }
@@ -49,28 +50,59 @@ class SingleQuiz extends Component{
   toggleQuestionEdit = () => {
     const { questionsEdit } = this.state;
     this.setState({ questionsEdit: !questionsEdit })
+    this.props.dispatch(clearUpdates())
   }
 
-  displayQuiz = () => {
-    // const contentState = convertFromRaw( JSON.parse( this.props.quiz) );
-  
-  // if(this.props.quiz.content){
-  //   let qz = this.props.quiz.content
-  //   let json = JSON.parse(qz) 
-  //   const contentState = convertFromRaw(json)
-  // }
- 
-    const { id, content, points, due_date, created_at, title } = this.props.quiz
-    let time = moment(due_date).format('MMMM D, YYYY')
-    let created = moment(created_at).format('MMMM D, YYYY')
-    if(this.state.quizEdit) {
-      return(
-        <Segment basic>
-          <EditQuizForm toggleEdit={this.toggleEdit}/>
-        </Segment>
-      )
-    } else {
+  updateQuestion = (question, type) => {
+    let { dispatch, options, match: { params: { id }}} = this.props
+    switch (type) {
+      case 'essay':
+      case 'trueFalse':
+        dispatch(updateQuestion(id, question))
+        break
+      case 'multipleChoice':
+        options = options.filter( o => o.questionId === question.id )
+        let multiple_correct = false
+        let trues = 0
+        options.forEach( o => {
+          if (o.correct)
+            trues++
+          if (trues > 1)
+            multiple_correct = true
+        })
+        let mcQuestion = {...question, options, multiple_correct}
+        dispatch(updateQuestion(id, mcQuestion))
+        break
+      default: 
+    }
+    dispatch(clearUpdates())
+    this.setState({ questionsEdit: false })
+  }
 
+  submitUpdates = () => {
+    const { updates } = this.props
+    updates.forEach( u => {
+      if (u.multiple_choice)
+        if (u.true_false)
+          this.updateQuestion(u, 'trueFalse')
+        else
+          this.updateQuestion(u, 'multipleChoice')
+      else
+        this.updateQuestion(u, 'essay')
+    })
+  }
+
+displayQuiz = () => {
+  const { id, content, points, due_date, created_at, title } = this.props.quiz
+  let time = moment(due_date).format('MMMM D, YYYY')
+  let created = moment(created_at).format('MMMM D, YYYY')
+  if(this.state.quizEdit) {
+    return(
+      <Segment basic>
+        <EditQuizForm toggleEdit={this.toggleEdit}/>
+      </Segment>
+    )
+  } else {
   return (
     <Segment basic clearing >
       <Header textAlign='center'>{title}</Header>
@@ -98,11 +130,17 @@ class SingleQuiz extends Component{
         <Button basic primary onClick={this.toggleQuestionEdit}>
           { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
         </Button>
+        { this.state.questionsEdit &&
+          <Button basic primary onClick={this.submitUpdates}>Save Changes</Button>
+        }
         {this.displayQuestions()}
         <Button basic primary onClick={this.toggleQuestionEdit}>
           { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
         </Button>
-        <CreateQuestions quizId={id}/>
+        { this.state.questionsEdit &&
+          <Button basic primary onClick={this.submitUpdates}>Save Changes</Button>
+        }
+        { !this.state.questionsEdit && <CreateQuestions quizId={id}/> }
       </Segment>
       <Divider />
       <Link to={'./'} >
@@ -147,6 +185,7 @@ displayQuestions= () => {
               quizId={this.props.quiz.id}
               questionId={q.id}
               text={q.question}
+              options={q.options}
               truth={q.options[0].correct ? 'true' : 'false'}
               editing={true}
             />
@@ -195,7 +234,12 @@ const styles = {
 
 
 const mapStateToProps = (state) => {
-  return { quiz: state.singleQuiz, questions: state.quizQuestions, updates: state.questionUpdates }
+  return {
+    quiz: state.singleQuiz,
+    questions: state.quizQuestions,
+    updates: state.questionUpdates,
+    options: state.quizOptions
+  }
 }
 
 export default connect(mapStateToProps)(SingleQuiz);
