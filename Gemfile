@@ -4,30 +4,30 @@ ruby '2.3.1'
 gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
-gem 'omniauth'
-gem 'devise'
-gem 'devise_token_auth'
-gem 'devise_invitable'
-gem 'cloudinary'
-gem 'delayed_job_active_record'
+gem 'omniauth', '~> 1.6.1'
+gem 'devise', '~> 4.3.0'
+gem 'devise_token_auth', '~> 0.1.42'
+gem 'devise_invitable', '~>1.7.2'
+gem 'cloudinary', "~> 1.8.1"
+gem 'delayed_job_active_record', '~> 4.1.2'
 gem 'jbuilder', '~> 2.7.0'
 
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
-  gem 'pry'
-  gem 'dotenv-rails'
+  gem 'pry', '~> 0.11.1'
+  gem 'dotenv-rails', '2.2.1'
   gem 'faker', github: 'stympy/faker'
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'database_cleaner'
+  gem 'rspec-rails', '~> 3.6.1'
+  gem 'shoulda-matchers', '~> 3.1.2'
+  gem 'database_cleaner', '~> 1.6.1'
   # put /coverage into your git ignore
-  gem 'simplecov'
+  gem 'simplecov', '~> 0.15.1'
 end
 
 group :development do
-  gem "letter_opener"
+  gem "letter_opener", '~> 1.4.1'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
+  gem 'spring', '~> 2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 

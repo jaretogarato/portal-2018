@@ -105,21 +105,19 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div>
-        <Menu style={styles.navbarPrimary} pointing secondary>
-          <Menu.Item
-            as={Link}
-            to='/'
-            style={styles.navText}
-            name="Home"
-            active={this.state.activeItem === 'Home'}
-            onClick={this.handleItemClick}
-          >
-            <Image src={PortalLogo} height='60px' />
-          </Menu.Item>
-          { this.rightNavs() }
-        </Menu>
-      </div>
+      <Menu style={styles.navbarPrimary} pointing secondary>
+        <Menu.Item
+          as={Link}
+          to='/'
+          style={styles.navText}
+          name="Home"
+          active={this.state.activeItem === 'Home'}
+          onClick={this.handleItemClick}
+        >
+          <Image src={PortalLogo} height='60px' />
+        </Menu.Item>
+        { this.rightNavs() }
+      </Menu>
     );
   }
 }

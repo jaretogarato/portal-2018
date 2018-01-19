@@ -1,8 +1,7 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import GroupsHome from './GroupsHome';
-import PeopleHome from './PeopleHome'; 
-
+import PeopleHome from './PeopleHome';
 
 class People extends React.Component {
   courseId = this.props.match.params.id
@@ -16,4 +15,4 @@ class People extends React.Component {
   }
 }
 
-export default People
+export default People;
