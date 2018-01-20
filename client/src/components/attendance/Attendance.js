@@ -49,7 +49,7 @@ class Attendance extends React.Component {
       )
     else if (finished && submitted)
       return (
-        <Button disabled>Attendence Submitted</Button>
+        <Button basic disabled>Attendence Submitted</Button>
       )
     return null
   }

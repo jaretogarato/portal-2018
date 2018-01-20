@@ -68,7 +68,7 @@ class PeopleHome extends React.Component {
       default:
         return (
           <Table celled>
-            <Table.Header>
+            <Table.Header style={{backgroundColor: "#614d7b"}}>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
@@ -97,6 +97,7 @@ class PeopleHome extends React.Component {
     }
     return buttons.map( button =>
       <Button
+        basic
         key={button.name}
         labelPosition="left"
         icon

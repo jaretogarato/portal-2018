@@ -57,7 +57,7 @@ class Login extends Component {
                         onChange={this.handleChange}
                       />
                     </Form.Field>
-                    <Button color='blue'>Login</Button>
+                    <Button style={{ background: 'linear-gradient(#9575CD, #614d7b)', color: 'white'}}>Login</Button>
                   </Form>
                 </Grid.Column>
               </Grid>

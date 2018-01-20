@@ -7,3 +7,18 @@
   user-select: none !important; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+.ui.basic.button, .ui.basic.buttons .button {
+  background: transparent none!important;
+  color: #8F79BA !important;
+  font-weight: 600;
+  border-radius: .28571429rem;
+  text-transform: none;
+  text-shadow: none!important;
+  -webkit-box-shadow: 0 0 0 1px rgba(34,36,38,.15) inset;
+  box-shadow: 0 0 0 1px rgba(97, 78, 173  , 0.94) inset;
+}
+
+.ui.vertical.menu {
+  width: 15rem;
+}

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
-import {injectGlobal} from 'styled-components'
+import {injectGlobal} from 'styled-components';
 
 injectGlobal`
   @font-face {
@@ -17,7 +17,17 @@ injectGlobal`
   html :not(i) {
     font-family: 'Source Sans Pro', sans-serif !important;
   }
+
+  p {
+    font-size: 1.3em;
+  }
+
+  
 `
+const theme = {
+  bt: '#614d7b',
+  bg: 'blue',
+}
 
 ReactDOM.render(
   <Provider store={store}>

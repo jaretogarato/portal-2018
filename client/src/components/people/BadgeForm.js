@@ -34,10 +34,9 @@ class BadgeForm extends React.Component {
             onChange={this.handleChange}/>
         </Form>
         <Button.Group>
-          <Button basic color='blue'>Save</Button>
+          <Button basic>Save</Button>
           <Button 
             basic
-            color='red'
             onClick = {this.cancelInput}
           >Cancel</Button>
         </Button.Group>

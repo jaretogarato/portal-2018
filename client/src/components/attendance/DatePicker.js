@@ -48,12 +48,14 @@ class DatePicker extends React.Component {
                   <Container textAlign='right'>
                     <Button.Group>
                       <Button
+                        basic
                         content='Prev'
                         icon='angle double left'
                         labelPosition='left'
                         onClick={() => this.handleDayChange(-1)}
                       />
                       <Button
+                        basic
                         content='Next'
                         icon='angle right double'
                         labelPosition='right'

@@ -37,11 +37,11 @@ class SectionForm extends React.Component {
                   </Form.Field>
                   <Button.Group fluid>
                     <Button 
-                      color='red' 
+                      basic
                       onClick={() => { this.setState({ title: '', showForm: false }) }} 
                       content="X"
                     />
-                    <Button primary content="Add"/>
+                    <Button basic content="Add"/>
                   </Button.Group>
                 </Form>
               </Segment>

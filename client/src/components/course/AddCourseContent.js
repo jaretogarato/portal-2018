@@ -17,7 +17,7 @@ class AddCourseContent extends React.Component {
         open={ modalOpen }
         onClose={ this.toggleModal }
         trigger={
-          <Button onClick={this.toggleModal} content="Add Content" />
+          <Button basic onClick={this.toggleModal} content="Add Content" />
         }
       >
         <ContentForm 

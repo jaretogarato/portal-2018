@@ -38,7 +38,7 @@ class SectionEditForm extends React.Component {
                   </Form.Field>
                   <Button.Group>
                     <Button
-                      color='red'
+                      basic
                       onClick={() => { this.setState({ showForm: false }) }}
                       content="X"
                       //Prevents console warnings on click
@@ -53,6 +53,7 @@ class SectionEditForm extends React.Component {
         :
           <Menu.Item>
             <Button
+              basic
               fluid
               onClick={() => { this.setState({ showForm: true }) }}
               content='Edit'

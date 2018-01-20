@@ -132,7 +132,7 @@ class CreateAssignment extends Component {
             onChange={ this.handleChange }
           />
           <Form.Group>
-            <Button basic color='green' type='submit'>Create</Button> 
+            <Button basic type='submit'>Create</Button> 
             <Link to={'./assignments'}>
               <Button onClick={ this.props.history.goBack }>Cancel</Button>
             </Link>

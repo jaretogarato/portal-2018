@@ -73,6 +73,7 @@ class Section extends React.Component {
               <AddCourseContent content={content} subSectionId={ss.id} />
               <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
               <Button 
+                basic
                 color='red'
                 content='X'
                 onClick={ () => this.deleteSubClick(ss)}              

@@ -45,7 +45,6 @@ class Lectures extends Component {
               <Link to={`/courses/${id}/lectures/create`}>
                 <Button
                   basic
-                  color='blue'
                   icon
                   labelPosition='left'>
                   <Icon name='add' />

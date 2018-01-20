@@ -92,8 +92,8 @@ class StudentQuiz extends React.Component {
              </Sticky>
             </Grid.Column> 
           </Grid> 
-          <Button color='green'> Submit </Button> 
-          <Button color='blue'> Save Quiz </Button> 
+          <Button basic>Submit</Button> 
+          <Button basic>Save Quiz</Button> 
           </div> 
         </Segment>
       )

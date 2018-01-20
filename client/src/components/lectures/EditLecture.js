@@ -61,9 +61,9 @@ class EditLecture extends Component {
               <Form.Checkbox label='Published?' />
               <Divider />
               <Form.Group>
-                <Button basic color='green' type='submit'>Update</Button>
+                <Button basic type='submit'>Update</Button>
               <Link to={`./`} >
-                <Button basic color='yellow'> Cancel </Button>
+                <Button basic>Cancel</Button>
               </Link>
               </Form.Group>
             </Form>

@@ -65,10 +65,10 @@ class Assignment extends Component {
         <Segment clearing >
           <Header as='h1' textAlign='center'>{title}</Header>
           <Link to={'./'} >
-            <Button basic color='yellow' floated='right'>Cancel</Button>
+            <Button basic floated='right'>Cancel</Button>
           </Link>
-          <Button basic floated='right' color='red' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>
-          <Button basic color='blue' floated='right' onClick={this.toggleEdit}>Edit</Button>
+          <Button basic floated='right' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>
+          <Button basic  floated='right' onClick={this.toggleEdit}>Edit</Button>
           <List>
             <List.Item>
               Points: {points}

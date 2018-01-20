@@ -4,9 +4,9 @@ import { Container, Header, Segment } from 'semantic-ui-react';
 class CourseHome extends React.Component {
   render() {
     return(
-      <Container>
+      <Container >
         <Header as='h1'>Home</Header>
-        <Segment>
+        <Segment basic>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna 

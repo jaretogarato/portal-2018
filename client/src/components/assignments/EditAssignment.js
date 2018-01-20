@@ -169,7 +169,7 @@ class EditAssignment extends Component {
             onChange={this.handleGroupClick}
           />
           <Form.Group>
-            <Button basic color='green' type='submit'>Update</Button>
+            <Button basic type='submit'>Update</Button>
             <Link to={'./assignments'}>
               <Button>Cancel</Button>
             </Link>

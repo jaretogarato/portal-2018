@@ -25,6 +25,8 @@ class RiftEditor extends Component {
 
   
 
+  
+
   _handleKeyCommand(command) {
     const {editorState} = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);

@@ -100,12 +100,12 @@ class Course extends React.Component {
         <Container fluid style={styles.noBorder}>
           <Grid style={styles.noBorder}>
             <Grid.Row only='computer'>
-              <Grid.Column mobile={16} tablet={16} computer={2} only='computer'>
+              <Grid.Column mobile={16} tablet={16} computer={3} only='computer'>
                 <Segment style={styles.sidebar} basic>
                   <Route component={CourseSideNav} />
                 </Segment>
               </Grid.Column>
-              <Grid.Column mobile={16} tablet={16} computer={14}>
+              <Grid.Column mobile={16} tablet={16} computer={13}>
                 { this.renderRoutes() }
               </Grid.Column>
             </Grid.Row>

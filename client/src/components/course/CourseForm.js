@@ -76,7 +76,7 @@ class CourseForm extends React.Component {
                 />
                 <Form.Field width={1} />
               </Form.Group>
-            <CourseFormButton>Save</CourseFormButton>
+            <CourseFormButton basic>Save</CourseFormButton>
             </Form>
           </CourseFormSegment>
         </Grid.Column>

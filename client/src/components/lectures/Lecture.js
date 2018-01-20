@@ -42,10 +42,10 @@ class Lecture extends Component {
     return (
       <Segment basic name="lecture">
         <Link to={'./'} >
-          <Button floated='right' basic color='yellow'>All Lectures</Button>
+          <Button floated='right' >All Lectures</Button>
         </Link>
-        <Button floated='right' basic color='red' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
-        <Button floated='right' basic color='purple' onClick={this.toggleEdit}>Edit</Button>
+        <Button floated='right' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
+        <Button floated='right' onClick={this.toggleEdit}>Edit</Button>
         <Header as='h1' textAlign='center' style={styles.pageTitle}>{title}</Header>
         <List>
           <List.Item>

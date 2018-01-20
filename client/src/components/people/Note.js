@@ -19,7 +19,7 @@ class Note extends React.Component {
 
   renderEditButton = () => {
     return (
-      <Button color='blue' size='mini' floated='right'
+      <Button basic floated='right'
         onClick={ () => this.setState({ editing: !this.state.editing }) }
       >
         <Icon name='edit'></Icon>
@@ -30,7 +30,7 @@ class Note extends React.Component {
   renderDeleteButton = (note_id) => {
     const { userId } = this.props
     return(
-      <Button color='red' size='mini' floated='right'
+      <Button basic floated='right'
         onClick={ () => this.props.dispatch(deleteNote(note_id, userId)) }
       >
        <Icon name='delete'></Icon>
@@ -92,8 +92,8 @@ class Note extends React.Component {
       <Message info fluid='true' as='form' onSubmit={this.handleSubmit}>
         <Card.Content>
           <Button
+            basic
             floated='right'
-            color='blue'
             type='submit'
             size='mini'
             onSubmit={this.handleSubmit}
@@ -101,9 +101,8 @@ class Note extends React.Component {
             Submit
           </Button>
           <Button
+            basic
             onClick={ () => this.setState({ editing: !this.state.editing })}
-            color='teal'
-            size='mini'
             floated='right'
           >
             Cancel

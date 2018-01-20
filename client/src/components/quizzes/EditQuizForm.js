@@ -72,7 +72,7 @@ handleSubmit = (e) => {
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-            <Button basic color='green' type='submit'>Update</Button>
+            <Button basic type='submit'>Update</Button>
             <Button basic onClick={this.props.toggleEdit}>
                 Cancel Editing
             </Button>

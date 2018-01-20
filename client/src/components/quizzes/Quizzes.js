@@ -47,7 +47,6 @@ class Quizzes extends Component {
             <Link to={`/courses/${id}/quizform`}>
               <Button 
                 basic
-                color='blue' 
                 icon 
                 labelPosition='left'>
                 <Icon name='add' />

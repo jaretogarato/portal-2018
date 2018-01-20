@@ -18,7 +18,7 @@ class EditCourseModal extends React.Component {
         open={ modalOpen }
         onClose={() => this.toggleModal()}
         trigger={
-          <Button basic color='grey' onClick={() => this.toggleModal() }>Edit</Button>
+          <Button basic onClick={() => this.toggleModal() }>Edit</Button>
         }
       >
         <CourseForm type='edit' course={course} toggleModal={this.toggleModal}/>

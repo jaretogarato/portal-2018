@@ -28,7 +28,7 @@ class UserProfile extends React.Component {
       return(
         <Segment basic>
           <Button.Group>
-            <Button onClick={this.toggleEdit}>
+            <Button basic onClick={this.toggleEdit}>
               Cancel Editing
             </Button>
             <Menu vertical floated='right'>
@@ -48,7 +48,7 @@ class UserProfile extends React.Component {
       return (
         <Segment basic>
           <Button.Group>
-            <Button onClick={this.toggleEdit}>
+            <Button basic onClick={this.toggleEdit}>
               Edit Profile
             </Button>
             <Menu vertical floated='right'>

@@ -120,7 +120,7 @@ class MultipleChoiceQuestion extends React.Component {
           {
             optionCount > 0 && this.optionGenerator()
           }
-          { !this.props.editing && <Button type='submit'>Save</Button> }
+          { !this.props.editing && <Button basic type='submit'>Save</Button> }
         </Form>
       </Segment>
     )

@@ -141,7 +141,7 @@ class PeopleProfile extends React.Component {
                   onChange={this.handleChange}
                   value={options}
                 />
-                <Button type='submit' primary icon onClick={this.addBadge}>
+                <Button basic type='submit' onClick={this.addBadge}>
                   <Icon name='add' />
                 </Button>
               </Form>

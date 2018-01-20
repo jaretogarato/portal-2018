@@ -107,10 +107,10 @@ displayQuiz = () => {
     <Segment basic clearing >
       <Header textAlign='center'>{title}</Header>
       <Link to={'./'} >
-        <Button basic color='yellow' floated='right'>All Quizzes</Button>
+        <Button basic floated='right'>All Quizzes</Button>
       </Link>
-      <Button basic floated='right' color='red' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
-      <Button basic color='blue' floated='right' onClick={this.toggleEdit}> Edit </Button>
+      <Button basic floated='right' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
+      <Button basic floated='right' onClick={this.toggleEdit}>Edit</Button>
       <List>
         <List.Item>
           Description: {content}
@@ -127,14 +127,14 @@ displayQuiz = () => {
       </List>
       <Segment basic>
         <Header textAlign='center'>Quiz Questions</Header>
-        <Button basic primary onClick={this.toggleQuestionEdit}>
+        <Button basic onClick={this.toggleQuestionEdit}>
           { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
         </Button>
         { this.state.questionsEdit &&
           <Button basic primary onClick={this.submitUpdates}>Save Changes</Button>
         }
         {this.displayQuestions()}
-        <Button basic primary onClick={this.toggleQuestionEdit}>
+        <Button basic onClick={this.toggleQuestionEdit}>
           { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
         </Button>
         { this.state.questionsEdit &&
@@ -144,7 +144,7 @@ displayQuiz = () => {
       </Segment>
       <Divider />
       <Link to={'./'} >
-        <Button basic color='green'>Save Quiz</Button>
+        <Button basic>Save Quiz</Button>
       </Link>
         </Segment>
   );

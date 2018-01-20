@@ -59,16 +59,14 @@ handleSubmit = (e) => {
                 onChange={this.handleChange}
                 width={3} />
             </Form.Group>
-
-           
            <RiftEditor riftChange={this.riftChange} />
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-              <Button basic color='green' type='submit'>Create</Button> 
+              <Button basic type='submit'>Create</Button> 
             <Link to={`./quizzes`} > 
-              <Button basic color='yellow'> Cancel </Button> 
+              <Button basic> Cancel </Button> 
             </Link>
             </Form.Group>
           </Form> 

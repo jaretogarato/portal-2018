@@ -90,6 +90,7 @@ class SectionSelect extends React.Component {
                     { is_admin && 
                       <Button.Group>
                         <Button 
+                          basic
                           floated='right' 
                           onClick={() => this.deleteButtonClick(section) } 
                           size='mini' 

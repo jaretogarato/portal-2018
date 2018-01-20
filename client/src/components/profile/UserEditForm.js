@@ -117,7 +117,7 @@ class UserEditForm extends React.Component {
                   onChange={ this.handleChange }
                 />
               </Segment>
-              <Button type='submit'>Submit</Button>
+              <Button basic type='submit'>Submit</Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>

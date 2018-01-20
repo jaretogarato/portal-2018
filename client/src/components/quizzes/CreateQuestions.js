@@ -77,7 +77,6 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
           { this.questionType() }
           <Button
             basic
-            color='blue'
             icon
             labelPosition='left'
             onClick={() => this.setState({ showQuestion: true, isHidden: false })}
@@ -94,7 +93,6 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
           { this.questionType() }
           <Button
             basic
-            color='red'
             onClick={this.hideForm}
           >
           Cancel

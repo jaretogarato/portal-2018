@@ -117,6 +117,7 @@ class GroupsHome extends React.Component {
   groupSelectors = () => {
     return this.getView().map( button =>
       <Button
+        basic
         key={button.name}
         labelPosition="left"
         icon
