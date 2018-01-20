@@ -67,7 +67,7 @@ class PeopleHome extends React.Component {
         return <AddUsers />
       default:
         return (
-          <Table celled>
+          <Table basic='very' striped>
             <Table.Header style={{backgroundColor: "#614d7b"}}>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
@@ -76,7 +76,6 @@ class PeopleHome extends React.Component {
                 <Table.HeaderCell>Role</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
-
             <Table.Body>
               { this.state.loaded ? this.displayUsers() : null}
             </Table.Body>
@@ -111,7 +110,7 @@ class PeopleHome extends React.Component {
 
   render() {
     return (
-      <Segment className='container'>
+      <Segment basic className='container'>
         { this.buttons() }
         { this.view() }
       </Segment>
