@@ -7,7 +7,6 @@ class Api::TaGroupsController < Api::ApiController
   end
 
   def generate_groups
-
     course = Course.find(params[:id])
     sections = course.sections.where(active: true)
     course.sections.each { |section| section.ta_groups.destroy_all }
@@ -26,7 +25,6 @@ class Api::TaGroupsController < Api::ApiController
         end
       end
     end
-
   end
 
 end

@@ -45,6 +45,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     get  '/course_users/:id', to: 'users#course_users'
     get '/course/:id/users', to: 'courses#users_by_course_id'
     post '/courses/:id/generate_groups', to: 'ta_groups#generate_groups'
+    put '/update_groups/:id', to: 'group_memberships#update_groups'
     get '/lectures', to: 'lectures#all_lectures'
 
     get '/notes/:user_id', to: 'notes#recipient_notes'

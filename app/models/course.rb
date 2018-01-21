@@ -32,9 +32,9 @@ class Course < ApplicationRecord
 	end
 
 	def self.associated_groups(course_id)
-		select('u.first_name, u.last_name, u.email,
-						u.image, e.role, s.title,
-						u.id, t.section_id, g.ta_group_id')
+		select('u.id, u.first_name, u.last_name, u.email, u.image,
+						e.role, g.id AS membership_id, g.ta_group_id,
+						s.title, t.section_id ')
 		.joins('INNER JOIN enrollments e ON e.course_id = courses.id
 						INNER JOIN users u ON u.id = e.user_id
 						INNER JOIN group_memberships g ON g.enrollment_id = e.id

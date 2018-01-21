@@ -28,6 +28,7 @@ class GroupForm extends React.Component {
     axios.post(`/api/courses/${course.id}/generate_groups`)
       .then(res => {
         dispatch(setHeaders(res.headers));
+        window.location.reload();
       })
       .catch( err => {
         dispatch(setFlash('Error Generating Groups. Try Again.', 'red'));
