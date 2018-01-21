@@ -23,6 +23,12 @@ class UserProfile extends React.Component {
 
   render() {
     const { user } = this.props;
+  
+  const options = [
+      { key: 1, text: 'Receive Text', value: 1 },
+      { key: 2, text: 'Receive Email', value: 2 },
+      { key: 3, text: 'None', value: 3 },
+    ]
 
     if(this.state.edit) {
       return(
@@ -31,14 +37,8 @@ class UserProfile extends React.Component {
             <Button basic onClick={this.toggleEdit}>
               Cancel Editing
             </Button>
-            <Menu vertical floated='right'>
-              <Dropdown item text='Announcements'>
-                <Dropdown.Menu>
-                  <Dropdown.Item>Receive Text</Dropdown.Item>
-                  <Dropdown.Item>Receive Email</Dropdown.Item>
-                  <Dropdown.Item>None</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+            <Menu floated='right'>
+            <Dropdown text='Announcements' selection options={options} />
             </Menu>
           </Button.Group>
           <UserEditForm toggleEdit={this.toggleEdit}/>
@@ -51,14 +51,8 @@ class UserProfile extends React.Component {
             <Button basic onClick={this.toggleEdit}>
               Edit Profile
             </Button>
-            <Menu vertical floated='right'>
-              <Dropdown item text='Announcements'>
-                <Dropdown.Menu>
-                  <Dropdown.Item>Receive Text</Dropdown.Item>
-                  <Dropdown.Item>Receive Email</Dropdown.Item>
-                  <Dropdown.Item>None</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+            <Menu floated='right'>
+              <Dropdown text='Announcements' selection options={options} />
             </Menu>
           </Button.Group>
           <Segment textAlign='center' basic>
