@@ -56,11 +56,13 @@ class SectionSelect extends React.Component {
   handleClick = (e) => {
     const sectionId = parseInt(e.currentTarget.id, 10)
     const { dispatch, subSections } = this.props;
-    this.props.dispatch(setSection(sectionId));
+    dispatch(setSection(sectionId)) 
     if( subSections.length === 0 )
       dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
-    else if( subSections[0].section_id !== sectionId )
+    else if( subSections[0].section_id !== sectionId ) {
+      dispatch(clearSubSections())    
       dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
+    }
   }
 
   
@@ -107,9 +109,8 @@ class SectionSelect extends React.Component {
               </Menu>
             </Grid.Column>
             <Grid.Column width={13}>
-              <h3>Subsections</h3>
-              <Section />
-              { is_admin && subSectionsLoaded && <SubSectionForm/> } 
+              { sectionId && <Section title={sections.filter( s => s.id === sectionId)[0].title} /> }
+              { is_admin && subSectionsLoaded && sectionId && <SubSectionForm/> } 
             </Grid.Column>
           </Grid.Row>
           <Grid.Row only='mobile'>
