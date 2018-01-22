@@ -12,7 +12,7 @@ import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
 import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';
-import { Dimmer, Grid, Loader, Menu, Button } from 'semantic-ui-react';
+import { Dimmer, Grid, Loader, Menu, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 
@@ -78,9 +78,9 @@ class SectionSelect extends React.Component {
       return(
         <Grid>
           <Grid.Row only='tablet computer'>
-            <Grid.Column width={3}>
+            <Grid.Column width={4}>
               <h3>Sections</h3>
-              <Menu fluid vertical tabular>
+              <Menu vertical style={styles.menu}>
                 {sections.map( section =>
                   <Menu.Item
                     key={section.id}
@@ -90,17 +90,15 @@ class SectionSelect extends React.Component {
                   >
                     {section.title}
                     { is_admin && 
-                      <Button.Group>
-                        <Button 
-                          basic
-                          floated='right' 
-                          onClick={() => this.deleteButtonClick(section) } 
-                          size='mini' 
-                          color='red'
-                          content='X'
-                        />
+                      <span>
                         <SectionEditForm />
-                      </Button.Group>
+                        <Icon 
+                          name='delete'
+                          size='large'
+                          link
+                          onClick={() => this.deleteButtonClick(section) }>
+                        </Icon> 
+                      </span>
                     }
                   </Menu.Item>
                   )
@@ -127,6 +125,12 @@ class SectionSelect extends React.Component {
         </Dimmer>
       )
     }
+  }
+}
+
+const styles = {
+  menu : {
+    borderRadius: '0px'
   }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image,Popup, Segment, Icon } from 'semantic-ui-react';
+import { Image, Popup, Segment, Icon } from 'semantic-ui-react';
 import attendance from '../../assets/badge_icons/attendance.png';
 import coder from '../../assets/badge_icons/coder.png';
 import homework from '../../assets/badge_icons/homework.png';

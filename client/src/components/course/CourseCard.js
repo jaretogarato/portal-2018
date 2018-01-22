@@ -3,7 +3,9 @@ import EditCourseModal from './EditCourseModal';
 import { Link } from 'react-router-dom'
 import { Button, Card, Grid } from 'semantic-ui-react';
 
+
 const CourseCard = ({ course }) => (
+
   <Grid.Column key={course.id}>
     <Card style={{ borderRadius: '0px'}}>
       <Card.Content as={Link} to={`/courses/${course.id}`}>
@@ -15,19 +17,21 @@ const CourseCard = ({ course }) => (
         </Card.Meta>
       </Card.Content>
       <Card.Content extra>
-        <div>
-          <Button
-            basic
-            as={Link}
-            to={`/courses/${course.id}`}
-          >
-            View
-          </Button>
-          <EditCourseModal course={course}/>
-        </div>
+      <div className='ui two buttons'>
+        <Button
+          basic
+          color='blue'
+          as={Link}
+          to={`/courses/${course.id}`}
+        >
+        View
+        </Button>
+        <EditCourseModal course={course}/>
+       </div>
       </Card.Content>
     </Card>
   </Grid.Column>
+
 )
 
 export default CourseCard;

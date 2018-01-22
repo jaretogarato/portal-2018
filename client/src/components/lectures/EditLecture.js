@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Header, Segment, Divider } from 'semantic-ui-react';
+import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { editLecture, getLecture } from '../../actions/lectures';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 
 const submissionOptions = [
@@ -31,7 +30,7 @@ class EditLecture extends Component {
   
   
     render() {
-      const { title, id, content } = this.props.lecture
+      const { title, content } = this.props.lecture
       return(
         <Container>
           <Header as="h2" style={styles.pageTitle}>Update Lecture</Header>

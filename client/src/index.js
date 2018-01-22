@@ -20,14 +20,9 @@ injectGlobal`
 
   p {
     font-size: 1.3em;
-  }
-
-  
+  }  
 `
-const theme = {
-  bt: '#614d7b',
-  bg: 'blue',
-}
+
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { updateSection } from '../actions/sections';
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Menu, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Segment, Icon } from 'semantic-ui-react';
 
 
 class SectionEditForm extends React.Component {
@@ -20,7 +20,7 @@ class SectionEditForm extends React.Component {
     const { title } = this.state
     const { sectionId, sections } = this.props
     return (
-      <div>
+      <span>
         { this.state.showForm ?
           <Grid>
             <Grid.Column style={{ maxWidth: 450 }}>
@@ -37,8 +37,7 @@ class SectionEditForm extends React.Component {
                     />
                   </Form.Field>
                   <Button.Group>
-                    <Button
-                      basic
+                    <Icon
                       onClick={() => { this.setState({ showForm: false }) }}
                       content="X"
                       //Prevents console warnings on click
@@ -51,16 +50,16 @@ class SectionEditForm extends React.Component {
             </Grid.Column>
           </Grid>
         :
-          <Menu.Item>
-            <Button
-              basic
-              fluid
+          <span>
+            <Icon
+              size='large'
               onClick={() => { this.setState({ showForm: true }) }}
-              content='Edit'
-            />
-          </Menu.Item>
+              name='edit'
+            >
+          </Icon>
+          </span> 
         }
-      </div>
+      </span>
     )
   }
 }

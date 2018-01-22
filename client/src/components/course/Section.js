@@ -8,12 +8,18 @@ import { getAssignments } from '../../actions/assignments';
 import {
   Accordion,
   Button,
-  Dimmer,
   Icon,
-  Loader,
   Segment,
+  Menu,
+  Dropdown
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+
+const options = [
+  { key: 1, text: 'Add Content', value: 1 },
+  { key: 2, text: 'Edit Sub Section', value: 2 },
+  { key: 3, text: 'Delete Sub Section', value: 3 },
+]
 
 class Section extends React.Component {
   state = { activeIndexes: [] }
@@ -88,66 +94,63 @@ class Section extends React.Component {
     return filtered
   }
 
+  
+
   render() {
-    const { subSections, user: { is_admin }, title } = this.props
-    if(subSections.length > 0) {
-      return(
-        <div>
-          <h3>{title}</h3>
-          { subSections.map( ss => {
-            let content = this.mapContents(ss.id)
-            return <Accordion key={ss.id} content={content} fluid styled>
-              { is_admin && 
-                <Button.Group floated="right">
-                  <AddCourseContent content={content} subSectionId={ss.id} />
-                  <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
-                  <Button 
-                    basic
-                    color='red'
-                    content='X'
-                    onClick={ () => this.deleteSubClick(ss)}
-                  />
-                </Button.Group>
-              }
-              <Accordion.Title 
-                active={this.state.activeIndexes === ss.id} 
-                index={ss.id} 
-                onClick={this.handleSubClick}
-              >
-                <Icon name='dropdown' />
-                { ss.title }
-              </Accordion.Title>
-              <Accordion.Content active={this.checkActiveIndex(ss.id)}>
-                { content.length ? this.displayItems(content) : "No Content" }
-              </Accordion.Content>
-            </Accordion>
-          })}
-        </div>
-      )
-    } else {
-      return(
-        <Dimmer active inverted style={styles.dimmer}>
-          <Loader inverted size='medium'>Loading subsections</Loader>
-        </Dimmer>
-      )
-    }
+    return(
+      this.props.subSections.map( ss => {
+        let content = this.mapContents(ss.id)
+        return <Accordion key={ss.id} content={this.mapContents(ss.id)} fluid styled style={styles.corner}>
+          <Accordion.Title 
+            active={this.state.activeIndexes === ss.id} 
+            index={ss.id} 
+            onClick={this.handleSubClick}
+          >
+            <Icon name='dropdown' />
+            { ss.title }
+          { this.props.user.is_admin && 
+            <span>
+            <Menu>
+              <Dropdown text='settings' options={options} simple item />
+              
+            </Menu>
+              <AddCourseContent content={content} subSectionId={ss.id} />
+              <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
+              <Icon 
+                link
+                float='right'
+                size='large'
+                name='delete' 
+                onClick={ () => this.deleteSubClick(ss)}>
+             </Icon>
+            </span>
+          }
+          </Accordion.Title>
+          <Accordion.Content active={this.checkActiveIndex(ss.id)}>
+            { content.length ? this.displayItems(content) : "No Content" }
+          </Accordion.Content>
+        </Accordion>
+      })
+    )
   }
+}
+
+const styles = {
+  corner: {
+    borderRadius: '0px',
+  },
 }
 
 const mapStateToProps = (state) => {
   return {
-    course: state.course,
     subSections: state.subSections,
     user: state.user,
+    course: state.course,
     content: state.courseContent,
     quizzes: state.quizzes,
     lectures: state.lectures,
     assignments: state.assignments,
   }
-}
-
-const styles = {
-  dimmer: { height: "50vh" }
 }
 
 export default connect(mapStateToProps)(Section);

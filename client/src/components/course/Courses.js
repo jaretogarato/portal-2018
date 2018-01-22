@@ -3,7 +3,13 @@ import CourseCard from './CourseCard';
 import CourseForm from './CourseForm';
 import { connect } from 'react-redux';
 import { getCourses } from '../../actions/courses';
-import { Container, Grid, Menu } from 'semantic-ui-react';
+import {
+  Container,
+  Grid,
+  Menu
+} from 'semantic-ui-react';
+import HomeBg from '../../assets/images/home-image-2880w.jpg';
+import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
 
 class Courses extends React.Component {
   state = { courses: [], isAdding: false };
@@ -42,11 +48,15 @@ class Courses extends React.Component {
           }
         </Menu>
       { isAdding && <CourseForm cancelAdding={() => this.setState({isAdding: false})}/> }
-      <Container>
+      <HomeBody bgImage={HomeBg}>
+        <HomeWrapper> 
+      <Container style={{padding: '2%'}}>
         <Grid stackable columns='3'>
           { this.renderCourses() }
         </Grid>
       </Container>
+        </HomeWrapper>
+       </HomeBody>
       </div>
     )
   }

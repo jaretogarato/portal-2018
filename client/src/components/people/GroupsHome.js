@@ -147,7 +147,7 @@ class GroupsHome extends React.Component {
 
   render() {
     return (
-      <Segment>
+      <Segment basic>
         { this.groupSelectors() }
         { this.groupsView() }
       </Segment>

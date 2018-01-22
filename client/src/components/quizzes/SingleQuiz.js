@@ -11,8 +11,6 @@ import MultipleChoiceQuestion from './MultipleChoiceQuestion';
 import EssayQuestion from './EssayQuestion';
 import TrueFalse from './TrueFalse';
 import moment from 'moment';
-import { stateFromHTML } from 'draft-js-import-html';
-import { EditorState, ContentState, convertFromRaw } from 'draft-js';
 
 
 class SingleQuiz extends Component{

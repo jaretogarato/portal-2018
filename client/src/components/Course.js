@@ -19,7 +19,6 @@ import QuizRoute from './QuizRoute';
 import Lectures from './lectures/Lectures';
 import Lecture from './lectures/Lecture';
 import CreateLecture from './lectures/CreateLecture';
-import EditLecture from './lectures/EditLecture';
 import Attendance from './attendance/Attendance';
 import Assignments from './assignments/Assignments';
 import Assignment from './assignments/Assignment';

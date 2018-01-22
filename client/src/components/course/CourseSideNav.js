@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
+handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
 const adminLinks = [
   'Home', 'Announcements', 'People', 'Attendance', 'Sections',
   'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
@@ -32,9 +34,13 @@ const CourseSideNav = ({ user, match: { params: { id }}}) => {
         key={i}
         to={`/courses/${id}${link === 'Home' ? '' : `/${link.toLowerCase()}`}`}
       >
-        <Menu fluid basic vertical style={styles.sideNav}>
-          <Menu.Item>
-            {link}
+        <Menu fluid vertical style={styles.sideNav}>
+          <Menu.Item 
+            as='div'
+            name={link}
+            active={activeItem === `${link}`}
+            onClick={handleItemClick}
+            >
           </Menu.Item>
         </Menu>
       </Link>
@@ -48,6 +54,7 @@ const styles = {
     boxShadow: '0px',
     borderRadius: '0px',
   },
+
 }
 
 const mapStateToProps = (state) => {

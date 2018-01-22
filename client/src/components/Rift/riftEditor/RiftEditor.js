@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Grid, Button } from 'semantic-ui-react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import './Style.css';
 import BlockStyleControls from './BlockStyles';
 import InlineStyleControls from './InlineStyles';
-import { stateToHTML } from 'draft-js-export-html';
+// import { stateToHTML } from 'draft-js-export-html';
 import { convertToRaw } from 'draft-js'
 
 class RiftEditor extends Component {
@@ -22,11 +21,6 @@ class RiftEditor extends Component {
     toggleBlockType = (type) => this._toggleBlockType(type);
     toggleInlineStyle = (style) => this._toggleInlineStyle(style);
   
-
-  
-
-  
-
   _handleKeyCommand(command) {
     const {editorState} = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);

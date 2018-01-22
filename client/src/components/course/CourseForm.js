@@ -36,7 +36,7 @@ class CourseForm extends React.Component {
     return(
       <CourseFormGrid width={16}>
         <Grid.Column style={{ maxWidth: 1200, paddingTop: 15 }}>
-          <CourseFormSegment>
+          <CourseFormSegment basic>
             <CourseFormHeader>Course Form</CourseFormHeader>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>

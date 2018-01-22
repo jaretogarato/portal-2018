@@ -16,7 +16,7 @@
   text-transform: none;
   text-shadow: none!important;
   -webkit-box-shadow: 0 0 0 1px rgba(34,36,38,.15) inset;
-  box-shadow: 0 0 0 1px rgba(97, 78, 173  , 0.94) inset;
+  box-shadow: 0 0 0 1.5px rgba(97, 78, 173  , 0.94) inset;
 }
 
 .ui.tabular.menu {
@@ -30,3 +30,16 @@
 .ui.vertical.menu {
   width: 15rem;
 }
+
+.ui.vertical.menu .active.item {
+  background: rgba(0,0,0, .10);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0px !important;
+}
+
+.ui.menu {
+  margin: 0px;
+}
+
+

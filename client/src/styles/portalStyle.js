@@ -1,5 +1,3 @@
-import React from 'react';
-
 const portalStyle = {
   // PAGE BG
   pageBgColor: '#FFF',
@@ -13,7 +11,7 @@ const portalStyle = {
   // allow no border color
 
   // MAIN FONTS
-  fontFamilyMain: 'helvetica',
+  fontFamilyMain: 'source sans pro',
   fontFamilySecondary: 'arial',
   fontColorMain: '#333',
   fontColorSecondary: '#595959',

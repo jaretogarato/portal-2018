@@ -5,8 +5,8 @@ class CourseHome extends React.Component {
   render() {
     return(
       <Container >
-        <Header as='h2'>Home</Header>
-        <Segment basic>
+        <Header as='h1'>Home</Header>
+        <Segment basic style={{padding: '2%'}}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna 
