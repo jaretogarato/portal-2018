@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20180122201725) do
   end
 
   create_table "course_contents", force: :cascade do |t|
-    t.bigint "sub_section_id"
+    t.bigint "sub_section_id", null: false
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

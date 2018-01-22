@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { sendInvitation } from '../../actions/invitations';
 import { withRouter } from 'react-router-dom';
-import { Button, Form, Select } from 'semantic-ui-react';
+import { Button, Form, Select, Grid, Container  } from 'semantic-ui-react';
 import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
 
 class UserForm extends React.Component {
@@ -33,7 +33,7 @@ class UserForm extends React.Component {
     return [
       { value: 'student', text: 'Student' },
       { value: 'ta', text: 'TA', },
-      { value: 'teacher', text: 'Teacher' }, 
+      { value: 'teacher', text: 'Teacher' },
       { value: 'auditor', text: 'Auditor' }
     ].map( role => {
       return { key: role.value, text: role.text, value: role.value }
@@ -70,9 +70,19 @@ class UserForm extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <Select options={this.roles()} defaultValue="Student" />
-          <br />
-          <Button basic type='submit'>Submit</Button>
+          <Container>
+            <Grid columns={4} >
+              <Grid.Row>
+              <Grid.Column>
+                  <Select options={this.roles()} defaultValue="Student" />
+              </Grid.Column>
+              <Grid.Column>
+                  <Button basic type='submit'>Submit</Button>
+              </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+
         </Form>
       </Segment>
     )
