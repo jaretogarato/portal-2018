@@ -3,18 +3,23 @@ import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+class CourseSideNav extends React.Component {
+  state = {}
 
-const adminLinks = [
-  'Home', 'Announcements', 'People', 'Attendance', 'Sections',
-  'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
-];
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-const studentLinks = [
-  'Home', 'Announcements', 'People', 'Sections', 'Wiki'
-];
+  render() {
+    const { user, match: { params: { id }}} = this.props;
+    const { activeItem } = this.state;
+    const adminLinks = [
+      'Home', 'Announcements', 'People', 'Attendance', 'Sections',
+      'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
+    ];
 
-const CourseSideNav = ({ user, match: { params: { id }}}) => {
+    const studentLinks = [
+      'Home', 'Announcements', 'People', 'Sections', 'Wiki'
+    ];
+
   if (user.is_admin)
     return adminLinks.map( (link, i) =>
       <Link
@@ -22,8 +27,11 @@ const CourseSideNav = ({ user, match: { params: { id }}}) => {
         to={`/courses/${id}${link === 'Home' ? '' : `/${link.toLowerCase()}`}`}
       >
         <Menu fluid basic vertical style={styles.sideNav}>
-          <Menu.Item>
-            {link}
+          <Menu.Item
+            as='div'
+            name={link}
+            active={activeItem === `${link}`}
+            onClick={this.handleItemClick}>
           </Menu.Item>
         </Menu>
       </Link>
@@ -39,12 +47,13 @@ const CourseSideNav = ({ user, match: { params: { id }}}) => {
             as='div'
             name={link}
             active={activeItem === `${link}`}
-            onClick={handleItemClick}
+            onClick={this.handleItemClick}
             >
           </Menu.Item>
         </Menu>
       </Link>
     )
+  }
 }
 
 const styles = {
