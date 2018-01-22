@@ -197,7 +197,8 @@ puts "1 teacher seeded with enrollment to every course."
     password: 'password',
     bio: "This is a really good bio don't ya know...",
     nickname: 'Spencer is BOSS',
-    is_admin: false
+    is_admin: false,
+    image: "https://robohash.org/#{Faker::Number.number(1)}?set=set4"
   )
   3.times do |i|
     Enrollment.create(

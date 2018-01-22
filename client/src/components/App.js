@@ -14,6 +14,7 @@ import ProtectedRoute from './ProtectedRoute';
 import UserProfile from './profile/UserProfile';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
+import PeopleProfile from './people/PeopleProfile';
 
 class App extends React.Component {
   render() {
@@ -29,7 +30,7 @@ class App extends React.Component {
               <AuthRoute exact path='/login' component={Login} />
               <ProtectedRoute exact path='/user_profile' component={UserProfile} />
               <ProtectedRoute path="/courses/:id" component={Course} />
-
+              <ProtectedRoute path="/user_profile/:id" component={PeopleProfile} />
               <ProtectedRoute adminOnly={true} exact path='/courses' component={Courses} />
               <Route component={NoMatch} />
             </Switch>

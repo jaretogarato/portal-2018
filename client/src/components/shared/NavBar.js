@@ -1,10 +1,10 @@
 import React from 'react';
 import PortalLogo from '../../assets/images/portal-logo.png';
 import { connect } from 'react-redux';
-import { handleLogout } from '../../actions/auth';
 import { getCoursesByStudent } from '../../actions/courses';
 import { Link, withRouter } from 'react-router-dom';
 import { Dropdown, Image, Menu } from 'semantic-ui-react';
+import UserAccount from './UserAccount'
 
 class NavBar extends React.Component {
   state = { activeItem: 'Course Home' };
@@ -48,19 +48,9 @@ class NavBar extends React.Component {
               active={this.state.activeItem === 'Courses'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
-              as={Link}
-              to='/user_profile'
-              style={styles.navText}
-              name="Profile"
-              active={this.state.activeItem === 'Profile'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              name="Logout"
-              style={styles.navText}
-              onClick={() => dispatch(handleLogout(history))}
-            />
+            <Menu.Item style={styles.menuStyle}>
+              <UserAccount />
+            </Menu.Item>
           </Menu.Menu>
         );
       }
@@ -72,19 +62,11 @@ class NavBar extends React.Component {
               { this.renderCourseSections() }
             </Dropdown.Menu>
           </Dropdown>
-          <Menu.Item
-            as={Link}
-            to='/user_profile'
-            style={styles.navText}
-            name="Profile"
-            active={this.state.activeItem === 'Profile'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            style={styles.navText}
-            name='Logout'
-            onClick={() => dispatch(handleLogout(history))}
-          />
+
+          <Menu.Item style={styles.menuStyle}>
+            <UserAccount />
+          </Menu.Item>
+
         </Menu.Menu>
       )
     }
@@ -105,19 +87,21 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <Menu style={styles.navbarPrimary} pointing secondary>
-        <Menu.Item
-          as={Link}
-          to='/'
-          style={styles.navText}
-          name="Home"
-          active={this.state.activeItem === 'Home'}
-          onClick={this.handleItemClick}
-        >
-          <Image src={PortalLogo} height='60px' />
-        </Menu.Item>
-        { this.rightNavs() }
-      </Menu>
+      <div>
+        <Menu style={styles.navbarPrimary} pointing secondary>
+          <Menu.Item
+            as={Link}
+            to='/'
+            style={styles.navText}
+            name="Home"
+            active={this.state.activeItem === 'Home'}
+            onClick={this.handleItemClick}
+          >
+            <Image src={PortalLogo} height='60px' />
+          </Menu.Item>
+          { this.rightNavs() }
+        </Menu>
+      </div>
     );
   }
 }
@@ -135,6 +119,9 @@ const styles = {
     background: 'linear-gradient(#9575CD, #614d7b)',
     border: 'none',
   },
+  menuStyle: {
+    paddingBottom: '0px',
+  }
 }
 
 const mapStateToProps = state => {
