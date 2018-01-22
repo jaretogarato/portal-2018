@@ -28,6 +28,17 @@ export const addCourseContent = (course_content) => {
   }
 }
 
+export const deleteCourseContent = (cc) => {
+  return(dispatch) => {
+    axios.delete(`/api/course_contents/${cc}`)
+      .then( res => dispatch({ type: 'DELETE_COURSE_CONTENT', cc: cc, headers: res.headers }))
+      .catch( err => {
+        dispatch({ type: 'SET_HEADERS', headers: err.headers });
+        dispatch(setFlash('Failed to delete content', 'red'));
+    });
+  }
+}
+
 export const clearCourseContent = () => {
   return ({ type: "CLEAR_COURSE_CONTENT", courseContent: [] })
 }

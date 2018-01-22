@@ -6,6 +6,8 @@ const courseContent = (state = [], action) => {
       return [...state, action.courseContent];
     case 'CLEAR_COURSE_CONTENT':
       return action.courseContent;
+    case 'DELETE_COURSE_CONTENT':
+      return state.filter( cc => cc.id !== action.cc)
     default:
       return state;
   }

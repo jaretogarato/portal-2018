@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AddCourseContent from './AddCourseContent';
 import SubSectionForm from './SubSectionForm';
 import { deleteSubSection } from '../../actions/subSections';
+import { deleteCourseContent } from '../../actions/courseContent';
 import { getAssignments } from '../../actions/assignments';
 import {
   Accordion,
@@ -17,13 +18,34 @@ class Section extends React.Component {
 
   checkActiveIndex = (index) => this.state.activeIndexes.includes(index)
 
+  deleteContentClick = (cc) => {
+    if( window.confirm("Are You Sure?"))
+      this.props.dispatch(deleteCourseContent(cc))
+  }
+
+  deleteContentButton = (cc) => {
+    return(
+      <Button 
+        basic 
+        color='red' 
+        content='X'
+        floated='right'
+        onClick={ () => this.deleteContentClick(cc)}
+      />
+    )
+  }
+
   displayItems = (content) => {
     return content.map( (cc, i) => (
-        <Link key={i} to={`/courses/${this.props.course.id}/${cc.type}/${cc.id}`}>
-          <Segment>{cc.title}</Segment>
+      <Segment basic>
+        <Link key={i} to={`/courses/${this.props.course.id}/section/${cc.id}`}>
+          <Segment>
+            {cc.title}
+          </Segment>
         </Link>
-      )
-    )
+        {this.deleteContentButton(cc.contentId)}
+      </Segment>
+    ))
   }
 
   handleSubClick = (e, titleProps) => {
@@ -50,15 +72,15 @@ class Section extends React.Component {
     }).map( content => {
       this.props.quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
-          filtered.push({ ...quiz, type: 'quizzes' })
+          filtered.push({...quiz, contentId: content.id})
       })
       this.props.assignments.map(assignment => {
         if(assignment.id === content.assignment_id)
-          filtered.push({ ...assignment, type: 'assignments' })
+          filtered.push({...assignment, contentId: content.id})
       })
       this.props.lectures.map(lecture => {
         if(lecture.id === content.lecture_id)
-          filtered.push({ ...lecture, type: 'lectures' })
+          filtered.push({...lecture, contentId: content.id})
       })
     })
     return filtered
