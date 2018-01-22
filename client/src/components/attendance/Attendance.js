@@ -3,15 +3,31 @@ import DatePicker from './DatePicker';
 import StudentRecord from './StudentRecord';
 import { connect } from 'react-redux';
 import { getUsersByCourse, markAllPresent } from '../../actions/users';
-import { addAttendance } from '../../actions/attendance';
-import { Button, Container, Header, Icon } from 'semantic-ui-react';
+import { addAttendance, getAttendance } from '../../actions/attendance';
+import { Button, Container, Header, Icon, Segment } from 'semantic-ui-react';
 
 class Attendance extends React.Component {
   state = { submitted: false }
 
   componentDidMount() {
-    const { dispatch, match: { params: { id }} } = this.props;
+    const { dispatch, currentDate, match: { params: { id }} } = this.props;
+    if (currentDate)
+      dispatch(getAttendance(id, currentDate, this.isSubmitted))
     dispatch(getUsersByCourse(id));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { dispatch, currentDate, match: { params: { id }} } = nextProps
+    const { currentDate: date } = this.props
+    if (date !== currentDate)
+      dispatch(getAttendance(id, currentDate, this.isSubmitted))
+  }
+
+  isSubmitted = (data) => {
+    if (data.length)
+      this.setState({ submitted: true })
+    else
+      this.setState({ submitted: false })
   }
 
   displayUsers = () => {
@@ -47,26 +63,26 @@ class Attendance extends React.Component {
           Submit Attendance
         </Button>
       )
-    else if (finished && submitted)
-      return (
-        <Button basic disabled>Attendence Submitted</Button>
-      )
     return null
   }
 
   render() {
+    let { submitted } = this.state
     return(
       <Container>
-        <Header as='h2' textAlign='center'>Attendance</Header>
-        <DatePicker sendDate={this.sendDate} courseId={this.props.match.params.id}/>
+        <Header as='h1' textAlign='center'>Attendance</Header>
+        <DatePicker courseId={this.props.match.params.id}/>
         { this.allChosen() }
+        { !submitted &&
           <Button basic onClick={this.allPresent}>
             <Icon name='check circle outline' color='green' />
             Mark All Present
           </Button>
+        }
         <br/>
         <br/>
-        { this.displayUsers() }
+        { !submitted && this.displayUsers() }
+        { submitted && <Segment compact>Attendance Submitted</Segment>}
         <br/>
         { this.allChosen() }
       </Container>

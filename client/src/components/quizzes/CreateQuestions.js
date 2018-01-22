@@ -7,9 +7,8 @@ import axios from 'axios';
 
 const options = [
   { key: '1', text: 'Essay/Code', value: 'Essay/Code' },
-  { key: '2', text: 'Multiple Choice', value: 'Multiple Choice' },
-  { key: '3', text: 'Multiple Answer', value: 'Multiple Answer' },
-  { key: '4', text: 'True/False', value: 'True/False' },
+  { key: '2', text: 'Multiple Choice/Answer', value: 'Multiple Choice' },
+  { key: '3', text: 'True/False', value: 'True/False' },
 ]
 
 
@@ -56,7 +55,6 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     switch(activeType) {
       case 'Essay/Code':
         return <EssayQuestion quizId={this.props.quizId} hideForm={this.hideForm}/>
-      case 'Multiple Answer':
       case 'Multiple Choice':
         return <MultipleChoiceQuestion quizId={this.props.quizId} hideForm={this.hideForm}/>
       case 'True/False':

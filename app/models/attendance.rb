@@ -5,8 +5,8 @@ class Attendance < ApplicationRecord
   def self.format_and_create_records(params)
     records = []
     params.each do |param|
-      record = { 
-        record_date: params["date"], 
+      record = {
+        record_date: params["date"],
         course_id: params["course_id"],
         user_id: params[param]["id"],
         status: params[param]["status"]
@@ -16,7 +16,7 @@ class Attendance < ApplicationRecord
       end
     end
 
-    records.each do |record| 
+    records.each do |record|
       attendance = Attendance.create(record)
     end
   end

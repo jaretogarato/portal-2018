@@ -1,11 +1,10 @@
 class Api::AttendancesController < Api::ApiController
   def index
     course = Course.find(params[:course_id])
-    users = course.users.order(last_name: :asc)
     # users.map do |user|
     #   { id: user.id, first_name: user.first_name, last_name: user.last_name, status: nil }
     # end
-    render json: users
+    render json: course.attendances.where("record_date = '#{params[:current_date]}'")
   end
 
   def create

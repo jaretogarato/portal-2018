@@ -2,12 +2,12 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
-export const getAttendance = (courseId, currentDate) => {
+export const getAttendance = (courseId, currentDate, callback = () => {}) => {
   return(dispatch) => {
-    axios.get(`/api/courses/${courseId}/attendances`)
+    axios.get(`/api/courses/${courseId}/attendances?current_date=${currentDate}`)
       .then( res => {
-        //TODO what are we doing with this data?
         dispatch(setHeaders(res.headers));
+        callback(res.data)
       })
       .catch( err => {
         dispatch(setHeaders(err.headers));

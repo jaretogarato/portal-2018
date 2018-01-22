@@ -1,10 +1,10 @@
-const currentDate = (state = [], action) => {
+const currentDate = (state = '', action) => {
   switch(action.type) {
     case 'GET_DATE':
       return action.currentDate
     case 'UPDATE_DATE':
       return action.newDate
-    default: 
+    default:
       return state;
   }
 }
