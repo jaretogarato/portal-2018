@@ -45,8 +45,8 @@ class Section extends React.Component {
 
   displayItems = (content) => {
     return content.map( (cc, i) => (
-      <Segment basic>
-        <Link key={i} to={`/courses/${this.props.course.id}/section/${cc.id}`}>
+      <Segment basic key={i}>
+        <Link to={`/courses/${this.props.course.id}/section/${cc.id}`}>
           <Segment>
             {cc.title}
           </Segment>
