@@ -53,6 +53,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     post 'avatars', to: 'avatars#create'
 
     get '/courses/:course_id/announcements', to: 'announcements#index'
+    post '/courses/:course_id/announcements', to: 'announcements#create'
 
   end
 

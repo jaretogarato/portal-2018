@@ -3,11 +3,7 @@ import CourseCard from './CourseCard';
 import CourseForm from './CourseForm';
 import { connect } from 'react-redux';
 import { getCourses } from '../../actions/courses';
-import {
-  Container,
-  Grid,
-  Menu
-} from 'semantic-ui-react';
+import { Container, Grid, Menu } from 'semantic-ui-react';
 
 class Courses extends React.Component {
   state = { courses: [], isAdding: false };
