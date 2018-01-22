@@ -18,7 +18,7 @@ class Lecture extends Component {
     const { edit } = this.state
     this.setState({ edit: !edit})
   }
-  
+
   deleteLecture = (id) => {
     const deleted = window.confirm('Delete Lecture?')
     if (deleted)
@@ -27,7 +27,7 @@ class Lecture extends Component {
 
 
   render() {
-    const { title, id, content, created_at } = this.props.lecture
+    const { user, lecture: { title, id, content, created_at } } = this.props
     let created = moment(created_at).format('MMMM D, YYYY')
     if(this.state.edit) {
       return(
@@ -41,11 +41,15 @@ class Lecture extends Component {
     } else {
     return (
       <Segment basic name="lecture">
-        <Link to={'./'} >
-          <Button basic floated='right' >All Lectures</Button>
-        </Link>
-        <Button basic floated='right' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
-        <Button basic floated='right' onClick={this.toggleEdit}>Edit</Button>
+      { user.is_admin &&
+        [
+          <Link to={'./'} >
+            <Button basic floated='right'>Cancel</Button>
+          </Link>,
+          <Button basic floated='right' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>,
+          <Button basic  floated='right' onClick={this.toggleEdit}>Edit</Button>
+        ]
+      }
         <Header as='h2' style={styles.pageTitle}>{title}</Header>
         <List>
           <List.Item>
@@ -71,9 +75,7 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-  return { lecture: state.lectures }
+  return { lecture: state.lectures, user: state.user }
 }
 
 export default connect(mapStateToProps)(Lecture);
-
-

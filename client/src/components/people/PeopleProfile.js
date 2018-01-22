@@ -114,7 +114,7 @@ class PeopleProfile extends React.Component {
   }
 
   render () {
-    const { user, match: { params: { id } }, permission } = this.props
+    const { user, currentUser, match: { params: { id } }, permission } = this.props
     const { options } = this.state
     const fullName = `${user.first_name} ${user.last_name}`
     return (
@@ -132,19 +132,21 @@ class PeopleProfile extends React.Component {
               <Header as='h2'>{fullName}</Header>
               <Header as='h3'>{user.email}</Header>
               <Divider />
-              <Form onSubmit={this.handleSubmit}>
-                <Dropdown
-                  multiple
-                  selection
-                  placeholder='Add Badges'
-                  options={this.dropdownOptions()}
-                  onChange={this.handleChange}
-                  value={options}
-                />
-                <Button basic type='submit' onClick={this.addBadge}>
-                  <Icon name='add' />
-                </Button>
-              </Form>
+              { currentUser.is_admin &&
+                <Form onSubmit={this.handleSubmit}>
+                  <Dropdown
+                    multiple
+                    selection
+                    placeholder='Add Badges'
+                    options={this.dropdownOptions()}
+                    onChange={this.handleChange}
+                    value={options}
+                  />
+                  <Button basic type='submit' onClick={this.addBadge}>
+                    <Icon name='add' />
+                  </Button>
+                </Form>
+              }
               {this.state.showForm ? <BadgeForm /> : null }
               {/* do some sort of conditional rendering */}
               {/* terneries are nice for this */}
@@ -153,7 +155,7 @@ class PeopleProfile extends React.Component {
                   <Grid.Column width={16}>
                     <Segment basic>
                       <Card.Group itemsPerRow={5}>
-                        { this.displayBadges() }
+                        { currentUser.is_admin && this.displayBadges() }
                       </Card.Group>
                     </Segment>
                   </Grid.Column>
@@ -199,6 +201,7 @@ const badges = {
 const mapStateToProps = (state) => {
   return {
     user: state.userId,
+    currentUser: state.user,
     current_user: state.user,
     permission: state.permissions,
    }

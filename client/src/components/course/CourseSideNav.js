@@ -1,16 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-class CourseSideNav extends React.Component {
+const adminLinks = [
+  'Home', 'Announcements', 'People', 'Attendance', 'Sections',
+  'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
+];
 
-  render() {
-    const links = [
-      'Home', 'Announcements', 'People', 'Attendance', 'Sections',
-      'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
-    ];
-    const { match: { params: { id }}} = this.props;
-    return links.map( (link, i) =>
+const studentLinks = [
+  'Home', 'Announcements', 'People', 'Sections', 'Wiki'
+];
+
+const CourseSideNav = ({ user, match: { params: { id }}}) => {
+  if (user.is_admin)
+    return adminLinks.map( (link, i) =>
       <Link
         key={i}
         to={`/courses/${id}${link === 'Home' ? '' : `/${link.toLowerCase()}`}`}
@@ -22,7 +26,19 @@ class CourseSideNav extends React.Component {
         </Menu>
       </Link>
     )
-  }
+  else
+    return studentLinks.map( (link, i) =>
+      <Link
+        key={i}
+        to={`/courses/${id}${link === 'Home' ? '' : `/${link.toLowerCase()}`}`}
+      >
+        <Menu fluid basic vertical style={styles.sideNav}>
+          <Menu.Item>
+            {link}
+          </Menu.Item>
+        </Menu>
+      </Link>
+    )
 }
 
 const styles = {
@@ -34,4 +50,8 @@ const styles = {
   },
 }
 
-export default CourseSideNav
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(CourseSideNav)

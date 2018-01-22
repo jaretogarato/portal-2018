@@ -1,17 +1,22 @@
 import React from 'react';
 import DisplayAnnouncements from './DisplayAnnouncements';
 import { Button, Header, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 class Announcements extends React.Component {
   render() {
     return(
       <Segment basic>
-        <Header as='h2'>Announcement</Header>
-        <Button>Add Announcement</Button>
+        <Header as='h2'>Announcements</Header>
+        { this.props.user.is_admin && <Button>Add Announcement</Button> }
         <DisplayAnnouncements />
       </Segment>
     )
   }
 }
 
-export default Announcements;
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(Announcements);

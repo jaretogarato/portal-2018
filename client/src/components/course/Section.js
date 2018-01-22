@@ -19,10 +19,11 @@ class Section extends React.Component {
 
   displayItems = (content) => {
     return content.map( (cc, i) => (
-      <Link key={i} to={`/courses/${this.props.course.id}/section/${cc.id}`}>
-        <Segment>{cc.title}</Segment>
-      </Link>
-    ))
+        <Link key={i} to={`/courses/${this.props.course.id}/${cc.type}/${cc.id}`}>
+          <Segment>{cc.title}</Segment>
+        </Link>
+      )
+    )
   }
 
   handleSubClick = (e, titleProps) => {
@@ -45,19 +46,19 @@ class Section extends React.Component {
     const { content } = this.props
     const filtered = []
     content.filter( content => {
-      return content.sub_section_id === ssid 
+      return content.sub_section_id === ssid
     }).map( content => {
       this.props.quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
-          filtered.push(quiz)
+          filtered.push({ ...quiz, type: 'quizzes' })
       })
       this.props.assignments.map(assignment => {
         if(assignment.id === content.assignment_id)
-          filtered.push(assignment)
+          filtered.push({ ...assignment, type: 'assignments' })
       })
       this.props.lectures.map(lecture => {
         if(lecture.id === content.lecture_id)
-          filtered.push(lecture)
+          filtered.push({ ...lecture, type: 'lectures' })
       })
     })
     return filtered
@@ -68,21 +69,21 @@ class Section extends React.Component {
       this.props.subSections.map( ss => {
         let content = this.mapContents(ss.id)
         return <Accordion key={ss.id} content={this.mapContents(ss.id)} fluid styled>
-          { this.props.user.is_admin && 
+          { this.props.user.is_admin &&
             <Button.Group floated="right">
               <AddCourseContent content={content} subSectionId={ss.id} />
               <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
-              <Button 
+              <Button
                 basic
                 color='red'
                 content='X'
-                onClick={ () => this.deleteSubClick(ss)}              
+                onClick={ () => this.deleteSubClick(ss)}
               />
             </Button.Group>
           }
-          <Accordion.Title 
-            active={this.state.activeIndexes === ss.id} 
-            index={ss.id} 
+          <Accordion.Title
+            active={this.state.activeIndexes === ss.id}
+            index={ss.id}
             onClick={this.handleSubClick}
           >
             <Icon name='dropdown' />

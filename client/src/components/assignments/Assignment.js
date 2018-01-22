@@ -45,11 +45,14 @@ class Assignment extends Component {
 
   displayAssignment = () => {
     const {
-      title, id, points, content,
-      published, group_assignment,
-      created_at,
-      submission_type, due_date
-    } = this.props.currentAssignment;
+      user,
+      currentAssignment: {
+        title, id, points, content,
+        published, group_assignment,
+        created_at,
+        submission_type, due_date
+      }
+    } = this.props;
 
     if (this.state.edit) {
       return (
@@ -64,11 +67,15 @@ class Assignment extends Component {
       return (
         <Segment clearing >
           <Header as='h2'>{title}</Header>
-          <Link to={'./'} >
-            <Button basic floated='right'>Cancel</Button>
-          </Link>
-          <Button basic floated='right' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>
-          <Button basic  floated='right' onClick={this.toggleEdit}>Edit</Button>
+          { user.is_admin &&
+            [
+              <Link to={'./'} >
+                <Button basic floated='right'>Cancel</Button>
+              </Link>,
+              <Button basic floated='right' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>,
+              <Button basic  floated='right' onClick={this.toggleEdit}>Edit</Button>
+            ]
+          }
           <List>
             <List.Item>
               Points: {points}
@@ -97,7 +104,7 @@ class Assignment extends Component {
   render() {
     const { loaded } = this.state;
     if (loaded) {
-      return this.displayAssignment()      
+      return this.displayAssignment()
     } else {
       return (
         <Dimmer active>
@@ -109,7 +116,7 @@ class Assignment extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { currentAssignment: state.assignments }
+  return { currentAssignment: state.assignments, user: state.user }
 }
 
 export default connect(mapStateToProps)(Assignment);
