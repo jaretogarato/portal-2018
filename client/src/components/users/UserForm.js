@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { sendInvitation } from '../../actions/invitations';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Select } from 'semantic-ui-react';
+import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
 
 class UserForm extends React.Component {
   defaultState = { firstName: '', lastName: '', email: '', role: '', image: '' }
@@ -42,35 +43,38 @@ class UserForm extends React.Component {
   render() {
     const { email, firstName, lastName } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Input
-          label='First Name'
-          placeholder='First Name'
-          name='firstName'
-          value={firstName}
-          onChange={this.handleChange}
-          required
-        />
-        <Form.Input
-          label='Last Name'
-          placeholder='Last Name'
-          name='lastName'
-          value={lastName}
-          onChange={this.handleChange}
-          required
-        />
-        <Form.Input
-          label='Email'
-          placeholder='Email'
-          name='email'
-          value={email}
-          onChange={this.handleChange}
-          required
-        />
-        <Select options={this.roles()} defaultValue="Student" />
+      <Segment basic>
         <br />
-        <Button type='submit'>Submit</Button>
-      </Form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Input
+            label='First Name'
+            placeholder='First Name'
+            name='firstName'
+            value={firstName}
+            onChange={this.handleChange}
+            required
+          />
+          <Form.Input
+            label='Last Name'
+            placeholder='Last Name'
+            name='lastName'
+            value={lastName}
+            onChange={this.handleChange}
+            required
+          />
+          <Form.Input
+            label='Email'
+            placeholder='Email'
+            name='email'
+            value={email}
+            onChange={this.handleChange}
+            required
+          />
+          <Select options={this.roles()} defaultValue="Student" />
+          <br />
+          <Button basic type='submit'>Submit</Button>
+        </Form>
+      </Segment>
     )
   }
 }

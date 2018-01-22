@@ -19,6 +19,14 @@
   box-shadow: 0 0 0 1px rgba(97, 78, 173  , 0.94) inset;
 }
 
+.ui.tabular.menu {
+  font-size: medium;
+}
+
+.ui.form .field>label {
+  font-size: 1.1em
+}
+
 .ui.vertical.menu {
   width: 15rem;
 }

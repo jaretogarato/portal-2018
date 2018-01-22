@@ -34,7 +34,7 @@ class EditLecture extends Component {
       const { title, id, content } = this.props.lecture
       return(
         <Container>
-          <Header as="h3" textAlign='center' style={styles.pageTitle}>Update Lecture</Header>
+          <Header as="h2" style={styles.pageTitle}>Update Lecture</Header>
             <Form onSubmit={this.handleSubmit} style={styles.form}>
               <Form.Group widths='equal'>
                 <Form.Input
@@ -53,6 +53,7 @@ class EditLecture extends Component {
                 defaultValue={content}
                 style={ styles.textArea }
                 label='Description'
+                labelFontSize='1.3em'
                 placeholder='Rift Text Editor Placeholder'
                 required
                 onChange={this.handleChange}
@@ -81,6 +82,7 @@ class EditLecture extends Component {
     },
     textArea: {
       minHeight: '150px',
+      fontSize:'1.3em',
     },
   }
   

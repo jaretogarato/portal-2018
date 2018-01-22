@@ -30,7 +30,7 @@ class Assignments extends Component {
     const { id } = this.props.match.params
     return (
       <Segment basic>
-        <Header as='h1' textAlign='center' style={styles.pageTitle}>All Assignments</Header>
+        <Header as='h2' style={styles.pageTitle}>All Assignments</Header>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
@@ -72,8 +72,6 @@ class Assignments extends Component {
 const styles = {
   pageTitle: {
     paddingTop: '2%',
-    textDecoration: 'underline',
-    fontWeight: 'bolder',
   },
 }
 

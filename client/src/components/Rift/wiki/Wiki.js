@@ -9,8 +9,7 @@ class Wiki extends Component {
 
   render() {
     return (
-      <div>
-        This is the Wiki Component</div>
+      <h2>Wiki</h2>
     )
   }
 

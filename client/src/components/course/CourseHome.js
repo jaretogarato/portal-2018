@@ -5,7 +5,7 @@ class CourseHome extends React.Component {
   render() {
     return(
       <Container >
-        <Header as='h1'>Home</Header>
+        <Header as='h2'>Home</Header>
         <Segment basic>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 

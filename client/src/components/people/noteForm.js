@@ -34,12 +34,13 @@ class NoteForm extends React.Component {
       <Message info fluid='true' as='form' onSubmit={this.handleSubmit}>
         <Card.Content>
           <Button
+            basic
             onClick={ () => this.setState({ noteTime: !this.state.noteTime })}
-            color='teal' size='mini' floated='right'
+            size='mini' floated='right'
           >
             Cancel
           </Button>
-          <Button floated='right' color='blue' type='submit' size='mini'>
+          <Button basic floated='right' type='submit' size='mini'>
             Submit
           </Button>
           <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={user.image} /> { }
@@ -86,7 +87,7 @@ class NoteForm extends React.Component {
       <Segment basic>
         { noteTime ? this.noteEdit()
           :
-          <Button onClick={() => this.setState({noteTime: !noteTime})}>Add A Note</Button>
+          <Button basic onClick={() => this.setState({noteTime: !noteTime})}>Add A Note</Button>
         }
       </Segment>
     )

@@ -98,7 +98,7 @@ class EditAssignment extends Component {
     } = this.props.currentAssignment
     return (
       <Segment basic>
-        <Header as="h1" textAlign='center' style={styles.pageTitle}>
+        <Header as="h2" style={styles.pageTitle}>
           Edit Assignment
         </Header>
         <Form onSubmit={this.handleSubmit} style={styles.form}>

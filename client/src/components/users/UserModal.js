@@ -24,7 +24,7 @@ class UserModal extends React.Component {
           size='small'
           closeIcon='close'
         >
-          <Header as='h1'><Icon name='add user'/> Add User</Header>
+          <Header as='h2'><Icon name='add user'/> Add User</Header>
           <Modal.Content>
             <UserForm modalClose={this.handleClose} courseId={this.props.courseId} />
           </Modal.Content>

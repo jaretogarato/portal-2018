@@ -37,12 +37,12 @@ class DatePicker extends React.Component {
         <Grid stackable columns='equal'>
           <Grid.Row stretched>
               <Grid.Column>
-                <Header as='h1'>
+                <Header as='h3'>
                 {`${course.course_type} ${course.term} ${course.year}`}
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Header as='h1' textAlign="right">
+                <Header as='h3' textAlign="right">
                   { currentDate }
                 </Header>
                   <Container textAlign='right'>

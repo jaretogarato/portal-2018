@@ -93,7 +93,7 @@ class MultipleChoiceQuestion extends React.Component {
     return (
      <Segment>
         <Form onSubmit={this.handleSubmit}>
-          <Header as='h3'>Question Text</Header>
+          <Header as='h2'>Question Text</Header>
           <Form.TextArea
             name='question'
             value={question}

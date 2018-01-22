@@ -61,7 +61,7 @@ class CreateAssignment extends Component {
 
     return (
       <Segment basic>
-        <Header as="h1" textAlign='center' style={ styles.pageTitle }>
+        <Header as="h2" style={ styles.pageTitle }>
           Create Assignment
         </Header>
         <Form onSubmit={ this.handleSubmit } style={ styles.form }>
@@ -149,8 +149,6 @@ const styles = {
   },
   pageTitle: {
     paddingTop: '2%',
-    textDecoration: 'underline',
-    fontWeight: 'bolder',
   },
   textArea: {
     minHeight: '150px',

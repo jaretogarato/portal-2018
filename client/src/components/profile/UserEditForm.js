@@ -57,8 +57,8 @@ class UserEditForm extends React.Component {
 
     return(
       <Form onSubmit={this.handleSubmit}>
-        <Segment textAlign='center' basic>
-          <Header as='h1'>Edit Profile</Header>
+        <Segment basic>
+          <Header as='h2'>Edit Profile</Header>
         </Segment>
         <Divider />
         <Grid columns={3} divided>
@@ -75,7 +75,7 @@ class UserEditForm extends React.Component {
                         <Image src={`${user.avatar_url}`} /> :
                         <Image src={`${defaultAvatar}`} />
                       }
-                      <Header as='h3'
+                      <Header as='h4'
                         style={{textAlign: 'center'}}
                       >
                         Click to update profile picture!

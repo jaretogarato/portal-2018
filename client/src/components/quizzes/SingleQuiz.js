@@ -105,7 +105,7 @@ displayQuiz = () => {
   } else {
   return (
     <Segment basic clearing >
-      <Header textAlign='center'>{title}</Header>
+      <Header>{title}</Header>
       <Link to={'./'} >
         <Button basic floated='right'>All Quizzes</Button>
       </Link>
@@ -126,7 +126,7 @@ displayQuiz = () => {
         </List.Item>
       </List>
       <Segment basic>
-        <Header textAlign='center'>Quiz Questions</Header>
+        <Header>Quiz Questions</Header>
         <Button basic onClick={this.toggleQuestionEdit}>
           { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
         </Button>

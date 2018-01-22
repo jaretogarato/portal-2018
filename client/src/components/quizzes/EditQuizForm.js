@@ -27,7 +27,7 @@ handleSubmit = (e) => {
     const { title, content, due_date, points } = this.props.quiz
     return(
       <Container>
-        <Header as="h3" textAlign='center' style={styles.pageTitle}>Update Quiz</Header>
+        <Header as="h2" style={styles.pageTitle}>Update Quiz</Header>
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
               <Form.Input

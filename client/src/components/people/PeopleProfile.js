@@ -129,7 +129,7 @@ class PeopleProfile extends React.Component {
               />
             </Grid.Column>
             <Grid.Column width={11}>
-              <Header as='h1'>{fullName}</Header>
+              <Header as='h2'>{fullName}</Header>
               <Header as='h3'>{user.email}</Header>
               <Divider />
               <Form onSubmit={this.handleSubmit}>
@@ -163,7 +163,7 @@ class PeopleProfile extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Header as='h2'>Bio</Header>
+              <Header as='h3'>Bio</Header>
               <Divider />
               {user.bio}
             </Grid.Column>

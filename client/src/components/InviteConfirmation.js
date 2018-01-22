@@ -30,7 +30,7 @@ class InviteConfirmation extends React.Component {
     const { password, passwordConfirmation } = this.state;
     return(
       <Form onSubmit={this.handleSubmit}>
-        <Header as='h1' textAlign='center'>Portal - Set Password</Header>
+        <Header as='h2' textAlign='center'>Portal - Set Password</Header>
         <Form.Input 
           label='Password'
           name='password'

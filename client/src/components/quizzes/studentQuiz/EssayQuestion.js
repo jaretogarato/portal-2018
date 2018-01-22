@@ -11,7 +11,7 @@ class EssayQuestion extends React.Component {
     const { response } = this.state
     return(
       <Segment>
-        <Header textAlign='center'>{question.question}</Header>
+        <Header as='h2'>{question.question}</Header>
         <Form>
           <Form.TextArea value={response} onChange={this.handleChange} />
         </Form>

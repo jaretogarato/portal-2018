@@ -6,7 +6,7 @@ class Announcements extends React.Component {
   render() {
     return(
       <Segment basic>
-        <Header as='h1'>Announcement</Header>
+        <Header as='h2'>Announcement</Header>
         <Button>Add Announcement</Button>
         <DisplayAnnouncements />
       </Segment>

@@ -57,7 +57,7 @@ class Attendance extends React.Component {
   render() {
     return(
       <Container>
-        <Header as='h1' textAlign='center'>Attendance</Header>
+        <Header as='h2' textAlign='center'>Attendance</Header>
         <DatePicker sendDate={this.sendDate} courseId={this.props.match.params.id}/>
         { this.allChosen() }
           <Button basic onClick={this.allPresent}>

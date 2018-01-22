@@ -42,17 +42,17 @@ class Lecture extends Component {
     return (
       <Segment basic name="lecture">
         <Link to={'./'} >
-          <Button floated='right' >All Lectures</Button>
+          <Button basic floated='right' >All Lectures</Button>
         </Link>
-        <Button floated='right' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
-        <Button floated='right' onClick={this.toggleEdit}>Edit</Button>
-        <Header as='h1' textAlign='center' style={styles.pageTitle}>{title}</Header>
+        <Button basic floated='right' name='delete' onClick={() => this.deleteLecture(id)}>Delete</Button>
+        <Button basic floated='right' onClick={this.toggleEdit}>Edit</Button>
+        <Header as='h2' style={styles.pageTitle}>{title}</Header>
         <List>
           <List.Item>
-            <Header as='h2' style={ styles.listItemHeader }>Description:</Header> {content}
+            <Header as='h3' style={ styles.listItemHeader }>Description:</Header> {content}
           </List.Item>
           <List.Item>
-            <Header as='h2' style={ styles.listItemHeader }>Created:</Header> {created}
+            <Header as='h3' style={ styles.listItemHeader }>Created:</Header> {created}
           </List.Item>
         </List>
       </Segment>
@@ -64,8 +64,6 @@ class Lecture extends Component {
 const styles = {
   pageTitle: {
     paddingTop: '2%',
-    textDecoration: 'underline',
-    fontWeight: 'bolder',
   },
   listItemHeader: {
     display: 'inline-block',

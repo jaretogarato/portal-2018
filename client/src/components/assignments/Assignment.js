@@ -63,7 +63,7 @@ class Assignment extends Component {
     } else {
       return (
         <Segment clearing >
-          <Header as='h1' textAlign='center'>{title}</Header>
+          <Header as='h2'>{title}</Header>
           <Link to={'./'} >
             <Button basic floated='right'>Cancel</Button>
           </Link>

@@ -68,7 +68,7 @@ class GroupForm extends React.Component {
           { this.displaySections() }
         </List>
         <Button
-          primary
+          basic
           onClick={ () => this.generateGroups() }
           >
           Generate Groups

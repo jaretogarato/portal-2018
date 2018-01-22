@@ -83,7 +83,7 @@ class StudentQuiz extends React.Component {
           <div ref={this.handleContextRef}>
           <Grid> 
             <Grid.Column width={13}> 
-             <Header as ='h2' textAlign='center'>{quiz.title}</Header>
+             <Header as ='h2'>{quiz.title}</Header>
               {this.displayQuestions()}
             </Grid.Column> 
             <Grid.Column width={3}> 

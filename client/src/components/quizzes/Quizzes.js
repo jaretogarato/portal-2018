@@ -38,7 +38,7 @@ class Quizzes extends Component {
     const { id } = this.props.match.params
     return (
       <div>
-       <Header textAlign='center' style={styles.quiz} > Quizzes  </Header>
+       <Header as='h2' style={styles.quiz}>Quizzes</Header>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>

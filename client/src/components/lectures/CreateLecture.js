@@ -25,7 +25,7 @@ class CreateLecture extends Component {
     const { title, content } = this.state
     return(
       <Segment basic>
-        <Header as='h1' textAlign='center' style={styles.pageTitle}>Create Lecture</Header>
+        <Header as='h2' style={styles.pageTitle}>Create Lecture</Header>
         <Segment> 
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
@@ -59,9 +59,9 @@ class CreateLecture extends Component {
             <Form.Checkbox label='Published?' />
             <Divider />
             <Form.Group>
-              <Button basic color='green' type='submit'>Create</Button> 
+              <Button basic type='submit'>Create</Button> 
               <Link to={'./lectures'}>
-                <Button onClick={this.props.history.goBack}>Cancel</Button> 
+                <Button basic onClick={this.props.history.goBack}>Cancel</Button> 
               </Link>
             </Form.Group>
           </Form> 
@@ -77,8 +77,6 @@ const styles = {
   },
   pageTitle: {
     paddingTop: '2%',
-    textDecoration: 'underline',
-    fontWeight: 'bolder',
   },
   textArea: {
     minHeight: '150px',

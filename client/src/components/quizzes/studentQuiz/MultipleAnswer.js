@@ -21,7 +21,7 @@ class MultipleAnswer extends React.Component {
     const { question } = this.props
     return(
       <Segment>
-        <Header textAlign='center'>{question.question}</Header>
+        <Header as='h2'>{question.question}</Header>
         {
           question.options.map( (o,i) => {
             return(

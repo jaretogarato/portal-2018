@@ -5,7 +5,7 @@ class CourseSettings extends React.Component {
   render() {
     return(
       <Segment basic>
-        <Header as='h2'>Course Settings Component</Header>
+        <Header as='h2'>Course Settings</Header>
       </Segment>
     )
   }

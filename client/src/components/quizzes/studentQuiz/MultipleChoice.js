@@ -13,7 +13,7 @@ class MultipleChoice extends React.Component {
     const { response } = this.state
     return(
       <Segment>
-        <Header textAlign='center'>{question.question}</Header>
+        <Header as='h2'>{question.question}</Header>
         {
           question.options.map( (o,i) => {
             return(

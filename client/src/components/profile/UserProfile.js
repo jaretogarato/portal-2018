@@ -55,8 +55,8 @@ class UserProfile extends React.Component {
               <Dropdown text='Announcements' selection options={options} />
             </Menu>
           </Button.Group>
-          <Segment textAlign='center' basic>
-            <Header as='h1'>Your Profile</Header>
+          <Segment basic>
+            <Header as='h2'>Your Profile</Header>
           </Segment>
           <Divider />
           <Grid columns={3} divided>

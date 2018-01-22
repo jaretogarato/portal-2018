@@ -14,12 +14,6 @@ const icons = {
   teamwork
 }
 
-const styles = {
-  pointer: { cursor: 'pointer' },
-  badge: { padding: '2%' },
-  }
-
-
 const Badge = ({ badgeId, badge, deleteBadge }) => {
   return (
     <div style={styles.badge}>
@@ -35,5 +29,10 @@ const Badge = ({ badgeId, badge, deleteBadge }) => {
     </div>
   )
 }
+
+const styles = {
+  pointer: { cursor: 'pointer' },
+  badge: { padding: '2%' },
+  }
 
 export default Badge;

@@ -27,7 +27,7 @@ handleSubmit = (e) => {
     const { title, due_date, points } = this.state
     return(
       <Container> 
-        <Header as="h3" textAlign='center' style={styles.pageTitle}>Create Quiz</Header>
+        <Header as="h2" style={styles.pageTitle}>Create Quiz</Header>
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
               <Form.Input 

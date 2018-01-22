@@ -40,9 +40,9 @@ class AddUsers extends React.Component {
       <div>
         <Divider hidden />
         <Button.Group>
-          <Button onClick={this.makeFile}>Download Sample CSV</Button>
+          <Button basic onClick={this.makeFile}>Download Sample CSV</Button>
           <DropZone style={styles.drop} multiple={false} onDrop={this.drop}>
-            <Button icon labelPosition="left">
+            <Button basic icon labelPosition="left">
               <Icon name="file excel outline" />
               Upload CSV
             </Button>
