@@ -106,7 +106,7 @@ class SectionSelect extends React.Component {
                 { is_admin && <SectionForm /> }
               </Menu>
             </Grid.Column>
-            <Grid.Column width={13}>
+            <Grid.Column width={12}>
               { sectionId && <Section title={sections.filter( s => s.id === sectionId)[0].title} /> }
               { is_admin && subSectionsLoaded && sectionId && <SubSectionForm/> } 
             </Grid.Column>

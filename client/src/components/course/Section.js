@@ -8,7 +8,9 @@ import { getAssignments } from '../../actions/assignments';
 import {
   Accordion,
   Button,
+  Dimmer,
   Icon,
+  Loader,
   Segment,
   Menu,
   Dropdown
@@ -94,12 +96,13 @@ class Section extends React.Component {
     return filtered
   }
 
-  
-
   render() {
+    const { subSections, user: { is_admin }, title } = this.props
+    if(subSections.length > 0) {
     return(
-      this.props.subSections.map( ss => {
-        let content = this.mapContents(ss.id)
+      <div>
+          <h3>{title}</h3>
+          { subSections.map( ss => {        let content = this.mapContents(ss.id)
         return <Accordion key={ss.id} content={this.mapContents(ss.id)} fluid styled style={styles.corner}>
           <Accordion.Title 
             active={this.state.activeIndexes === ss.id} 
@@ -130,15 +133,21 @@ class Section extends React.Component {
             { content.length ? this.displayItems(content) : "No Content" }
           </Accordion.Content>
         </Accordion>
-      })
+      })}
+      </div>
     )
+  } else {
+    return(
+      <Dimmer active inverted style={styles.dimmer}>
+        <Loader inverted size='medium'>Loading subsections</Loader>
+      </Dimmer>
+    ) }
   }
 }
 
 const styles = {
-  corner: {
-    borderRadius: '0px',
-  },
+  corner: { borderRadius: '0px' },
+  dimmer: { height: '50vh' }
 }
 
 const mapStateToProps = (state) => {
