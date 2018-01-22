@@ -11,21 +11,21 @@ const Footer = () => (
     <Segment style={styles.footer} attached='top'>
       <Grid columns={2}>
         <Grid.Column textAlign='left'>
-          <p style={styles.text}>
-            <i>Designed by DevPoint Studios</i>
-          </p>
+          <h5 style={styles.text}>
+            <i style={{fontWeight: '300'}}>Designed by DevPoint Studios</i>
+          </h5>
         </Grid.Column>
         <Grid.Column textAlign='right'>
           <Link to='/' style={styles.leftNav}>
-            <p>
+            <h5 style={{fontWeight: '300'}}>
               Home 
-            </p>
+            </h5>
           </Link>
           &nbsp;
           <Link to='/' style={styles.leftNav}>
-            <p>
+            <h5 style={{fontWeight: '300'}}>
               Support
-          </p>
+            </h5>
           </Link>
         </Grid.Column>
       </Grid>
@@ -37,7 +37,7 @@ const styles = {
   footer: {
     backgroundColor: '#424242',
     position: 'relative',
-    border: 'none'
+    border: 'none',
   },
   container: {
     padding: '0',

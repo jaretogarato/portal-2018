@@ -103,7 +103,7 @@ displayQuiz = () => {
   } else {
   return (
     <Segment basic clearing >
-      <Header>{title}</Header>
+      <Header as='h2'>{title}</Header>
       <Link to={'./'} >
         <Button basic floated='right'>All Quizzes</Button>
       </Link>

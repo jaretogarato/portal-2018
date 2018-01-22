@@ -10,13 +10,13 @@
 
 .ui.basic.button, .ui.basic.buttons .button {
   background: transparent none!important;
-  color: #8F79BA !important;
+  color: #614d7b !important;
   font-weight: 600;
   border-radius: .28571429rem;
   text-transform: none;
   text-shadow: none!important;
   -webkit-box-shadow: 0 0 0 1px rgba(34,36,38,.15) inset;
-  box-shadow: 0 0 0 1.5px rgba(97, 78, 173  , 0.94) inset;
+  box-shadow: 0 0 0 1px rgba(97, 77, 123  , 0.94) inset;
 }
 
 .ui.tabular.menu {
@@ -24,13 +24,20 @@
 }
 
 .ui.form .field>label {
-  font-size: 1.1em
+  font-size: 1.2em
 }
 
 .ui.vertical.menu {
   width: 15rem;
 }
 
+.ui.table thead tr:first-child>th:first-child {
+  border-radius: 0rem 0 0 0;
+}
+
+.ui.table thead tr:first-child>th:last-child {
+  border-radius: 0rem 0 0 0;
+}
 .ui.vertical.menu .active.item {
   background: rgba(0,0,0, .10);
   -webkit-box-shadow: none;
