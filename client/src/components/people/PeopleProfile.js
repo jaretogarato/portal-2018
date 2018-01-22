@@ -107,6 +107,7 @@ class PeopleProfile extends React.Component {
       return !hasBadge
     })
   }
+
   whoCanSeeNotes = () => {
     const { current_user, permission, match: { params: { id } } } = this.props
     if(!isStudent(permission) || current_user.id === parseInt(id))
