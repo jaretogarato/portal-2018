@@ -10,7 +10,6 @@ import {
 } from 'semantic-ui-react';
 import HomeBg from '../../assets/images/home-image-2880w.jpg';
 import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
-import { ScrollableSection } from '../../styles/styledComponents';
 
 class Courses extends React.Component {
   state = {
@@ -51,15 +50,15 @@ class Courses extends React.Component {
             />
           }
         </Menu>
-      { isAdding && <CourseForm cancelAdding={ () => this.setState({ isAdding: false }) } /> }
-      <HomeBody bgImage={ HomeBg }>
+        { isAdding && <CourseForm cancelAdding={ () => this.setState({ isAdding: false }) } /> }
+        <HomeBody bgImage={ HomeBg }>
           <HomeWrapper style={ styles.scrollable_section }>
-              <Container>
-                <Grid stackable columns='3'>
+            <Container>
+              <Grid stackable columns='3'>
                 { this.renderCourses() }
               </Grid>
             </Container>
-        </HomeWrapper>
+          </HomeWrapper>
        </HomeBody>
       </div>
     )
