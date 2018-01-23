@@ -13,6 +13,7 @@ import { getUsersByCourse } from '../../actions/users';
 import UserForm from '../users/UserForm';
 import AddUsers from '../users/AddUsers';
 import { isStaff } from '../../utils/permissions';
+import missingAvatar from '../../assets/images/missing-avatar.png';
 
 
 class PeopleHome extends React.Component {
@@ -52,7 +53,7 @@ class PeopleHome extends React.Component {
       return(
         <Table.Row key={user.id}>
           <Table.Cell>
-            <Image src={user.image}
+            <Image src={user.image || missingAvatar}
               size='mini'
               alt={`${fullName}'s profile picture'`}
               style={{display: 'inline'}}
