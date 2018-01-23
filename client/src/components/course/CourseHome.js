@@ -1,11 +1,12 @@
 import React from 'react';
-import { Container, Header, Segment } from 'semantic-ui-react';
+import { Container, Segment } from 'semantic-ui-react';
+import { PageTitle } from '../../styles/styledComponents';
 
 class CourseHome extends React.Component {
   render() {
     return(
       <Container >
-        <Header as='h1'>Home</Header>
+        <PageTitle>Home</PageTitle>
         <Segment basic style={{padding: '2%'}}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 

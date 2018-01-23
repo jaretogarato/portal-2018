@@ -12,7 +12,7 @@ const portalStyle = {
 
   // MAIN FONTS
   fontFamilyMain: 'source sans pro',
-  fontFamilySecondary: 'arial',
+  fontFamilySecondary: 'sans-serif',
   fontColorMain: '#333',
   fontColorSecondary: '#595959',
   fontColorWarning: 'd91313',
@@ -20,10 +20,10 @@ const portalStyle = {
   fontColorImportant: 'f69e04',
 
   // BUTTONS
-  buttonYesColor: '#00d43c',
-  buttonNoColor: '#dd0135',
-  buttonMaybeColor: '#ddac03',
-  buttonNeutralColor: '#6f6c69',
+  buttonYesColor: '#614d7b',
+  buttonNoColor: '#614d7b',
+  buttonMaybeColor: '#614d7b',
+  buttonNeutralColor: '#614d7b',
 
   // HEADERS
   //

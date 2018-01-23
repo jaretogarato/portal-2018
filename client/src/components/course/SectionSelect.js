@@ -15,6 +15,7 @@ import SectionSelectMobile from './SectionSelectMobile';
 import { Dimmer, Grid, Loader, Menu, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
+import { PageSubTitle } from '../../styles/styledComponents';
 
 class SectionSelect extends React.Component {
   state = {
@@ -82,7 +83,7 @@ class SectionSelect extends React.Component {
         <Grid>
           <Grid.Row only='tablet computer'>
             <Grid.Column width={4}>
-              <h3>Sections</h3>
+              <PageSubTitle>Sections</PageSubTitle>
               <Menu vertical style={styles.menu}>
                 {sections.map( section =>
                   <Menu.Item

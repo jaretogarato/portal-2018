@@ -66,12 +66,12 @@ ActiveRecord::Schema.define(version: 20180122201725) do
   end
 
   create_table "course_contents", force: :cascade do |t|
-    t.bigint "sub_section_id", null: false
+    t.bigint "sub_section_id"
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "lecture_id"
     t.bigint "assignment_id"
+    t.bigint "lecture_id"
     t.index ["assignment_id"], name: "index_course_contents_on_assignment_id"
     t.index ["quiz_id"], name: "index_course_contents_on_quiz_id"
     t.index ["sub_section_id"], name: "index_course_contents_on_sub_section_id"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20180122201725) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "title", default: "", null: false
-    t.json "content", default: {}, null: false
+    t.text "content", default: "", null: false
     t.string "due_date", default: "", null: false
     t.integer "points", default: 0, null: false
     t.datetime "created_at", null: false

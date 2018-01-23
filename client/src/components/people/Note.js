@@ -4,6 +4,7 @@ import { Grid, Message, Header, Divider, Button, Form,
          Icon, Image, Card } from 'semantic-ui-react'
 import { editNote, deleteNote} from '../../actions/notes'
 import { isAdmin, isStudent } from '../../utils/permissions'
+import { PageSubTitle } from '../../styles/styledComponents';
 
 
 class Note extends React.Component {
@@ -50,9 +51,9 @@ class Note extends React.Component {
               {isAdmin(permission) && this.renderDeleteButton(id)}
               {user.id === sender_id && this.renderEditButton(id)}
               <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={image} />
-                <Header as='h4'>
+                <PageSubTitle>
                  {fullName}
-                </Header>
+                </PageSubTitle>
               <Card.Header as='h3'>{title}</Card.Header>
               <Divider fitted />
               <Card.Description>
@@ -108,9 +109,9 @@ class Note extends React.Component {
             Cancel
           </Button>
           <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={user.image} /> { }
-            <Header as='h4'>
+            <PageSubTitle>
              {`${user.first_name} ${user.last_name}`}
-            </Header>
+            </PageSubTitle>
           <Card.Header as='h3'>
             <Form.Input
               autoFocus

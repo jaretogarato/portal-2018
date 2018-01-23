@@ -6,7 +6,6 @@ import {
   Button,
   Divider,
   Grid,
-  Header,
   Image,
   Segment,
   Dropdown,

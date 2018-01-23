@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Header, Button, Segment, List, Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Segment, List, Dimmer, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAssignment } from '../../actions/assignment';
 import EditAssignment from './EditAssignment';
 import axios from 'axios';
+import { PageTitle } from '../../styles/styledComponents';
 
 
 class Assignment extends Component {
@@ -66,7 +67,7 @@ class Assignment extends Component {
     } else {
       return (
         <Segment clearing >
-          <Header as='h2'>{title}</Header>
+          <PageTitle>{title}</PageTitle>
           { user.is_admin &&
             [
               <Link to={'./'} >

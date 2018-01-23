@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Segment, Form, Button, Header, Divider } from 'semantic-ui-react';
+import { Segment, Form, Button, Divider } from 'semantic-ui-react';
 import { addAssignment } from '../../actions/assignments';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { PageTitle } from '../../styles/styledComponents';
 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: 'No Submission' },
@@ -61,9 +62,9 @@ class CreateAssignment extends Component {
 
     return (
       <Segment basic>
-        <Header as="h2" style={ styles.pageTitle }>
+        <PageTitle style={ styles.pageTitle }>
           Create Assignment
-        </Header>
+        </PageTitle>
         <Form onSubmit={ this.handleSubmit } style={ styles.form }>
           <Form.Group widths='equal'>
             <Form.Input
@@ -134,7 +135,7 @@ class CreateAssignment extends Component {
           <Form.Group>
             <Button basic type='submit'>Create</Button> 
             <Link to={'./assignments'}>
-              <Button onClick={ this.props.history.goBack }>Cancel</Button>
+              <Button basic onClick={ this.props.history.goBack }>Cancel</Button>
             </Link>
           </Form.Group>
         </Form>

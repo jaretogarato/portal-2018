@@ -114,6 +114,7 @@ const styles = {
   },
   navText: {
     color: '#fff',
+    paddingBottom: '1.178rem',
   },
   navbarPrimary: {
     background: 'linear-gradient(#9575CD, #614d7b)',

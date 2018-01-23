@@ -16,6 +16,7 @@ import {
   Dropdown
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { PageSubTitle } from '../../styles/styledComponents';
 
 const options = [
   { key: 1, text: 'Add Content', value: 1 },
@@ -101,48 +102,50 @@ class Section extends React.Component {
 
   render() {
     const { subSections, user: { is_admin }, title } = this.props
-    if(subSections) {
-      return(
-        <div>
-          <h3>{title}</h3>
-          { subSections.map( ss => {
-            let content = this.mapContents(ss.id)
-            return <Accordion key={ss.id} content={content} fluid styled>
-              { is_admin && 
-                <Button.Group floated="right" style={{marginRight: '15%'}}>
-                  <Menu text compact onChange={ this.handleChange } name='activeType'>
-                    <Dropdown 
-                      text='Settings' 
-                      options={options} 
-                      simple 
-                      item 
-                      onClick={ ()=> this.selectSection(content, ss)}
-                      />
-                  </Menu>
-                </Button.Group>
-              }
-              <Accordion.Title 
-                active={this.state.activeIndexes === ss.id} 
-                index={ss.id} 
-                onClick={this.handleSubClick}
-              >
-                <Icon name='dropdown' />
-                { ss.title }
-              </Accordion.Title>
-              <Accordion.Content active={this.checkActiveIndex(ss.id)}>
-                { content.length ? this.displayItems(content) : "No Content" }
-              </Accordion.Content>
-            </Accordion>
-          })}
-        </div>
-      )
-    } else {
-      return(
-        <Dimmer active inverted style={styles.dimmer}>
-          <Loader inverted size='medium'>Loading subsections</Loader>
-        </Dimmer>
-      )
-    }
+    if(subSections.length > 0) {
+    return(
+      <div>
+          <PageSubTitle>{title}</PageSubTitle>
+          { subSections.map( ss => {        let content = this.mapContents(ss.id)
+        return <Accordion key={ss.id} content={this.mapContents(ss.id)} fluid styled style={styles.corner}>
+          <Accordion.Title 
+            active={this.state.activeIndexes === ss.id} 
+            index={ss.id} 
+            onClick={this.handleSubClick}
+          >
+            <Icon name='dropdown' />
+            { ss.title }
+          { this.props.user.is_admin && 
+            <span>
+            <Menu>
+              <Dropdown text='settings' options={options} simple item />
+              
+            </Menu>
+              <AddCourseContent content={content} subSectionId={ss.id} />
+              <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
+              <Icon 
+                link
+                float='right'
+                size='large'
+                name='delete' 
+                onClick={ () => this.deleteSubClick(ss)}>
+             </Icon>
+            </span>
+          }
+          </Accordion.Title>
+          <Accordion.Content active={this.checkActiveIndex(ss.id)}>
+            { content.length ? this.displayItems(content) : "No Content" }
+          </Accordion.Content>
+        </Accordion>
+      })}
+      </div>
+    )
+  } else {
+    return(
+      <Dimmer active inverted style={styles.dimmer}>
+        <Loader inverted size='medium'>Loading subsections</Loader>
+      </Dimmer>
+    ) }
   }
 }
 

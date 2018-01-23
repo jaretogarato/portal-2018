@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
+import { Form, Button, Container, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { editLecture, getLecture } from '../../actions/lectures';
 import { connect } from 'react-redux';
+import { PageTitle } from '../../styles/styledComponents';
 
 
 const submissionOptions = [
@@ -33,7 +34,7 @@ class EditLecture extends Component {
       const { title, content } = this.props.lecture
       return(
         <Container>
-          <Header as="h2" style={styles.pageTitle}>Update Lecture</Header>
+          <PageTitle>Update Lecture</PageTitle>
             <Form onSubmit={this.handleSubmit} style={styles.form}>
               <Form.Group widths='equal'>
                 <Form.Input
@@ -74,9 +75,6 @@ class EditLecture extends Component {
   
   const styles = {
     form: {
-      paddingTop: '2%',
-    },
-    pageTitle: {
       paddingTop: '2%',
     },
     textArea: {

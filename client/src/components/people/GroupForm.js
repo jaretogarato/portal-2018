@@ -8,10 +8,10 @@ import { updateSection } from '../../actions/sections';
 import {
   Button,
   Checkbox,
-  Header,
   List,
   Segment,
 } from 'semantic-ui-react';
+import { PageTitle } from '../../styles/styledComponents';
 
 class GroupForm extends React.Component {
   state = { sectionsLoaded: false };
@@ -64,7 +64,7 @@ class GroupForm extends React.Component {
   render() {
     return (
       <Segment basic>
-        <Header>Select sections:</Header>
+        <PageTitle>Select sections:</PageTitle>
         <List divided>
           { this.displaySections() }
         </List>

@@ -11,12 +11,12 @@ import {
   Divider,
   Form,
   Grid,
-  Header,
   Image,
   Input,
   Loader,
   Segment
 } from 'semantic-ui-react';
+import { PageTitle, PageSubTitle, BoldText } from '../../styles/styledComponents';
 
 class UserEditForm extends React.Component {
   state = {
@@ -61,7 +61,7 @@ class UserEditForm extends React.Component {
     return(
       <Form onSubmit={this.handleSubmit}>
         <Segment basic>
-          <Header as='h2'>Edit Profile</Header>
+          <PageTitle>Edit Profile</PageTitle>
         </Segment>
         <Divider />
         <Grid columns={3} divided>
@@ -78,11 +78,11 @@ class UserEditForm extends React.Component {
                         <Image src={`${user.avatar_url}`} /> :
                         <Image src={`${defaultAvatar}`} />
                       }
-                      <Header as='h4'
+                      <BoldText
                         style={{textAlign: 'center'}}
                       >
                         Click to update profile picture!
-                      </Header>
+                      </BoldText>
                     </Segment>
                   </Dropzone>
                 }
@@ -90,7 +90,7 @@ class UserEditForm extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <Header as='h3'>Bio</Header>
+                <PageSubTitle>Bio</PageSubTitle>
                 <Divider />
                   <Form.TextArea
                     name='bio'
@@ -101,7 +101,7 @@ class UserEditForm extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <Header as='h4'>Email Address: </Header>
+                <BoldText>Email Address: </BoldText>
                 <Divider />
                 <Input
                   required
@@ -112,7 +112,7 @@ class UserEditForm extends React.Component {
                 />
               </Segment>
               <Segment>
-                <Header as='h4'>Nickname</Header>
+                <BoldText>Nickname</BoldText>
                 <Divider />
                 <Input
                   name='nickname'

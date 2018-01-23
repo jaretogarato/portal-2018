@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  Header,
   Item,
   Segment,
 } from 'semantic-ui-react';
+import { PageSubTitle } from '../../styles/styledComponents';
+
 
 class GroupMember extends React.Component {
   state = { active: false }
@@ -25,9 +26,9 @@ class GroupMember extends React.Component {
   displayTA = (member) => {
     return (
       <Segment>
-        <Header as='h3'>
+        <PageSubTitle>
           <strong>TA: {member.first_name} {member.last_name}</strong>
-        </Header>
+        </PageSubTitle>
         { member.email }
       </Segment>
     );

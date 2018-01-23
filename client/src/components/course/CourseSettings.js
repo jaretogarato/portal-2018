@@ -1,11 +1,12 @@
 import React from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
+import { PageTitle } from '../../styles/styledComponents';
 
 class CourseSettings extends React.Component {
   render() {
     return(
       <Segment basic>
-        <Header as='h2'>Course Settings</Header>
+        <PageTitle>Course Settings</PageTitle>
       </Segment>
     )
   }

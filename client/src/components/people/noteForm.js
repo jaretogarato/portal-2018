@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Message, Header, Divider, Button, Form, Segment,
+import { Message, Divider, Button, Form, Segment,
         Image, Card } from 'semantic-ui-react'
 import { addNote } from '../../actions/notes'
+import { PageSubTitle } from '../../styles/styledComponents';
 
 class NoteForm extends React.Component {
   state = { title: '', content: '', visible: false, noteTime:false }
@@ -44,9 +45,9 @@ class NoteForm extends React.Component {
             Submit
           </Button>
           <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={user.image} /> { }
-            <Header as='h4'>
+            <PageSubTitle>
              {`${user.first_name} ${user.last_name}`}
-            </Header>
+            </PageSubTitle>
           <Card.Header as='h3'>
             <Form.Input
               autoFocus

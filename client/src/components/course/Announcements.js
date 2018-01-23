@@ -1,12 +1,13 @@
 import React from 'react';
 import DisplayAnnouncements from './DisplayAnnouncements';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
+import { PageTitle } from '../../styles/styledComponents';
 
 class Announcements extends React.Component {
   render() {
     return(
       <Segment basic>
-        <Header as='h2'>Announcement</Header>
+        <PageTitle>Announcement</PageTitle>
         <Button basic>Add Announcement</Button>
         <DisplayAnnouncements />
       </Segment>

@@ -9,7 +9,6 @@ import {
   Card,
   Divider,
   Grid,
-  Header,
   Segment,
   Image,
   Button,
@@ -21,6 +20,7 @@ import Badge from './Badge';
 import NoteForm from './noteForm';
 import NoteList from './NoteList';
 import { isStudent } from '../../utils/permissions'
+import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
 
 class PeopleProfile extends React.Component {
   state = { user: {}, showForm: false, badges: [], options: [], reRender: false }
@@ -139,8 +139,8 @@ class PeopleProfile extends React.Component {
               />
             </Grid.Column>
             <Grid.Column width={11}>
-              <Header as='h2'>{fullName}</Header>
-              <Header as='h3'>{user.email}</Header>
+              <PageTitle>{fullName}</PageTitle>
+              <PageSubTitle>{user.email}</PageSubTitle>
               <Divider />
               { currentUser.is_admin &&
                 <Form onSubmit={this.handleSubmit}>
@@ -175,7 +175,7 @@ class PeopleProfile extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Header as='h3'>Bio</Header>
+              <PageSubTitle>Bio</PageSubTitle>
               <Divider />
               {user.bio}
             </Grid.Column>

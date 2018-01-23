@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { PageTitle } from '../../styles/styledComponents';
+import { PageSubTitle } from '../../../styles/styledComponents';
 
 class StudentAssignment extends Component {
   render() {
     return (
-      <h2>Student Assigments</h2>
+      <PageTitle>Student Assigments</PageTitle>
     )
   }
 }

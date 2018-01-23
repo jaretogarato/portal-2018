@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
+import { Segment, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { connect } from 'react-redux';
@@ -30,25 +30,22 @@ class Assignments extends Component {
     const { id } = this.props.match.params
     return (
       <Segment basic>
-        <PageTitle>All Assignments</PageTitle>
+        <PageTitle style={{ textAlign: 'left'}}>All Assignments</PageTitle>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
-            </Grid.Column>
-            <Grid.Column width={2}>
               <Link to={`/courses/${id}/assignments/create`}>
                 <Button
                   basic
                   icon
-                  labelPosition='left'>
+                  labelPosition='left'
+                  floated='right'>
                   <Icon name='add' />
                   Assignment
                 </Button>
               </Link>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column>
+              <br />
+              <br />
               <Table basic='very' striped singleLine>
                 <Table.Header>
                   <Table.Row>

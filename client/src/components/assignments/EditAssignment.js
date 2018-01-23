@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Segment, Form, Button, Header, Divider } from 'semantic-ui-react';
+import { Segment, Form, Button, Divider } from 'semantic-ui-react';
 import { updateAssignment, getAssignment } from '../../actions/assignment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { PageTitle } from '../../styles/styledComponents';
 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: 'No Submission' },
@@ -98,9 +99,9 @@ class EditAssignment extends Component {
     } = this.props.currentAssignment
     return (
       <Segment basic>
-        <Header as="h2" style={styles.pageTitle}>
+        <PageTitle style={styles.pageTitle}>
           Edit Assignment
-        </Header>
+        </PageTitle>
         <Form onSubmit={this.handleSubmit} style={styles.form}>
           <Form.Group widths='equal'>
             <Form.Input

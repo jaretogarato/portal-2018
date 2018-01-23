@@ -1,8 +1,9 @@
 import React from 'react'
 import moment from 'moment'
-import { Button, Container, Grid, Header, Loader, Dimmer } from 'semantic-ui-react'
+import { Button, Container, Grid, Loader, Dimmer } from 'semantic-ui-react'
 import { getDate, updateDate } from '../../actions/currentDate'
 import { connect } from 'react-redux'
+import { PageSubTitle } from '../../styles/styledComponents';
 
 class DatePicker extends React.Component {
   state = { loaded: false }
@@ -37,14 +38,14 @@ class DatePicker extends React.Component {
         <Grid stackable columns='equal'>
           <Grid.Row stretched>
               <Grid.Column>
-                <Header as='h3'>
+                <PageSubTitle>
                 {`${course.course_type} ${course.term} ${course.year}`}
-                </Header>
+                </PageSubTitle>
               </Grid.Column>
               <Grid.Column>
-                <Header as='h3' textAlign="right">
+                <PageSubTitle style={{textAlign: "right"}}>
                   { currentDate }
-                </Header>
+                </PageSubTitle>
                   <Container textAlign='right'>
                     <Button.Group>
                       <Button

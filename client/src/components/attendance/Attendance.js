@@ -4,7 +4,8 @@ import StudentRecord from './StudentRecord';
 import { connect } from 'react-redux';
 import { getUsersByCourse, markAllPresent } from '../../actions/users';
 import { addAttendance, getAttendance } from '../../actions/attendance';
-import { Button, Container, Header, Icon, Segment } from 'semantic-ui-react';
+import { Button, Container, Icon, Segment } from 'semantic-ui-react';
+import { PageTitle } from '../../styles/styledComponents';
 
 class Attendance extends React.Component {
   state = { submitted: false }
@@ -70,7 +71,7 @@ class Attendance extends React.Component {
     let { submitted } = this.state
     return(
       <Container>
-        <Header as='h1' textAlign='center'>Attendance</Header>
+        <PageTitle style={{textAlign: 'center'}}>Attendance</PageTitle>
         <DatePicker courseId={this.props.match.params.id}/>
         <span>
           <Icon

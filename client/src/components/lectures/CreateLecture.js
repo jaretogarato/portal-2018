@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button, Header, Segment, Divider } from 'semantic-ui-react';
+import { Form, Button, Segment, Divider } from 'semantic-ui-react';
 import { addLecture } from '../../actions/lectures';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { PageTitle } from '../../styles/styledComponents';
 
 const submissionOptions = [
   { key: '1', text: 'PLACEHOLDER', value: '1' },
@@ -25,7 +26,7 @@ class CreateLecture extends Component {
     const { title, content } = this.state
     return(
       <Segment basic>
-        <Header as='h2' style={styles.pageTitle}>Create Lecture</Header>
+        <PageTitle>Create Lecture</PageTitle>
         <Segment> 
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
@@ -73,9 +74,6 @@ class CreateLecture extends Component {
 
 const styles = {
   form: {
-    paddingTop: '2%',
-  },
-  pageTitle: {
     paddingTop: '2%',
   },
   textArea: {

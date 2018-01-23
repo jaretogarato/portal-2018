@@ -1,4 +1,5 @@
 import React from 'react';
+import { PageTitle, BoldText } from '../../styles/styledComponents';
 import AnnouncementForm from './AnnouncementForm';
 import { connect } from 'react-redux';
 import { Button, Header, Segment } from 'semantic-ui-react';
@@ -23,8 +24,8 @@ class Announcement extends React.Component {
     } else {
       return(
         <Segment fluid>
-          <Header as='h2'>{title}</Header>
-          <Header as='h5'>{body}</Header>
+          <PageTitle>{title}</PageTitle>
+          <BoldText>{body}</BoldText>
           <Button basic onClick={this.toggleEdit}>Edit</Button>
           <Button basic onClick={this.handleDelete}>Delete</Button>
         </Segment>

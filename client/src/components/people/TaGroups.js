@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   Grid,
-  Header,
   Item,
   Segment,
 } from 'semantic-ui-react';
+import { PageSubTitle } from '../../styles/styledComponents';
 
 const TaGroups = ({ course, groups, sections, user }) => {
 
@@ -41,7 +41,7 @@ const TaGroups = ({ course, groups, sections, user }) => {
           centered
           key={i}
         >
-          <Header as='h3'>Week {sectionCount}</Header>
+          <PageSubTitle>Week {sectionCount}</PageSubTitle>
           { displayGroupMembers(group) }
         </Grid>
       );

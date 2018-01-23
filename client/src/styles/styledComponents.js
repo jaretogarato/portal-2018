@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import portalStyle from './portalStyle.js';
 
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 376,
-}
+// const sizes = {
+//   desktop: 992,
+//   tablet: 768,
+//   phone: 376,
+// }
 
 // Iterate through the sizes and create a media template
 // const media = Object.keys(sizes).reduce((acc, label) => {
@@ -31,13 +31,6 @@ export const PortalButton = styled.button`
   color: ${props => props.default && portalStyle.buttonNeutralColor};
 `;
 
-export const PageTitle = styled.h1`
-  color: black;
-  padding-top: 2%;
-  font-size: 3em;
-  text-decoration: underline;
-`;
-
 //
 // const theme = {
 //   portalButton: {
@@ -47,3 +40,27 @@ export const PageTitle = styled.h1`
 //     neutral: portalStyle.buttonNoColor,
 //   },
 // };
+
+export const PageTitle = styled.h1`
+  color: black;
+  padding-top: 2%;
+  font-size: 1.5em;
+`;
+
+export const PageSubTitle = styled.h2`
+  color: black;
+  padding-top: 2%;
+  font-size: 1.17em;
+`;
+
+export const BoldText = styled.h3`
+  color: black;
+  padding-top: 2%;
+  font-size: 0.83em;
+`;
+
+// export const PlainText = styled.h5`
+//   color: black;
+//   padding-top: 2%;
+//   font-size: 0.83em;
+// `;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Button, Grid, Header, Segment } from 'semantic-ui-react';
 
 
-
 // ------------ v1 ---------------
 export const HeroHeader = styled.div`
   background-image: url(${ props => props.bgImage}) !important;

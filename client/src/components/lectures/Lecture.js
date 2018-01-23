@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Header, Button, Segment, List } from 'semantic-ui-react';
+import { Button, Segment, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { getLecture, deleteLecture } from '../../actions/lectures';
 import EditLecture from './EditLecture';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { PageTitle } from '../../styles/styledComponents';
+import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
 
 class Lecture extends Component {
   state = { edit: false };
@@ -51,14 +51,13 @@ class Lecture extends Component {
           <Button basic  floated='right' onClick={this.toggleEdit}>Edit</Button>
         ]
       }
-        <Header as='h1' className="page_title">{title}</Header>
         <PageTitle>{title}</PageTitle>
         <List>
           <List.Item>
-            <Header as='h3' style={ styles.listItemHeader }>Description:</Header> {content}
+            <PageSubTitle style={ styles.listItemHeader }>Description:</PageSubTitle> {content}
           </List.Item>
           <List.Item>
-            <Header as='h3' style={ styles.listItemHeader }>Created:</Header> {created}
+            <PageSubTitle style={ styles.listItemHeader }>Created:</PageSubTitle> {created}
           </List.Item>
         </List>
       </Segment>

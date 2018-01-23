@@ -1,9 +1,10 @@
 import React from 'react'
-import { Header, Segment } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
+import { PageSubTitle } from '../../styles/styledComponents';
 
 const RightTab = () => (
   <Segment>
-    <Header as='h3'>Assignment Status:</Header>
+    <PageSubTitle>Assignment Status:</PageSubTitle>
     <Segment>Turned in!</Segment>
   </Segment>
 )

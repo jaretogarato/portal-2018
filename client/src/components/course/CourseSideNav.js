@@ -62,6 +62,7 @@ const styles = {
     border: '0px',
     boxShadow: '0px',
     borderRadius: '0px',
+    fontSize:'1.1em'
   },
 
 }
