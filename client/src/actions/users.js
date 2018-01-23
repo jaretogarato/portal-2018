@@ -12,6 +12,10 @@ export const markAllPresent = () => {
   return({ type: 'MARK_ALL_PRESENT', status: 'present' })
 }
 
+export const clearAllStatuses = () => {
+  return({ type: 'CLEAR_ALL_STATUSES' })
+}
+
 export const getUsersByCourse = (courseId, callback = () => {}) => {
   return(dispatch) => {
     axios.get(`/api/course/${courseId}/users`)

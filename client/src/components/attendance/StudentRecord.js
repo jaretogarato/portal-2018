@@ -8,6 +8,16 @@ import { Container,
 } from 'semantic-ui-react';
 
 class StudentRecord extends React.Component {
+  state = { status: '' }
+
+  componentWillMount() {
+    this.setState({ status: this.props.status })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.status !== this.state.status)
+      this.setState({ status: nextProps.status })
+  }
 
   handleStatusChange = (recordStatus) => {
     this.setState( (state, props) => {
@@ -22,7 +32,8 @@ class StudentRecord extends React.Component {
   }
 
   displayIcon = () => {
-    const { status } = this.props
+    const { status } = this.state
+    const { submitted } = this.props
     return(
       <Form style={styles.row}>
         <Form.Field style={styles.noMargin}>
@@ -31,7 +42,7 @@ class StudentRecord extends React.Component {
             size='big'
             color='green'
             disabled={ status !== 'present' }
-            onClick={ () => this.handleClick('present', status !== 'present') }
+            onClick={ submitted ? () => {} : () => this.handleClick('present', status !== 'present') }
             style={styles.pointer}
           />
         </Form.Field>
@@ -41,7 +52,7 @@ class StudentRecord extends React.Component {
             size='big'
             color='red'
             disabled={ status !== 'absent' }
-            onClick={ () => this.handleClick('absent', status !== 'absent') }
+            onClick={ submitted ? () => {} : () => this.handleClick('absent', status !== 'absent') }
             style={styles.pointer}
           />
         </Form.Field>
@@ -51,7 +62,7 @@ class StudentRecord extends React.Component {
             size='big'
             color='orange'
             disabled={ status !== 'tardy' }
-            onClick={ () => this.handleClick('tardy', status !== 'tardy') }
+            onClick={ submitted ? () => {} : () => this.handleClick('tardy', status !== 'tardy') }
             style={styles.pointer}
           />
         </Form.Field>
@@ -61,7 +72,7 @@ class StudentRecord extends React.Component {
             size='big'
             color='blue'
             disabled={ status !== 'excused' }
-            onClick={ () => this.handleClick('excused', status !== 'excused') }
+            onClick={ submitted ? () => {} : () => this.handleClick('excused', status !== 'excused') }
             style={styles.pointer}
           />
         </Form.Field>
@@ -86,6 +97,7 @@ class StudentRecord extends React.Component {
                 { last_name }, { first_name }
                 { this.displayIcon() }
               </Item.Header>
+              <span style={styles.status}>{this.state.status}</span>
             </Item.Content>
           </Item>
         </Item.Group>
@@ -96,7 +108,7 @@ class StudentRecord extends React.Component {
 
 const styles = {
   userSection: {
-    width: '35%',
+    width: '50%',
     marginBottom: '8px',
   },
   recordImage: {
@@ -116,11 +128,15 @@ const styles = {
   },
   pointer: {
     cursor: 'pointer',
-  }
+  },
+  status: {
+    fontWeight: 'normal',
+    color: 'purple',
+  },
 }
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.user }
+  return { currentUser: state.user, users: state.users }
 }
 
 export default connect(mapStateToProps)(StudentRecord);

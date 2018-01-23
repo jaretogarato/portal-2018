@@ -14,6 +14,10 @@ const users = (state = [], action) => {
       return state.map ( u => {
         return { ...u, status: action.status }
       })
+    case 'CLEAR_ALL_STATUSES':
+      return state.map (u => {
+        return { ...u, status: '' }
+      })
     case 'GET_USERS_BY_COURSE':
       return action.usersByCourse;
     default:

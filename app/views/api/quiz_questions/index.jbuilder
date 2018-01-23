@@ -1,4 +1,4 @@
-json.array @quiz_questions do |quiz_question|
+json.array! @quiz_questions do |quiz_question|
   json.id quiz_question.id
   json.question quiz_question.question
   json.multiple_choice quiz_question.multiple_choice
