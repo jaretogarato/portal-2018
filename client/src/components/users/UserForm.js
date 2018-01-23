@@ -6,7 +6,7 @@ import { Button, Form, Select, Grid, Container  } from 'semantic-ui-react';
 import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
 
 class UserForm extends React.Component {
-  defaultState = { firstName: '', lastName: '', email: '', role: '', image: '' }
+  defaultState = { firstName: '', lastName: '', email: '', role: 'student', image: '' }
   state = {...this.defaultState};
 
   handleSubmit = () => {
@@ -41,7 +41,7 @@ class UserForm extends React.Component {
   }
 
   render() {
-    const { email, firstName, lastName } = this.state;
+    const { email, firstName, lastName, role } = this.state;
     return (
       <Segment basic>
         <br />
@@ -74,7 +74,11 @@ class UserForm extends React.Component {
             <Grid columns={4} >
               <Grid.Row>
               <Grid.Column>
-                  <Select options={this.roles()} defaultValue="Student" />
+                <Select 
+                  options={this.roles()} 
+                  value={role} 
+                  onChange={ (e,{value}) => this.setState({ role: value }) }
+                />
               </Grid.Column>
               <Grid.Column>
                   <Button basic type='submit'>Submit</Button>

@@ -25,10 +25,14 @@ class PeopleHome extends React.Component {
   }
 
   normalizeText = (role) => {
-    if (role === 'ta')
-      return 'TA'
-    else
-      return `${role[0].toUpperCase()}${role.substring(1)}`
+    if (role) {
+      if (role === 'ta')
+        return 'TA'
+      else
+        return `${role[0].toUpperCase()}${role.substring(1)}`
+    } else {
+      return null
+    }
   }
 
 
