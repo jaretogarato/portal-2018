@@ -11,6 +11,7 @@ class Announcements extends React.Component {
 
   render() {
     const { showForm } = this.state;
+    const { course } = this.props;
     return(
       <Segment basic>
         <Header as='h2'>Announcements</Header>
@@ -19,7 +20,7 @@ class Announcements extends React.Component {
             {showForm ? 'Close Form' : 'Add Announcement'}
           </Button> 
         }
-          { showForm ? <AnnouncementForm toggleForm={this.toggleForm} /> : null }
+          { showForm && <AnnouncementForm toggleForm={this.toggleForm} /> }
         <DisplayAnnouncements />
       </Segment>
     )
@@ -27,7 +28,10 @@ class Announcements extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user }
+  return { 
+    user: state.user,
+    course: state.course,
+  }
 }
 
 export default connect(mapStateToProps)(Announcements);

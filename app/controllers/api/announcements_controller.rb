@@ -1,4 +1,5 @@
 class Api::AnnouncementsController < ApplicationController
+  before_action :set_announcement, only: [:update, :destroy]
   before_action :set_course
 
   def index
@@ -14,9 +15,20 @@ class Api::AnnouncementsController < ApplicationController
     end
   end
 
+  def update
+  end
+
+  def destroy 
+    @announcement.destroy
+  end
+
   private 
     def announcement_params
       params.require(:announcement).permit(:title, :body)
+    end
+
+    def set_announcement
+      @announcement = Announcement.find(params[:id])
     end
 
     def set_course

@@ -19,11 +19,26 @@ export const addAnnouncement = (courseId, announcement) => {
     axios.post(`/api/courses/${courseId}/announcements`, announcement)
       .then( res => {
         const { data, headers } = res;
-        dispatch({ type: 'ADD_ANNOUNCEMENT', announcement })
+        dispatch({ type: 'ADD_ANNOUNCEMENT', announcement: res.data, headers })
       })
       .catch( res => {
         dispatch(setFlash('Failed to add announcement. Please try again!', 'red'));
         dispatch({ type: 'SET_HEADERS', headers: res.headers });
+      })
+  }
+}
+
+export const deleteAnnouncement = (courseId, id) => {
+  return(dispatch) => {
+    axios.delete(`/api/courses/${courseId}/announcements/${id}`)
+      .then( res => {
+        const { headers } = res;
+        dispatch({ type: 'DELETE_ANNOUNCEMENT', id, headers })
+      })
+      .catch( res => {
+        const { headers } = res;
+        dispatch({ type: 'SET_HEADERS', headers })
+        dispatch(setFlash('Failed to delete announcement.', 'red'))
       })
   }
 }

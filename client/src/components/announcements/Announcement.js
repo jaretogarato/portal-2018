@@ -1,16 +1,43 @@
 import React from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import AnnouncementForm from './AnnouncementForm';
+import { connect } from 'react-redux';
+import { Button, Header, Segment } from 'semantic-ui-react';
+import { deleteAnnouncement } from '../../actions/announcements';
 
 class Announcement extends React.Component {
+  state = { editing: false };
+
+  toggleEdit = () => this.setState({editing: !this.state.editing});
+
+  handleDelete = () => {
+    const { announcement, course, dispatch } = this.props;
+    if (window.confirm("Are You Sure?"))
+      dispatch(deleteAnnouncement(course.id, announcement.id));
+  }
+
   render() {
     const { announcement: { title, body } } = this.props;
-    return(
-      <Segment fluid>
-        <Header as='h2'>{title}</Header>
-        <Header as='h5'>{body}</Header>
-      </Segment>
-    )
+    const { editing } = this.state;
+    if(editing) {
+      return <AnnouncementForm announcement={this.props.announcement} toggleEdit={this.toggleEdit} editing/>
+    } else {
+      return(
+        <Segment fluid>
+          <Header as='h2'>{title}</Header>
+          <Header as='h5'>{body}</Header>
+          <Button basic onClick={this.toggleEdit}>Edit</Button>
+          <Button basic onClick={this.handleDelete}>Delete</Button>
+        </Segment>
+      )
+    }
   }
 }
 
-export default Announcement;
+const mapStateToProps = (state) => {
+  return {
+    course: state.course,
+    announcements: state.announcements,
+  }
+}
+
+export default connect(mapStateToProps)(Announcement);

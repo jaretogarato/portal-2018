@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react';
+import { Form, Segment } from 'semantic-ui-react';
 import { addAnnouncement } from '../../actions/announcements';
-import { withRouter } from 'react-router-dom';
 
 class AnnouncementForm extends React.Component {
   state = { title: '', body: '' };
-
+  
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = (e) => {
@@ -18,7 +17,9 @@ class AnnouncementForm extends React.Component {
   }
 
   render() {
+    const { course, toggleEdit, editing } = this.props;
     return(
+      <Segment>
       <Form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
           <Form.Field>
@@ -29,9 +30,11 @@ class AnnouncementForm extends React.Component {
             <label>Body</label>
             <Form.TextArea name='body' placeholder='Body' onChange={this.handleChange} />
           </Form.Field>
-          <Form.Button basic>Submit</Form.Button>
+          <Form.Button basic type='submit'>Submit</Form.Button>
+          { editing && <Form.Button basic onClick={toggleEdit}>Cancel</Form.Button> }
         </Form.Group>
       </Form>
+      </Segment>
     )
   }
 }
@@ -42,4 +45,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(withRouter(AnnouncementForm));
+export default connect(mapStateToProps)(AnnouncementForm);

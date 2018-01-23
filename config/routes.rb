@@ -13,6 +13,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     resources :course_contents, only: [:index, :create, :destroy]
 
     resources :courses do
+      resources :announcements
       resources :sections
       resources :attendances, only: [:index, :create]
     end
@@ -53,8 +54,11 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
 
     post 'avatars', to: 'avatars#create'
 
-    get '/courses/:course_id/announcements', to: 'announcements#index'
-    post '/courses/:course_id/announcements', to: 'announcements#create'
+    # --- Announcements ---
+    # get '/courses/:course_id/announcements', to: 'announcements#index'
+    # post '/courses/:course_id/announcements', to: 'announcements#create'
+    
+    
 
   end
 
