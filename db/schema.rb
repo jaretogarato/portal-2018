@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122201725) do
+ActiveRecord::Schema.define(version: 20180123231353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 20180122201725) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "course_announcements", force: :cascade do |t|
+    t.bigint "course_id"
+    t.bigint "announcement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["announcement_id"], name: "index_course_announcements_on_announcement_id"
+    t.index ["course_id"], name: "index_course_announcements_on_course_id"
   end
 
   create_table "course_contents", force: :cascade do |t|
@@ -250,11 +259,22 @@ ActiveRecord::Schema.define(version: 20180122201725) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "wiki_docs", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.text "content", default: "", null: false
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_wiki_docs_on_course_id"
+  end
+
   add_foreign_key "announcements", "courses"
   add_foreign_key "assignments", "sub_sections"
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "users"
   add_foreign_key "avatars", "users"
+  add_foreign_key "course_announcements", "announcements"
+  add_foreign_key "course_announcements", "courses"
   add_foreign_key "course_contents", "assignments"
   add_foreign_key "course_contents", "lectures"
   add_foreign_key "course_contents", "quizzes"
@@ -270,4 +290,5 @@ ActiveRecord::Schema.define(version: 20180122201725) do
   add_foreign_key "ta_groups", "sections"
   add_foreign_key "user_badges", "badges"
   add_foreign_key "user_badges", "users"
+  add_foreign_key "wiki_docs", "courses"
 end

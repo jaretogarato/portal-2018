@@ -4,7 +4,8 @@ class Course < ApplicationRecord
 	has_many :sections
 	has_many :attendances
 	has_many :announcements
-	
+	has_many :wiki_docs
+
 	validates_presence_of :course_type, :term, :year
 
 	validates_numericality_of :year, :only_integer => true

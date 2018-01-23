@@ -16,6 +16,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :announcements
       resources :sections
       resources :attendances, only: [:index, :create]
+      resources :wiki_docs
     end
 
     resources :sections do
@@ -57,8 +58,8 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
     # --- Announcements ---
     # get '/courses/:course_id/announcements', to: 'announcements#index'
     # post '/courses/:course_id/announcements', to: 'announcements#create'
-    
-    
+
+
 
   end
 
