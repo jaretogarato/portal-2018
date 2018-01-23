@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HomeBody = styled.div`
-  background-image: url(${ props => props.bgImage}) !important;
+  background-image: url(https://monsterdesignstudios.com/wp-content/uploads/2014/09/website-design-slider-background-stockton.jpg) !important;
 	background-position: center center;
 	background-repeat:  no-repeat;
 	background-attachment: fixed;

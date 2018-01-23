@@ -56,7 +56,7 @@ class Section extends React.Component {
   displayItems = (content) => {
     return content.map( (cc, i) => (
       <Segment basic key={i}>
-        <Link to={`/courses/${this.props.course.id}/section/${cc.id}`}>
+        <Link to={`/courses/${this.props.course.id}/${cc.type}/${cc.id}`}>
           <Segment>
             {cc.title}
           </Segment>
@@ -90,6 +90,7 @@ class Section extends React.Component {
     }).map( content => {
       this.props.quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
+<<<<<<< HEAD
           filtered.push(quiz)
       })
       this.props.assignments.map(assignment => {
@@ -99,6 +100,17 @@ class Section extends React.Component {
       this.props.lectures.map(lecture => {
         if(lecture.id === content.lecture_id)
           filtered.push(lecture)
+=======
+          filtered.push({...quiz, contentId: content.id, type: 'quizzes'})
+      })
+      this.props.assignments.map(assignment => {
+        if(assignment.id === content.assignment_id)
+          filtered.push({...assignment, contentId: content.id, type: 'assignments'})
+      })
+      this.props.lectures.map(lecture => {
+        if(lecture.id === content.lecture_id)
+          filtered.push({...lecture, contentId: content.id, type: 'lectures'})
+>>>>>>> updated individual viewing
       })
     })
     return filtered
