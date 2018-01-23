@@ -25,7 +25,7 @@ class Quizzes extends Component {
       return(
         <Table.Row key={quiz.id}>
           <Table.Cell>
-            <Link to={`/courses/${id}/quizzes/${quiz.id}`}> {quiz.title} </Link> 
+            <Link to={`/courses/${id}/quizzes/${quiz.id}`}> {quiz.title} </Link>
           </Table.Cell>
           <Table.Cell>{time}</Table.Cell>
           <Table.Cell>{date}</Table.Cell>
@@ -45,9 +45,9 @@ class Quizzes extends Component {
             </Grid.Column>
             <Grid.Column width={2}>
             <Link to={`/courses/${id}/quizform`}>
-              <Button 
+              <Button
                 basic
-                icon 
+                icon
                 labelPosition='left'>
                 <Icon name='add' />
               Quiz
@@ -57,7 +57,7 @@ class Quizzes extends Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <Table singleLine>
+              <Table basic='very' striped singleLine>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell width={6}> Name </Table.HeaderCell>

@@ -55,7 +55,7 @@ class Lectures extends Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <Table singleLine>
+              <Table basic='very' striped singleLine>
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell width={6}>Name</Table.HeaderCell>

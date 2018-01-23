@@ -67,7 +67,7 @@ class PeopleHome extends React.Component {
         return <AddUsers />
       default:
         return (
-          <Table basic='very' striped>
+          <Table basic='very' striped singleLine>
             <Table.Header style={{backgroundColor: "#614d7b"}}>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
