@@ -6,7 +6,8 @@ import {
   Icon,
   Image,
   Table,
-  Segment
+  Segment,
+  Form,
 } from 'semantic-ui-react';
 import { getUsersByCourse } from '../../actions/users';
 import UserForm from '../users/UserForm';
@@ -15,13 +16,21 @@ import { isStaff } from '../../utils/permissions';
 
 
 class PeopleHome extends React.Component {
-  state = { usersByCourse: [], loaded: false, modalOpen: false, view: 'all' }
+  state = { loaded: false, modalOpen: false, view: 'all', filter: 'all' }
 
   setUsersLoaded = () => this.setState({ loaded: true })
 
   componentDidMount() {
     const { courseId, dispatch } = this.props
     dispatch(getUsersByCourse(courseId, this.setUsersLoaded))
+  }
+
+  setFilter = filter => this.setState({ filter })
+
+  filterView = () => {
+    let { filter } = this.state;
+    let { usersByCourse } = this.props;
+    return filter === 'all' ? usersByCourse : usersByCourse.filter( u => u.role === filter )
   }
 
   normalizeText = (role) => {
@@ -38,7 +47,7 @@ class PeopleHome extends React.Component {
 
   displayUsers = () => {
     const { courseId, usersByCourse } = this.props
-    return usersByCourse.map(user => {
+    return this.filterView().map(user => {
       const fullName = `${user.first_name} ${user.last_name}`
       return(
         <Table.Row key={user.id}>
@@ -60,8 +69,20 @@ class PeopleHome extends React.Component {
     });
   }
 
+  filterOptions = () => {
+    return [
+      'all', 
+      'student', 
+      'ta', 
+      'teacher', 
+      'auditor',
+    ].map( role => { 
+      return { key: role, text: role, value: role }
+    })
+  }
+  
   view = () => {
-    let { view } = this.state;
+    let { view, filter } = this.state;
     let { permissions } = this.props;
     let permitted = isStaff(permissions) ? view : 'default';
     switch (permitted) {
@@ -77,7 +98,14 @@ class PeopleHome extends React.Component {
                 <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
                 <Table.HeaderCell>Nickname</Table.HeaderCell>
-                <Table.HeaderCell>Role</Table.HeaderCell>
+                <Table.HeaderCell>
+                  <Form.Select
+                    label='Role: '
+                    options={this.filterOptions()}
+                    value={filter}
+                    onChange={ (e, {value}) => this.setFilter(value) }
+                  />
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
