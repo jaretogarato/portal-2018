@@ -26,21 +26,21 @@ const options = [
 
 class Section extends React.Component {
   state = { activeIndexes: [], activeType: ''}
-  
+
   selectSection = (content, ss) => {
     debugger
     switch(this.state.activeType) {
       case 'Add Content':
         return <AddCourseContent content={content} subSectionId={ss.id} />
-      case 'Edit Sub Section': 
+      case 'Edit Sub Section':
         return  <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
-      case 'Delete Sub Section': 
-        return  <Button 
+      case 'Delete Sub Section':
+        return  <Button
         basic
         color='red'
         content='X'
         onClick={ () => this.deleteSubClick(ss)}
-      /> 
+      />
       default:
       return null
 
@@ -86,7 +86,7 @@ class Section extends React.Component {
     const { content } = this.props
     const filtered = []
     content.filter( content => {
-      return content.sub_section_id === ssid 
+      return content.sub_section_id === ssid
     }).map( content => {
       this.props.quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
@@ -113,23 +113,23 @@ class Section extends React.Component {
           { subSections.map( ss => {
             let content = this.mapContents(ss.id)
             return <Accordion key={ss.id} content={content} fluid styled>
-              { is_admin && 
+              { is_admin &&
                 <Button.Group floated="right" style={{marginRight: '15%'}}>
                   <Menu text compact onChange={ this.handleChange } name='activeType'
 >
-                    <Dropdown 
-                      text='Settings' 
-                      options={options} 
-                      simple 
-                      item 
+                    <Dropdown
+                      text='Settings'
+                      options={options}
+                      simple
+                      item
                       onClick={ ()=> this.selectSection(content, ss)}
                       />
                   </Menu>
                 </Button.Group>
               }
-              <Accordion.Title 
-                active={this.state.activeIndexes === ss.id} 
-                index={ss.id} 
+              <Accordion.Title
+                active={this.state.activeIndexes === ss.id}
+                index={ss.id}
                 onClick={this.handleSubClick}
               >
                 <Icon name='dropdown' />
@@ -157,6 +157,7 @@ const mapStateToProps = (state) => {
     subSections: state.subSections,
     user: state.user,
     content: state.courseContent,
+    course: state.course,
     quizzes: state.quizzes,
     lectures: state.lectures,
     assignments: state.assignments,

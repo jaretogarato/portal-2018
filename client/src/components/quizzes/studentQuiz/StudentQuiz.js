@@ -14,7 +14,9 @@ class StudentQuiz extends React.Component {
   }
 
   render() {
-    const graded = true
+    // currently don't have a way to tell if a student has taken a quiz yet, so
+    // if you want to see/work on the Graded Quiz page, just change the variable here
+    const graded = false
     if (graded)
       return <GradedQuiz />
     else

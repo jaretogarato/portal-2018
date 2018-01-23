@@ -98,8 +98,8 @@ class Attendance extends React.Component {
         &nbsp;
         <span>
           <Icon
-            name='check circle outline'
-            color='red'
+            name='remove circle outline'
+            color='blue'
           />
           Excused
         </span>
