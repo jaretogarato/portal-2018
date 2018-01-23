@@ -91,13 +91,13 @@ class SectionSelect extends React.Component {
                     {section.title}
                     { is_admin && 
                       <span>
-                        <SectionEditForm />
                         <Icon 
                           name='delete'
                           size='large'
                           link
                           onClick={() => this.deleteButtonClick(section) }>
                         </Icon> 
+                        <SectionEditForm />
                       </span>
                     }
                   </Menu.Item>

@@ -26,7 +26,7 @@ class CourseSideNav extends React.Component {
         key={i}
         to={`/courses/${id}${link === 'Home' ? '' : `/${link.toLowerCase()}`}`}
       >
-        <Menu fluid basic vertical style={styles.sideNav}>
+        <Menu fluid vertical style={styles.sideNav}>
           <Menu.Item
             as='div'
             name={link}

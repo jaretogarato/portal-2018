@@ -86,7 +86,7 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
       )
     } else {
       return(
-        <Segment basic >
+        <Segment basic>
           { showQuestion && this.selectQuestion() }
           { this.questionType() }
           <Button

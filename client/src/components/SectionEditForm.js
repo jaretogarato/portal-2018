@@ -23,7 +23,7 @@ class SectionEditForm extends React.Component {
       <span>
         { this.state.showForm ?
           <Grid>
-            <Grid.Column style={{ maxWidth: 450 }}>
+            <Grid.Column style={{ width: '130%'}}>
               <Segment raised>
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Field>
@@ -36,15 +36,8 @@ class SectionEditForm extends React.Component {
                       autoFocus
                     />
                   </Form.Field>
-                  <Button.Group>
-                    <Icon
-                      onClick={() => { this.setState({ showForm: false }) }}
-                      content="X"
-                      //Prevents console warnings on click
-                      type='button'
-                    />
-                    <Button primary fluid content="Update" />
-                  </Button.Group>
+                    <Button basic size='tiny' content="Update" />
+                    <Button basic size='tiny' content='cancel' />
                 </Form>
               </Segment>
             </Grid.Column>

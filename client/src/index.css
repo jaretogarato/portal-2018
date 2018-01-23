@@ -49,4 +49,8 @@
   margin: 0px;
 }
 
+i.large.icon, i.large.icons {
+  float: right; 
+}
+
 
