@@ -6,8 +6,7 @@ import { Button, Card, Grid } from 'semantic-ui-react';
 
 const CourseCard = ({ course }) => (
 
-  <Grid.Column key={course.id}>
-    <Card style={{ borderRadius: '0px'}}>
+    <Card className="ui centered card" style={{ borderRadius: '0px'}}>
       <Card.Content as={Link} to={`/courses/${course.id}`}>
         <Card.Header>
           {course.course_type}
@@ -30,7 +29,6 @@ const CourseCard = ({ course }) => (
        </div>
       </Card.Content>
     </Card>
-  </Grid.Column>
 
 )
 

@@ -6,7 +6,8 @@ import { getCourses } from '../../actions/courses';
 import {
   Container,
   Grid,
-  Menu
+  Menu,
+  Card,
 } from 'semantic-ui-react';
 import HomeBg from '../../assets/images/home-image-2880w.jpg';
 import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
@@ -54,9 +55,9 @@ class Courses extends React.Component {
         <HomeBody bgImage={ HomeBg }>
           <HomeWrapper style={ styles.scrollable_section }>
             <Container>
-              <Grid stackable columns='3'>
+              <Card.Group stackable columns='3'>
                 { this.renderCourses() }
-              </Grid>
+              </Card.Group>
             </Container>
           </HomeWrapper>
        </HomeBody>
