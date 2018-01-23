@@ -10,7 +10,6 @@ class Assignment extends Component {
   state = { loaded: false, edit: false };
 
   componentDidMount() {
-    console.log(this.props.match.params.id)
     const { id } = this.props.match.params
     this.props.dispatch(getAssignment(id))
     this.checkLoaded()
@@ -116,7 +115,8 @@ class Assignment extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { currentAssignment: state.assignments, user: state.user }
+  console.log(state)
+  return { currentAssignment: state.singleAssignment, user: state.user }
 }
 
 export default connect(mapStateToProps)(Assignment);

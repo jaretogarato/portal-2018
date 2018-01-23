@@ -9,14 +9,14 @@ class Assignments extends Component {
   state = { assignments: [] }
 
   componentDidMount() {
-    this.props.dispatch(getAssignments())
+     this.props.dispatch(getAssignments())
   }
 
   displayAssignments = () => {
     const { id } = this.props.match.params
-    return this.props.assignments.map(assignment => {
+    return this.props.assignments.map( (assignment, i) => {
       return (
-        <Table.Row key={assignment.id}>
+        <Table.Row key={i}>
           <Table.Cell>
             <Link to={`/courses/${id}/assignments/${assignment.id}`}>{assignment.title}</Link>
           </Table.Cell>

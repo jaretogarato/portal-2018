@@ -27,9 +27,10 @@ import permissions from './permissions';
 import groups from './groups';
 import courseContent from './courseContent';
 import assignments from './assignment';
-
+import singleAssignment from './singleAssignment'
 
 const rootReducer = combineReducers({
+  singleAssignment,
   user,
   users,
   flash,

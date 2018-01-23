@@ -170,7 +170,7 @@ class EditAssignment extends Component {
           />
           <Form.Group>
             <Button basic type='submit'>Update</Button>
-            <Link to={'./assignments'}>
+            <Link to={'./'}>
               <Button>Cancel</Button>
             </Link>
           </Form.Group>
@@ -193,7 +193,7 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-  return { currentAssignment: state.assignments }
+  return { currentAssignment: state.singleAssignment }
 }
 
 export default connect(mapStateToProps)(EditAssignment);
