@@ -1,5 +1,7 @@
 import React from 'react';
 import { Segment, Header, Checkbox } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { addResponse, updateResponse, removeResponse } from '../../../actions/quizResponses';
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
@@ -10,10 +12,27 @@ class MultipleAnswer extends React.Component {
     const { responses } = this.state
     if (responses.includes(id)) {
       const newResponses = responses.filter( r => r !== id )
-      this.setState({ responses: newResponses })
+      this.setState({ responses: newResponses }, this.sendResponse)
     } else {
       const newResponses = [...responses, id]
-      this.setState({ responses: newResponses })
+      this.setState({ responses: newResponses }, this.sendResponse)
+    }
+  }
+
+  sendResponse = () => {
+    const { responses, hasResponse } = this.state
+    const { dispatch, question: { id } } = this.props
+    const theResponse = { type: 'multipleAnswer', responses, questionId: id }
+    if (!hasResponse) {
+      dispatch(addResponse(theResponse))
+      this.setState({ hasResponse: true })
+    } else {
+      if (responses.length)
+        dispatch(updateResponse(theResponse))
+      else {
+        dispatch(removeResponse(id))
+        this.setState({ hasResponse: false })
+      }
     }
   }
 
@@ -43,4 +62,4 @@ class MultipleAnswer extends React.Component {
   }
 }
 
-export default MultipleAnswer
+export default connect()(MultipleAnswer)

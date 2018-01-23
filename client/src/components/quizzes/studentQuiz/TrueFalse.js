@@ -1,13 +1,28 @@
 import React from 'react';
 import { Header, Segment, Radio } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { addResponse, updateResponse } from '../../../actions/quizResponses';
 
 class TrueFalse extends React.Component {
-  state = { response: '' }
+  state = { response: '', hasResponse: false }
 
-  handleChange = (_, { value } ) => this.setState({ response: value })
+  handleChange = (_, { id } ) => {
+    this.setState({ response: id }, () => {
+      const { response, hasResponse } = this.state
+      const theResponse = { type: 'multipleChoice', response, questionId: this.props.question.id }
+      if (!hasResponse) {
+        this.props.dispatch(addResponse(theResponse))
+        this.setState({ hasResponse: true })
+      } else {
+        this.props.dispatch(updateResponse(theResponse))
+      }
+    })
+  }
 
   render() {
     const { question } = this.props
+    const id1 = question.options[0].id
+    const id2 = question.options[1].id
     const { response } = this.state
     return(
       <Segment>
@@ -16,16 +31,18 @@ class TrueFalse extends React.Component {
           <Radio
             label='True'
             value='true'
+            id={id1}
             name={`radioGroup${question.id}`}
-            checked={response === 'true'}
+            checked={response === id1}
             onChange={this.handleChange}
           />
           <br />
           <Radio
             label='False'
             value='false'
+            id={id2}
             name={`radioGroup${question.id}`}
-            checked={response === 'false'}
+            checked={response === id2}
             onChange={this.handleChange}
           />
         </Segment>
@@ -34,4 +51,4 @@ class TrueFalse extends React.Component {
   }
 }
 
-export default TrueFalse
+export default connect()(TrueFalse)
