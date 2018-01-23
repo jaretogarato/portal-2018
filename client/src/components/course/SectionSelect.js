@@ -21,7 +21,7 @@ class SectionSelect extends React.Component {
   state = {
     courseLoaded: false,
     sectionsLoaded: false,
-    subSectionsLoaded: false,
+    // subSectionsLoaded: false,
   };
 
   setCourseLoaded = () => this.setState({ courseLoaded: true });
@@ -65,7 +65,6 @@ class SectionSelect extends React.Component {
       dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
     }
   }
-
   
   deleteButtonClick = (section) => {
     if( window.confirm("Are you sure?")) {
@@ -110,7 +109,11 @@ class SectionSelect extends React.Component {
               </Menu>
             </Grid.Column>
             <Grid.Column width={12}>
-              { sectionId && <Section subSections={subSections || null} title={ current ? current.title : "Subsection" } /> }
+              { sectionId && 
+                <Section loaded={subSectionsLoaded} subSections={subSections} 
+                  title={ current ? current.title : "Subsection" } 
+                /> 
+              }
               { is_admin && sectionId && <SubSectionForm/> } 
             </Grid.Column>
           </Grid.Row>

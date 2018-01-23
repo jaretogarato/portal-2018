@@ -35,14 +35,13 @@ class SectionForm extends React.Component {
                       autoFocus
                     />
                   </Form.Field>
-                  <Button.Group fluid>
                     <Button 
                       basic
+                      fluid
                       onClick={() => { this.setState({ title: '', showForm: false }) }} 
-                      content="X"
+                      content="Cancel"
                     />
-                    <Button basic content="Add"/>
-                  </Button.Group>
+                    <Button basic fluid content="Add"/>
                 </Form>
               </Segment>
             </Grid.Column>

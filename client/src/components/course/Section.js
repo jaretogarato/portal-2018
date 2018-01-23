@@ -5,24 +5,16 @@ import SubSectionForm from './SubSectionForm';
 import { deleteSubSection } from '../../actions/subSections';
 import { deleteCourseContent } from '../../actions/courseContent';
 import { getAssignments } from '../../actions/assignments';
+// import { PageSubTitle } from '../../styles/styledComponents'
 import {
   Accordion,
-  Button,
   Dimmer,
   Icon,
   Segment,
-  Menu,
   Loader,
-  Dropdown
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { PageSubTitle } from '../../styles/styledComponents';
-
-const options = [
-  { key: 1, text: 'Add Content', value: 1 },
-  { key: 2, text: 'Edit Sub Section', value: 2 },
-  { key: 3, text: 'Delete Sub Section', value: 3 },
-]
 
 class Section extends React.Component {
   state = { activeIndexes: [] }
@@ -34,29 +26,29 @@ class Section extends React.Component {
       this.props.dispatch(deleteCourseContent(cc))
   }
 
-  deleteContentButton = (cc) => {
-    return(
-      <Button
-        basic
-        color='red'
-        content='X'
-        floated='right'
-        onClick={ () => this.deleteContentClick(cc)}
-      />
-    )
-  }
-
   displayItems = (content) => {
     const { user: {is_admin}, course } = this.props
     return content.map( (cc, i) => (
-      <Segment basic key={i}>
-        <Link to={`/courses/${course.id}/${cc.type}/${cc.id}`}>
+      <div key={i} style={is_admin? {} : {height: "6em", marginTop: -10, marginBottom: -20}}>
+        <Segment basic as={Link} to={`/courses/${course.id}/${cc.type}/${cc.id}`}>
           <Segment>
             {cc.title}
           </Segment>
-        </Link>
-        {is_admin && this.deleteContentButton(cc.contentId)}
-      </Segment>
+        </Segment>
+        { is_admin &&
+          <Icon 
+            style={{float: "right"}} 
+            name='delete' 
+            onClick={ () => this.deleteContentClick(cc)} 
+          /> 
+        } { is_admin &&
+          //TODO: Make this publish the content
+          <Icon 
+            style={{float: "right"}} 
+            name='check'
+          />
+        }
+      </div>
     ))
   }
 
@@ -84,68 +76,59 @@ class Section extends React.Component {
     }).map( content => {
       quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
-          filtered.push({...quiz, contentId: content.id})
+          filtered.push({...quiz, contentId: content.id, type: 'quiz'})
       })
       assignments.map(assignment => {
         if(assignment.id === content.assignment_id)
-          filtered.push({...assignment, contentId: content.id})
+          filtered.push({...assignment, contentId: content.id, type: 'assignment'})
       })
       lectures.map(lecture => {
         if(lecture.id === content.lecture_id)
-          filtered.push({...lecture, contentId: content.id})
+          filtered.push({...lecture, contentId: content.id, type: 'lecture'})
       })
     })
     return filtered
   }
 
-
-
   render() {
-    const { subSections, user: { is_admin }, title } = this.props
-    if(subSections.length > 0) {
-    return(
-      <div>
-          <PageSubTitle>{title}</PageSubTitle>
-          { subSections.map( ss => {        let content = this.mapContents(ss.id)
-        return <Accordion key={ss.id} content={this.mapContents(ss.id)} fluid styled style={styles.corner}>
-          <Accordion.Title 
-            active={this.state.activeIndexes === ss.id} 
-            index={ss.id} 
-            onClick={this.handleSubClick}
-          >
-            <Icon name='dropdown' />
+    const { subSections = null, user: { is_admin }, title } = this.props
+    if(subSections && this.props.loaded) {
+      return(
+        <div>
+          <h3>{title}</h3>
+          {/* <PageSubTitle>{title}</PageSubTitle> */}
+          { subSections.map( ss => {
+            let content = this.mapContents(ss.id)
+            return <Accordion key={ss.id} content={content} fluid styled>
+              <Accordion.Title 
+                active={this.state.activeIndexes === ss.id} 
+                index={ss.id} 
+                onClick={this.handleSubClick}
+              >
             { ss.title }
-          { this.props.user.is_admin && 
-            <span>
-            <Menu>
-              <Dropdown text='settings' options={options} simple item />
-              
-            </Menu>
-              <AddCourseContent content={content} subSectionId={ss.id} />
-              <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
-              <Icon 
-                link
-                float='right'
-                size='large'
-                name='delete' 
-                onClick={ () => this.deleteSubClick(ss)}>
-             </Icon>
-            </span>
-          }
-          </Accordion.Title>
-          <Accordion.Content active={this.checkActiveIndex(ss.id)}>
-            { content.length ? this.displayItems(content) : "No Content" }
-          </Accordion.Content>
-        </Accordion>
-      })}
-      </div>
-    )
-  } else {
-    return(
-      <Dimmer active inverted style={styles.dimmer}>
-        <Loader inverted size='medium'>Loading subsections</Loader>
-      </Dimmer>
-    ) }
+            <br/>
+              </Accordion.Title>
+              <Accordion.Content active={this.checkActiveIndex(ss.id)}>
+                { is_admin &&
+                  <div style={{float: "right"}}>
+                    <Icon size="large" name='delete' onClick={ () => this.deleteSubClick(ss)}/>
+                    <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true}/>
+                    <AddCourseContent content={content} subSectionId={ss.id} />
+                  </div>
+                }
+                { content.length ? this.displayItems(content) : "No Content" }                
+              </Accordion.Content>
+            </Accordion>
+          })}
+        </div>
+      )
+    } else {
+      return(
+        <Dimmer active inverted style={styles.dimmer}>
+          <Loader inverted size='medium'>Loading subsections</Loader>
+        </Dimmer>
+      )
+    }
   }
 }
 

@@ -28,42 +28,42 @@ class SubSectionForm extends React.Component {
     return (
       <span>
         { this.state.showForm ?
-          <Grid>
-            <Grid.Column style={{ maxWidth: 450 }}>
-              <Segment raised>
-                <Form onSubmit={this.handleSubmit}>
-                  <Form.Field>
-                    <Form.Input
-                      name='title'
-                      placeholder={ this.props.originalTitle || "Name" }
-                      required
-                      id='section'
-                      value={title}
-                      onChange={this.handleChange}
-                      autoFocus
-                    />
-                  </Form.Field>
-                  <Button.Group fluid>
-                    <Button 
-                      basic
-                      onClick={() => { this.setState({ title: '', showForm: false }) }} 
-                      content="Cancel"
-                    />
-                    <Button primary content="Add"/>
-                  </Button.Group>
-                </Form>
-              </Segment>
-            </Grid.Column>
+          <Grid style={ this.props.editing ? {position: "fixed", right: 50, zIndex: 1} : {} }>
+            <Segment raised>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Field>
+                  <Form.Input
+                    name='title'
+                    placeholder={ this.props.originalTitle || "Name" }
+                    required
+                    id='section'
+                    value={title}
+                    onChange={this.handleChange}
+                    autoFocus
+                  />
+                </Form.Field>
+                  <Button 
+                    basic
+                    fluid
+                    onClick={() => { this.setState({ title: '', showForm: false }) }} 
+                    content="Cancel"
+                  />
+                  <Button basic fluid content="Add"/>
+              </Form>
+            </Segment>
           </Grid> 
-        :     
-          <span> 
-          <Button
-            basic
+        : this.props.editing ? 
+          <Icon
+            name="edit"
+            size="large"
             onClick={() => { this.setState({ showForm: true }) }} 
-            content={ this.props.editing ? "Edit" : "Add Subsection" }
           />
-          </span>
-        }
+        : 
+        <Button
+          basic
+          content="Add Subsection"
+          onClick={() => { this.setState({ showForm: true }) }} 
+        />        }
       </span>
     )
   }
