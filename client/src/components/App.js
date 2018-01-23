@@ -15,6 +15,7 @@ import UserProfile from './profile/UserProfile';
 import { FlexContainer, FlexContent } from '../styles/styles';
 import { Switch, Route } from 'react-router-dom';
 import PeopleProfile from './people/PeopleProfile';
+import '../styles/appWrap.css'
 
 class App extends React.Component {
   render() {

@@ -11,7 +11,7 @@ export const HomeBody = styled.div`
   margin: 0;
   padding: 0;
   font-family: exo, sans-serif;
-  height: 86vh !important;
+  height: 100vh !important;
   width: 100%;
   min-height: 750px;
   z-index: -5;
