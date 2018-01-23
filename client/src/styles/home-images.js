@@ -7,6 +7,7 @@ export const HomeBody = styled.div`
 	background-attachment: fixed;
 	background-size:  cover;
   background-color: #999;
+
   margin: 0;
   padding: 0;
   font-family: exo, sans-serif;

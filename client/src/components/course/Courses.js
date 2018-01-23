@@ -10,9 +10,13 @@ import {
 } from 'semantic-ui-react';
 import HomeBg from '../../assets/images/home-image-2880w.jpg';
 import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
+import { ScrollableSection } from '../../styles/styledComponents';
 
 class Courses extends React.Component {
-  state = { courses: [], isAdding: false };
+  state = {
+    courses: [],
+    isAdding: false,
+  };
 
   componentWillMount() {
     const { dispatch } = this.props;
@@ -23,7 +27,7 @@ class Courses extends React.Component {
     const { courses } = this.props;
     if(courses) {
       return courses.map( course =>
-        <CourseCard key={course.id} course={course} />
+        <CourseCard key={ course.id } course={ course } />
       )
     }
   }
@@ -34,32 +38,40 @@ class Courses extends React.Component {
       <div>
         <Menu>
           <Menu.Item
-            disabled={isAdding}
+            disabled={ isAdding }
             name='Add Course'
-            active={'nope' === 'editorials'}
-            onClick={() => this.setState({isAdding: true})}
+            active={ 'nope' === 'editorials' }
+            onClick={ () => this.setState({ isAdding: true }) }
           />
           { isAdding &&
             <Menu.Item
               name='Cancel Create Course'
               active={'nope' === 'editorials'}
-              onClick={() => this.setState({isAdding: false})}
+              onClick={ () => this.setState({ isAdding: false }) }
             />
           }
         </Menu>
-      { isAdding && <CourseForm cancelAdding={() => this.setState({isAdding: false})}/> }
-      <HomeBody bgImage={HomeBg}>
-        <HomeWrapper> 
-      <Container style={{padding: '2%'}}>
-        <Grid stackable columns='3'>
-          { this.renderCourses() }
-        </Grid>
-      </Container>
+      { isAdding && <CourseForm cancelAdding={ () => this.setState({ isAdding: false }) } /> }
+      <HomeBody bgImage={ HomeBg }>
+          <HomeWrapper style={ styles.scrollable_section }>
+              <Container>
+                <Grid stackable columns='3'>
+                { this.renderCourses() }
+              </Grid>
+            </Container>
         </HomeWrapper>
        </HomeBody>
       </div>
     )
   }
+}
+
+const styles = {
+  scrollable_section: {
+    maxHeight: '100vh',
+    overflowY: 'scroll',
+    padding: '2%',
+  },
 }
 
 const mapStateToProps = (state) => {

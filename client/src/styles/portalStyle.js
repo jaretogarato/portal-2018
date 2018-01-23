@@ -85,4 +85,5 @@ const portalStyle = {
   // italic
   // l/r/c orientation
 }
+
 export default portalStyle;

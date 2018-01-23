@@ -5,6 +5,7 @@ import { getLecture, deleteLecture } from '../../actions/lectures';
 import EditLecture from './EditLecture';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { PageTitle } from '../../styles/styles';
 
 class Lecture extends Component {
   state = { edit: false };
@@ -50,7 +51,8 @@ class Lecture extends Component {
           <Button basic  floated='right' onClick={this.toggleEdit}>Edit</Button>
         ]
       }
-        <Header as='h2' style={styles.pageTitle}>{title}</Header>
+        <Header as='h1' className="page_title">{title}</Header>
+        <PageTitle>{title}</PageTitle>
         <List>
           <List.Item>
             <Header as='h3' style={ styles.listItemHeader }>Description:</Header> {content}
@@ -66,9 +68,6 @@ class Lecture extends Component {
 }
 
 const styles = {
-  pageTitle: {
-    paddingTop: '2%',
-  },
   listItemHeader: {
     display: 'inline-block',
   },

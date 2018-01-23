@@ -4,8 +4,14 @@ import portalStyle from './portalStyle.js';
 const sizes = {
   desktop: 992,
   tablet: 768,
-  phone: 376
+  phone: 376,
 }
+
+export const ScrollableSection = styled.div`
+  maxHeight: 100vh;
+  overflowY: scroll;
+  padding: 2%;
+`;
 
 // Iterate through the sizes and create a media template
 // const media = Object.keys(sizes).reduce((acc, label) => {

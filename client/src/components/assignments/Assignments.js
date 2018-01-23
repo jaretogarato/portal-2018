@@ -3,6 +3,7 @@ import { Segment, Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { connect } from 'react-redux';
+import { PageTitle } from '../../styles/styles';
 
 class Assignments extends Component {
   state = { assignments: [] }
@@ -29,7 +30,7 @@ class Assignments extends Component {
     const { id } = this.props.match.params
     return (
       <Segment basic>
-        <Header as='h2' style={styles.pageTitle}>All Assignments</Header>
+        <PageTitle>All Assignments</PageTitle>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
@@ -66,12 +67,6 @@ class Assignments extends Component {
       </Segment>
     )
   }
-}
-
-const styles = {
-  pageTitle: {
-    paddingTop: '2%',
-  },
 }
 
 const mapStateToProps = (state) => {
