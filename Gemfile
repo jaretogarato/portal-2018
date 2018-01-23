@@ -17,11 +17,14 @@ group :development, :test do
   gem 'pry', '~> 0.11.1'
   gem 'dotenv-rails', '2.2.1'
   gem 'faker', github: 'stympy/faker'
-  gem 'rspec-rails', '~> 3.6.1'
-  gem 'shoulda-matchers', '~> 3.1.2'
-  gem 'database_cleaner', '~> 1.6.1'
-  # put /coverage into your git ignore
-  gem 'simplecov', '~> 0.15.1'
+  gem 'rspec-rails'
+end
+
+group :test do 
+  gem 'database_cleaner'
+  gem 'shoulda-matchers' 
+  gem 'simplecov'
+  gem 'factory_bot_rails'
 end
 
 group :development do
