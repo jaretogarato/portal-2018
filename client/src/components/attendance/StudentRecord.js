@@ -55,6 +55,16 @@ class StudentRecord extends React.Component {
             style={styles.pointer}
           />
         </Form.Field>
+        <Form.Field style={styles.noMargin}>
+          <Icon
+            name='check circle outline'
+            size='big'
+            color='red'
+            disabled={ status !== 'excused' }
+            onClick={ () => this.handleClick('excused', status !== 'excused') }
+            style={styles.pointer}
+          />
+        </Form.Field>
       </Form>
     )
   }

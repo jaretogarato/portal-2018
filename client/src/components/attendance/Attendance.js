@@ -72,6 +72,38 @@ class Attendance extends React.Component {
       <Container>
         <Header as='h1' textAlign='center'>Attendance</Header>
         <DatePicker courseId={this.props.match.params.id}/>
+        <span>
+          <Icon
+            name='check circle outline'
+            color='green'
+          />
+          Present
+        </span>
+        &nbsp;
+        <span>
+          <Icon
+            name='remove circle outline'
+            color='red'
+          />
+          Absent
+        </span>
+        &nbsp;
+        <span>
+          <Icon
+            name='wait'
+            color='orange'
+          />
+          Tardy
+        </span>
+        &nbsp;
+        <span>
+          <Icon
+            name='check circle outline'
+            color='red'
+          />
+          Excused
+        </span>
+        <br />
         { this.allChosen() }
         { !submitted &&
           <Button basic onClick={this.allPresent}>
