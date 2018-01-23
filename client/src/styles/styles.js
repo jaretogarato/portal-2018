@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { Button, Grid, Header, Segment } from 'semantic-ui-react';
 
-export const PageTitle = styled.h1`
-  color: black;
-  padding-top: 2%;
-  font-size: 3em;
-  text-decoration: underline;
-`;
+
 
 // ------------ v1 ---------------
 export const HeroHeader = styled.div`

@@ -30,6 +30,14 @@ export const PortalButton = styled.button`
   color: ${props => props.maybe && portalStyle.buttonMaybeColor};
   color: ${props => props.default && portalStyle.buttonNeutralColor};
 `;
+
+export const PageTitle = styled.h1`
+  color: black;
+  padding-top: 2%;
+  font-size: 3em;
+  text-decoration: underline;
+`;
+
 //
 // const theme = {
 //   portalButton: {

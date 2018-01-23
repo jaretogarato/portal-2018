@@ -4,6 +4,7 @@ import defaultAvatar from '../../assets/images/missing-avatar.png'
 import { connect } from 'react-redux';
 import { editUser } from '../../actions/user';
 import { handleUpload } from '../../actions/avatars';
+import { Redirect } from 'react-router'
 import {
   Button,
   Dimmer,
@@ -24,6 +25,7 @@ class UserEditForm extends React.Component {
     bio: '',
     email:  '',
     nickname: '',
+    redirect: false,
     fileUploading: false,
   };
 
@@ -47,12 +49,13 @@ class UserEditForm extends React.Component {
     this.props.dispatch(editUser({ first_name: firstName, last_name: lastName, bio, email, nickname }, this.props.user.id))
     this.setState({ bio, email, nickname });
     this.props.toggleEdit();
+    this.setState({ redirect: true })
   }
 
   handleChange = ({ target: { value, name } }) => this.setState({ [name]: value });
 
   render()  {
-    const { bio, email, nickname } = this.state;
+    const { bio, email, nickname, redirect } = this.state;
     const { user } = this.props;
 
     return(
@@ -118,6 +121,7 @@ class UserEditForm extends React.Component {
                 />
               </Segment>
               <Button basic type='submit'>Submit</Button>
+              { redirect && <Redirect to={`/user_profile/${this.props.user.id}`}/> }
             </Grid.Column>
           </Grid.Row>
         </Grid>

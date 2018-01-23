@@ -5,6 +5,7 @@ const user = (state = {}, action) => {
     case 'LOGOUT':
       return {};
     case 'UPDATE_USER':
+    debugger
       if(state.id === action.user.id)
         return action.user;
       return state;

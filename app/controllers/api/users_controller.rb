@@ -3,7 +3,7 @@ class Api::UsersController < Api::ApiController
   def update
     user = User.find(params[:id])
     if current_user.id == user.id && user.update(user_params)
-      render json: user
+      render json: user.as_json(include: :enrollments)
     else
       render json: { errors: user.errors.full_messages }
     end

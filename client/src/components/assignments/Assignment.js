@@ -6,6 +6,7 @@ import { getAssignment } from '../../actions/assignment';
 import EditAssignment from './EditAssignment';
 import axios from 'axios';
 
+
 class Assignment extends Component {
   state = { loaded: false, edit: false };
 

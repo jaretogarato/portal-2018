@@ -23,7 +23,7 @@ import NoteList from './NoteList';
 import { isStudent } from '../../utils/permissions'
 
 class PeopleProfile extends React.Component {
-  state = { user: {}, showForm: false, badges: [], options: [] }
+  state = { user: {}, showForm: false, badges: [], options: [], reRender: false }
 
   componentDidMount() {
     const { dispatch, match: { params: { id } } } = this.props
@@ -38,10 +38,12 @@ class PeopleProfile extends React.Component {
     this.props.dispatch(getUser(id))
   }
 
-  // toggleForm = () => {
-  //   const {showForm} = this.state
-  //   this.setState({showForm: !showForm})
-  // }
+  //hacky, to re-render page
+  componentWillReceiveProps(nextProps) {
+    const { reRender, currentUser } = this.props
+    if (nextProps.currentUser.id === currentUser.id)
+      this.setState({ reRender: !reRender })
+  }
 
   toggleForm = () => this.setState({showForm: !this.state.showForm});
 
@@ -109,9 +111,16 @@ class PeopleProfile extends React.Component {
   }
 
   whoCanSeeNotes = () => {
-    const { current_user, permission, match: { params: { id } } } = this.props
-    if(!isStudent(permission) || current_user.id === parseInt(id))
+    const { currentUser, permission, match: { params: { id } } } = this.props
+    if(!isStudent(permission) || currentUser.id === parseInt(id))
       return <NoteList userId={id}/>
+  }
+
+  checkForStudentStatus = () => {
+    let isBoolean = this.props.currentUser.enrollments.map( enr => {
+      return enr.role === 'student'
+    })
+    return isBoolean[0]
   }
 
   render () {
@@ -173,7 +182,7 @@ class PeopleProfile extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              {!isStudent(permission) && <NoteForm userId={id}/>}
+              {!isStudent(permission) && !this.checkForStudentStatus() && <NoteForm userId={id}/>}
             </Grid.Column>
           </Grid.Row>
           { this.whoCanSeeNotes() }
@@ -203,7 +212,6 @@ const mapStateToProps = (state) => {
   return {
     user: state.userId,
     currentUser: state.user,
-    current_user: state.user,
     permission: state.permissions,
    }
 }

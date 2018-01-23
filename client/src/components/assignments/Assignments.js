@@ -3,7 +3,7 @@ import { Segment, Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { connect } from 'react-redux';
-import { PageTitle } from '../../styles/styles';
+import { PageTitle } from '../../styles/styledComponents';
 
 class Assignments extends Component {
   state = { assignments: [] }

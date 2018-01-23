@@ -141,6 +141,13 @@ class Note extends React.Component {
     )
   }
 
+  checkForStudentStatus = () => {
+    let isBoolean = this.props.user.enrollments.map( enr => {
+      return enr.role === 'student'
+    })
+    return isBoolean[0]
+  }
+
   whoCanSeeNotes = () => {
     const { permission } = this.props
     const { visible, editing } = this.state
@@ -152,11 +159,20 @@ class Note extends React.Component {
       )
     }
     else {
-      return(
-        <div>
-          { this.state.editing ? this.editNote() : this.displayNote() }
-        </div>
-      )
+      if(this.checkForStudentStatus()){
+        return(
+          <div>
+            { visible && this.displayNote() }
+          </div>
+        )
+      }else{
+        return(
+          <div>
+            { this.state.editing ? this.editNote() : this.displayNote() }
+          </div>
+        )
+      }
+
     }
   }
 

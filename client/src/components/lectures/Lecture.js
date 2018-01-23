@@ -5,7 +5,7 @@ import { getLecture, deleteLecture } from '../../actions/lectures';
 import EditLecture from './EditLecture';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { PageTitle } from '../../styles/styles';
+import { PageTitle } from '../../styles/styledComponents';
 
 class Lecture extends Component {
   state = { edit: false };
