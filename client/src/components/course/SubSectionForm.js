@@ -57,7 +57,7 @@ class SubSectionForm extends React.Component {
           </Grid> 
         :     
           <span> 
-          <Button      
+          <Button
             basic
             onClick={() => { this.setState({ showForm: true }) }} 
             content={ this.props.editing ? "Edit" : "Add Subsection" }

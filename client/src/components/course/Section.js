@@ -8,9 +8,11 @@ import { getAssignments } from '../../actions/assignments';
 import {
   Accordion,
   Button,
+  Dimmer,
   Icon,
   Segment,
   Menu,
+  Loader,
   Dropdown
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -44,14 +46,15 @@ class Section extends React.Component {
   }
 
   displayItems = (content) => {
+    const { user: {is_admin}, course } = this.props
     return content.map( (cc, i) => (
       <Segment basic key={i}>
-        <Link to={`/courses/${this.props.course.id}/section/${cc.id}`}>
+        <Link to={`/courses/${course.id}/${cc.type}/${cc.id}`}>
           <Segment>
             {cc.title}
           </Segment>
         </Link>
-        {this.deleteContentButton(cc.contentId)}
+        {is_admin && this.deleteContentButton(cc.contentId)}
       </Segment>
     ))
   }
@@ -73,20 +76,20 @@ class Section extends React.Component {
   }
 
   mapContents = (ssid) => {
-    const { content } = this.props
+    const { content, quizzes, assignments, lectures } = this.props
     const filtered = []
     content.filter( content => {
       return content.sub_section_id === ssid
     }).map( content => {
-      this.props.quizzes.map(quiz => {
+      quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
           filtered.push({...quiz, contentId: content.id})
       })
-      this.props.assignments.map(assignment => {
+      assignments.map(assignment => {
         if(assignment.id === content.assignment_id)
           filtered.push({...assignment, contentId: content.id})
       })
-      this.props.lectures.map(lecture => {
+      lectures.map(lecture => {
         if(lecture.id === content.lecture_id)
           filtered.push({...lecture, contentId: content.id})
       })
@@ -97,37 +100,49 @@ class Section extends React.Component {
 
 
   render() {
-    return(
-      this.props.subSections.map( ss => {
-        let content = this.mapContents(ss.id)
-        return <Accordion key={ss.id} content={this.mapContents(ss.id)} fluid styled style={styles.corner}>
-          <Accordion.Title
-            active={this.state.activeIndexes === ss.id}
-            index={ss.id}
-            onClick={this.handleSubClick}
-          >
-            <Icon name='dropdown' />
-            { ss.title }
-          { this.props.user.is_admin &&
-            <span>
-              <AddCourseContent content={content} subSectionId={ss.id} />
-              <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true} />
-              <Icon
-                link
-                float='right'
-                size='large'
-                name='delete'
-                onClick={ () => this.deleteSubClick(ss)}>
-             </Icon>
-            </span>
-          }
-          </Accordion.Title>
-          <Accordion.Content active={this.checkActiveIndex(ss.id)}>
-            { content.length ? this.displayItems(content) : "No Content" }
-          </Accordion.Content>
-        </Accordion>
-      })
-    )
+    const { subSections, user: { is_admin }, title } = this.props
+    if(subSections) {
+      return(
+        <div>
+          <h3>{title}</h3>
+          { subSections.map( ss => {
+            let content = this.mapContents(ss.id)
+            return <Accordion key={ss.id} content={content} fluid styled>
+              { is_admin && 
+                <Button.Group floated="right" style={{marginRight: '15%'}}>
+                  <Menu text compact onChange={ this.handleChange } name='activeType'>
+                    <Dropdown 
+                      text='Settings' 
+                      options={options} 
+                      simple 
+                      item 
+                      onClick={ ()=> this.selectSection(content, ss)}
+                      />
+                  </Menu>
+                </Button.Group>
+              }
+              <Accordion.Title 
+                active={this.state.activeIndexes === ss.id} 
+                index={ss.id} 
+                onClick={this.handleSubClick}
+              >
+                <Icon name='dropdown' />
+                { ss.title }
+              </Accordion.Title>
+              <Accordion.Content active={this.checkActiveIndex(ss.id)}>
+                { content.length ? this.displayItems(content) : "No Content" }
+              </Accordion.Content>
+            </Accordion>
+          })}
+        </div>
+      )
+    } else {
+      return(
+        <Dimmer active inverted style={styles.dimmer}>
+          <Loader inverted size='medium'>Loading subsections</Loader>
+        </Dimmer>
+      )
+    }
   }
 }
 
@@ -139,7 +154,6 @@ const styles = {
 
 const mapStateToProps = (state) => {
   return {
-    subSections: state.subSections,
     user: state.user,
     course: state.course,
     content: state.courseContent,

@@ -30,14 +30,14 @@ class SectionEditForm extends React.Component {
                     <Form.Input
                       name='title'
                       required
-                      placeholder={ sections.find((s) => s.id === sectionId).title || "test" }
+                      placeholder={ sections.find((s) => s.id === sectionId).title || "Title" }
                       value={title}
                       onChange={this.handleChange}
                       autoFocus
                     />
                   </Form.Field>
-                    <Button basic size='tiny' content="Update" />
-                    <Button basic size='tiny' content='cancel' />
+                  <Button basic fluid content="Update" />
+                  <Button basic fluid content='Cancel' onClick={() => { this.setState({ title: '', showForm: false }) }} />
                 </Form>
               </Segment>
             </Grid.Column>

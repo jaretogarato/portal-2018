@@ -51,6 +51,7 @@ class SectionForm extends React.Component {
           <Menu.Item>
             <Button
               basic
+              fluid
               onClick={() => { this.setState({ showForm: true }) }} 
               content="Add Section"
             />
