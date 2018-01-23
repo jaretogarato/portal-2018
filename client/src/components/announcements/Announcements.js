@@ -11,7 +11,6 @@ class Announcements extends React.Component {
 
   render() {
     const { showForm } = this.state;
-    const { course } = this.props;
     return(
       <Segment basic>
         <Header as='h2'>Announcements</Header>

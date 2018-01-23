@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
-export const getAnnouncements = (courseId) => {
+export const getAnnouncements = courseId => {
   return(dispatch) => {
     axios.get(`/api/courses/${courseId}/announcements`)
       .then( res => {
@@ -9,7 +9,9 @@ export const getAnnouncements = (courseId) => {
         dispatch({ type: 'GET_ANNOUNCEMENTS', announcements });
       })
       .catch( res => {
-        console.log(res.message);
+        const { headers } = res;
+        dispatch(setFlash('Failed to get announcement. Please try again!', 'red'));
+        dispatch({ type: 'SET_HEADERS', headers });
       })
   }
 }
@@ -22,8 +24,24 @@ export const addAnnouncement = (courseId, announcement) => {
         dispatch({ type: 'ADD_ANNOUNCEMENT', announcement: res.data, headers })
       })
       .catch( res => {
+        const { headers } = res;
         dispatch(setFlash('Failed to add announcement. Please try again!', 'red'));
-        dispatch({ type: 'SET_HEADERS', headers: res.headers });
+        dispatch({ type: 'SET_HEADERS', headers });
+      })
+  }
+}
+
+export const editAnnouncement = (courseId, announcement, id) => {
+  return(dispatch) => {
+    axios.put(`/api/courses/${courseId}/announcements/${id}`, announcement) 
+      .then( res => {
+        const { data, headers } = res;
+        dispatch({ type: 'EDIT_ANNOUNCEMENT', announcement: res.data, headers })
+      })
+      .catch( res => {
+        const { headers } = res;
+        dispatch(setFlash('Failed to update announcement. Please try again!', 'red'));
+        dispatch({ type: 'SET_HEADERS', headers })
       })
   }
 }
@@ -37,8 +55,8 @@ export const deleteAnnouncement = (courseId, id) => {
       })
       .catch( res => {
         const { headers } = res;
-        dispatch({ type: 'SET_HEADERS', headers })
         dispatch(setFlash('Failed to delete announcement.', 'red'))
+        dispatch({ type: 'SET_HEADERS', headers })
       })
   }
 }

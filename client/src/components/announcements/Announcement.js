@@ -19,7 +19,7 @@ class Announcement extends React.Component {
     const { announcement: { title, body } } = this.props;
     const { editing } = this.state;
     if(editing) {
-      return <AnnouncementForm announcement={this.props.announcement} toggleEdit={this.toggleEdit} editing/>
+      return <AnnouncementForm announcement={this.props.announcement} toggleEdit={this.toggleEdit} editing />
     } else {
       return(
         <Segment fluid>

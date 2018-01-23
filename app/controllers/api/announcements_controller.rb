@@ -16,6 +16,11 @@ class Api::AnnouncementsController < ApplicationController
   end
 
   def update
+    if @announcement.update(announcement_params)
+      render json: @announcement
+    else
+      render json: { errors: @announcement.errors.full_messages }, status: 422
+    end
   end
 
   def destroy 
