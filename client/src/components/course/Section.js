@@ -53,7 +53,7 @@ class Section extends React.Component {
             {cc.title}
           </Segment>
         </Link>
-        {this.deleteContentButton(cc.contentId)}
+        {this.props.user.is_admin && this.deleteContentButton(cc.contentId)}
       </Segment>
     ))
   }
