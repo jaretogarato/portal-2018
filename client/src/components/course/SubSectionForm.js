@@ -54,6 +54,7 @@ class SubSectionForm extends React.Component {
           </Grid> 
         : this.props.editing ? 
           <Icon
+            link
             name="edit"
             size="large"
             onClick={() => { this.setState({ showForm: true }) }} 

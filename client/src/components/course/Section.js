@@ -4,7 +4,6 @@ import AddCourseContent from './AddCourseContent';
 import SubSectionForm from './SubSectionForm';
 import { deleteSubSection } from '../../actions/subSections';
 import { deleteCourseContent } from '../../actions/courseContent';
-import { getAssignments } from '../../actions/assignments';
 import { PageSubTitle } from '../../styles/styledComponents'
 import {
   Accordion,
@@ -29,22 +28,24 @@ class Section extends React.Component {
   displayItems = (content) => {
     const { user: {is_admin}, course } = this.props
     return content.map( (cc, i) => (
-      <div key={i} style={is_admin? {} : {height: "6em", marginTop: -10, marginBottom: -20}}>
+      <div key={i} style={is_admin? {marginTop: -15} : {height: "6em", marginTop: -15, marginBottom: -20}}>
         <Segment basic as={Link} to={`/courses/${course.id}/${cc.type}/${cc.id}`}>
           <Segment>
             {cc.title}
           </Segment>
         </Segment>
         { is_admin &&
-          <Icon
-            style={{float: "right"}}
-            name='delete'
-            onClick={ () => this.deleteContentClick(cc)}
-          />
+          <Icon 
+            link
+            style={{float: "right"}} 
+            name='delete' 
+            onClick={ () => this.deleteContentClick(cc)} 
+          /> 
         } { is_admin &&
           //TODO: Make this publish the content
-          <Icon
-            style={{float: "right"}}
+          <Icon 
+            link
+            style={{float: "right"}} 
             name='check'
           />
         }
@@ -109,8 +110,8 @@ class Section extends React.Component {
               </Accordion.Title>
               <Accordion.Content active={this.checkActiveIndex(ss.id)}>
                 { is_admin &&
-                  <div style={{float: "right"}}>
-                    <Icon size="large" name='delete' onClick={ () => this.deleteSubClick(ss)}/>
+                  <div style={{float: "right", marginTop: -30, marginBottom: 0}}>
+                    <Icon link size="large" name='delete' onClick={ () => this.deleteSubClick(ss)}/>
                     <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true}/>
                     <AddCourseContent content={content} subSectionId={ss.id} />
                   </div>

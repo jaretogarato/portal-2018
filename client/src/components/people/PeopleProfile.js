@@ -112,7 +112,7 @@ class PeopleProfile extends React.Component {
 
   whoCanSeeNotes = () => {
     const { currentUser, permission, match: { params: { id } } } = this.props
-    if(!isStudent(permission) || currentUser.id === parseInt(id))
+    if(!isStudent(permission) || currentUser.id === parseInt(id, 10) )
       return <NoteList userId={id}/>
   }
 

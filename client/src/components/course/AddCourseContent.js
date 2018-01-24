@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentForm from './ContentForm';
-import { Button, Modal, Icon } from 'semantic-ui-react';
+import { Modal, Icon } from 'semantic-ui-react';
 
 class AddCourseContent extends React.Component {
   state = { modalOpen: false };
@@ -17,7 +17,7 @@ class AddCourseContent extends React.Component {
         open={ modalOpen }
         onClose={ this.toggleModal }
         trigger={
-          <Icon name="add" size="large" onClick={this.toggleModal} />
+          <Icon link name="add" size="large" onClick={this.toggleModal} />
         }
       >
         <ContentForm 

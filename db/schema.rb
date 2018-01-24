@@ -65,22 +65,13 @@ ActiveRecord::Schema.define(version: 20180123231353) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "course_announcements", force: :cascade do |t|
-    t.bigint "course_id"
-    t.bigint "announcement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["announcement_id"], name: "index_course_announcements_on_announcement_id"
-    t.index ["course_id"], name: "index_course_announcements_on_course_id"
-  end
-
   create_table "course_contents", force: :cascade do |t|
-    t.bigint "sub_section_id"
+    t.bigint "sub_section_id", null: false
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "assignment_id"
     t.bigint "lecture_id"
+    t.bigint "assignment_id"
     t.index ["assignment_id"], name: "index_course_contents_on_assignment_id"
     t.index ["quiz_id"], name: "index_course_contents_on_quiz_id"
     t.index ["sub_section_id"], name: "index_course_contents_on_sub_section_id"
@@ -173,7 +164,7 @@ ActiveRecord::Schema.define(version: 20180123231353) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "title", default: "", null: false
-    t.text "content", default: "", null: false
+    t.json "content", default: {}, null: false
     t.string "due_date", default: "", null: false
     t.integer "points", default: 0, null: false
     t.datetime "created_at", null: false
@@ -273,8 +264,6 @@ ActiveRecord::Schema.define(version: 20180123231353) do
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "users"
   add_foreign_key "avatars", "users"
-  add_foreign_key "course_announcements", "announcements"
-  add_foreign_key "course_announcements", "courses"
   add_foreign_key "course_contents", "assignments"
   add_foreign_key "course_contents", "lectures"
   add_foreign_key "course_contents", "quizzes"
