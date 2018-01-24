@@ -12,7 +12,8 @@ import CourseHome from './course/CourseHome';
 import CourseSettings from './course/CourseSettings';
 import PeopleProfile from './people/PeopleProfile';
 import ProtectedRoute from './ProtectedRoute';
-import Wiki from './Rift/wiki/Wiki';
+import WikiDocs from './Rift/wiki/WikiDocs';
+import SingleDoc from './Rift/wiki/SingleDoc';
 import Quizzes from './quizzes/Quizzes';
 import QuizForm from './quizzes/QuizForm';
 import QuizRoute from './QuizRoute';
@@ -46,7 +47,7 @@ class Course extends React.Component {
       { name: 'Quizzes', path: `/courses/${courseId}/quizzes` },
       { name: 'Lectures', path: `/courses/${courseId}/lectures` },
       { name: 'Assignments', path: `/courses/${courseId}/assignments` },
-      { name: 'Wiki', path: `/courses/${courseId}/wiki` },
+      { name: 'WikiDocs', path: `/courses/${courseId}/wiki` },
       { name: 'Settings', path: `/courses/${courseId}/settings` }
     ]
     return navs.map(nav => {
@@ -85,7 +86,8 @@ class Course extends React.Component {
             <ProtectedRoute exact path='/courses/:id/assignments' component={Assignments} />
             <ProtectedRoute adminOnly={true} exact path='/courses/:id/assignments/create' component={CreateAssignment} />
             <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />
-            <ProtectedRoute exact path='/courses/:id/wiki' component={Wiki} />
+            <ProtectedRoute exact path='/courses/:id/wiki' component={WikiDocs} />
+            <ProtectedRoute exact path='/courses/:id/wiki/:doc_id' component={SingleDoc} />
           </Switch>
         </FetchEnrollment>
       </Segment>

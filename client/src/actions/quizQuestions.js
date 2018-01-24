@@ -6,9 +6,10 @@ export const getQuestions = (quizId) => {
   return (dispatch) => {
     axios.get(`/api/quizzes/${quizId}/quiz_questions`)
       .then( res => {
-        dispatch({ type: 'GET_QUESTIONS', questions: res.data.array, headers: res.headers })
+        dispatch({ type: 'GET_QUESTIONS', questions: res.data, headers: res.headers })
       })
       .catch( err => {
+        console.log(err)
         dispatch(setFlash('Failed to get questions', 'red'))
         dispatch(setHeaders(err.headers))
       })

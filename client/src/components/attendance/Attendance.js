@@ -117,7 +117,7 @@ class Attendance extends React.Component {
     if (users.length)
       return(
         <Container>
-          <Header as='h1' textAlign='center'>Attendance</Header>
+          <Header as={PageTitle} textAlign='center'>Attendance</Header>
           <DatePicker courseId={this.props.match.params.id}/>
           { this.legend() }
           { this.allChosen() }
@@ -141,10 +141,16 @@ class Attendance extends React.Component {
       )
     else
       return(
-        <Dimmer active>
+        <Dimmer active style={styles.dimmer}>
           <Loader>Loading...</Loader>
         </Dimmer>
       )
+  }
+}
+
+const styles = {
+  dimmer: {
+    height: '80vh'
   }
 }
 
