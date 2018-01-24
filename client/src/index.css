@@ -57,7 +57,11 @@ i.large.icon, i.large.icons {
   background-color: #fff;
   color: #614d7b;
 }
-.ui.segment {
-  border-radius: 0px !important;
+
+.ui.green.message {
+  background-color: rgba(229,249,231,0.8) !important;
 }
 
+.ui.red.message{
+  background-color: rgba(255,232,230,0.8) !important;
+}
