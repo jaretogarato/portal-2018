@@ -1,4 +1,6 @@
 import React from 'react';
+import defaultAvatar from '../../assets/images/missing-avatar.png'
+import UserNotifications from './UserNotifications'
 import UserEditForm from './UserEditForm';
 import { connect } from 'react-redux';
 import {
@@ -9,27 +11,34 @@ import {
 } from 'semantic-ui-react';
 
 class UserProfile extends React.Component {
-  state = { edit: false };
+  state = { settings: '' };
 
-  toggleEdit = () => {
-    const { edit } = this.state;
-    this.setState({ edit: !edit })
+  toggleSettings = () => {
+    switch(this.state.settings) {
+      case 1:
+        return <UserEditForm />
+      case 2:
+        return <UserNotifications />
+      default:
+        return <UserEditForm />
+    }
   }
+
+  handleSelection = (e, { value }) => this.setState({ settings: value });
 
   render() {
     const options = [
-      { key: 1, text: 'Receive Text', value: 1 },
-      { key: 2, text: 'Receive Email', value: 2 },
-      { key: 3, text: 'None', value: 3 },
+      { key: 1, text: 'Settings', value: 1 },
+      { key: 2, text: 'Notifications', value: 2 },
     ]
     return(
       <Segment basic>
         <Button.Group>
           <Menu floated='right'>
-            <Dropdown text='Announcements' selection options={options} />
+          <Dropdown text='Settings' onChange={this.handleSelection} selection options={options} />
           </Menu>
         </Button.Group>
-        <UserEditForm toggleEdit={this.toggleEdit}/>
+        { this.toggleSettings() }
       </Segment>
     );
   }
