@@ -1,7 +1,7 @@
 import React from 'react';
 import { addSubSection, updateSubSection } from '../../actions/subSections.js';
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Segment, Icon } from 'semantic-ui-react';
+import { Button, Form, Grid, Popup, Segment, Icon } from 'semantic-ui-react';
 
 class SubSectionForm extends React.Component {
   state = { title: '' };
@@ -53,11 +53,14 @@ class SubSectionForm extends React.Component {
             </Segment>
           </Grid> 
         : this.props.editing ? 
-          <Icon
-            link
-            name="edit"
-            size="large"
-            onClick={() => { this.setState({ showForm: true }) }} 
+          <Popup basic content="Edit Subsection" trigger={
+            <Icon 
+              link 
+              size="large" 
+              name='edit' 
+              style={{float: "right"}} 
+              onClick={() => { this.setState({ showForm: true }) }} /> 
+            }  
           />
         : 
         <Button

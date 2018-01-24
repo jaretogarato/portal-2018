@@ -1,7 +1,7 @@
 import React from 'react';
 import { updateSection } from '../actions/sections';
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Segment, Icon } from 'semantic-ui-react';
+import { Button, Form, Grid, Popup, Segment, Icon } from 'semantic-ui-react';
 
 
 class SectionEditForm extends React.Component {
@@ -44,13 +44,15 @@ class SectionEditForm extends React.Component {
           </Grid>
         :
           <span>
-            <Icon
-              link
-              size='large'
-              onClick={() => { this.setState({ showForm: true }) }}
-              name='edit'
-            >
-          </Icon>
+            <Popup basic content="Edit Section" trigger={
+              <Icon 
+                link 
+                size="large" 
+                name='edit' 
+                style={{float: "right"}} 
+                onClick={() => { this.setState({ showForm: true }) }} /> 
+              }  
+            />
           </span> 
         }
       </span>

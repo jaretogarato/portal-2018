@@ -12,7 +12,7 @@ import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
 import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';
-import { Dimmer, Grid, Loader, Menu, Icon } from 'semantic-ui-react';
+import { Dimmer, Grid, Loader, Menu, Icon, Popup } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { PageSubTitle } from '../../styles/styledComponents';
@@ -94,12 +94,15 @@ class SectionSelect extends React.Component {
                     {section.title}
                     { is_admin && 
                       <span>
-                        <Icon 
-                          name='delete'
-                          size='large'
-                          link
-                          onClick={() => this.deleteButtonClick(section) }>
-                        </Icon> 
+                        <Popup basic content="Delete Section" trigger={
+                          <Icon 
+                            link 
+                            size="large" 
+                            name='delete' 
+                            style={{float: "right"}} 
+                            onClick={() => this.deleteButtonClick(section) }/> 
+                          }  
+                        />
                         <SectionEditForm />
                       </span>
                     }

@@ -10,6 +10,7 @@ import {
   Dimmer,
   Icon,
   Segment,
+  Popup,
   Loader,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -35,19 +36,18 @@ class Section extends React.Component {
           </Segment>
         </Segment>
         { is_admin &&
-          <Icon
-            link
-            style={{float: "right"}}
-            name='delete'
-            onClick={ () => this.deleteContentClick(cc.contentId)}
-          />
-        } { is_admin &&
-          //TODO: Make this publish the content
-          <Icon 
-            link
-            style={{float: "right"}} 
-            name='check'
-          />
+          <span>
+            <Popup basic content="Delete Content" trigger={
+              <Icon 
+                link 
+                name='delete'
+                style={{float: "right"}} 
+                onClick={ () => this.deleteContentClick(cc.contentId)}/>
+              } 
+            />
+            {/* TODO: Make this publish the content */}
+            <Popup basic trigger={<Icon style={{float: "right"}} link name='check'/>} content="Publish Content" />     
+          </span>     
         }
       </div>
     ))
@@ -111,7 +111,15 @@ class Section extends React.Component {
               <Accordion.Content active={this.checkActiveIndex(ss.id)}>
                 { is_admin &&
                   <div style={{float: "right", marginTop: -30, marginBottom: 0}}>
-                    <Icon link size="large" name='delete' onClick={ () => this.deleteSubClick(ss)}/>
+                    <Popup basic content="Delete Subsection" trigger={
+                      <Icon 
+                        link 
+                        size="large" 
+                        name='delete' 
+                        style={{float: "right"}} 
+                        onClick={ () => this.deleteSubClick(ss)}/> 
+                      }
+                    /> 
                     <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true}/>
                     <AddCourseContent content={content} subSectionId={ss.id} />
                   </div>
