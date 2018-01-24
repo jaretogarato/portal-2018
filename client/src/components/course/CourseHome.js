@@ -1,11 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Container, Segment } from 'semantic-ui-react';
-import { PageTitle } from '../../styles/styledComponents';
-=======
 import { Container, Header, Segment, Grid, Image } from 'semantic-ui-react';
 import devpoint from '../images/devpoint.png'
->>>>>>> home page
 
 class CourseHome extends React.Component {
   render() {
