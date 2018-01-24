@@ -18,8 +18,12 @@ class Groups extends React.Component {
 
   addGroupMemberToEdit = (member) => {
     const { editing, pair } = this.state;
-    if ( editing && pair.length < 2)
-      this.setState({ pair: [...pair, member] });
+    if ( editing && pair.length <= 2) {
+      if (pair.length > 0 && member.id === pair[0].id)
+        this.setState({ pair: pair.filter( p => p.id !== member.id ) })
+      else
+        pair.length != 2 && this.setState({ pair: [member, ...pair] });
+    }
   }
 
   handleSwap = () => {
@@ -60,11 +64,15 @@ class Groups extends React.Component {
           active={this.state.activeIndex === s.id}
           index={s.id}
           onClick={this.handleClick}
+          style={{ textAlign: 'left' }}
         >
           <Icon name='dropdown' />
           { s.title }
         </Accordion.Title>
-        <Accordion.Content active={this.state.activeIndex === s.id}>
+        <Accordion.Content
+          active={this.state.activeIndex === s.id}
+          style={{ textAlign: 'left' }}
+        >
           { isAdmin(permissions) && this.editView() }
           { pair.length === 2 &&
             <Button
@@ -105,6 +113,7 @@ class Groups extends React.Component {
         <GroupMember
           key={member.id}
           editing={this.state.editing}
+          pair={this.state.pair}
           member={member}
           addGroupMemberToEdit={this.addGroupMemberToEdit}
         />
