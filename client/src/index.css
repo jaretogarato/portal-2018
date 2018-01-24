@@ -50,7 +50,10 @@
 }
 
 i.large.icon, i.large.icons {
-  float: right; 
+  float: right;
 }
 
-
+.ui.table thead th {
+  background-color: #fff;
+  color: #614d7b;
+}

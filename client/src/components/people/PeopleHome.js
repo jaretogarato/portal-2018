@@ -14,26 +14,19 @@ import UserForm from '../users/UserForm';
 import AddUsers from '../users/AddUsers';
 import { isStaff } from '../../utils/permissions';
 import missingAvatar from '../../assets/images/missing-avatar.png';
-
-
 class PeopleHome extends React.Component {
   state = { loaded: false, modalOpen: false, view: 'all', filter: 'all' }
-
   setUsersLoaded = () => this.setState({ loaded: true })
-
   componentDidMount() {
     const { courseId, dispatch } = this.props
     dispatch(getUsersByCourse(courseId, this.setUsersLoaded))
   }
-
   setFilter = filter => this.setState({ filter })
-
   filterView = () => {
     let { filter } = this.state;
     let { usersByCourse } = this.props;
     return filter === 'all' ? usersByCourse : usersByCourse.filter( u => u.role === filter )
   }
-
   normalizeText = (role) => {
     if (role) {
       if (role === 'ta')
@@ -44,8 +37,6 @@ class PeopleHome extends React.Component {
       return null
     }
   }
-
-
   displayUsers = () => {
     const { courseId, usersByCourse } = this.props
     return this.filterView().map(user => {
@@ -69,19 +60,18 @@ class PeopleHome extends React.Component {
       )
     });
   }
-
   filterOptions = () => {
     return [
-      'all', 
-      'student', 
-      'ta', 
-      'teacher', 
+      'all',
+      'student',
+      'ta',
+      'teacher',
       'auditor',
-    ].map( role => { 
+    ].map( role => {
       return { key: role, text: role, value: role }
     })
   }
-  
+
   view = () => {
     let { view, filter } = this.state;
     let { permissions } = this.props;
@@ -94,7 +84,7 @@ class PeopleHome extends React.Component {
       default:
         return (
           <Table basic='very' striped singleLine>
-            <Table.Header style={{backgroundColor: "#614d7b"}}>
+            <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
@@ -116,7 +106,6 @@ class PeopleHome extends React.Component {
         )
     }
   }
-
   buttons = () => {
     let { permissions } = this.props;
     let buttons = [];
@@ -140,7 +129,6 @@ class PeopleHome extends React.Component {
       </Button>
     )
   }
-
   render() {
     return (
       <Segment basic className='container'>
@@ -150,12 +138,10 @@ class PeopleHome extends React.Component {
     );
   }
 }
-
 const mapStateToProps = (state) => {
   return {
     usersByCourse: state.users,
     permissions: state.permissions,
   }
 }
-
 export default connect(mapStateToProps)(PeopleHome);
