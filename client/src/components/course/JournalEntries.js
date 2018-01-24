@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Segment, Form, Item, Divider } from 'semantic-ui-react';
+import { Form, Item, Divider } from 'semantic-ui-react';
 import { getSections } from '../../actions/sections';
 import axios from 'axios';
 import { setHeaders } from '../../actions/headers';
@@ -18,7 +18,7 @@ class JournalEntries extends React.Component {
   }
 
   componentDidMount() {
-    let { location: { state }, enrollment } = this.props;
+    let { location: { state }} = this.props;
     let section = null;
     if (state) {
       section = state.section;
@@ -101,7 +101,7 @@ class JournalEntries extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { section, title, body, permission } = this.state; 
-    const { dispatch, flash, course, enrollment } = this.props;
+    const { dispatch, course, enrollment } = this.props;
     const entry = { section_id: section, permission, title, body, enrollment_id: enrollment.id }
     axios.post(`/api/courses/${course}/journal_entries`, { entry })
       .then( ({ data, headers }) => {
@@ -178,7 +178,7 @@ class JournalEntries extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  let course = parseInt(props.match.params.id);
+  let course = parseInt(props.match.params.id, 10);
   let { user, sections } = state;
   let enrollment = user.enrollments.find( e => e.course_id === course )
   return { course, user, enrollment, sections }
