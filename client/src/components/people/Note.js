@@ -90,7 +90,7 @@ class Note extends React.Component {
   editNote = () => {
     const { user, title, content } = this.props
     return(
-      <Message info fluid='true' as='form' onSubmit={this.handleSubmit}>
+      <Message style={{borderRadius: '0px', backgroundColor: 'white'}} fluid='true' as='form' onSubmit={this.handleSubmit}>
         <Card.Content>
           <Button
             basic
@@ -103,6 +103,7 @@ class Note extends React.Component {
           </Button>
           <Button
             basic
+            size='mini'
             onClick={ () => this.setState({ editing: !this.state.editing })}
             floated='right'
           >

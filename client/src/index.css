@@ -57,3 +57,7 @@ i.large.icon, i.large.icons {
   background-color: #fff;
   color: #614d7b;
 }
+.ui.segment {
+  border-radius: 0px !important;
+}
+

@@ -32,7 +32,7 @@ class NoteForm extends React.Component {
     const { title, content } = this.state
     return(
       // <Message noteid={note.id} />
-      <Message info fluid='true' as='form' onSubmit={this.handleSubmit}>
+      <Message style={{borderRadius: '0px', backgroundColor: 'white'}} onSubmit={this.handleSubmit}>
         <Card.Content>
           <Button
             basic

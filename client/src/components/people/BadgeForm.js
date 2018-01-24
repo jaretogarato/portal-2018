@@ -7,12 +7,6 @@ import {
 class BadgeForm extends React.Component {
   state = { content: '' }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   let { content } = this.state
-  //   this.setState({ content: '' })
-  // }
-
   handleChange = (e) => {
     const { name, value } = e.target
     this.setState({ [name]: value })

@@ -16,16 +16,17 @@ const CourseCard = ({ course }) => (
         </Card.Meta>
       </Card.Content>
       <Card.Content extra>
-      <div className='ui two buttons'>
+      <div>
+        <Button.Group attached='bottom' style={{position: 'relative', zIndex: 0}}> 
         <Button
-          basic
-          color='blue'
+          style={{background: 'linear-gradient(#9575CD, #614D7B', color: 'white'}}
           as={Link}
           to={`/courses/${course.id}`}
         >
         View
         </Button>
         <EditCourseModal course={course}/>
+        </Button.Group>
        </div>
       </Card.Content>
     </Card>

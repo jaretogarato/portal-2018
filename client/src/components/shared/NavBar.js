@@ -25,7 +25,6 @@ class NavBar extends React.Component {
         style={styles.navSecondaryText}
         name={course.course_type}
         text={course.course_type}
-        // active={this.state.activeItem === `${course.id}`}
         onClick={this.handleItemClick}
       />
     )
@@ -108,13 +107,14 @@ class NavBar extends React.Component {
 
 const styles = {
   dropdown: {
-    backgroundColor: '#DDD',
+    // backgroundColor: '#DDD',
     width: '21vw',
     overflow: 'auto',
   },
   navText: {
     color: '#fff',
     paddingBottom: '1.178rem',
+    border: 'none',
   },
   navbarPrimary: {
     background: 'linear-gradient(#9575CD, #614d7b)',

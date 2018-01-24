@@ -153,7 +153,7 @@ class PeopleProfile extends React.Component {
                     value={options}
                   />
                   <Button basic type='submit' onClick={this.addBadge}>
-                    <Icon name='add' />
+                    Add
                   </Button>
                 </Form>
               }
