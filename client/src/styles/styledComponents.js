@@ -70,3 +70,4 @@ export const ParagraphText = styled.p`
 //   padding-top: 2%;
 //   font-size: 0.83em;
 // `;
+

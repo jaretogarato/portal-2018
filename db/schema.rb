@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123231353) do
+ActiveRecord::Schema.define(version: 20180123232339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,18 @@ ActiveRecord::Schema.define(version: 20180123231353) do
     t.index ["ta_group_id"], name: "index_group_memberships_on_ta_group_id"
   end
 
+  create_table "journal_entries", force: :cascade do |t|
+    t.text "body"
+    t.string "title"
+    t.string "permission", default: "private"
+    t.bigint "section_id"
+    t.bigint "enrollment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["enrollment_id"], name: "index_journal_entries_on_enrollment_id"
+    t.index ["section_id"], name: "index_journal_entries_on_section_id"
+  end
+
   create_table "lectures", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -164,7 +176,7 @@ ActiveRecord::Schema.define(version: 20180123231353) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "title", default: "", null: false
-    t.json "content", default: {}, null: false
+    t.text "content", default: "", null: false
     t.string "due_date", default: "", null: false
     t.integer "points", default: 0, null: false
     t.datetime "created_at", null: false
@@ -272,6 +284,8 @@ ActiveRecord::Schema.define(version: 20180123231353) do
   add_foreign_key "enrollments", "users"
   add_foreign_key "group_memberships", "enrollments"
   add_foreign_key "group_memberships", "ta_groups"
+  add_foreign_key "journal_entries", "enrollments"
+  add_foreign_key "journal_entries", "sections"
   add_foreign_key "question_options", "quiz_questions"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "sections", "courses"

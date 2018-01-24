@@ -72,6 +72,11 @@ class SectionSelect extends React.Component {
       this.props.dispatch(clearSection())
     }
   }
+
+  journalEntryClick = (section) => {
+    const { history, course } = this.props;
+    this.props.history.push(`/courses/${course.id}/journal_entries`, { section: section.id })
+  }
   
   render() {
     let { courseLoaded, sectionsLoaded, subSectionsLoaded } = this.state;
@@ -92,6 +97,14 @@ class SectionSelect extends React.Component {
                     onClick={e => this.handleClick(e)}
                   >
                     {section.title}
+                    <span>
+                      <Icon 
+                        name='idea'
+                        size='large'
+                        link
+                        onClick={() => this.journalEntryClick(section) }>
+                      </Icon> 
+                    </span>
                     { is_admin && 
                       <span>
                         <Popup basic content="Delete Section" trigger={

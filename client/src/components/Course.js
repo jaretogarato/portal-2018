@@ -25,6 +25,7 @@ import Assignments from './assignments/Assignments';
 import Assignment from './assignments/Assignment';
 import CreateAssignment from './assignments/CreateAssignment';
 import FetchEnrollment from './course/FetchEnrollment';
+import JournalEntries from './course/JournalEntries';
 
 class Course extends React.Component {
   state = { sidebar: false };
@@ -84,6 +85,7 @@ class Course extends React.Component {
             <ProtectedRoute exact path='/courses/:id/lectures/create' component={CreateLecture} />
             <ProtectedRoute exact path='/courses/:id/lectures/:id' component={Lecture} />
             <ProtectedRoute exact path='/courses/:id/assignments' component={Assignments} />
+            <ProtectedRoute exact path='/courses/:id/journal_entries' component={JournalEntries} />
             <ProtectedRoute adminOnly={true} exact path='/courses/:id/assignments/create' component={CreateAssignment} />
             <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />
             <ProtectedRoute exact path='/courses/:id/wiki' component={WikiDocs} />

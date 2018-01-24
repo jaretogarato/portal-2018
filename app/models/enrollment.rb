@@ -6,6 +6,7 @@ class Enrollment < ApplicationRecord
 
   has_many :group_memberships
   has_many :ta_groups, through: :group_memberships
+  has_many :journal_entries
 
   validates :role, inclusion: {
     in: %w(student ta teacher auditor),

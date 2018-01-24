@@ -17,6 +17,7 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :sections
       resources :attendances, only: [:index, :create]
       resources :wiki_docs
+      resources :journal_entries, only: [:index, :create]
     end
 
     resources :sections do
