@@ -35,9 +35,9 @@ class Login extends Component {
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                       <label htmlFor='email'>Email</label>
-                      <input
+                      <Form.Input
                         icon='user'
-                        iconposition='left'
+                        iconPosition='left'
                         required
                         id='email'
                         value={email}
@@ -47,9 +47,9 @@ class Login extends Component {
                     </Form.Field>
                     <Form.Field>
                       <label htmlFor='password'>Password</label>
-                      <input
+                      <Form.Input
                         icon='lock'
-                        iconposition='left'
+                        iconPosition='left'
                         required
                         id='password'
                         value={password}
