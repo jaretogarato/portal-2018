@@ -59,6 +59,12 @@ export const BoldText = styled.h3`
   font-size: 0.83em;
 `;
 
+export const ParagraphText = styled.p`
+  color: black;
+  padding-top: 2%;
+  font-size: .85em;
+`
+
 // export const PlainText = styled.h5`
 //   color: black;
 //   padding-top: 2%;

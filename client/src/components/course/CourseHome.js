@@ -1,190 +1,86 @@
 import React from 'react';
-import { Container, Header, Segment, Grid, Image } from 'semantic-ui-react';
+import { Container, Header, Segment, Grid, Image, List } from 'semantic-ui-react';
 import devpoint from '../../assets/images/devpoint.png'
+import { HomeStrings } from '../../assets/strings/homeStrings'
+import { PageTitle, PageSubTitle, BoldText } from '../../styles/styledComponents'
+
+const first = HomeStrings.concepts.slice(0, 4)
+const second = HomeStrings.concepts.slice(4,8)
+const third = HomeStrings.concepts.slice(8,12)
+const fourth = HomeStrings.concepts.slice(12,16)
+const fifth = HomeStrings.concepts.slice(16,20)
+const sixth = HomeStrings.concepts.slice(20,24)
+const seventh = HomeStrings.concepts.slice(24,28)
+const eighth = HomeStrings.concepts.slice(28,32)
 
 class CourseHome extends React.Component {
+
+  displayConcepts = (input) => {
+    return input.map( concept => {
+      return (
+      <td>{concept}</td>
+      )
+    })
+  }
+
   render() {
     return(
       <Container>
-        <Grid>
-              <Grid.Row>
-              <Grid.Column width={1} stackable>
-              </Grid.Column>
-              <Grid.Column width={12}>
-                <div>
-                  <Image src={devpoint} alt='devpoint' />
-                </div>
-              </Grid.Column>
-              <Grid.Column width={1} stackable>
-                <div >
-                </div>
-              </Grid.Column>
-              </Grid.Row>
-              <Grid.Row>
-              <Grid.Column width={1} stackable>
-              </Grid.Column>
-              <Grid.Column width={14} stackable>
-                <h3>
-                  Main Website
-                </h3>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1} stackable>
-            </Grid.Column>
-            <Grid.Column width={14} stackable>
+              <div>
+                <Image src={devpoint} alt='devpoint' />
+              </div>
+              <h3>
+                Main Website
+              </h3>
               <h5>
                 <a href='http://devpointlabs.com' style={{color: 'purple'}}> Main Site </a>
               </h5>
-            </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row>
-            <Grid.Column width={1}  stackable >
-            </Grid.Column>
-            <Grid.Column width={14} stackable >
               <h3>
                 Student Handbook
               </h3>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1} stackable >
-            </Grid.Column>
-            <Grid.Column width={14} stackable >
               <h5>
                 <a href='https://docs.google.com/document/d/1ly9CTnGcYb6Rls-92RpKCR9RHJ1IcvdBSmfy7HZj3NM/edit' style={{color: 'purple'}}> Student Handbook </a>
               </h5>
-            </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row>
-            <Grid.Column width={1} stackable>
-            </Grid.Column>
-            <Grid.Column width={14} stackable>
               <h3>
                 Concepts
-                </h3>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1} stackable>
-            </Grid.Column>
-            <Grid.Column width={4} stackable>
-              <p style={styles.paragraph1}>skdjaljldjaskld
-              lksjdlasjdlasjd
-              slkjdlkasjdkl
-              asldjkaljd
-              </p>
-            </Grid.Column>
-            <Grid.Column width={4} stackable>
-              <p style={styles.paragraph1}>skdjaljldjaskld
-              lksjdlasjdlasjd
-              slkjdlkasjdkl
-              asldjkaljd
-              </p>
-            </Grid.Column>
-            <Grid.Column width={4} stackable>
-              <p style={styles.paragraph1}>skdjaljldjaskld
-              lksjdlasjdlasjd
-              slkjdlkasjdkl
-              asldjkaljd
-              </p>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1} stackable>
-            </Grid.Column>
-            <Grid.Column width={14} stackable>
-              <h3>
-              What you will learn
               </h3>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1} stackable>
-            </Grid.Column>
-            <Grid.Column width={4} stackable >
-              <p style={styles.paragraph2}>skdjaljldjaskld
-              lksjdlasjdlasjd
-              slkjdlkasjdkl
-              asldjkaljdsjdhasdkajshdk
-              sdhhdahsakjhdjkashdjkhaskj
-              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
-              slkjdslajdsjdkladkl
-              </p>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1}>
-            </Grid.Column>
-            <Grid.Column width={14}>
-              <h3>
-              Grading
-              </h3>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1}>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <p style={styles.paragraph2}>skdjaljldjaskld
-              lksjdlasjdlasjd
-              slkjdlkasjdkl
-              asldjkaljdsjdhasdkajshdk
-              sdhhdahsakjhdjkashdjkhaskj
-              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
-              slkjdslajdsjdkladkl
-              </p>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1}>
-            </Grid.Column>
-            <Grid.Column width={14}>
-              <h3>
-                Attendence
-                </h3>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1}>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <p style={styles.paragraph2}>skdjaljldjaskld
-              lksjdlasjdlasjd
-              slkjdlkasjdkl
-              asldjkaljdsjdhasdkajshdk
-              sdhhdahsakjhdjkashdjkhaskj
-              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
-              slkjdslajdsjdkladkl
-              </p>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1}>
-            </Grid.Column>
-            <Grid.Column width={14}>
-              <h3>
-                Assingments
-              </h3>
-            </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-            <Grid.Column width={1}>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <p style={styles.paragraph2}>skdjaljldjaskld
-              lksjdlasjdlasjd
-              slkjdlkasjdkl
-              asldjkaljdsjdhasdkajshdk
-              sdhhdahsakjhdjkashdjkhaskj
-              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
-              slkjdslajdsjdkladkl
-              </p>
-            </Grid.Column>
-            </Grid.Row>
-            </Grid>
+              <table>
+                <tbody>
+                  <tr>
+                    {this.displayConcepts(first)}
+                  </tr>
+                  <tr>
+                    {this.displayConcepts(second)}
+                  </tr>
+                  <tr>
+                    {this.displayConcepts(third)}
+                  </tr>
+                  <tr>
+                    {this.displayConcepts(fourth)}
+                  </tr>
+                  <tr>
+                    {this.displayConcepts(fifth)}
+                  </tr>
+                  <tr>
+                    {this.displayConcepts(sixth)}
+                  </tr>
+                  <tr>
+                    {this.displayConcepts(seventh)}
+                  </tr>
+                  <tr>
+                    {this.displayConcepts(eighth)}
+                  </tr>
+                </tbody>
+              </table>
+              <PageTitle>
+                {HomeStrings.whatyouWillLearnHeader}
+              </PageTitle>
+              <PageSubTitle>
+                {HomeStrings.whatyouWillLearnH2}
+              </PageSubTitle>
+              <PageSubTitle>
+                {HomeStrings.whatyouWillLearnH3}
+              </PageSubTitle>
       </Container>
   );
 }
