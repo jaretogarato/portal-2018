@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import HomeBg from '../assets/images/home-image-2880w.jpg';
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
-import { Button, Container, Form, Header, Grid, Segment } from 'semantic-ui-react';
+import { Button, Container, Form, Grid, Segment } from 'semantic-ui-react';
 import { HomeBody, HomeWrapper } from '../styles/home-images.js';
+import { PageTitle } from '../styles/styledComponents';
 
 
 class Login extends Component {
@@ -30,7 +31,7 @@ class Login extends Component {
             <Segment basic textAlign='center'>
               <Grid textAlign='center' style={styles.login_grid}>
                 <Grid.Column style={styles.login_container} mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
-                  <Header as="h2">Login</Header>
+                  <PageTitle>Login</PageTitle>
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                       <label htmlFor='email'>Email</label>

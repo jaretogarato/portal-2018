@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
+import { Form, Button, Container, Divider } from 'semantic-ui-react';
 import { addQuiz } from '../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import RiftEditor from '../Rift/riftEditor/RiftEditor';
+import { PageTitle } from '../../styles/styledComponents';
 
 
 class QuizForm extends Component {
@@ -27,7 +28,7 @@ handleSubmit = (e) => {
     const { title, due_date, points } = this.state
     return(
       <Container> 
-        <Header as="h2" style={styles.pageTitle}>Create Quiz</Header>
+        <PageTitle>Create Quiz</PageTitle>
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
               <Form.Input 
@@ -77,9 +78,6 @@ handleSubmit = (e) => {
 
 const styles = {
   form: {
-    paddingTop: '2%',
-  },
-  pageTitle: {
     paddingTop: '2%',
   },
   textArea: {

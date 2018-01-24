@@ -1,7 +1,8 @@
 import React from 'react';
-import { Segment, Header, Checkbox } from 'semantic-ui-react';
+import { Segment, Checkbox } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addResponse, updateResponse, removeResponse } from '../../../actions/quizResponses';
+import { PageTitle } from '../../../styles/styledComponents';
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
@@ -40,7 +41,7 @@ class MultipleAnswer extends React.Component {
     const { question } = this.props
     return(
       <Segment>
-        <Header as='h2'>{question.question}</Header>
+        <PageTitle>{question.question}</PageTitle>
         {
           question.options.map( (o,i) => {
             return(

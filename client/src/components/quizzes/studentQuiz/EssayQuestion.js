@@ -1,7 +1,9 @@
 import React from 'react';
-import { Form, Segment, Header } from 'semantic-ui-react';
+import { Form, Segment, } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addResponse, updateResponse, removeResponse } from '../../../actions/quizResponses';
+import { PageTitle } from '../../../styles/styledComponents';
+
 
 class EssayQuestion extends React.Component {
   state = { response: '', hasResponse: false }
@@ -31,7 +33,7 @@ class EssayQuestion extends React.Component {
     const { response } = this.state
     return(
       <Segment>
-        <Header as='h2'>{question.question}</Header>
+        <PageTitle>{question.question}</PageTitle>
         <Form>
           <Form.TextArea value={response} onChange={this.handleChange} onBlur={this.sendResponse} />
         </Form>

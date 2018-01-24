@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { PageTitle } from '../../../styles/styledComponents';
 
 const GradedQuiz = ({ questions }) => {
-  return <h1>Graded Quiz</h1>
+  return <PageTitle>Graded Quiz</PageTitle>
 }
 
 const mapStateToProps = (state) => {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Header, Table, Button, Icon, Grid } from 'semantic-ui-react';
+import { Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
+import { PageTitle } from '../../styles/styledComponents';
 
 class Quizzes extends Component {
   state = { quizzes: [] }
@@ -38,7 +39,7 @@ class Quizzes extends Component {
     const { id } = this.props.match.params
     return (
       <div>
-       <Header as='h2' style={styles.quiz}>Quizzes</Header>
+       <PageTitle>Quizzes</PageTitle>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
@@ -77,10 +78,5 @@ class Quizzes extends Component {
   }
 }
 
-const styles = {
-  quiz: {
-    paddingTop: '2%',
-  }
-}
 
 export default Quizzes;

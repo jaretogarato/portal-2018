@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { getCourses } from '../../actions/courses';
 import {
   Container,
-  Grid,
   Menu,
   Card,
 } from 'semantic-ui-react';

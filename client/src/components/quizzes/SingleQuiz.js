@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Header, Button, Segment, List, Dimmer, Loader, Divider } from 'semantic-ui-react';
+import { Button, Segment, List, Dimmer, Loader, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getQuiz, deleteQuiz } from '../../actions/singleQuiz';
@@ -11,6 +11,7 @@ import MultipleChoiceQuestion from './MultipleChoiceQuestion';
 import EssayQuestion from './EssayQuestion';
 import TrueFalse from './TrueFalse';
 import moment from 'moment';
+import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
 
 
 class SingleQuiz extends Component{
@@ -103,7 +104,7 @@ displayQuiz = () => {
   } else {
   return (
     <Segment basic clearing >
-      <Header as='h2'>{title}</Header>
+      <PageTitle>{title}</PageTitle>
       <Link to={'./'} >
         <Button basic floated='right'>All Quizzes</Button>
       </Link>
@@ -124,7 +125,7 @@ displayQuiz = () => {
         </List.Item>
       </List>
       <Segment basic>
-        <Header>Quiz Questions</Header>
+        <PageSubTitle>Quiz Questions</PageSubTitle>
         <Button basic onClick={this.toggleQuestionEdit}>
           { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
         </Button>

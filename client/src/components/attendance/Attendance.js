@@ -117,7 +117,7 @@ class Attendance extends React.Component {
     if (users.length)
       return(
         <Container>
-          <Header as={PageTitle} textAlign='center'>Attendance</Header>
+          <PageTitle style={{textAlign: 'center'}}>Attendance</PageTitle>
           <DatePicker courseId={this.props.match.params.id}/>
           { this.legend() }
           { this.allChosen() }

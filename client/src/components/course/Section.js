@@ -5,7 +5,7 @@ import SubSectionForm from './SubSectionForm';
 import { deleteSubSection } from '../../actions/subSections';
 import { deleteCourseContent } from '../../actions/courseContent';
 import { getAssignments } from '../../actions/assignments';
-// import { PageSubTitle } from '../../styles/styledComponents'
+import { PageSubTitle } from '../../styles/styledComponents'
 import {
   Accordion,
   Dimmer,
@@ -14,7 +14,7 @@ import {
   Loader,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { PageSubTitle } from '../../styles/styledComponents';
+
 
 class Section extends React.Component {
   state = { activeIndexes: [] }
@@ -95,8 +95,7 @@ class Section extends React.Component {
     if(subSections && this.props.loaded) {
       return(
         <div>
-          <h3>{title}</h3>
-          {/* <PageSubTitle>{title}</PageSubTitle> */}
+          <PageSubTitle>{title}</PageSubTitle>
           { subSections.map( ss => {
             let content = this.mapContents(ss.id)
             return <Accordion key={ss.id} content={content} fluid styled>

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Select, Segment, Header, Button } from 'semantic-ui-react';
+import { Form, Select, Segment, Button } from 'semantic-ui-react';
 import MultipleChoiceOption from './MultipleChoiceOption';
 import { addQuestion } from '../../actions/quizQuestions';
 import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
+import { PageSubTitle } from '../../styles/styledComponents';
 
 const options = [
   { key: 2, text: 2, value: 2 },
@@ -93,7 +94,7 @@ class MultipleChoiceQuestion extends React.Component {
     return (
      <Segment>
         <Form onSubmit={this.handleSubmit}>
-          <Header>Question Text</Header>
+          <PageSubTitle>Question Text</PageSubTitle>
           <Form.TextArea
             name='question'
             value={question}

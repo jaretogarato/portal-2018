@@ -5,6 +5,8 @@ import EssayQuestion from './EssayQuestion';
 import MultipleChoice from './MultipleChoice';
 import MultipleAnswer from './MultipleAnswer';
 import TrueFalse from './TrueFalse';
+import { PageSubTitle } from '../../../styles/styledComponents';
+
 
 class TakeQuiz extends React.Component {
   state = { ready: false }
@@ -74,7 +76,7 @@ class TakeQuiz extends React.Component {
           <div ref={this.handleContextRef}>
           <Grid>
             <Grid.Column width={13}>
-             <Header as ='h2'>{quiz.title}</Header>
+             <PageSubTitle>{quiz.title}</PageSubTitle>
               {this.displayQuestions()}
             </Grid.Column>
             <Grid.Column width={3}>

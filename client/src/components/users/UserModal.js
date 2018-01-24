@@ -1,6 +1,7 @@
 import React from 'react';
 import UserForm from './UserForm';
-import { Button, Header, Icon, Modal } from 'semantic-ui-react';
+import { Button, Icon, Modal } from 'semantic-ui-react';
+import { PageTitle } from '../../styles/styledComponents';
 
 class UserModal extends React.Component {
   state = { modalOpen: false };
@@ -24,7 +25,7 @@ class UserModal extends React.Component {
           size='small'
           closeIcon='close'
         >
-          <Header as='h2'><Icon name='add user'/> Add User</Header>
+          <PageTitle><Icon name='add user'/> Add User</PageTitle>
           <Modal.Content>
             <UserForm modalClose={this.handleClose} courseId={this.props.courseId} />
           </Modal.Content>

@@ -2,7 +2,7 @@ import React from 'react';
 import { PageTitle, BoldText } from '../../styles/styledComponents';
 import AnnouncementForm from './AnnouncementForm';
 import { connect } from 'react-redux';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
 import { deleteAnnouncement } from '../../actions/announcements';
 
 class Announcement extends React.Component {

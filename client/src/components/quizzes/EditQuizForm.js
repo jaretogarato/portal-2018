@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Header, Divider } from 'semantic-ui-react';
+import { Form, Button, Container, Divider } from 'semantic-ui-react';
 import { updateQuiz, getQuiz } from '../../actions/singleQuiz';
 import { connect } from 'react-redux';
+import { PageTitle } from '../../styles/styledComponents';
 
 class EditQuizForm extends Component {
 state = { title: '', content: '', due_date:'', points: '' }
@@ -27,7 +28,7 @@ handleSubmit = (e) => {
     const { title, content, due_date, points } = this.props.quiz
     return(
       <Container>
-        <Header as="h2" style={styles.pageTitle}>Update Quiz</Header>
+        <PageTitle>Update Quiz</PageTitle>
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
               <Form.Input
@@ -85,9 +86,6 @@ handleSubmit = (e) => {
 
 const styles = {
   form: {
-    paddingTop: '2%',
-  },
-  pageTitle: {
     paddingTop: '2%',
   },
   textArea: {

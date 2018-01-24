@@ -7,6 +7,7 @@ import { handleLogout } from '../../actions/auth';
 
 
 
+
 const styles = {
   image: {
     borderRadius: '50%',

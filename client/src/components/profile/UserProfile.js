@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import {
   Button,
   Divider,
-  Grid,
   Image,
   Segment,
   Dropdown,
