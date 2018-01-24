@@ -36,15 +36,15 @@ class Section extends React.Component {
           </Segment>
         </Segment>
         { is_admin &&
-          <Icon 
-            style={{float: "right"}} 
-            name='delete' 
-            onClick={ () => this.deleteContentClick(cc)} 
-          /> 
+          <Icon
+            style={{float: "right"}}
+            name='delete'
+            onClick={ () => this.deleteContentClick(cc)}
+          />
         } { is_admin &&
           //TODO: Make this publish the content
-          <Icon 
-            style={{float: "right"}} 
+          <Icon
+            style={{float: "right"}}
             name='check'
           />
         }
@@ -76,15 +76,15 @@ class Section extends React.Component {
     }).map( content => {
       quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
-          filtered.push({...quiz, contentId: content.id, type: 'quiz'})
+          filtered.push({...quiz, contentId: content.id, type: 'quizzes'})
       })
       assignments.map(assignment => {
         if(assignment.id === content.assignment_id)
-          filtered.push({...assignment, contentId: content.id, type: 'assignment'})
+          filtered.push({...assignment, contentId: content.id, type: 'assignments'})
       })
       lectures.map(lecture => {
         if(lecture.id === content.lecture_id)
-          filtered.push({...lecture, contentId: content.id, type: 'lecture'})
+          filtered.push({...lecture, contentId: content.id, type: 'lectures'})
       })
     })
     return filtered
@@ -99,9 +99,9 @@ class Section extends React.Component {
           { subSections.map( ss => {
             let content = this.mapContents(ss.id)
             return <Accordion key={ss.id} content={content} fluid styled>
-              <Accordion.Title 
-                active={this.state.activeIndexes === ss.id} 
-                index={ss.id} 
+              <Accordion.Title
+                active={this.state.activeIndexes === ss.id}
+                index={ss.id}
                 onClick={this.handleSubClick}
               >
             { ss.title }
@@ -115,7 +115,7 @@ class Section extends React.Component {
                     <AddCourseContent content={content} subSectionId={ss.id} />
                   </div>
                 }
-                { content.length ? this.displayItems(content) : "No Content" }                
+                { content.length ? this.displayItems(content) : "No Content" }
               </Accordion.Content>
             </Accordion>
           })}
