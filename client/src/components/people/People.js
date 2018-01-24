@@ -6,8 +6,8 @@ import PeopleHome from './PeopleHome';
 class People extends React.Component {
   courseId = this.props.match.params.id
   panes = [
-    { menuItem: {content: 'People', fontSize: 'medium'}, render: () => <PeopleHome courseId={this.courseId} /> },
-    { menuItem: {content: 'Groups', fontSize: 'medium'}, render: () => <GroupsHome courseId={this.courseId} /> },
+    { key: 'people', menuItem: {content: 'People', fontSize: 'medium'}, render: () => <PeopleHome courseId={this.courseId} /> },
+    { key: 'groups', menuItem: {content: 'Groups', fontSize: 'medium'}, render: () => <GroupsHome courseId={this.courseId} /> },
   ]
 
   render() {
