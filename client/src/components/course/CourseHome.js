@@ -1,71 +1,214 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Container, Segment } from 'semantic-ui-react';
 import { PageTitle } from '../../styles/styledComponents';
+=======
+import { Container, Header, Segment, Grid, Image } from 'semantic-ui-react';
+import devpoint from '../images/devpoint.png'
+>>>>>>> home page
 
 class CourseHome extends React.Component {
   render() {
     return(
-      <Container >
-        <PageTitle>Home</PageTitle>
-        <Segment basic style={{padding: '2%'}}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Dignissim convallis aenean et tortor at risus 
-            viverra adipiscing. Ornare arcu odio ut sem. Porttitor
-            massa id neque aliquam vestibulum morbi blandit cursus 
-            risus. Adipiscing diam donec adipiscing tristique risus. 
-            Blandit aliquam etiam erat velit scelerisque in dictum 
-            non consectetur. Consectetur adipiscing elit pellentesque 
-            habitant morbi tristique senectus. Ipsum consequat nisl vel 
-            pretium lectus quam. Gravida cum sociis natoque penatibus 
-            et magnis dis. Fringilla phasellus faucibus scelerisque e
-            leifend donec. Cras ornare arcu dui vivamus arcu felis 
-            bibendum ut. Ultrices gravida dictum fusce ut placerat 
-            orci. Id donec ultrices tincidunt arcu non sodales neque 
-            sodales. Lorem dolor sed viverra ipsum nunc aliquet 
-            bibendum enim.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Dignissim convallis aenean et tortor at risus 
-            viverra adipiscing. Ornare arcu odio ut sem. Porttitor
-            massa id neque aliquam vestibulum morbi blandit cursus 
-            risus. Adipiscing diam donec adipiscing tristique risus. 
-            Blandit aliquam etiam erat velit scelerisque in dictum 
-            non consectetur. Consectetur adipiscing elit pellentesque 
-            habitant morbi tristique senectus. Ipsum consequat nisl vel 
-            pretium lectus quam. Gravida cum sociis natoque penatibus 
-            et magnis dis. Fringilla phasellus faucibus scelerisque e
-            leifend donec. Cras ornare arcu dui vivamus arcu felis 
-            bibendum ut. Ultrices gravida dictum fusce ut placerat 
-            orci. Id donec ultrices tincidunt arcu non sodales neque 
-            sodales. Lorem dolor sed viverra ipsum nunc aliquet 
-            bibendum enim.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Dignissim convallis aenean et tortor at risus 
-            viverra adipiscing. Ornare arcu odio ut sem. Porttitor
-            massa id neque aliquam vestibulum morbi blandit cursus 
-            risus. Adipiscing diam donec adipiscing tristique risus. 
-            Blandit aliquam etiam erat velit scelerisque in dictum 
-            non consectetur. Consectetur adipiscing elit pellentesque 
-            habitant morbi tristique senectus. Ipsum consequat nisl vel 
-            pretium lectus quam. Gravida cum sociis natoque penatibus 
-            et magnis dis. Fringilla phasellus faucibus scelerisque e
-            leifend donec. Cras ornare arcu dui vivamus arcu felis 
-            bibendum ut. Ultrices gravida dictum fusce ut placerat 
-            orci. Id donec ultrices tincidunt arcu non sodales neque 
-            sodales. Lorem dolor sed viverra ipsum nunc aliquet 
-            bibendum enim.
-          </p>
-        </Segment>
+      <Container>
+        <Grid>
+              <Grid.Row>
+              <Grid.Column width={1} stackable>
+              </Grid.Column>
+              <Grid.Column width={12}>
+                <div>
+                  <Image src={devpoint} alt='devpoint' />
+                </div>
+              </Grid.Column>
+              <Grid.Column width={1} stackable>
+                <div >
+                </div>
+              </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+              <Grid.Column width={1} stackable>
+              </Grid.Column>
+              <Grid.Column width={14} stackable>
+                <h3>
+                  Main Website
+                </h3>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1} stackable>
+            </Grid.Column>
+            <Grid.Column width={14} stackable>
+              <h5>
+                <a href='http://devpointlabs.com' style={{color: 'purple'}}> Main Site </a>
+              </h5>
+            </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row>
+            <Grid.Column width={1}  stackable >
+            </Grid.Column>
+            <Grid.Column width={14} stackable >
+              <h3>
+                Student Handbook
+              </h3>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1} stackable >
+            </Grid.Column>
+            <Grid.Column width={14} stackable >
+              <h5>
+                <a href='https://docs.google.com/document/d/1ly9CTnGcYb6Rls-92RpKCR9RHJ1IcvdBSmfy7HZj3NM/edit' style={{color: 'purple'}}> Student Handbook </a>
+              </h5>
+            </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row>
+            <Grid.Column width={1} stackable>
+            </Grid.Column>
+            <Grid.Column width={14} stackable>
+              <h3>
+                Concepts
+                </h3>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1} stackable>
+            </Grid.Column>
+            <Grid.Column width={4} stackable>
+              <p style={styles.paragraph1}>skdjaljldjaskld
+              lksjdlasjdlasjd
+              slkjdlkasjdkl
+              asldjkaljd
+              </p>
+            </Grid.Column>
+            <Grid.Column width={4} stackable>
+              <p style={styles.paragraph1}>skdjaljldjaskld
+              lksjdlasjdlasjd
+              slkjdlkasjdkl
+              asldjkaljd
+              </p>
+            </Grid.Column>
+            <Grid.Column width={4} stackable>
+              <p style={styles.paragraph1}>skdjaljldjaskld
+              lksjdlasjdlasjd
+              slkjdlkasjdkl
+              asldjkaljd
+              </p>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1} stackable>
+            </Grid.Column>
+            <Grid.Column width={14} stackable>
+              <h3>
+              What you will learn
+              </h3>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1} stackable>
+            </Grid.Column>
+            <Grid.Column width={4} stackable >
+              <p style={styles.paragraph2}>skdjaljldjaskld
+              lksjdlasjdlasjd
+              slkjdlkasjdkl
+              asldjkaljdsjdhasdkajshdk
+              sdhhdahsakjhdjkashdjkhaskj
+              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
+              slkjdslajdsjdkladkl
+              </p>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <h3>
+              Grading
+              </h3>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <p style={styles.paragraph2}>skdjaljldjaskld
+              lksjdlasjdlasjd
+              slkjdlkasjdkl
+              asldjkaljdsjdhasdkajshdk
+              sdhhdahsakjhdjkashdjkhaskj
+              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
+              slkjdslajdsjdkladkl
+              </p>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <h3>
+                Attendence
+                </h3>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <p style={styles.paragraph2}>skdjaljldjaskld
+              lksjdlasjdlasjd
+              slkjdlkasjdkl
+              asldjkaljdsjdhasdkajshdk
+              sdhhdahsakjhdjkashdjkhaskj
+              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
+              slkjdslajdsjdkladkl
+              </p>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <h3>
+                Assingments
+              </h3>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <p style={styles.paragraph2}>skdjaljldjaskld
+              lksjdlasjdlasjd
+              slkjdlkasjdkl
+              asldjkaljdsjdhasdkajshdk
+              sdhhdahsakjhdjkashdjkhaskj
+              shdsajdlkasjdkljldkjslajdklasjdklasjkldja
+              slkjdslajdsjdkladkl
+              </p>
+            </Grid.Column>
+            </Grid.Row>
+            </Grid>
       </Container>
-    )
-  }
+  );
 }
+}
+const styles = {
+
+
+
+  paragraph1: {
+    textAlign: 'center',
+    fontSize: '1em',
+    color: 'black',
+  },
+  paragraph2: {
+    textAlign: 'left',
+    fontSize: '1em',
+    color: 'black',
+  },
+}
+
 
 export default CourseHome;
