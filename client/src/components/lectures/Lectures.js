@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Segment, Table, Button, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { PageTitle } from '../../styles/styledComponents';
 
@@ -22,19 +23,21 @@ class Lectures extends Component {
     const { id } = this.props.match.params
     return this.state.lectures.map(lecture => {
       let date = moment(lecture.created_at).format('MMMM D, YYYY')
+      let { course } = this.props
       return (
         <Table.Row key={lecture.id}>
           <Table.Cell>
             <Link to={`/courses/${id}/lectures/${lecture.id}`}>{lecture.title}</Link>
           </Table.Cell>
           <Table.Cell>{date}</Table.Cell>
+          <Table.Cell>{course.course_type} {course.term} {course.year}</Table.Cell>
         </Table.Row>
       )
     })
   }
 
   render() {
-    const { id } = this.props.match.params
+    const { id } = this.props.match.params;
     return (
       <Segment basic>
         <PageTitle>Lectures</PageTitle>
@@ -76,4 +79,16 @@ class Lectures extends Component {
   }
 }
 
-export default Lectures;
+const styles = {
+  pageTitle: {
+    paddingTop: '2%',
+  },
+}
+
+const mapStateToProps = (state) => {
+  return {
+    course: state.course,
+  }
+}
+
+export default connect(mapStateToProps)(Lectures);
