@@ -35,12 +35,12 @@ class Section extends React.Component {
           </Segment>
         </Segment>
         { is_admin &&
-          <Icon 
+          <Icon
             link
-            style={{float: "right"}} 
-            name='delete' 
-            onClick={ () => this.deleteContentClick(cc)} 
-          /> 
+            style={{float: "right"}}
+            name='delete'
+            onClick={ () => this.deleteContentClick(cc.contentId)}
+          />
         } { is_admin &&
           //TODO: Make this publish the content
           <Icon 
