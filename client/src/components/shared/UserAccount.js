@@ -11,6 +11,8 @@ import { handleLogout } from '../../actions/auth';
 const styles = {
   image: {
     borderRadius: '50%',
+    width: '2.5rem',
+    height: '2.5rem',
     border: '1px solid white',
   },
   header: {

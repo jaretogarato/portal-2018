@@ -99,7 +99,7 @@ class ContentForm extends React.Component {
                   required
                 />
               </Form.Group>
-              <CourseFormButton>Save</CourseFormButton>
+              <CourseFormButton basic>Save</CourseFormButton>
             </Form>
           </CourseFormSegment>
         </Grid.Column>

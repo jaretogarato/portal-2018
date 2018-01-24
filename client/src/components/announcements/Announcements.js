@@ -16,7 +16,7 @@ class Announcements extends React.Component {
       <Segment basic>
         <PageTitle>Announcements</PageTitle>
         { this.props.user.is_admin && 
-          <Button onClick={this.toggleForm}>
+          <Button basic onClick={this.toggleForm}>
             {showForm ? 'Close Form' : 'Add Announcement'}
           </Button> 
         }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Segment, Radio } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addResponse, updateResponse } from '../../../actions/quizResponses';
-import { PageSubTitle } from '../../../styles/styledComponents';
+import { PageTitle } from '../../../styles/styledComponents';
 
 class TrueFalse extends React.Component {
   state = { response: '', hasResponse: false }
@@ -27,7 +27,7 @@ class TrueFalse extends React.Component {
     const { response } = this.state
     return(
       <Segment>
-        <PageSubTitle style={{ textAlign: 'center'}}>{question.question}</PageSubTitle>
+        <PageTitle style={{ textAlign: 'center'}}>{question.question}</PageTitle>
         <Segment basic>
           <Radio
             label='True'

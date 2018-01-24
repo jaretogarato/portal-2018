@@ -79,12 +79,6 @@ class Lectures extends Component {
   }
 }
 
-const styles = {
-  pageTitle: {
-    paddingTop: '2%',
-  },
-}
-
 const mapStateToProps = (state) => {
   return {
     course: state.course,

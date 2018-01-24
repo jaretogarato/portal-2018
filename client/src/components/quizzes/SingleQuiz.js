@@ -132,7 +132,7 @@ displayQuiz = () => {
           </Button>
         }
         { this.state.questionsEdit &&
-          <Button basic primary onClick={this.submitUpdates}>Save Changes</Button>
+          <Button basic onClick={this.submitUpdates}>Save Changes</Button>
         }
         {this.displayQuestions()}
         { this.props.questions.length > 3 &&
@@ -141,7 +141,7 @@ displayQuiz = () => {
           </Button>
         }
         { this.state.questionsEdit && this.props.questions.length > 3 &&
-          <Button basic primary onClick={this.submitUpdates}>Save Changes</Button>
+          <Button basic onClick={this.submitUpdates}>Save Changes</Button>
         }
         { !this.state.questionsEdit && <CreateQuestions quizId={id}/> }
       </Segment>
