@@ -8,7 +8,6 @@ import {
   Menu,
   Card,
 } from 'semantic-ui-react';
-import HomeBg from '../../assets/images/home-image-2880w.jpg';
 import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
 
 class Courses extends React.Component {
@@ -51,7 +50,7 @@ class Courses extends React.Component {
           }
         </Menu>
         { isAdding && <CourseForm cancelAdding={ () => this.setState({ isAdding: false }) } /> }
-        <HomeBody bgImage={ HomeBg }>
+        <HomeBody>
           <HomeWrapper style={ styles.scrollable_section }>
             <Container>
               <Card.Group stackable columns='3'>
