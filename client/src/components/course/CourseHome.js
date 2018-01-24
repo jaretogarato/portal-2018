@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Header, Segment, Grid, Image } from 'semantic-ui-react';
-import devpoint from '../images/devpoint.png'
+import devpoint from '../../assets/images/devpoint.png'
 
 class CourseHome extends React.Component {
   render() {
