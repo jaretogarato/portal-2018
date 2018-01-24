@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import {
-  Form,
   List,
   Header,
   Segment,
@@ -10,11 +9,15 @@ import {
   Loader,
   Button,
 } from 'semantic-ui-react';
+
 import { Link } from 'react-router-dom';
 import DocForm from './DocForm';
 import { setHeaders } from '../../../actions/headers';
 import { setFlash } from '../../../actions/flash';
-import { PageTitle, PageSubTitle } from '../../../styles/styledComponents';
+import {
+  PageTitle,
+  PageSubTitle,
+} from '../../../styles/styledComponents';
 
 
 class WikiDocs extends Component {

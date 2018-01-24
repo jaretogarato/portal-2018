@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 
 
-const submissionOptions = [
-  { key: '1', text: 'PLACEHOLDER', value: '1' },
-]
-
 class EditLecture extends Component {
   state = { title: '', content: '' }
   

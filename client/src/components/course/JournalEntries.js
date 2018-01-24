@@ -18,7 +18,7 @@ class JournalEntries extends React.Component {
   }
 
   componentDidMount() {
-    let { location: { state }} = this.props;
+    let { location: { state } } = this.props;
     let section = null;
     if (state) {
       section = state.section;

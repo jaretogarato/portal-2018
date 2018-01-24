@@ -1,5 +1,4 @@
 import React from 'react';
-import SubSectionsMobile from './SubSectionsMobile';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setSection } from '../../actions/section';

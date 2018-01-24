@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { Link, withRouter } from 'react-router-dom';
 import { Dropdown, Image, Menu } from 'semantic-ui-react';
-import UserAccount from './UserAccount'
+import UserAccount from './UserAccount';
 
 class NavBar extends React.Component {
   state = { activeItem: 'Course Home' };
@@ -33,7 +33,7 @@ class NavBar extends React.Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   rightNavs = () => {
-    const { user: { id, is_admin }, dispatch, history } = this.props;
+    const { user: { id, is_admin } } = this.props;
 
     if (id) {
       if (is_admin) {

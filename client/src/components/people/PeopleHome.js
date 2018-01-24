@@ -38,7 +38,7 @@ class PeopleHome extends React.Component {
     }
   }
   displayUsers = () => {
-    const { courseId, usersByCourse } = this.props
+    const { courseId } = this.props
     return this.filterView().map(user => {
       const fullName = `${user.first_name} ${user.last_name}`
       return(

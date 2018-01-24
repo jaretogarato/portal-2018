@@ -1,11 +1,8 @@
 import React from 'react';
-import defaultAvatar from '../../assets/images/missing-avatar.png'
 import UserEditForm from './UserEditForm';
 import { connect } from 'react-redux';
 import {
   Button,
-  Divider,
-  Image,
   Segment,
   Dropdown,
   Menu,
@@ -20,8 +17,6 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
-
     const options = [
       { key: 1, text: 'Receive Text', value: 1 },
       { key: 2, text: 'Receive Email', value: 2 },
@@ -31,12 +26,12 @@ class UserProfile extends React.Component {
       <Segment basic>
         <Button.Group>
           <Menu floated='right'>
-          <Dropdown text='Announcements' selection options={options} />
+            <Dropdown text='Announcements' selection options={options} />
           </Menu>
         </Button.Group>
         <UserEditForm toggleEdit={this.toggleEdit}/>
       </Segment>
-    )
+    );
   }
 }
 

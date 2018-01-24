@@ -77,15 +77,15 @@ class Section extends React.Component {
     }).map( content => {
       quizzes.map(quiz => {
         if(quiz.id === content.quiz_id)
-          filtered.push({...quiz, contentId: content.id, type: 'quizzes'})
+          filtered.push({...quiz, contentId: content.id, type: 'quizzes'});
       })
       assignments.map(assignment => {
         if(assignment.id === content.assignment_id)
-          filtered.push({...assignment, contentId: content.id, type: 'assignments'})
+          filtered.push({...assignment, contentId: content.id, type: 'assignments'});
       })
       lectures.map(lecture => {
         if(lecture.id === content.lecture_id)
-          filtered.push({...lecture, contentId: content.id, type: 'lectures'})
+          filtered.push({...lecture, contentId: content.id, type: 'lectures'});
       })
     })
     return filtered

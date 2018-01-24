@@ -42,7 +42,7 @@ class Note extends React.Component {
   //Todo: format time
   displayNote = () => {
     const { user, permission } = this.props
-    const { sender_id, updated_at, image, first_name, last_name, id, title, content, visible } = this.state
+    const { sender_id, updated_at, image, first_name, last_name, id, title, content } = this.state
       const fullName = `${first_name} ${last_name}`
       return(
         <Grid.Row key={id} style={styles.message}>
@@ -152,7 +152,7 @@ class Note extends React.Component {
 
   whoCanSeeNotes = () => {
     const { permission } = this.props
-    const { visible, editing } = this.state
+    const { visible } = this.state
     if(isStudent(permission)){
       return (
         <div>

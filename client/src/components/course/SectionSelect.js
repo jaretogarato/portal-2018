@@ -1,18 +1,51 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
-import { getSections, deleteSection, clearSections } from '../../actions/sections';
-import { setSection, clearSection } from '../../actions/section';
-import { getSubSections, clearSubSections } from '../../actions/subSections';
-import { getCourseContent, clearCourseContent } from '../../actions/courseContent';
-import { getQuizzes, clearQuizzes } from '../../actions/quizzes';
-import { getLectures, clearLectures } from '../../actions/lectures';
+import {
+  getSections,
+  deleteSection,
+  clearSections,
+} from '../../actions/sections';
+
+import {
+  setSection,
+  clearSection,
+} from '../../actions/section';
+
+import {
+  getSubSections,
+  clearSubSections,
+} from '../../actions/subSections';
+
+import {
+  getCourseContent,
+  clearCourseContent,
+} from '../../actions/courseContent';
+
+import {
+  getQuizzes,
+  clearQuizzes,
+} from '../../actions/quizzes';
+
+import {
+  getLectures,
+  clearLectures,
+} from '../../actions/lectures';
+
 import SectionForm from '../SectionForm'
 import SectionEditForm from '../SectionEditForm'
 import SubSectionForm from './SubSectionForm';
 import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';
-import { Dimmer, Grid, Loader, Menu, Icon, Popup } from 'semantic-ui-react';
+import {
+  Dimmer,
+  Grid,
+  Loader,
+  Menu,
+  Icon,
+  Popup,
+} from 'semantic-ui-react';
+
 import { withRouter } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { PageSubTitle } from '../../styles/styledComponents';
@@ -21,7 +54,6 @@ class SectionSelect extends React.Component {
   state = {
     courseLoaded: false,
     sectionsLoaded: false,
-    // subSectionsLoaded: false,
   };
 
   setCourseLoaded = () => this.setState({ courseLoaded: true });
@@ -74,7 +106,7 @@ class SectionSelect extends React.Component {
   }
 
   journalEntryClick = (section) => {
-    const { history, course } = this.props;
+    const { course } = this.props;
     this.props.history.push(`/courses/${course.id}/journal_entries`, { section: section.id })
   }
   

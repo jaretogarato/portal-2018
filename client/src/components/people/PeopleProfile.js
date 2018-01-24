@@ -12,15 +12,18 @@ import {
   Segment,
   Image,
   Button,
-  Icon,
   Dropdown,
   Form,
 } from 'semantic-ui-react';
+
 import Badge from './Badge';
 import NoteForm from './noteForm';
 import NoteList from './NoteList';
 import { isStudent } from '../../utils/permissions'
-import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
+import {
+  PageTitle,
+  PageSubTitle,
+} from '../../styles/styledComponents';
 
 class PeopleProfile extends React.Component {
   state = { user: {}, showForm: false, badges: [], options: [], reRender: false }

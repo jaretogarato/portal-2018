@@ -20,7 +20,7 @@ export const addAnnouncement = (courseId, announcement) => {
   return(dispatch) => {
     axios.post(`/api/courses/${courseId}/announcements`, announcement)
       .then( res => {
-        const { data, headers } = res;
+        const { headers } = res;
         dispatch({ type: 'ADD_ANNOUNCEMENT', announcement: res.data, headers })
       })
       .catch( res => {
@@ -35,7 +35,7 @@ export const editAnnouncement = (courseId, announcement, id) => {
   return(dispatch) => {
     axios.put(`/api/courses/${courseId}/announcements/${id}`, announcement) 
       .then( res => {
-        const { data, headers } = res;
+        const { headers } = res;
         dispatch({ type: 'EDIT_ANNOUNCEMENT', announcement: res.data, headers })
       })
       .catch( res => {

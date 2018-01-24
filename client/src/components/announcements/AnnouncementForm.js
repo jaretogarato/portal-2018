@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Segment } from 'semantic-ui-react';
-import { addAnnouncement, editAnnouncement } from '../../actions/announcements';
+import {
+  addAnnouncement,
+  editAnnouncement,
+} from '../../actions/announcements';
 
 class AnnouncementForm extends React.Component {
   state = { title: '', body: '' };
@@ -18,7 +21,7 @@ class AnnouncementForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch, course, toggleForm, editing } = this.props;
-    const { title, body } = this.state;
+    // const { title, body } = this.state;
     if(editing) {
       dispatch(editAnnouncement(course.id, this.state, this.props.announcement.id));
       this.props.toggleEdit();
@@ -29,7 +32,7 @@ class AnnouncementForm extends React.Component {
   }
 
   render() {
-    const { course, toggleEdit, editing } = this.props;
+    const { toggleEdit, editing } = this.props;
     return(
       <Segment>
       <Form onSubmit={this.handleSubmit}>

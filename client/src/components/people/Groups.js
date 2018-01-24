@@ -22,7 +22,7 @@ class Groups extends React.Component {
       if (pair.length > 0 && member.id === pair[0].id)
         this.setState({ pair: pair.filter( p => p.id !== member.id ) })
       else
-        pair.length != 2 && this.setState({ pair: [member, ...pair] });
+        pair.length !== 2 && this.setState({ pair: [member, ...pair] });
     }
   }
 
