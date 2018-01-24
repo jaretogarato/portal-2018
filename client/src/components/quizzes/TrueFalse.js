@@ -17,12 +17,12 @@ sendUpdate = () => {
   const { dispatch, editing, questionId, options } = this.props
   const { question, isTrue } = this.state
   const truthy = (isTrue === 'true')
-  const falsy = (isTrue === 'false')
-  const newOptions = [
-    { id: options[0].id, text: 'True', correct: truthy },
-    { id: options[1].id, text: 'False', correct: falsy },
-  ]
+  const falsy = (isTrue === 'false')  
   if (editing) {
+    const newOptions = [
+      { id: options[0].id, text: 'True', correct: truthy },
+      { id: options[1].id, text: 'False', correct: falsy },
+    ]
     const tfQuestion = { id: questionId, question, options: newOptions, true_false: true }
     if (!this.state.hasUpdate) {
       dispatch(addUpdate(tfQuestion))
