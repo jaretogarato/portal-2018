@@ -72,7 +72,7 @@ class SingleQuiz extends Component{
         let mcQuestion = {...question, options, multiple_correct}
         dispatch(updateQuestion(id, mcQuestion))
         break
-      default: 
+      default:
     }
     dispatch(clearUpdates())
     this.setState({ questionsEdit: false })
@@ -126,17 +126,21 @@ displayQuiz = () => {
       </List>
       <Segment basic>
         <PageSubTitle>Quiz Questions</PageSubTitle>
-        <Button basic onClick={this.toggleQuestionEdit}>
-          { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
-        </Button>
+        { this.props.questions.length &&
+          <Button basic onClick={this.toggleQuestionEdit}>
+            { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
+          </Button>
+        }
         { this.state.questionsEdit &&
           <Button basic primary onClick={this.submitUpdates}>Save Changes</Button>
         }
         {this.displayQuestions()}
-        <Button basic onClick={this.toggleQuestionEdit}>
-          { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
-        </Button>
-        { this.state.questionsEdit &&
+        { this.props.questions.length > 3 &&
+          <Button basic onClick={this.toggleQuestionEdit}>
+            { this.state.questionsEdit ? 'Cancel Editing' : 'Edit Questions' }
+          </Button>
+        }
+        { this.state.questionsEdit && this.props.questions.length > 3 &&
           <Button basic primary onClick={this.submitUpdates}>Save Changes</Button>
         }
         { !this.state.questionsEdit && <CreateQuestions quizId={id}/> }
@@ -148,6 +152,12 @@ displayQuiz = () => {
         </Segment>
   );
 }
+}
+
+questionDelete = (quizId, questionId) => {
+  let deleted = window.confirm('Are you sure?')
+  if (deleted)
+    this.props.dispatch(deleteQuestion(quizId, questionId))
 }
 
 displayQuestions= () => {
@@ -171,7 +181,7 @@ displayQuestions= () => {
               })
             }
             <Button basic floated='right'
-             onClick={() => this.props.dispatch(deleteQuestion(this.props.quiz.id, q.id))} >
+             onClick={() => this.questionDelete(this.props.quiz.id, q.id)} >
              Delete
              </Button>
           </Segment>
