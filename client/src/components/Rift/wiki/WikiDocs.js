@@ -44,7 +44,7 @@ class WikiDocs extends Component {
   render() {
     const { docs, add } = this.state
     const { course, user, match: { params: { id } } } = this.props
-    if (docs.length && course)
+    if (course)
       return (
         <Segment basic>
           <Header as={PageTitle}>{course.course_type}</Header>
