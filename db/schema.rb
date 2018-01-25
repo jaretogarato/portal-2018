@@ -154,6 +154,15 @@ ActiveRecord::Schema.define(version: 20180123232339) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "options", force: :cascade do |t|
+    t.bigint "question_id"
+    t.text "content"
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
   create_table "question_options", force: :cascade do |t|
     t.string "content", default: "", null: false
     t.boolean "correct", default: false
@@ -161,6 +170,14 @@ ActiveRecord::Schema.define(version: 20180123232339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_question_id"], name: "index_question_options_on_quiz_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
   create_table "quiz_questions", force: :cascade do |t|
@@ -175,10 +192,9 @@ ActiveRecord::Schema.define(version: 20180123232339) do
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.json "content", default: {}, null: false
-    t.string "due_date", default: "", null: false
-    t.integer "points", default: 0, null: false
+    t.string "title"
+    t.text "content"
+    t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -286,7 +302,9 @@ ActiveRecord::Schema.define(version: 20180123232339) do
   add_foreign_key "group_memberships", "ta_groups"
   add_foreign_key "journal_entries", "enrollments"
   add_foreign_key "journal_entries", "sections"
+  add_foreign_key "options", "questions"
   add_foreign_key "question_options", "quiz_questions"
+  add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "sections", "courses"
   add_foreign_key "sub_sections", "sections"

@@ -18,7 +18,7 @@ const options = {
 
 const CanView = ({ permission, user, children }) => {
   const f = options[permission];
-  if ( f(user) )
+  if ( f(user) ) 
     return children;
   else
     return null;

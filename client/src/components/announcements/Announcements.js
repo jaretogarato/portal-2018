@@ -4,6 +4,8 @@ import DisplayAnnouncements from './DisplayAnnouncements';
 import { Button, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
+import { isAdmin } from '../../utils/permissions';
+import CanView from '../shared/CanView';
 
 
 class Announcements extends React.Component {
@@ -21,7 +23,7 @@ class Announcements extends React.Component {
             {showForm ? 'Close Form' : 'Add Announcement'}
           </Button> 
         }
-          { showForm && <AnnouncementForm toggleForm={this.toggleForm} /> }
+        { showForm && <AnnouncementForm toggleForm={this.toggleForm} /> }
         <DisplayAnnouncements />
       </Segment>
     )

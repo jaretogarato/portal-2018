@@ -27,8 +27,12 @@ class Announcement extends React.Component {
         <Segment fluid>
           <PageTitle>{title}</PageTitle>
           <BoldText>{body}</BoldText>
-          <Button basic onClick={this.toggleEdit}>Edit</Button>
-          <Button basic onClick={this.handleDelete}>Delete</Button>
+          { this.props.user.is_admin &&
+            <Segment basic>
+              <Button basic onClick={this.toggleEdit}>Edit</Button>
+              <Button basic onClick={this.handleDelete}>Delete</Button>
+            </Segment>
+          }
         </Segment>
       )
     }
@@ -37,8 +41,9 @@ class Announcement extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    course: state.course,
     announcements: state.announcements,
+    course: state.course,
+    user: state.user,
   }
 }
 
