@@ -18,9 +18,9 @@ class GroupMember extends React.Component {
   }
 
   toggleActiveMember = (member) => {
-    const { addGroupMemberToEdit } = this.props;
+    const { addGroupMemberToEdit, pair } = this.props;
     const { active } = this.state;
-    this.setState({ active: !active })
+    pair.length === 2 ? this.setState({ active: false }) : this.setState({ active: !active })
     addGroupMemberToEdit(member)
   }
 
@@ -42,7 +42,7 @@ class GroupMember extends React.Component {
     return (
       <Item.Group
         onClick={() => this.toggleActiveMember(member)}
-        style={ editing && active ? { border: 'dashed 3px black' } : {} }
+        style={ editing && active ? { border: 'dashed 2px black' } : {} }
       >
         <Item.Content>
           <Item.Image size='tiny' src={member.image} />

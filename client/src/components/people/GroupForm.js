@@ -26,15 +26,16 @@ class GroupForm extends React.Component {
 
   generateGroups = () => {
     const { course, dispatch } = this.props;
-    axios.post(`/api/courses/${course.id}/generate_groups`)
-      .then(res => {
-        dispatch(setHeaders(res.headers));
-        window.location.reload();
-      })
-      .catch( err => {
-        dispatch(setFlash('Error Generating Groups. Try Again.', 'red'));
-        dispatch(setHeaders(err.headers));
-      })
+    if( window.confirm("This will remove previously generated groups, proceed?"))
+      axios.post(`/api/courses/${course.id}/generate_groups`)
+        .then(res => {
+          dispatch(setHeaders(res.headers));
+          window.location.reload();
+        })
+        .catch( err => {
+          dispatch(setFlash('Error Generating Groups. Try Again.', 'red'));
+          dispatch(setHeaders(err.headers));
+        })
   }
 
   handleCheck = (s) => {
@@ -73,7 +74,7 @@ class GroupForm extends React.Component {
           basic
           onClick={ () => this.generateGroups() }
           >
-          Generate Groups
+          Generate
         </Button>
       </Segment>
     );

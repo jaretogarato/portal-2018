@@ -8,6 +8,7 @@ import {
   Button,
   Grid,
   Icon,
+  Popup,
   Segment,
 } from 'semantic-ui-react';
 
@@ -19,11 +20,15 @@ class Groups extends React.Component {
   addGroupMemberToEdit = (member) => {
     const { editing, pair } = this.state;
     if ( editing && pair.length <= 2) {
-      if (pair.length > 0 && member.id === pair[0].id)
+      if (pair.length > 0 && this.checkDuplicate(member, pair))
         this.setState({ pair: pair.filter( p => p.id !== member.id ) })
       else
         pair.length !== 2 && this.setState({ pair: [member, ...pair] });
     }
+  }
+
+  checkDuplicate = (member, pair) => {
+    return pair.some( p => p.id === member.id );
   }
 
   handleSwap = () => {
@@ -47,12 +52,17 @@ class Groups extends React.Component {
     this.setState({ pair: [], editing: !editing });
   }
 
-  editView = () => {
+  toggleEditButton = () => {
     const { editing } = this.state;
     if ( editing )
-      return ( <Button basic onClick={ () => this.clearEdit() }>Cancel</Button> )
+      return ( <Button basic onClick={ () => this.clearEdit() }>Cancel Editing</Button> )
     else
-      return ( <Button basic onClick={ () => this.setState({editing: !editing}) }>Edit Groups</Button> )
+      return (
+        <Popup
+          trigger={<Button basic onClick={ () => this.setState({editing: !editing}) }>Edit Groups</Button>}
+          content='Select two users to swap places!'
+        />
+      )
   }
 
   displayGroupsBySections = () => {
@@ -73,7 +83,7 @@ class Groups extends React.Component {
           active={this.state.activeIndex === s.id}
           style={{ textAlign: 'left' }}
         >
-          { isAdmin(permissions) && this.editView() }
+          { isAdmin(permissions) && this.toggleEditButton() }
           { pair.length === 2 &&
             <Button
               basic
