@@ -3,7 +3,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import {
   List,
-  Header,
   Segment,
   Dimmer,
   Loader,
@@ -46,8 +45,8 @@ class WikiDocs extends Component {
     if (course)
       return (
         <Segment basic>
-          <Header as={PageTitle}>{course.course_type}</Header>
-          <Header as={PageSubTitle}>Wiki</Header>
+          <PageTitle>{course.course_type}</PageTitle>
+          <PageSubTitle>Wiki</PageSubTitle>
           { user.is_admin &&
             <Button basic onClick={this.toggleAdd}>
               { add ? 'Cancel' : 'Add Doc' }

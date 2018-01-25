@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Button } from 'semantic-ui-react';
+import {
+  Form,
+  Button,
+  Segment,
+} from 'semantic-ui-react';
+
 import axios from 'axios';
 import { setHeaders } from '../../../actions/headers';
 import { setFlash } from '../../../actions/flash';
@@ -51,21 +56,23 @@ class DocForm extends React.Component {
   render() {
     const { title, content } = this.state
     return(
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Input
-          name='title'
-          label='Title'
-          value={title}
-          onChange={this.handleChange}
-        />
-        <Form.TextArea
-          name='content'
-          label='Content'
-          value={content}
-          onChange={this.handleChange}
-        />
-        <Button basic onClick={this.handleSubmit}>Save</Button>
-      </Form>
+      <Segment>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Input
+            name='title'
+            label='Title'
+            value={title}
+            onChange={this.handleChange}
+          />
+          <Form.TextArea
+            name='content'
+            label='Content'
+            value={content}
+            onChange={this.handleChange}
+          />
+          <Button basic onClick={this.handleSubmit}>Save</Button>
+        </Form>
+      </Segment>
     )
   }
 }

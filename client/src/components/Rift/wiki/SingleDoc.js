@@ -1,11 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import {
-  Segment,
-  Header,
-  Button,
-} from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
 import DocForm from './DocForm';
 import { setHeaders } from '../../../actions/headers';
 import { setFlash } from '../../../actions/flash';
@@ -73,7 +69,7 @@ class SingleDoc extends React.Component {
     else
       return (
         <Segment basic>
-          <Header as={PageTitle}>{doc.title}</Header>
+          <PageTitle>{doc.title}</PageTitle>
           { user.is_admin &&
             <div>
               <Button basic onClick={this.toggleEdit}>
