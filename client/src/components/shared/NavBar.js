@@ -1,5 +1,5 @@
 import React from 'react';
-import PortalLogo from '../../assets/images/portal-logo.png';
+import PortalLogo from '../../assets/images/portal-logo-med-02.png';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { Link, withRouter } from 'react-router-dom';
@@ -101,7 +101,7 @@ class NavBar extends React.Component {
             active={this.state.activeItem === 'Home'}
             onClick={this.handleItemClick}
           >
-            <Image src={PortalLogo} height='60px' />
+            <Image src={PortalLogo} height='55px' style={styles.portalLogo} />
           </Menu.Item>
           { this.rightNavs() }
         </Menu>
@@ -127,6 +127,9 @@ const styles = {
   },
   menuStyle: {
     paddingBottom: '0px',
+  },
+  portalLogo: {
+    padding: '5px 15px 7px',
   }
 }
 

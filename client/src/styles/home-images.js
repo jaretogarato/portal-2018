@@ -26,8 +26,8 @@ export const HomeLogo = styled.div`
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 480px;
-  height: 298px;
+  width: 352px;
+  height: 136px;
   bottom: 0;
   color: #fff;
   padding: 0.5em;
