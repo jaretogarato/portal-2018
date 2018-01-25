@@ -7,8 +7,12 @@ import {
   CourseFormHeader, 
   CourseFormSegment,
 } from '../../styles/styles';
+import {
+  Form,
+  Grid,
+  Select,
+} from 'semantic-ui-react';
 
-import { Form, Grid, Select } from 'semantic-ui-react';
 
 class ContentForm extends React.Component {
 

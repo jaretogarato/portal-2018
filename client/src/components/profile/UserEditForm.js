@@ -16,7 +16,6 @@ import {
   Loader,
   Segment,
 } from 'semantic-ui-react';
-
 import { PageTitle, PageSubTitle, BoldText } from '../../styles/styledComponents';
 
 

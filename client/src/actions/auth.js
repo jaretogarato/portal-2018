@@ -3,6 +3,7 @@ import axios from 'axios';
 import { setFlash } from '../actions/flash';
 import { setHeaders } from '../actions/headers';
 
+
 const login = user => {
   return { type: 'LOGIN', user };
 };

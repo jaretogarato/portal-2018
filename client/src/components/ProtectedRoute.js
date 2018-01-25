@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Redirect,
-  Route,
-} from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+
 
 class ProtectedRoute extends React.Component {
 
@@ -12,10 +10,10 @@ class ProtectedRoute extends React.Component {
     if(adminOnly != null){
       if(adminOnly === true && isAdmin !== true){
         return false;
-      }else{
+      } else {
         return true;
       }
-    }else{
+    } else {
       return true;
     }
   }

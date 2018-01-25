@@ -4,20 +4,13 @@ import {
   Segment,
   List,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
-import {
-  getLecture,
-  deleteLecture,
-} from '../../actions/lectures';
-
+import { getLecture, deleteLecture } from '../../actions/lectures';
 import EditLecture from './EditLecture';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import {
-  PageTitle,
-  PageSubTitle,
-} from '../../styles/styledComponents';
+import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
+
 
 class Lecture extends Component {
   state = { edit: false };

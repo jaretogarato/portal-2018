@@ -6,32 +6,11 @@ import {
   deleteSection,
   clearSections,
 } from '../../actions/sections';
-
-import {
-  setSection,
-  clearSection,
-} from '../../actions/section';
-
-import {
-  getSubSections,
-  clearSubSections,
-} from '../../actions/subSections';
-
-import {
-  getCourseContent,
-  clearCourseContent,
-} from '../../actions/courseContent';
-
-import {
-  getQuizzes,
-  clearQuizzes,
-} from '../../actions/quizzes';
-
-import {
-  getLectures,
-  clearLectures,
-} from '../../actions/lectures';
-
+import { setSection, clearSection } from '../../actions/section';
+import { getSubSections, clearSubSections } from '../../actions/subSections';
+import { getCourseContent, clearCourseContent } from '../../actions/courseContent';
+import { getQuizzes, clearQuizzes } from '../../actions/quizzes';
+import { getLectures, clearLectures } from '../../actions/lectures';
 import SectionForm from '../SectionForm';
 import SectionEditForm from '../SectionEditForm';
 import Section from './Section';
@@ -44,10 +23,10 @@ import {
   Icon,
   Popup,
 } from 'semantic-ui-react';
-
 import { withRouter } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { PageSubTitle } from '../../styles/styledComponents';
+
 
 class SectionSelect extends React.Component {
   state = {

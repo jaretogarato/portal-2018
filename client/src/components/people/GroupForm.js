@@ -5,6 +5,7 @@ import { getSections } from '../../actions/sections';
 import { setFlash } from '../../actions/flash';
 import { setHeaders } from '../../actions/headers';
 import { updateSection } from '../../actions/sections';
+import { PageTitle } from '../../styles/styledComponents';
 import {
   Button,
   Checkbox,
@@ -12,7 +13,6 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
-import { PageTitle } from '../../styles/styledComponents';
 
 class GroupForm extends React.Component {
   state = { sectionsLoaded: false };

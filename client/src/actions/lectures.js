@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
+
 export const addLecture = (lecture, history) => {
   return (dispatch) => {
     axios.post('/api/lectures', { lecture })

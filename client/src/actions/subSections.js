@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
+
 export const getSubSections = (sectionId, callback) => {
   return(dispatch) => {
     axios.get(`/api/sections/${sectionId}/sub_sections`)

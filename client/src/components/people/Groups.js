@@ -12,6 +12,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
+
 class Groups extends React.Component {
   state = { activeIndex: 0, editing: false, pair: [] }
 

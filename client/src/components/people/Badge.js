@@ -5,12 +5,12 @@ import {
   Segment,
   Icon,
 } from 'semantic-ui-react';
-
 import attendance from '../../assets/badge_icons/attendance.png';
 import coder from '../../assets/badge_icons/coder.png';
 import homework from '../../assets/badge_icons/homework.png';
 import leader from '../../assets/badge_icons/leader.png';
 import teamwork from '../../assets/badge_icons/teamwork.png';
+
 
 const icons = {
   attendance,

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
+
 export const getAttendance = (courseId, currentDate, callback = () => {}) => {
   return(dispatch) => {
     axios.get(`/api/courses/${courseId}/attendances?current_date=${currentDate}`)

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Segment, Radio, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import {
-  addResponse,
-  updateResponse,
-} from '../../../actions/quizResponses';
+import { addResponse, updateResponse } from '../../../actions/quizResponses';
 import { PageSubTitle } from '../../../styles/styledComponents';
+
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 

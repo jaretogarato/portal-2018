@@ -5,14 +5,10 @@ import {
   Container,
   Divider,
 } from 'semantic-ui-react';
-
-import {
-  updateQuiz,
-  getQuiz,
-} from '../../actions/singleQuiz';
-
+import { updateQuiz, getQuiz } from '../../actions/singleQuiz';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
+
 
 class EditQuizForm extends Component {
 state = { title: '', content: '', due_date:'', points: '' }

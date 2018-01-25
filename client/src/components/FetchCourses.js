@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../actions/courses';
-import {
-  Dimmer,
-  Loader,
-} from 'semantic-ui-react';
-
+import { Dimmer, Loader } from 'semantic-ui-react';
 import NavBar from './shared/NavBar';
+
 
 class FetchCourses extends React.Component {
   state = { loaded: true, userCourses: [] };

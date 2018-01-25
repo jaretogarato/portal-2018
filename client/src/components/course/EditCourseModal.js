@@ -1,9 +1,7 @@
 import React from 'react';
 import CourseForm from './CourseForm';
-import {
-  Button,
-  Modal,
-} from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
+
 
 class EditCourseModal extends React.Component {
   state = { modalOpen: false };

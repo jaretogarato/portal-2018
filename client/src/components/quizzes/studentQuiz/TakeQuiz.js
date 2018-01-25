@@ -6,7 +6,6 @@ import {
   Button,
   Grid,
 } from 'semantic-ui-react';
-
 import { connect } from 'react-redux';
 import EssayQuestion from './EssayQuestion';
 import MultipleChoice from './MultipleChoice';

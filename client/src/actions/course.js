@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const setActiveCourse = (id) => {
   return (dispatch) => {
     axios.get(`/api/courses/${id}`)

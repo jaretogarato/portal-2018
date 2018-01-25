@@ -12,6 +12,7 @@ import {
 } from '../../../actions/quizResponses';
 import { PageSubTitle } from '../../../styles/styledComponents';
 
+
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
 class MultipleAnswer extends React.Component {

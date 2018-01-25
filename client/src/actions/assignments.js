@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
+
 export const addAssignment = (assignment, history) => {
   console.log('addAssignment is ' + assignment)
   return (dispatch) => {

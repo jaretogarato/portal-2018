@@ -5,12 +5,12 @@ import {
   Item,
   Divider,
 } from 'semantic-ui-react';
-
 import { getSections } from '../../actions/sections';
 import axios from 'axios';
 import { setHeaders } from '../../actions/headers';
 import { setFlash } from '../../actions/flash';
 import { PageTitle } from '../../styles/styledComponents';
+
 
 class JournalEntries extends React.Component {
   state = { 

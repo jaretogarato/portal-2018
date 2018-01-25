@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { PageSubTitle } from '../../styles/styledComponents';
 import {
   Item,
   Segment,
 } from 'semantic-ui-react';
-
-import { PageSubTitle } from '../../styles/styledComponents';
 
 
 class GroupMember extends React.Component {

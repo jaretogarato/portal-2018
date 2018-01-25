@@ -7,19 +7,14 @@ import {
   Loader,
   Divider,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  getQuiz,
-  deleteQuiz,
-} from '../../actions/singleQuiz';
+import { getQuiz, deleteQuiz } from '../../actions/singleQuiz';
 import {
   getQuestions,
   deleteQuestion,
   updateQuestion,
 } from '../../actions/quizQuestions';
-
 import { clearUpdates } from '../../actions/questionUpdates';
 import CreateQuestions from './CreateQuestions';
 import EditQuizForm from './EditQuizForm';
@@ -27,10 +22,7 @@ import MultipleChoiceQuestion from './MultipleChoiceQuestion';
 import EssayQuestion from './EssayQuestion';
 import TrueFalse from './TrueFalse';
 import moment from 'moment';
-import {
-  PageTitle,
-  PageSubTitle,
-} from '../../styles/styledComponents';
+import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
 
 
 class SingleQuiz extends Component{

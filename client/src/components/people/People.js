@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { isStudent } from '../../utils/permissions';
 import { Tab } from 'semantic-ui-react';
 
+
 class People extends React.Component {
   courseId = this.props.match.params.id
 

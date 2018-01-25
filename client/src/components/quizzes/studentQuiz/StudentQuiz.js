@@ -5,6 +5,7 @@ import { getQuestions } from '../../../actions/quizQuestions';
 import TakeQuiz from './TakeQuiz';
 import GradedQuiz from './GradedQuiz';
 
+
 class StudentQuiz extends React.Component {
 
   componentDidMount() {

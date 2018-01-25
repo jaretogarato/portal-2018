@@ -5,8 +5,8 @@ import {
   Icon,
   Modal,
 } from 'semantic-ui-react';
-
 import { PageTitle } from '../../styles/styledComponents';
+
 
 class UserModal extends React.Component {
   state = { modalOpen: false };

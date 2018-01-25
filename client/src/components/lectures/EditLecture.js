@@ -5,13 +5,8 @@ import {
   Container,
   Divider,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
-import {
-  editLecture,
-  getLecture,
-} from '../../actions/lectures';
-
+import { editLecture, getLecture } from '../../actions/lectures';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 

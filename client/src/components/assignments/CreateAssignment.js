@@ -5,12 +5,12 @@ import {
   Button,
   Divider,
 } from 'semantic-ui-react';
-
 import { addAssignment } from '../../actions/assignments';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { PageTitle } from '../../styles/styledComponents';
+
 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: 'No Submission' },
@@ -18,7 +18,6 @@ const submissionOptions = [
   { key: '3', text: 'On Paper', value: 'On Paper' },
   { key: '4', text: 'External', value: 'External' },
 ]
-
 
 class CreateAssignment extends Component {
   state = {

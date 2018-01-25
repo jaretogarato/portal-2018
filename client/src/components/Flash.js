@@ -8,6 +8,7 @@ import {
   Header,
 } from 'semantic-ui-react';
 
+
 const fadeFlash = dispatch => {
   setTimeout(() => {
     dispatch(clearFlash());

@@ -2,8 +2,13 @@ import React from 'react';
 import { Container, Image } from 'semantic-ui-react';
 import devpoint from '../../assets/images/devpoint.png';
 import { HomeStrings } from '../../assets/strings/homeStrings';
-import { PageTitle, PageSubTitle, ParagraphText } from '../../styles/styledComponents';
+import {
+  PageTitle,
+  PageSubTitle,
+  ParagraphText,
+} from '../../styles/styledComponents';
 import CourseHomeDropDown from './CourseHomeDropdown';
+
 
 class CourseHome extends React.Component {
 

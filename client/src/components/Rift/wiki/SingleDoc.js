@@ -1,11 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Segment, Header, Button } from 'semantic-ui-react';
+import {
+  Segment,
+  Header,
+  Button,
+} from 'semantic-ui-react';
 import DocForm from './DocForm';
 import { setHeaders } from '../../../actions/headers';
 import { setFlash } from '../../../actions/flash';
 import { PageTitle } from '../../../styles/styledComponents';
+
 
 class SingleDoc extends React.Component {
   state = { doc: {}, editing: false }

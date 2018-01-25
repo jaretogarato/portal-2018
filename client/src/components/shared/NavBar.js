@@ -2,18 +2,14 @@ import React from 'react';
 import PortalLogo from '../../assets/images/portal-logo.png';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
-import {
-  Link,
-  withRouter,
-} from 'react-router-dom';
-
+import { Link, withRouter } from 'react-router-dom';
 import {
   Dropdown,
   Image,
   Menu,
 } from 'semantic-ui-react';
-
 import UserAccount from './UserAccount';
+
 
 class NavBar extends React.Component {
   state = { activeItem: 'Course Home' };

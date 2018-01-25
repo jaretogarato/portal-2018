@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
+
 export const getQuiz = (id) => {
   return (dispatch) => {
     axios.get(`/api/quizzes/${id}`)

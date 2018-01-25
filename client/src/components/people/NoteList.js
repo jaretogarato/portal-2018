@@ -8,6 +8,7 @@ import {
   Loader,
 } from 'semantic-ui-react';
 
+
 class NoteList extends React.Component{
   state = { loaded: false }
 

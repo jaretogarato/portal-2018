@@ -12,6 +12,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
+
 class GroupsHome extends React.Component {
   state = { sectionsLoaded: false, groupsLoaded: false, view: 'all' }
 

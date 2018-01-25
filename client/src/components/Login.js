@@ -9,12 +9,7 @@ import {
   Grid,
   Segment,
 } from 'semantic-ui-react';
-
-import {
-  HomeBody,
-  HomeWrapper,
-} from '../styles/home-images.js';
-
+import { HomeBody, HomeWrapper } from '../styles/home-images.js';
 import { PageTitle } from '../styles/styledComponents';
 
 

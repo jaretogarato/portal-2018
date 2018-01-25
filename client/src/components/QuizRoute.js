@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import SingleQuiz from './quizzes/SingleQuiz';
 import StudentQuiz from './quizzes/studentQuiz/StudentQuiz';
 
+
 const QuizRoute = ({ user }) => {
   if (user.is_admin)
     return (

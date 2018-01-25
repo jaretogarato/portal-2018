@@ -5,6 +5,7 @@ import { getAnnouncements } from '../../actions/announcements';
 import { Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
+
 class DisplayAnnouncements extends React.Component {
 
   componentDidMount() {

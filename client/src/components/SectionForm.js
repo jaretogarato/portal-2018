@@ -9,6 +9,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
+
 class SectionForm extends React.Component {
   state = { title: '', showForm: false };
 

@@ -7,6 +7,7 @@ import {
   deleteOption,
 } from '../../actions/quizOptions';
 
+
 class MultipleChoiceOption extends React.Component {
   state = { text: '', correct: false }
 

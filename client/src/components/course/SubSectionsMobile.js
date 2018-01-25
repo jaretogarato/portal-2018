@@ -1,12 +1,13 @@
 import React from 'react';
 import { Accordion } from 'semantic-ui-react';
 
+
 class SubSectionsMobile extends React.Component {
   state = { activeIndexes: [] };
 
   displaySubSections = () => {
     // return this.props.subSections.map(ss => (
-
+        // TODO
     // )
   }
 

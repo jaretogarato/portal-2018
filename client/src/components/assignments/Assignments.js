@@ -6,13 +6,13 @@ import {
   Icon,
   Grid,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
+
 
 class Assignments extends Component {
   state = { assignments: [], column: null, direction: null }

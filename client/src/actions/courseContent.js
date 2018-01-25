@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
+
 export const getCourseContent = () => {
   return(dispatch) => {
     axios.get(`/api/course_contents/`)

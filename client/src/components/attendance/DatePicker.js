@@ -7,14 +7,10 @@ import {
   Loader,
   Dimmer,
 } from 'semantic-ui-react';
-
-import {
-  getDate,
-  updateDate,
-} from '../../actions/currentDate';
-
+import { getDate, updateDate } from '../../actions/currentDate';
 import { connect } from 'react-redux';
 import { PageSubTitle } from '../../styles/styledComponents';
+
 
 class DatePicker extends React.Component {
   state = { loaded: false }

@@ -1,13 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Form,
-  Button,
-} from 'semantic-ui-react';
-
+import { Form, Button } from 'semantic-ui-react';
 import axios from 'axios';
 import { setHeaders } from '../../../actions/headers';
 import { setFlash } from '../../../actions/flash';
+
 
 class DocForm extends React.Component {
   state = { title: '', content: '' }

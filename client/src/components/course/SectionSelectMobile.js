@@ -9,6 +9,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
+
 class SectionSelectMobile extends React.Component {
   state = { activeIndexes: [], activeSubIndexes: [], sectionId: '' };
 

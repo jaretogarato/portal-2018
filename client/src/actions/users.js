@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from '../actions/headers';
 
+
 export const updateUserStatus = (id, status) => {
   return(dispatch) => {
     dispatch({ type: 'UPDATE_USER_STATUS', newStatus: { id, status } })

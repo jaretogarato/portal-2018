@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
+
 export const getSections = (courseId, callback) => {
   return(dispatch) => {
     axios.get(`/api/courses/${courseId}/sections`)

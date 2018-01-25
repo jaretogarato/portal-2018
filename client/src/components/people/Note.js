@@ -11,17 +11,8 @@ import {
   Image,
   Card,
 } from 'semantic-ui-react';
-
-import {
-  editNote,
-  deleteNote,
-} from '../../actions/notes';
-
-import {
-  isAdmin,
-  isStudent,
-} from '../../utils/permissions';
-
+import { editNote, deleteNote } from '../../actions/notes';
+import { isAdmin, isStudent } from '../../utils/permissions';
 import { PageSubTitle } from '../../styles/styledComponents';
 
 

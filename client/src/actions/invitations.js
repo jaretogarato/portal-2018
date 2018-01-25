@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
+
 export const ADD_USER = 'ADD_USER';
 
 export const sendInvitation = (user, enrollment) => {

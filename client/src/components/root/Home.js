@@ -9,8 +9,8 @@ import {
   HomeLogo,
   HomeWrapper,
 } from '../../styles/home-images.js';
-
 import { PortalButton } from '../../styles/styledComponents';
+
 
 class Home extends React.Component {
   state = { loaded: false, userCourses: [] };

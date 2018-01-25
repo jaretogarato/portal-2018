@@ -4,12 +4,11 @@ import {
   EditorState,
   RichUtils,
 } from 'draft-js';
-
 import './Style.css';
 import BlockStyleControls from './BlockStyles';
 import InlineStyleControls from './InlineStyles';
-// import { stateToHTML } from 'draft-js-export-html';
-import { convertToRaw } from 'draft-js'
+import { convertToRaw } from 'draft-js';
+
 
 class RiftEditor extends Component {
   state = { editorState: EditorState.createEmpty() };

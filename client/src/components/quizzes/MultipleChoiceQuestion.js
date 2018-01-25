@@ -6,16 +6,12 @@ import {
   Segment,
   Button,
 } from 'semantic-ui-react';
-
 import MultipleChoiceOption from './MultipleChoiceOption';
 import { addQuestion } from '../../actions/quizQuestions';
-import {
-  addUpdate,
-  editUpdate,
-} from '../../actions/questionUpdates';
-
+import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
 import { PageSubTitle } from '../../styles/styledComponents';
+
 
 const options = [
   { key: 2, text: 2, value: 2 },

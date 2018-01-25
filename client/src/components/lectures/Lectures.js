@@ -13,6 +13,7 @@ import axios from 'axios';
 import { PageTitle } from '../../styles/styledComponents';
 import _ from 'lodash';
 
+
 class Lectures extends Component {
   state = { lectures: [], column: null, direction: null }
 

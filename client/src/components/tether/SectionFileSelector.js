@@ -8,10 +8,8 @@ import {
     Modal,
 } from 'semantic-ui-react';
 
+
 class SectionFileSelector extends Component {
-    
-
-
     render() {
         return (
             <Modal trigger={<Button>Add a document</Button>}>

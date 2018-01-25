@@ -9,7 +9,6 @@ import {
   Segment,
   Form,
 } from 'semantic-ui-react';
-
 import { getUsersByCourse } from '../../actions/users';
 import UserForm from '../users/UserForm';
 import AddUsers from '../users/AddUsers';

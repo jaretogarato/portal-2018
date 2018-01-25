@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
+
 export const getUser = (id) => {
   return (dispatch) => {
     axios.get(`/api/users/${id}`)

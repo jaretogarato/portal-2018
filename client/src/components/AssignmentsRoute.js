@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Assignment from './assignments/Assignment';
 import StudentAssignment from './assignments/studentAssignment/StudentAssignment';
 
+
 const QuizRoute = ({ user }) => {
   if (user.is_admin)
     return (

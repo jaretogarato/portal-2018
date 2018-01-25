@@ -1,10 +1,8 @@
 import React from 'react';
 import EditCourseModal from './EditCourseModal';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  Card,
-} from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react';
+
 
 const CourseCard = ({ course }) => (
   <Card className="ui centered card" style={{ borderRadius: '0px'}}>

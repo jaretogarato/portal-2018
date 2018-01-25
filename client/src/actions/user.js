@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
+
 export const editUser = (user, id) => {
   return(dispatch) => {
     axios.put(`/api/users/${id}`, {user})

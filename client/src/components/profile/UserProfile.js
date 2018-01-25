@@ -9,6 +9,7 @@ import {
   Menu,
 } from 'semantic-ui-react';
 
+
 class UserProfile extends React.Component {
   state = { settings: '' };
 

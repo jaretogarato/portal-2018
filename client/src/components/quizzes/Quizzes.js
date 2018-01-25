@@ -11,6 +11,7 @@ import axios from 'axios';
 import { PageTitle } from '../../styles/styledComponents';
 import _ from 'lodash';
 
+
 class Quizzes extends Component {
   state = { quizzes: [], column: null, direction: null }
 

@@ -5,15 +5,11 @@ import {
   Button,
   Divider,
 } from 'semantic-ui-react';
-
-import {
-  updateAssignment,
-  getAssignment,
-} from '../../actions/assignment';
-
+import { updateAssignment, getAssignment } from '../../actions/assignment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
+
 
 const submissionOptions = [
   { key: '1', text: 'No Submission', value: 'No Submission' },

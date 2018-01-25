@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
+
 class CourseSideNav extends React.Component {
   state = {}
 

@@ -9,6 +9,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 import {injectGlobal} from 'styled-components';
 
+
 injectGlobal`
   @font-face {
     src: url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
@@ -22,7 +23,6 @@ injectGlobal`
     font-size: 1.3em;
   }  
 `
-
 
 ReactDOM.render(
   <Provider store={store}>

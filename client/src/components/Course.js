@@ -2,11 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setActiveCourse } from '../actions/course';
-import {
-  Route,
-  Switch,
-} from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
 import {
   Container,
   Grid,
@@ -15,7 +11,6 @@ import {
   Segment,
   Sidebar,
 } from 'semantic-ui-react';
-
 import Announcements from './announcements/Announcements';
 import CourseSideNav from './course/CourseSideNav';
 import People from './people/People';
@@ -38,6 +33,7 @@ import Assignment from './assignments/Assignment';
 import CreateAssignment from './assignments/CreateAssignment';
 import FetchEnrollment from './course/FetchEnrollment';
 import JournalEntries from './course/JournalEntries';
+
 
 class Course extends React.Component {
   state = { sidebar: false };

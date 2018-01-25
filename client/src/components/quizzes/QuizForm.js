@@ -5,7 +5,6 @@ import {
   Container,
   Divider,
 } from 'semantic-ui-react';
-
 import { addQuiz } from '../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';

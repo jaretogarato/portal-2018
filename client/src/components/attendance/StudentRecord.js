@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateUserStatus } from '../../actions/users';
-import { Container,
+import {
+  Container,
   Icon,
   Item,
   Form,
 } from 'semantic-ui-react';
+
 
 class StudentRecord extends React.Component {
   state = { status: '' }

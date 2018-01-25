@@ -6,6 +6,7 @@ import {
   Popup,
 } from 'semantic-ui-react';
 
+
 class AddCourseContent extends React.Component {
   state = { modalOpen: false };
 

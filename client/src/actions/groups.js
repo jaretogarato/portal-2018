@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { setFlash } from './flash';
 
+
 export const getGroups = (courseId, callback) => {
   return(dispatch) => {
     axios.get(`/api/ta_groups?course_id=${courseId}`)

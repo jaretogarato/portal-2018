@@ -4,13 +4,13 @@ import {
   Divider,
   Icon,
 } from 'semantic-ui-react';
-
 import fileDownload from 'js-file-download';
 import DropZone from 'react-dropzone';
 import { connect } from 'react-redux';
 import { setHeaders } from '../../actions/headers';
 import { setFlash } from '../../actions/flash';
 import axios from 'axios';
+
 
 const styles = { 
   drop: { height: 0, marginLeft: '5px' }

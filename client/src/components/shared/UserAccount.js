@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Link,
-  withRouter,
-} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {
   Header,
   Image,
@@ -11,7 +8,6 @@ import {
   Segment,
   Dropdown,
 } from 'semantic-ui-react';
-
 import { handleLogout } from '../../actions/auth';
 
 
@@ -35,7 +31,6 @@ const styles = {
     marginTop: '20px',
   },
 }
-
 
 class UserAccount extends React.Component {
 

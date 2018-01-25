@@ -13,11 +13,10 @@ import {
   Popup,
   Loader,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 
+
 class Section extends React.Component {
-  
   state = { activeIndexes: [], loaded: false }
 
   componentWillReceiveProps(nextProps) {

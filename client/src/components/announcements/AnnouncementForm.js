@@ -1,14 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Form,
-  Segment,
-} from 'semantic-ui-react';
+import { Form, Segment } from 'semantic-ui-react';
+import { addAnnouncement, editAnnouncement } from '../../actions/announcements';
 
-import {
-  addAnnouncement,
-  editAnnouncement,
-} from '../../actions/announcements';
 
 class AnnouncementForm extends React.Component {
   state = { title: '', body: '' };

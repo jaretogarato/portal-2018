@@ -6,18 +6,17 @@ import {
   Icon,
   Select,
 } from 'semantic-ui-react';
-
 import EssayQuestion from './EssayQuestion';
 import MultipleChoiceQuestion from './MultipleChoiceQuestion';
 import TrueFalse from './TrueFalse';
 import axios from 'axios';
+
 
 const options = [
   { key: '1', text: 'Essay/Code', value: 'Essay/Code' },
   { key: '2', text: 'Multiple Choice/Answer', value: 'Multiple Choice' },
   { key: '3', text: 'True/False', value: 'True/False' },
 ]
-
 
 class CreateQuestions extends Component {
 state = { showQuestion: false, activeType: '', question: '', options: [], isHidden: true }

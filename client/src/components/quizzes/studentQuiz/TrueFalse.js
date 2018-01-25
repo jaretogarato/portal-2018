@@ -1,12 +1,9 @@
 import React from 'react';
 import { Segment, Radio, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import {
-  addResponse,
-  updateResponse,
-} from '../../../actions/quizResponses';
-
+import { addResponse, updateResponse } from '../../../actions/quizResponses';
 import { PageSubTitle } from '../../../styles/styledComponents';
+
 
 class TrueFalse extends React.Component {
   state = { response: '', hasResponse: false }

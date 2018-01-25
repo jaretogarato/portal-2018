@@ -4,13 +4,8 @@ import {
   Form,
   Button,
 } from 'semantic-ui-react';
-
 import { addQuestion } from '../../actions/quizQuestions';
-import {
-  addUpdate,
-  editUpdate,
-} from '../../actions/questionUpdates';
-
+import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
 
 

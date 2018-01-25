@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
+
 const addAvatar = (avatar) => {
   return { type: 'ADD_AVATAR', avatar }
 }

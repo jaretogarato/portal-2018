@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
+
 export const addNote = (note, userId) => {
   return(dispatch) => {
     axios.post('/api/notes', { note , user_id: userId } )

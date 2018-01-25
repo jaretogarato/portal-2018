@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
+
 export const getPermissions = (courseId) => {
   return(dispatch) => {
     axios.get(`/api/courses/${courseId}/permissions`)

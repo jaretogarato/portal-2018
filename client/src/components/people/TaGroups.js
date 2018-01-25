@@ -5,7 +5,6 @@ import {
   Item,
   Segment,
 } from 'semantic-ui-react';
-
 import { PageSubTitle } from '../../styles/styledComponents';
 
 

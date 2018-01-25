@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  addSubSection,
-  updateSubSection,
-} from '../../actions/subSections.js';
-
+import { addSubSection, updateSubSection } from '../../actions/subSections.js';
 import { connect } from 'react-redux';
 import {
   Button,
@@ -13,6 +9,7 @@ import {
   Segment,
   Icon,
 } from 'semantic-ui-react';
+
 
 class SubSectionForm extends React.Component {
   state = { title: '' };

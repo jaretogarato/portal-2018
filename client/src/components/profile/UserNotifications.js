@@ -1,7 +1,15 @@
 import React from 'react';
-import { Grid, Segment, Table, Header, Icon, Popup } from 'semantic-ui-react';
+import {
+  Grid,
+  Segment,
+  Table,
+  Header,
+  Icon,
+  Popup,
+} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+
 
 const CellInfo = styled(Table.HeaderCell)`
   width: 550px !important;

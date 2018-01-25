@@ -8,9 +8,9 @@ import {
   Image,
   Card,
 } from 'semantic-ui-react';
-
 import { addNote } from '../../actions/notes';
 import { PageSubTitle } from '../../styles/styledComponents';
+
 
 class NoteForm extends React.Component {
   state = { title: '', content: '', visible: false, noteTime:false }
