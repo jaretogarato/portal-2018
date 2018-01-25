@@ -2,9 +2,26 @@ import React from 'react';
 import DatePicker from './DatePicker';
 import StudentRecord from './StudentRecord';
 import { connect } from 'react-redux';
-import { getUsersByCourse, markAllPresent, clearAllStatuses } from '../../actions/users';
-import { addAttendance, getAttendance } from '../../actions/attendance';
-import { Button, Container, Icon, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import {
+  getUsersByCourse,
+  markAllPresent,
+  clearAllStatuses,
+} from '../../actions/users';
+
+import {
+  addAttendance,
+  getAttendance,
+} from '../../actions/attendance';
+
+import {
+  Button,
+  Container,
+  Icon,
+  Segment,
+  Dimmer,
+  Loader,
+} from 'semantic-ui-react';
+
 import { PageTitle } from '../../styles/styledComponents';
 
 class Attendance extends React.Component {

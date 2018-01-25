@@ -1,11 +1,18 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom'
-import { Header, Image, Menu, Segment, Dropdown } from 'semantic-ui-react';
+import {
+  Link,
+  withRouter,
+} from 'react-router-dom';
+import {
+  Header,
+  Image,
+  Menu,
+  Segment,
+  Dropdown,
+} from 'semantic-ui-react';
+
 import { handleLogout } from '../../actions/auth';
-
-
-
 
 
 const styles = {

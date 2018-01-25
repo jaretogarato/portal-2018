@@ -1,6 +1,6 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { getPermissions } from '../../actions/permissions'
+import React from 'react';
+import { connect } from 'react-redux';
+import { getPermissions } from '../../actions/permissions';
 import { withRouter } from 'react-router-dom';
 
 

@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Divider } from 'semantic-ui-react';
+import {
+  Form,
+  Button,
+  Container,
+  Divider,
+} from 'semantic-ui-react';
+
 import { Link } from 'react-router-dom';
-import { editLecture, getLecture } from '../../actions/lectures';
+import {
+  editLecture,
+  getLecture,
+} from '../../actions/lectures';
+
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 
@@ -31,41 +41,41 @@ class EditLecture extends Component {
       return(
         <Container>
           <PageTitle>Update Lecture</PageTitle>
-            <Form onSubmit={this.handleSubmit} style={styles.form}>
-              <Form.Group widths='equal'>
-                <Form.Input
-                  label='Title'
-                  name='title'
-                  defaultValue={title}
-                  width={9}
-                  placeholder='Lecture Title'
-                  autoFocus={true}
-                  required
-                  onChange={this.handleChange}>
-                </Form.Input>
-              </Form.Group> 
-              <Form.TextArea
-                name='content'
-                defaultValue={content}
-                style={ styles.textArea }
-                label='Description'
-                labelFontSize='1.3em'
-                placeholder='Rift Text Editor Placeholder'
+          <Form onSubmit={this.handleSubmit} style={styles.form}>
+            <Form.Group widths='equal'>
+              <Form.Input
+                label='Title'
+                name='title'
+                defaultValue={title}
+                width={9}
+                placeholder='Lecture Title'
+                autoFocus={true}
                 required
-                onChange={this.handleChange}
-                />
-              <Divider />
-              <Form.Checkbox label='Published?' />
-              <Divider />
-              <Form.Group>
-                <Button basic type='submit'>Update</Button>
+                onChange={this.handleChange}>
+              </Form.Input>
+            </Form.Group> 
+            <Form.TextArea
+              name='content'
+              defaultValue={content}
+              style={ styles.textArea }
+              label='Description'
+              labelFontSize='1.3em'
+              placeholder='Rift Text Editor Placeholder'
+              required
+              onChange={this.handleChange}
+            />
+            <Divider />
+            <Form.Checkbox label='Published?' />
+            <Divider />
+            <Form.Group>
+              <Button basic type='submit'>Update</Button>
               <Link to={`./`} >
                 <Button basic>Cancel</Button>
               </Link>
-              </Form.Group>
-            </Form>
+            </Form.Group>
+          </Form>
         </Container>
-      )
+      );
     }
   }
   

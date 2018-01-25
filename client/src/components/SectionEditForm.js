@@ -1,7 +1,14 @@
 import React from 'react';
 import { updateSection } from '../actions/sections';
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Popup, Segment, Icon } from 'semantic-ui-react';
+import {
+  Button,
+  Form,
+  Grid,
+  Popup,
+  Segment,
+  Icon,
+} from 'semantic-ui-react';
 
 
 class SectionEditForm extends React.Component {

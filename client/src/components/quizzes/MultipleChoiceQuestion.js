@@ -1,9 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Select, Segment, Button } from 'semantic-ui-react';
+import {
+  Form,
+  Select,
+  Segment,
+  Button,
+} from 'semantic-ui-react';
+
 import MultipleChoiceOption from './MultipleChoiceOption';
 import { addQuestion } from '../../actions/quizQuestions';
-import { addUpdate, editUpdate } from '../../actions/questionUpdates';
+import {
+  addUpdate,
+  editUpdate,
+} from '../../actions/questionUpdates';
+
 import { connect } from 'react-redux';
 import { PageSubTitle } from '../../styles/styledComponents';
 
@@ -17,7 +27,7 @@ const options = [
   { key: 8, text: 8, value: 8 }
 ]
 
-const LabelGroup = styled(Segment) `
+const LabelGroup = styled(Segment)`
   display: flex;
   justify-content: space-between;
   width: 30%;

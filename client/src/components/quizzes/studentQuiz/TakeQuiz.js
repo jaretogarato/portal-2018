@@ -1,5 +1,13 @@
 import React from 'react';
-import { Segment, Header, List, Button, Grid, Sticky } from 'semantic-ui-react';
+import {
+  Segment,
+  Header,
+  List,
+  Button,
+  Grid,
+  Sticky,
+} from 'semantic-ui-react';
+
 import { connect } from 'react-redux';
 import EssayQuestion from './EssayQuestion';
 import MultipleChoice from './MultipleChoice';

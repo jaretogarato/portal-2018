@@ -1,9 +1,27 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Grid, Message, Header, Divider, Button, Form,
-         Icon, Image, Card } from 'semantic-ui-react'
-import { editNote, deleteNote} from '../../actions/notes'
-import { isAdmin, isStudent } from '../../utils/permissions'
+import React from 'react';
+import { connect } from 'react-redux';
+import {
+  Grid,
+  Message,
+  Header,
+  Divider,
+  Button,
+  Form,
+  Icon,
+  Image,
+  Card,
+} from 'semantic-ui-react';
+
+import {
+  editNote,
+  deleteNote,
+} from '../../actions/notes';
+
+import {
+  isAdmin,
+  isStudent,
+} from '../../utils/permissions';
+
 import { PageSubTitle } from '../../styles/styledComponents';
 
 

@@ -6,10 +6,11 @@ import {
   Dropdown,
   TextArea,
   Checkbox,
-  Form
+  Form,
 } from 'semantic-ui-react';
-import { connect } from 'react-redux'
-import styled from 'styled-components'
+
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const TableStyle = styled(Table)`
   width: 45% !important;

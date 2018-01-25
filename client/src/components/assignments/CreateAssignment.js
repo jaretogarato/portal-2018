@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Segment, Form, Button, Divider } from 'semantic-ui-react';
+import {
+  Segment,
+  Form,
+  Button,
+  Divider,
+} from 'semantic-ui-react';
+
 import { addAssignment } from '../../actions/assignments';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';

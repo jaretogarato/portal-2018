@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Button,
@@ -9,11 +9,14 @@ import {
   Segment,
   Form,
 } from 'semantic-ui-react';
+
 import { getUsersByCourse } from '../../actions/users';
 import UserForm from '../users/UserForm';
 import AddUsers from '../users/AddUsers';
 import { isStaff } from '../../utils/permissions';
 import missingAvatar from '../../assets/images/missing-avatar.png';
+
+
 class PeopleHome extends React.Component {
   state = { loaded: false, modalOpen: false, view: 'all', filter: 'all' }
   setUsersLoaded = () => this.setState({ loaded: true })

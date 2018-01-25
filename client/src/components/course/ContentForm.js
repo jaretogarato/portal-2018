@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCourseContent } from '../../actions/courseContent'
-import { 
+import { addCourseContent } from '../../actions/courseContent';
+import {
   CourseFormButton, 
   CourseFormGrid, 
   CourseFormHeader, 
-  CourseFormSegment 
+  CourseFormSegment,
 } from '../../styles/styles';
+
 import { Form, Grid, Select } from 'semantic-ui-react';
 
 class ContentForm extends React.Component {

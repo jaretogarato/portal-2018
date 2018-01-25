@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button, Form, Radio } from 'semantic-ui-react';
+import {
+  Segment,
+  Grid,
+  Button,
+  Form,
+  Radio,
+} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addQuestion } from '../../actions/quizQuestions';
-import { addUpdate, editUpdate } from '../../actions/questionUpdates';
+import {
+  addUpdate,
+  editUpdate,
+} from '../../actions/questionUpdates';
 
 class TrueFalse extends Component {
 state = { question: '', isTrue: '', hasUpdate: false }

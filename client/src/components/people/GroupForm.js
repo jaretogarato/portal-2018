@@ -11,6 +11,7 @@ import {
   List,
   Segment,
 } from 'semantic-ui-react';
+
 import { PageTitle } from '../../styles/styledComponents';
 
 class GroupForm extends React.Component {

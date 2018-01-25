@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
-import { Segment, Form, Button, Icon, Select } from 'semantic-ui-react';
-import EssayQuestion from './EssayQuestion'
-import MultipleChoiceQuestion from './MultipleChoiceQuestion'
-import TrueFalse from './TrueFalse'
+import {
+  Segment,
+  Form,
+  Button,
+  Icon,
+  Select,
+} from 'semantic-ui-react';
+
+import EssayQuestion from './EssayQuestion';
+import MultipleChoiceQuestion from './MultipleChoiceQuestion';
+import TrueFalse from './TrueFalse';
 import axios from 'axios';
 
 const options = [

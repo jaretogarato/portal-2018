@@ -1,5 +1,11 @@
 import React from 'react';
-import { Image, Popup, Segment, Icon } from 'semantic-ui-react';
+import {
+  Image,
+  Popup,
+  Segment,
+  Icon,
+} from 'semantic-ui-react';
+
 import attendance from '../../assets/badge_icons/attendance.png';
 import coder from '../../assets/badge_icons/coder.png';
 import homework from '../../assets/badge_icons/homework.png';
@@ -11,18 +17,18 @@ const icons = {
   coder,
   homework,
   leader,
-  teamwork
+  teamwork,
 }
 
 const Badge = ({ badgeId, badge, deleteBadge }) => {
   return (
     <div style={styles.badge}>
-      <Icon name='x' onClick={ () => deleteBadge(badgeId)} style={styles.pointer}/>
+      <Icon name='x' onClick={ () => deleteBadge(badgeId)} style={styles.pointer} />
       <Popup
         trigger={
-            <Segment circular>
-              <Image src={icons[badge.icon]} size='mini' />
-            </Segment>
+          <Segment circular>
+            <Image src={icons[badge.icon]} size='mini' />
+          </Segment>
         }
         content={badge.description}
       />
@@ -33,6 +39,6 @@ const Badge = ({ badgeId, badge, deleteBadge }) => {
 const styles = {
   pointer: { cursor: 'pointer' },
   badge: { padding: '2%' },
-  }
+}
 
 export default Badge;

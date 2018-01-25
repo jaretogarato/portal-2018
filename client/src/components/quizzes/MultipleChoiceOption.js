@@ -1,7 +1,11 @@
-import React from 'react'
-import { Form } from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import { addOption, updateOption, deleteOption } from '../../actions/quizOptions'
+import React from 'react';
+import { Form } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import {
+  addOption,
+  updateOption,
+  deleteOption,
+} from '../../actions/quizOptions';
 
 class MultipleChoiceOption extends React.Component {
   state = { text: '', correct: false }

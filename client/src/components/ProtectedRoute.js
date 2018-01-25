@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import {
+  Redirect,
+  Route,
+} from 'react-router-dom';
 
 class ProtectedRoute extends React.Component {
 
@@ -36,16 +39,16 @@ class ProtectedRoute extends React.Component {
       if(enrollment){
         if(!requiredRoles.includes(enrollment.role)){
           return false;
-        }else{
+        } else{
           if(requiredSubRoles != null && !requiredSubRoles.includes(enrollment.sub_role)){
             return false;
           }
         }
         return true;
-      }else{
+      } else{
         return false;
       }
-    }else{
+    } else{
       return true;
     }
   }

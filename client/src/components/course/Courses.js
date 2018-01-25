@@ -8,7 +8,11 @@ import {
   Menu,
   Card,
 } from 'semantic-ui-react';
-import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
+
+import {
+  HomeBody,
+  HomeWrapper,
+} from '../../styles/home-images.js';
 
 class Courses extends React.Component {
   state = {

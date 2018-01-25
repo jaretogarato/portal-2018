@@ -1,7 +1,16 @@
 import React from 'react';
-import { Form, Segment, } from 'semantic-ui-react';
+import {
+  Form,
+  Segment,
+} from 'semantic-ui-react';
+
 import { connect } from 'react-redux';
-import { addResponse, updateResponse, removeResponse } from '../../../actions/quizResponses';
+import {
+  addResponse,
+  updateResponse,
+  removeResponse,
+} from '../../../actions/quizResponses';
+
 import { PageTitle } from '../../../styles/styledComponents';
 
 

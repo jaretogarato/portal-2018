@@ -1,8 +1,19 @@
-import React from 'react'
-import moment from 'moment'
-import { Button, Container, Grid, Loader, Dimmer } from 'semantic-ui-react'
-import { getDate, updateDate } from '../../actions/currentDate'
-import { connect } from 'react-redux'
+import React from 'react';
+import moment from 'moment';
+import {
+  Button,
+  Container,
+  Grid,
+  Loader,
+  Dimmer,
+} from 'semantic-ui-react';
+
+import {
+  getDate,
+  updateDate,
+} from '../../actions/currentDate';
+
+import { connect } from 'react-redux';
 import { PageSubTitle } from '../../styles/styledComponents';
 
 class DatePicker extends React.Component {

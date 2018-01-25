@@ -1,5 +1,10 @@
 import React from 'react';
-import { Button, Divider, Icon } from 'semantic-ui-react';
+import {
+  Button,
+  Divider,
+  Icon,
+} from 'semantic-ui-react';
+
 import fileDownload from 'js-file-download';
 import DropZone from 'react-dropzone';
 import { connect } from 'react-redux';

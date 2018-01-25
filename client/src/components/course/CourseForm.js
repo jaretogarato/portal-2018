@@ -1,9 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCourse, updateCourse } from '../../actions/courses';
-import { courseTermOptions, courseTypeOptions, courseYearOptions  } from '../../data/courseForm';
-import { CourseFormButton, CourseFormGrid, CourseFormHeader, CourseFormSegment } from '../../styles/styles';
-import { Form, Grid, Select } from 'semantic-ui-react';
+import {
+  addCourse,
+  updateCourse,
+} from '../../actions/courses';
+
+import {
+  courseTermOptions,
+  courseTypeOptions,
+  courseYearOptions,
+} from '../../data/courseForm';
+
+import {
+  CourseFormButton,
+  CourseFormGrid,
+  CourseFormSegment,
+} from '../../styles/styles';
+
+import {
+  Form,
+  Grid,
+  Select,
+} from 'semantic-ui-react';
+
+import { PageTitle } from '../../styles/styledComponents';
 
 class CourseForm extends React.Component {
   state = { course_type: '', term: '', year: ''  };
@@ -37,7 +57,7 @@ class CourseForm extends React.Component {
       <CourseFormGrid width={16}>
         <Grid.Column style={{ maxWidth: 1200, paddingTop: 15 }}>
           <CourseFormSegment basic>
-            <CourseFormHeader>Course Form</CourseFormHeader>
+            <PageTitle>Course Form</PageTitle>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>
                 <Form.Field width={1} />

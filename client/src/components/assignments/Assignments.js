@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Segment, Table, Button, Icon, Grid } from 'semantic-ui-react';
+import {
+  Segment,
+  Table,
+  Button,
+  Icon,
+  Grid,
+} from 'semantic-ui-react';
+
 import { Link } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { connect } from 'react-redux';

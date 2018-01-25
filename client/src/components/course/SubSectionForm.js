@@ -1,7 +1,18 @@
 import React from 'react';
-import { addSubSection, updateSubSection } from '../../actions/subSections.js';
+import {
+  addSubSection,
+  updateSubSection,
+} from '../../actions/subSections.js';
+
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Popup, Segment, Icon } from 'semantic-ui-react';
+import {
+  Button,
+  Form,
+  Grid,
+  Popup,
+  Segment,
+  Icon,
+} from 'semantic-ui-react';
 
 class SubSectionForm extends React.Component {
   state = { title: '' };

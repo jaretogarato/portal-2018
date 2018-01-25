@@ -2,8 +2,19 @@ import React, { Component } from 'react';
 import HomeBg from '../assets/images/home-image-2880w.jpg';
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
-import { Button, Container, Form, Grid, Segment } from 'semantic-ui-react';
-import { HomeBody, HomeWrapper } from '../styles/home-images.js';
+import {
+  Button,
+  Container,
+  Form,
+  Grid,
+  Segment,
+} from 'semantic-ui-react';
+
+import {
+  HomeBody,
+  HomeWrapper,
+} from '../styles/home-images.js';
+
 import { PageTitle } from '../styles/styledComponents';
 
 

@@ -1,6 +1,12 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
-import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
+import _ from 'lodash';
+import React, { Component } from 'react';
+import {
+    Button,
+    Header,
+    Icon,
+    Image,
+    Modal,
+} from 'semantic-ui-react';
 
 class SectionFileSelector extends Component {
     

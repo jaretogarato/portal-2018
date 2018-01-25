@@ -1,6 +1,11 @@
 import React from 'react';
 import UserForm from './UserForm';
-import { Button, Icon, Modal } from 'semantic-ui-react';
+import {
+  Button,
+  Icon,
+  Modal,
+} from 'semantic-ui-react';
+
 import { PageTitle } from '../../styles/styledComponents';
 
 class UserModal extends React.Component {

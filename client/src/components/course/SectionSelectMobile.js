@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setSection } from '../../actions/section';
 import { getSubSections } from '../../actions/subSections';
-import { Accordion, Icon, Segment } from 'semantic-ui-react';
+import {
+  Accordion,
+  Icon,
+  Segment,
+} from 'semantic-ui-react';
 
 class SectionSelectMobile extends React.Component {
   state = { activeIndexes: [], activeSubIndexes: [], sectionId: '' };

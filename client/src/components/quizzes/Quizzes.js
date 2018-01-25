@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Table, Button, Icon, Grid } from 'semantic-ui-react';
+import {
+  Table,
+  Button,
+  Icon,
+  Grid,
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';

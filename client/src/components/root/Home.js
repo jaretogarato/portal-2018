@@ -4,7 +4,12 @@ import PortalLogo from '../../assets/images/dps-portal-logo.png';
 import { Container} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
-import { HomeBody, HomeLogo, HomeWrapper } from '../../styles/home-images.js';
+import {
+  HomeBody,
+  HomeLogo,
+  HomeWrapper,
+} from '../../styles/home-images.js';
+
 import { PortalButton } from '../../styles/styledComponents';
 
 class Home extends React.Component {

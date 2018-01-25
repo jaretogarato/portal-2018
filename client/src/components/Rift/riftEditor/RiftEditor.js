@@ -1,5 +1,10 @@
-import React, { Component } from 'react'
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import React, { Component } from 'react';
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+} from 'draft-js';
+
 import './Style.css';
 import BlockStyleControls from './BlockStyles';
 import InlineStyleControls from './InlineStyles';

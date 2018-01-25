@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Note from './Note';
-import { fetchNotes } from '../../actions/notes'
-import { Grid, Dimmer, Loader } from 'semantic-ui-react';
+import { fetchNotes } from '../../actions/notes';
+import {
+  Grid,
+  Dimmer,
+  Loader,
+} from 'semantic-ui-react';
 
 class NoteList extends React.Component{
   state = { loaded: false }

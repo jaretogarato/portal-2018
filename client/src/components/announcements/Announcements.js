@@ -1,7 +1,11 @@
 import React from 'react';
 import AnnouncementForm from './AnnouncementForm';
 import DisplayAnnouncements from './DisplayAnnouncements';
-import { Button, Segment } from 'semantic-ui-react';
+import {
+  Button,
+  Segment,
+} from 'semantic-ui-react';
+
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 

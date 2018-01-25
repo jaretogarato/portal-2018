@@ -5,7 +5,9 @@ import {
   Item,
   Segment,
 } from 'semantic-ui-react';
+
 import { PageSubTitle } from '../../styles/styledComponents';
+
 
 const TaGroups = ({ course, groups, sections, user }) => {
 

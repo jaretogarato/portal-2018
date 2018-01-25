@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
-import { Segment, Form, Button, Divider } from 'semantic-ui-react';
-import { updateAssignment, getAssignment } from '../../actions/assignment';
+import {
+  Segment,
+  Form,
+  Button,
+  Divider,
+} from 'semantic-ui-react';
+
+import {
+  updateAssignment,
+  getAssignment,
+} from '../../actions/assignment';
+
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';

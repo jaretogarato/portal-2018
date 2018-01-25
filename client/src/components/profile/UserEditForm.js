@@ -1,10 +1,10 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import defaultAvatar from '../../assets/images/missing-avatar.png'
+import defaultAvatar from '../../assets/images/missing-avatar.png';
 import { connect } from 'react-redux';
 import { editUser } from '../../actions/user';
 import { handleUpload } from '../../actions/avatars';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 import {
   Button,
   Dimmer,
@@ -14,9 +14,11 @@ import {
   Image,
   Input,
   Loader,
-  Segment
+  Segment,
 } from 'semantic-ui-react';
+
 import { PageTitle, PageSubTitle, BoldText } from '../../styles/styledComponents';
+
 
 class UserEditForm extends React.Component {
   state = {

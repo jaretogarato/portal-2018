@@ -5,7 +5,7 @@ import TaGroups from './TaGroups';
 import { connect } from 'react-redux';
 import { getGroups } from '../../actions/groups';
 import { getSections } from '../../actions/sections';
-import { isAdmin } from '../../utils/permissions'
+import { isAdmin } from '../../utils/permissions';
 import {
   Button,
   Icon,

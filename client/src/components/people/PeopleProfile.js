@@ -25,6 +25,7 @@ import {
   PageSubTitle,
 } from '../../styles/styledComponents';
 
+
 class PeopleProfile extends React.Component {
   state = { user: {}, showForm: false, badges: [], options: [], reRender: false }
 

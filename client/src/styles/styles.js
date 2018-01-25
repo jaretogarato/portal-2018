@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { Button, Grid, Header, Segment } from 'semantic-ui-react';
+import {
+  Button,
+  Grid,
+  Header,
+  Segment,
+} from 'semantic-ui-react';
 
 
 // ------------ v1 ---------------

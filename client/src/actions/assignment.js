@@ -1,6 +1,6 @@
-import axios from 'axios'
-import { setHeaders } from './headers'
-import { setFlash } from './flash'
+import axios from 'axios';
+import { setHeaders } from './headers';
+import { setFlash } from './flash';
 
 export const getAssignment = (id) => {
   return (dispatch) => {

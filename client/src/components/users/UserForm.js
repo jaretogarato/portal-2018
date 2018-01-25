@@ -2,8 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { sendInvitation } from '../../actions/invitations';
 import { withRouter } from 'react-router-dom';
-import { Button, Form, Select, Grid, Container  } from 'semantic-ui-react';
-import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
+import {
+  Button,
+  Form,
+  Select,
+  Grid,
+  Container,
+  Segment,
+} from 'semantic-ui-react';
+
 
 class UserForm extends React.Component {
   defaultState = { firstName: '', lastName: '', email: '', role: 'student', image: '' }

@@ -1,7 +1,15 @@
 import React from 'react';
-import { Segment, Radio } from 'semantic-ui-react';
+import {
+  Segment,
+  Radio,
+} from 'semantic-ui-react';
+
 import { connect } from 'react-redux';
-import { addResponse, updateResponse } from '../../../actions/quizResponses';
+import {
+  addResponse,
+  updateResponse,
+} from '../../../actions/quizResponses';
+
 import { PageTitle } from '../../../styles/styledComponents';
 
 class TrueFalse extends React.Component {

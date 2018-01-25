@@ -1,6 +1,10 @@
 import React from 'react';
 import ContentForm from './ContentForm';
-import { Modal, Icon, Popup } from 'semantic-ui-react';
+import {
+  Modal,
+  Icon,
+  Popup,
+} from 'semantic-ui-react';
 
 class AddCourseContent extends React.Component {
   state = { modalOpen: false };

@@ -1,8 +1,16 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Message, Divider, Button, Form, Segment,
-        Image, Card } from 'semantic-ui-react'
-import { addNote } from '../../actions/notes'
+import React from 'react';
+import { connect } from 'react-redux';
+import {
+  Message,
+  Divider,
+  Button,
+  Form,
+  Segment,
+  Image,
+  Card,
+} from 'semantic-ui-react';
+
+import { addNote } from '../../actions/notes';
 import { PageSubTitle } from '../../styles/styledComponents';
 
 class NoteForm extends React.Component {

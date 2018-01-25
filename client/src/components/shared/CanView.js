@@ -5,6 +5,7 @@ import {
   isTa,
   isStudent,
 } from '../../utils/permissions';
+
 import { connect } from 'react-redux';
 
 const options = {

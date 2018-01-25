@@ -2,7 +2,6 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
-//gets single user by id - for viewing users profile page
 export const getUser = (id) => {
   return (dispatch) => {
     axios.get(`/api/users/${id}`)

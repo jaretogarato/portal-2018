@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Item, Divider } from 'semantic-ui-react';
+import {
+  Form,
+  Item,
+  Divider,
+} from 'semantic-ui-react';
+
 import { getSections } from '../../actions/sections';
 import axios from 'axios';
 import { setHeaders } from '../../actions/headers';

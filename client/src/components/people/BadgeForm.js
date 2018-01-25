@@ -2,7 +2,8 @@ import React from 'react';
 import { 
   Form, 
   Button, 
-  Card } from 'semantic-ui-react'
+  Card,
+} from 'semantic-ui-react';
 
 class BadgeForm extends React.Component {
   state = { content: '' }

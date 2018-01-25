@@ -32,8 +32,8 @@ import {
   clearLectures,
 } from '../../actions/lectures';
 
-import SectionForm from '../SectionForm'
-import SectionEditForm from '../SectionEditForm'
+import SectionForm from '../SectionForm';
+import SectionEditForm from '../SectionEditForm';
 import SubSectionForm from './SubSectionForm';
 import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';

@@ -1,7 +1,16 @@
 import React from 'react';
-import { Segment, Checkbox } from 'semantic-ui-react';
+import {
+  Segment,
+  Checkbox,
+} from 'semantic-ui-react';
+
 import { connect } from 'react-redux';
-import { addResponse, updateResponse, removeResponse } from '../../../actions/quizResponses';
+import {
+  addResponse,
+  updateResponse,
+  removeResponse,
+} from '../../../actions/quizResponses';
+
 import { PageTitle } from '../../../styles/styledComponents';
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']

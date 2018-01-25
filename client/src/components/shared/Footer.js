@@ -3,7 +3,7 @@ import { FooterStyled } from '../../styles/styles';
 import { Link } from 'react-router-dom';
 import {
   Grid,
-  Segment
+  Segment,
 } from 'semantic-ui-react';
 
 const Footer = () => (
