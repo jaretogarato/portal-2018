@@ -40,7 +40,6 @@ class Assignment extends Component {
         .then(res => {
           this.props.history.push('./')
         }).catch(err => {
-          console.log(err)
       });
     }
   }
@@ -123,7 +122,6 @@ class Assignment extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return { currentAssignment: state.singleAssignment, user: state.user }
 }
 

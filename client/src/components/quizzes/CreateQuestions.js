@@ -27,13 +27,12 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     e.preventDefault();
     const { question } = this.state
     axios.post(`/api/quizzes/${id}/quiz_questions`, { question })
-    .then( res => {
-      console.log(res.data)
-      // this.setState({ quiz_questions: res.data});
-    })
-    .catch( err => {
-      console.log(err);
-  });
+      .then( res => {
+        // TODO
+      })
+      .catch( err => {
+        // TODO
+    });
   }
 
   handleChange = (_, { name, value }) => {

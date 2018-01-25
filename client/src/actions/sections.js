@@ -19,11 +19,10 @@ export const addSection = (title, courseId) => {
     axios.post(`/api/courses/${courseId}/sections`, { title })
       .then( res => {
           dispatch({ type: 'ADD_SECTION', section: res.data, headers: res.headers })
-      })
-      .catch( err => {
+      }).catch( err => {
           dispatch({ type: 'SET_HEADERS', headers: err.headers });
           dispatch(setFlash('Failed To Add Section', 'red'));
-      });
+    });
   }
 }
 
@@ -44,13 +43,13 @@ export const deleteSection = (section) => {
       .then( res => {
         dispatch({ type: 'DELETE_SECTION', section, headers: res.headers })
         dispatch({ type: 'CLEAR_SUB_SECTIONS', subSections: [], headers: res.headers })
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Delete Section', 'red'));
-      });
+    });
   }
 }
+
 export const clearSections = () => {
   return ({ type: "CLEAR_SECTIONS", sections: [] })
 }

@@ -23,7 +23,6 @@ class Lectures extends Component {
         this.setState({ lectures: res.data })
       })
       .catch(err => {
-        console.log(err);
       });
   }
 

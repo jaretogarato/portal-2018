@@ -15,17 +15,15 @@ export const sendInvitation = (user, enrollment) => {
         axios.post('/api/enrollments', { enrollment } )
           .then( res => {
             dispatch(setHeaders(res.headers));
-          })
-          .catch( err => {
+          }).catch( err => {
             dispatch(setFlash(err.response.data.errors, 'red'));
             dispatch(setHeaders(err.headers));
-          })
-      })
-      .catch( err => {
+        });
+      }).catch( err => {
         const { firstName, lastName } = user;
         dispatch(setFlash(`Failed to invite ${firstName} ${lastName}`, 'red'));
         dispatch(setHeaders(err.headers));
-      });
+    });
   }
 }
 
@@ -36,11 +34,10 @@ export const acceptInvitation = (invite, history) => {
         dispatch(setHeaders(res.headers));
         dispatch(setFlash('Welcome to Portal please log in', 'info'));
         history.push('/login');
-      })
-      .catch( err => {
+      }).catch( err => {
         const message = err.response.data.errors;
         dispatch(setFlash(message, 'red'));
         dispatch(setHeaders(err.headers));
-      });
+    });
   }
 }

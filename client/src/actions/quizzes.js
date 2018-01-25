@@ -9,12 +9,10 @@ export const addQuiz = (quiz, history) => {
       .then( res => {
         dispatch({ type: 'ADD_QUIZ', quizzes: res.data, headers: res.headers })
         history.push(`./quizzes/${res.data.id}`)
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed To Add Quiz', 'red'));
         dispatch(setHeaders(err.headers));
-      });
-    // axios.post('/api/')
+    });
   }
 }
 
@@ -24,11 +22,10 @@ export const getQuizzes = () => {
     axios.get('/api/quizzes')
       .then( res => {
         dispatch({  type: 'GET_QUIZZES', quizzes: res.data, headers: res.headers })
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Quizzes', 'red'));
-      });
+    });
   }
 }
 

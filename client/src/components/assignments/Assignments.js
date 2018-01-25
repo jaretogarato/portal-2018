@@ -23,7 +23,7 @@ class Assignments extends Component {
       this.setState({ assignments: res.data })
     })
     .catch( err => {
-      console.log(err);
+      // TODO
     });
   }
 

@@ -9,11 +9,10 @@ export const getAttendance = (courseId, currentDate, callback = () => {}) => {
       .then( res => {
         dispatch(setHeaders(res.headers));
         callback(res.data)
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setHeaders(err.headers));
         dispatch(setFlash('Failed To Retrieve Attendance', 'red'));
-      });
+    });
   }
 }
 
@@ -25,6 +24,6 @@ export const addAttendance = (course_id, students, date) => {
       .catch( err => {
         dispatch(setHeaders(err.headers));
         dispatch(setFlash('Failed To Post Attendance', 'red'));
-      });
+    });
   }
 }

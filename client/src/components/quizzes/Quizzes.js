@@ -21,7 +21,8 @@ class Quizzes extends Component {
       this.setState({ quizzes: res.data })
     })
     .catch( err => {
-      console.log(err);
+      // TODO
+      // ALERT MESSAGE
     });
   }
 

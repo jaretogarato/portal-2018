@@ -6,8 +6,9 @@ export const setActiveCourse = (id) => {
     axios.get(`/api/courses/${id}`)
       .then( res => {
         dispatch({ type: 'SET_ACTIVE_COURSE', course: res.data, headers: res.headers })
-      })
-      .catch( err => {/* TODO add error flash */} )
+      }).catch( err => {
+        /* TODO add error flash */
+    });
   }
 }
 

@@ -16,7 +16,6 @@ class RiftEditor extends Component {
     focus = () => this.refs.editor.focus();
     onChange = (editorState) => {
       this.props.riftChange(JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent())))
-      // console.log(convertToRaw(this.state.editorState.getCurrentContent()))
       this.setState({editorState});
     }
 

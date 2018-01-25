@@ -57,7 +57,6 @@ class UserNotifications extends React.Component {
       { name: '', email: this.selectionSelect() , phone:  this.selectionSelect() },
     ]
     return tableData.map( data => {
-      console.log(data)
       return(
         <Table.Row>
           <Table.Cell>{data.name}</Table.Cell>

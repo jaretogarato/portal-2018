@@ -8,12 +8,11 @@ export const getAnnouncements = courseId => {
       .then( res => {
         const announcements = res.data;
         dispatch({ type: 'GET_ANNOUNCEMENTS', announcements });
-      })
-      .catch( res => {
+      }).catch( res => {
         const { headers } = res;
         dispatch(setFlash('Failed to get announcement. Please try again!', 'red'));
         dispatch({ type: 'SET_HEADERS', headers });
-      })
+    });
   }
 }
 
@@ -23,12 +22,11 @@ export const addAnnouncement = (courseId, announcement) => {
       .then( res => {
         const { headers } = res;
         dispatch({ type: 'ADD_ANNOUNCEMENT', announcement: res.data, headers })
-      })
-      .catch( res => {
+      }).catch( res => {
         const { headers } = res;
         dispatch(setFlash('Failed to add announcement. Please try again!', 'red'));
         dispatch({ type: 'SET_HEADERS', headers });
-      })
+    });
   }
 }
 
@@ -38,12 +36,11 @@ export const editAnnouncement = (courseId, announcement, id) => {
       .then( res => {
         const { headers } = res;
         dispatch({ type: 'EDIT_ANNOUNCEMENT', announcement: res.data, headers })
-      })
-      .catch( res => {
-        const { headers } = res;
+      }).catch( err => {
+        const { headers } = err;
         dispatch(setFlash('Failed to update announcement. Please try again!', 'red'));
         dispatch({ type: 'SET_HEADERS', headers })
-      })
+    });
   }
 }
 
@@ -53,11 +50,10 @@ export const deleteAnnouncement = (courseId, id) => {
       .then( res => {
         const { headers } = res;
         dispatch({ type: 'DELETE_ANNOUNCEMENT', id, headers })
-      })
-      .catch( res => {
-        const { headers } = res;
+      }).catch( err => {
+        const { headers } = err;
         dispatch(setFlash('Failed to delete announcement.', 'red'))
         dispatch({ type: 'SET_HEADERS', headers })
-      })
+    });
   }
 }

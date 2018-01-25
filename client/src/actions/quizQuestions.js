@@ -8,12 +8,10 @@ export const getQuestions = (quizId) => {
     axios.get(`/api/quizzes/${quizId}/quiz_questions`)
       .then( res => {
         dispatch({ type: 'GET_QUESTIONS', questions: res.data, headers: res.headers })
-      })
-      .catch( err => {
-        console.log(err)
+      }).catch( err => {
         dispatch(setFlash('Failed to get questions', 'red'))
         dispatch(setHeaders(err.headers))
-      })
+    });
   }
 }
 
@@ -22,11 +20,10 @@ export const addQuestion = (quizId, question) => {
     axios.post(`/api/quizzes/${quizId}/quiz_questions`, question)
       .then( res => {
         dispatch({ type: 'ADD_QUESTION', question: res.data, headers: res.headers})
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setHeaders(err.headers))
         dispatch(setFlash('Failed to add question', 'red'))
-      })
+    });
   }
 }
 
@@ -35,24 +32,21 @@ export const updateQuestion = (quizId, question) => {
     axios.put(`/api/quizzes/${quizId}/quiz_questions/${question.id}`, question)
       .then( res => {
         dispatch({ type: 'UPDATE_QUESTION', question: res.data, headers: res.headers})
-      })
-      .catch( err => {
-        console.log(err)
+      }).catch( err => {
         dispatch(setFlash('Failed to update question', 'red'))
         dispatch(setHeaders(err.headers))
-      })
-    }
+      });
   }
+}
 
 export const deleteQuestion = (quizId, questionId) => {
   return(dispatch) => {
     axios.delete(`/api/quizzes/${quizId}/quiz_questions/${questionId}`)
-      .then(res => {
+      .then( res => {
         dispatch({type: 'DELETE_QUESTION', questionId , headers: res.headers})
-      })
-      .catch(err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to delete question', 'red'))
         dispatch(setHeaders(err.headers))
-      })
-    }
+    });
+  }
 }

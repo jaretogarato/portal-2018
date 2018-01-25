@@ -10,7 +10,7 @@ export const getGroups = (courseId, callback) => {
       .catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Groups', 'red'));
-      });
+    });
   }
 }
 
@@ -30,10 +30,9 @@ export const updateGroup = (course, first, second) => {
       .then(axios.spread( (res1, res2) => {
         dispatch({ type: 'UPDATE_GROUP', groups: res1.data, headers: res1.headers })
         dispatch({ type: 'UPDATE_GROUP', groups: res2.data, headers: res2.headers })
-      }))
-      .catch( err => {
+      })).catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers })
         dispatch(setFlash('Failed to Update Group', 'red'));
-      })
+    });
   }
 }

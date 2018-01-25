@@ -8,8 +8,7 @@ export const getQuiz = (id) => {
     axios.get(`/api/quizzes/${id}`)
       .then( res => {
         dispatch({ type: 'GET_QUIZ', quiz: res.data, headers: res.headers })
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to update quiz', 'red'))
         dispatch(setHeaders(err.headers))
     });
@@ -21,14 +20,12 @@ export const updateQuiz = (quiz, id) => {
     axios.put(`/api/quizzes/${id}`, {quiz})
       .then( res => {
         dispatch({ type: 'UPDATE_QUIZ', quiz: res.data , headers: res.headers })
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to update quiz', 'red'))
         dispatch(setHeaders(err.headers))
-      })
+    });
   }
 }
-
 
 export const deleteQuiz = (id, history) => {
   return(dispatch) => {
@@ -36,10 +33,9 @@ export const deleteQuiz = (id, history) => {
       .then( res => {
         dispatch({ type: 'DELETE_QUIZ', id, headers: res.headers })
         history.push(`/courses/${id}/quizzes/`)
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to Delete Quiz!', 'red'));
         dispatch(setHeaders(err.headers));
-      });
+    });
   }
 }

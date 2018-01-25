@@ -19,14 +19,12 @@ export const handleUpload = (avatar, user, callback) => {
         axios.put(`/api/users/${user.id}`, { user } )
           .then( res => {
             dispatch(setHeaders(res.headers));
-          })
-          .catch( err => {
+          }).catch( err => {
             dispatch(setFlash(`Failed to update user avatar. Please try again!`, 'red'));
             dispatch(setHeaders(err.headers));
-          })
-      })
-      .catch( res => {
-        dispatch(setFlash('Error uploading file. Please try again!', 'error'));
+        });
+      }).catch( err => {
+        dispatch( setFlash('Error uploading file. Please try again!', 'error') );
     });
   }
 }

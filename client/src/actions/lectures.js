@@ -9,11 +9,10 @@ export const addLecture = (lecture, history) => {
       .then(res => {
         dispatch({ type: 'ADD_LECTURE', lectures: res.data, headers: res.headers })
         history.push(`./${res.data.id}`)
-      })
-      .catch(err => {
+      }).catch(err => {
         dispatch(setHeaders(err.headers));
         dispatch(setFlash('Failed To Add Lecture', 'red'));
-      });
+    });
   }
 }
 
@@ -22,11 +21,10 @@ export const getLectures = () => {
     axios.get('/api/lectures')
       .then(res => {
         dispatch({ type: 'GET_LECTURES', lectures: res.data, headers: res.headers })
-      })
-      .catch(err => {
+      }).catch(err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Retrieve Lectures', 'red'));
-      });
+    });
   }
 }
 
@@ -39,24 +37,22 @@ export const getLecture = (id) => {
     axios.get(`/api/lectures/${id}`)
       .then( res => {
         dispatch({ type: 'GET_LECTURE', lecture: res.data, headers: res.headers })
-      })
-      .catch(err => {
+      }).catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed to Retreive this Lecture', 'red'));
-      });
+    });
   }
 }
 
 export const editLecture = ( lecture, id ) => {
   return(dispatch) => {
     axios.put(`/api/lectures/${id}`, { lecture })
-      .then(res => {
+      .then( res => {
         dispatch({ type: 'EDIT_LECTURE', lecture: res.data, headers: res.headers })
-      })
-      .catch(err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to update lecture', 'red'));
         dispatch(setHeaders(err.headers));
-      });
+    });
   }
 }
 
@@ -66,10 +62,9 @@ export const deleteLecture = (id, history) => {
       .then( res => {
         dispatch({ type: 'DELETE_LECTURE', id, headers: res.headers })
         history.push(`/courses/${id}/lectures/`)
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to Delete!', 'red'));
         dispatch(setHeaders(err.headers));
-      });
+    });
   }
 }

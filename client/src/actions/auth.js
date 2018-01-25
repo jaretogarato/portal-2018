@@ -20,8 +20,7 @@ export const registerUser = (email, password, passwordConfirmation, firstName, l
         dispatch(setHeaders(headers));
         dispatch(login(user));
         history.push('/');
-      })
-      .catch(res => {
+      }).catch(res => {
         const errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
         const messages =
           errors.full_messages.map((message,i) =>
@@ -29,7 +28,7 @@ export const registerUser = (email, password, passwordConfirmation, firstName, l
         const { headers } = res;
         dispatch(setFlash(messages, 'red'));
         dispatch(setHeaders(headers));
-      });
+    });
   };
 };
 
@@ -42,8 +41,7 @@ export const handleLogout = history => {
         dispatch(setFlash('Logged out successfully!', 'green'));
         dispatch(setHeaders(headers));
         history.push('/login');
-      })
-      .catch(res => {
+      }).catch(res => {
         const errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
         const messages =
           errors.full_messages.map((message,i) =>
@@ -51,31 +49,30 @@ export const handleLogout = history => {
         const { headers } = res;
         dispatch(setFlash(messages, 'red'));
         dispatch(setHeaders(headers));
-      });
+    });
   };
 };
 
 export const handleLogin = (email, password, history) => {
   return dispatch => {
     axios.post('/api/auth/sign_in', { email, password })
-      .then(res => {
+      .then( res => {
         const { data: { data: user }, headers } = res;
         dispatch(setHeaders(headers));
         dispatch(login(user));
         dispatch(setFlash('Logged in successfully!', 'green'));
         history.push('/');
-      })
-      .catch(res => {
-        let errors = res.response.data.errors ? res.response.data.errors : { full_messages: ['Something went wrong'] }
+      }).catch(err => {
+        let errors = err.response.data.errors ? err.response.data.errors : { full_messages: ['Something went wrong'] }
         if (Array.isArray(errors))
           errors = { full_messages: errors }
         const messages =
           errors.full_messages.map((message,i) =>
             <div key={i}>{message}</div>);
-        const { headers } = res;
+        const { headers } = err;
         dispatch(setFlash(messages, 'red'));
         dispatch(setHeaders(headers));
-      });
+    });
   };
 };
 
@@ -84,11 +81,11 @@ export const validateToken = (callBack = () => {}) => {
     dispatch({ type: 'VALIDATE_TOKEN' });
     const headers = axios.defaults.headers.common;
     axios.get('/api/auth/validate_token', headers)
-      .then(res => {
+      .then( res => {
         const user = res.data.data;
         dispatch(setHeaders(res.headers));
         dispatch(login(user));
       })
-      .catch(() => callBack());
+      .catch( () => callBack() );
   };
 };
