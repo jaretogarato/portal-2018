@@ -5,7 +5,6 @@ import {
   Segment,
   Divider,
 } from 'semantic-ui-react';
-
 import { addLecture } from '../../actions/lectures';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -64,7 +63,6 @@ class CreateLecture extends Component {
               onChange={this.handleChange}
             />
             <Form.Checkbox label='Published?' />
-            <Divider />
             <Form.Group>
               <Button basic type='submit'>Create</Button> 
               <Link to={'./lectures'}>

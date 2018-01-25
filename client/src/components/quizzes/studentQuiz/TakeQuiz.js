@@ -23,15 +23,12 @@ class TakeQuiz extends React.Component {
     this.setState({ready: !this.state.ready})
   }
 
-  handleContextRef = contextRef => this.setState({ contextRef })
-
   displayList = () => {
     const { questions } = this.props
     return questions.map((q, i) => (
-
-        <List.Item key={q.id} >
-        <a href={`#${q.id}`} >
-          Question: {(i + 1) }
+        <List.Item key={q.id} style={{fontSize: '1.2em', marginBottom: '2%'}}>
+        <a href={`#${q.id}`}>
+          Question {(i + 1) }
        </a>
         </List.Item>
     ))
@@ -39,31 +36,31 @@ class TakeQuiz extends React.Component {
 
   displayQuestions = () => {
     const { questions } = this.props
-    return questions.map( q => {
+    return questions.map( (q, i) => {
       if(q.multiple_choice) {
         if(q.true_false) {
           return (
             <Header as='a' id={q.id} key={q.id}>
-              <TrueFalse key={q.id} question={q}/>
+              <TrueFalse key={q.id} id={q.id} question={q} number={(i + 1)}/>
             </Header>
           )
         } else if(q.multiple_correct) {
           return (
             <Header as='a' id={q.id} key={q.id}>
-              <MultipleAnswer key={q.id} id={q.id} question={q}/>
+              <MultipleAnswer key={q.id} id={q.id} question={q} number={(i + 1)}/>
             </Header>
           )
         } else {
           return (
             <Header as='a' id={q.id} key={q.id}>
-              <MultipleChoice key={q.id} id={q.id} question={q}/>
+              <MultipleChoice key={q.id} id={q.id} question={q} number={(i + 1)}/>
             </Header>
           )
         }
       } else {
         return (
           <Header as='a' id={q.id} key={q.id}>
-            <EssayQuestion key={q.id} id={q.id} question={q}/>
+            <EssayQuestion key={q.id} id={q.id} question={q} number={(i + 1)}/>
           </Header>
          )
       }
@@ -81,21 +78,19 @@ class TakeQuiz extends React.Component {
     } else {
       return(
         <Segment basic>
-          <div ref={this.handleContextRef}>
           <Grid>
             <Grid.Column width={13}>
              <PageTitle>{quiz.title}</PageTitle>
               {this.displayQuestions()}
             </Grid.Column>
             <Grid.Column width={3}>
-            <Sticky context={this.state.contextRef}>
+            <Segment basic style={{position:'fixed'}}>
              {this.displayList()}
-             </Sticky>
+             </Segment>
             </Grid.Column>
           </Grid>
           <Button basic>Submit</Button>
           <Button basic>Save Quiz</Button>
-          </div>
         </Segment>
       )
     }
@@ -111,3 +106,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(TakeQuiz)
+

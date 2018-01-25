@@ -3,14 +3,12 @@ import {
   Segment,
   Checkbox,
 } from 'semantic-ui-react';
-
 import { connect } from 'react-redux';
 import {
   addResponse,
   updateResponse,
   removeResponse,
 } from '../../../actions/quizResponses';
-
 import { PageTitle } from '../../../styles/styledComponents';
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
@@ -49,8 +47,10 @@ class MultipleAnswer extends React.Component {
   render() {
     const { question } = this.props
     return(
-      <Segment>
-        <PageTitle>{question.question}</PageTitle>
+      <Segment style={{marginBottom: '2%'}}>
+        <PageSubTitle> Question {this.props.number}</PageSubTitle>
+        <Divider />
+        <PageSubTitle>{question.question}</PageSubTitle>
         {
           question.options.map( (o,i) => {
             return(

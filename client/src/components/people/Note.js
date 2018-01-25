@@ -114,14 +114,12 @@ class Note extends React.Component {
             basic
             floated='right'
             type='submit'
-            size='mini'
             onSubmit={this.handleSubmit}
             >
             Submit
           </Button>
           <Button
             basic
-            size='mini'
             onClick={ () => this.setState({ editing: !this.state.editing })}
             floated='right'
           >

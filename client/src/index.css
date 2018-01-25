@@ -58,10 +58,13 @@ i.large.icon, i.large.icons {
   color: #614d7b;
 }
 
-
 i.big.icon, i.big.icons {
   font-weight: lighter !important;
   font-size: 1.7em;
+}
+
+.ui.segment {
+  border-radius: 0px;
 }
 
 .ui.green.message {

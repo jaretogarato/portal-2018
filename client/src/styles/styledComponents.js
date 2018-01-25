@@ -49,13 +49,11 @@ export const PageTitle = styled.h1`
 
 export const PageSubTitle = styled.h2`
   color: black;
-  padding-top: 2%;
   font-size: 1.17em;
 `;
 
 export const BoldText = styled.h3`
   color: black;
-  padding-top: 2%;
   font-size: 0.83em;
 `;
 

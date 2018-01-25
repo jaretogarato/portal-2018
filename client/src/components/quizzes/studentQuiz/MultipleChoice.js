@@ -1,11 +1,10 @@
 import React from 'react';
-import { Segment, Radio } from 'semantic-ui-react';
+import { Segment, Radio, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import {
   addResponse,
   updateResponse,
 } from '../../../actions/quizResponses';
-
 import { PageTitle } from '../../../styles/styledComponents';
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
@@ -30,8 +29,10 @@ class MultipleChoice extends React.Component {
     const { question } = this.props
     const { response } = this.state
     return(
-      <Segment>
-        <PageTitle>{question.question}</PageTitle>
+      <Segment style={{marginBottom: '2%'}}>
+        <PageSubTitle> Question {this.props.number}</PageSubTitle>
+        <Divider /> 
+        <PageSubTitle>{question.question}</PageSubTitle>
         {
           question.options.map( (o,i) => {
             return(

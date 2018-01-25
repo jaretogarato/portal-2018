@@ -3,14 +3,12 @@ import {
   Form,
   Segment,
 } from 'semantic-ui-react';
-
 import { connect } from 'react-redux';
 import {
   addResponse,
   updateResponse,
   removeResponse,
 } from '../../../actions/quizResponses';
-
 import { PageTitle } from '../../../styles/styledComponents';
 
 
@@ -41,8 +39,10 @@ class EssayQuestion extends React.Component {
     const { question } = this.props
     const { response } = this.state
     return(
-      <Segment>
-        <PageTitle>{question.question}</PageTitle>
+      <Segment style={{marginBottom: '2%'}}>
+        <PageSubTitle> Question {this.props.number}</PageSubTitle>
+        <Divider />
+        <PageSubTitle>{question.question}</PageSubTitle>
         <Form>
           <Form.TextArea value={response} onChange={this.handleChange} onBlur={this.sendResponse} />
         </Form>

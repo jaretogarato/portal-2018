@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Segment,
-  Radio,
-} from 'semantic-ui-react';
-
+import { Segment, Radio, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import {
   addResponse,
@@ -34,8 +30,10 @@ class TrueFalse extends React.Component {
     const id2 = question.options[1].id
     const { response } = this.state
     return(
-      <Segment>
-        <PageTitle style={{ textAlign: 'center'}}>{question.question}</PageTitle>
+      <Segment style={{marginBottom: '2%'}}>
+        <PageSubTitle> Question {this.props.number} </PageSubTitle>
+        <Divider />
+        <PageSubTitle>{question.question}</PageSubTitle>
         <Segment basic>
           <Radio
             label='True'

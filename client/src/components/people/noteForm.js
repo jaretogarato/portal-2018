@@ -40,16 +40,16 @@ class NoteForm extends React.Component {
     const { title, content } = this.state
     return(
       // <Message noteid={note.id} />
-      <Message style={{borderRadius: '0px', backgroundColor: 'white'}} onSubmit={this.handleSubmit}>
+      <Segment style={{borderRadius: '0px', backgroundColor: 'white', margin: '0px'}} onSubmit={this.handleSubmit}>
         <Card.Content>
           <Button
             basic
             onClick={ () => this.setState({ noteTime: !this.state.noteTime })}
-            size='mini' floated='right'
+            floated='right'
           >
             Cancel
           </Button>
-          <Button basic floated='right' type='submit' size='mini'>
+          <Button basic floated='right' type='submit'>
             Submit
           </Button>
           <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={user.image} /> { }
@@ -59,6 +59,7 @@ class NoteForm extends React.Component {
           <Card.Header as='h3'>
             <Form.Input
               autoFocus
+              style={{paddingBottom: '2%'}}
               name='title'
               value={title}
               width={7}
@@ -85,7 +86,7 @@ class NoteForm extends React.Component {
             />
           </Card.Description>
         </Card.Content>
-      </Message>
+      </Segment>
     )
   }
 
