@@ -129,12 +129,15 @@ class SectionSelect extends React.Component {
                   >
                     {section.title}
                     <span>
-                      <Icon 
-                        name='idea'
-                        size='large'
-                        link
-                        onClick={() => this.journalEntryClick(section) }>
-                      </Icon> 
+                      <Popup basic content="Add Journal Entry" trigger={
+                        <Icon 
+                          link
+                          name='book'
+                          size='large'
+                          style={{float: "right"}}                           
+                          onClick={() => this.journalEntryClick(section) }/>
+                        }
+                      />
                     </span>
                     { is_admin && 
                       <span>

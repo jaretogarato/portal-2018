@@ -83,16 +83,16 @@ class Section extends React.Component {
     const filtered = []
     content.filter( content => {
       return content.sub_section_id === ssid
-    }).map( content => {
-      quizzes.map(quiz => {
+    }).forEach( content => {
+      quizzes.forEach(quiz => {
         if(quiz.id === content.quiz_id)
           filtered.push({...quiz, contentId: content.id, type: 'quizzes'});
       })
-      assignments.map(assignment => {
+      assignments.forEach(assignment => {
         if(assignment.id === content.assignment_id)
           filtered.push({...assignment, contentId: content.id, type: 'assignments'});
       })
-      lectures.map(lecture => {
+      lectures.forEach(lecture => {
         if(lecture.id === content.lecture_id)
           filtered.push({...lecture, contentId: content.id, type: 'lectures'});
       })
