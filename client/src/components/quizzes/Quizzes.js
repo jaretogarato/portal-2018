@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import { PageTitle } from '../../styles/styledComponents';
+import _ from 'lodash';
 
 class Quizzes extends Component {
-  state = { quizzes: [] }
+  state = { quizzes: [], column: null, direction: null }
 
   componentDidMount() {
     axios.get('/api/quizzes')
@@ -16,6 +17,22 @@ class Quizzes extends Component {
     .catch( err => {
       console.log(err);
     });
+  }
+
+  handleSort = clickedColumn => () => {
+    const { column, direction, quizzes } = this.state
+    if (column == clickedColumn) {
+      this.setState({
+        column: clickedColumn,
+        quizzes: _.sortBy(quizzes, [clickedColumn]),
+        direction: 'ascending',
+      })
+    return
+    }
+    this.setState({
+      quizzes: quizzes.reverse(),
+      direction: direction === 'ascending' ? 'descending' : 'ascending',
+    })
   }
 
   displayQuizzes = () => {
@@ -36,7 +53,8 @@ class Quizzes extends Component {
   }
 
   render() {
-    const { id } = this.props.match.params
+    const { id } = this.props.match.params;
+    const { column, direction } = this.state;
     return (
       <div>
        <PageTitle>Quizzes</PageTitle>
@@ -61,9 +79,18 @@ class Quizzes extends Component {
               <Table basic='very' striped singleLine>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell width={6}> Name </Table.HeaderCell>
-                <Table.HeaderCell width={4}> Created At </Table.HeaderCell>
-                <Table.HeaderCell width={4}> Due Date </Table.HeaderCell>
+                <Table.HeaderCell width={6}
+                  sorted={column === 'name' ? direction : null} 
+                  onClick={this.handleSort('name')}> 
+                  Name</Table.HeaderCell>
+                <Table.HeaderCell width={4}
+                  sorted={column === 'created_at' ? direction : null} 
+                  onClick={this.handleSort('created_at')}> 
+                  Created At</Table.HeaderCell>
+                <Table.HeaderCell width={4}
+                  sorted={column === 'due_date' ? direction : null} 
+                  onClick={this.handleSort('due_date')}> 
+                  Due Date</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

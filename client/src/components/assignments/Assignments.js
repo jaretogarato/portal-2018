@@ -4,17 +4,41 @@ import { Link } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
+import axios from 'axios';
+import _ from 'lodash';
 
 class Assignments extends Component {
-  state = { assignments: [] }
+  state = { assignments: [], column: null, direction: null }
 
   componentDidMount() {
-     this.props.dispatch(getAssignments())
+    axios.get('/api/assignments')
+    .then( res => {
+      this.setState({ assignments: res.data })
+    })
+    .catch( err => {
+      console.log(err);
+    });
+  }
+
+  handleSort = clickedColumn => () => {
+    const { column, direction, assignments } = this.state
+    if (column == clickedColumn) {
+      this.setState({
+        column: clickedColumn,
+        assignments: _.sortBy(assignments, [clickedColumn]),
+        direction: 'ascending',
+      })
+    return
+    }
+    this.setState({
+      assignments: assignments.reverse(),
+      direction: direction === 'ascending' ? 'descending' : 'ascending',
+    })
   }
 
   displayAssignments = () => {
     const { id } = this.props.match.params
-    return this.props.assignments.map( (assignment, i) => {
+    return this.state.assignments.map( (assignment, i) => {
       return (
         <Table.Row key={i}>
           <Table.Cell>
@@ -27,7 +51,8 @@ class Assignments extends Component {
   }
 
   render() {
-    const { id } = this.props.match.params
+    const { id } = this.props.match.params;
+    const { column, direction } = this.state;
     return (
       <Segment basic>
         <PageTitle style={{ textAlign: 'left'}}>All Assignments</PageTitle>
@@ -49,9 +74,18 @@ class Assignments extends Component {
               <Table basic='very' striped singleLine>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell width={6}>Name</Table.HeaderCell>
-                    <Table.HeaderCell width={4}>Created At</Table.HeaderCell>
-                    <Table.HeaderCell width={4}>Course</Table.HeaderCell>
+                    <Table.HeaderCell width={6}
+                      sorted={column === 'name' ? direction : null} 
+                      onClick={this.handleSort('name')}>
+                      Name</Table.HeaderCell>
+                    <Table.HeaderCell width={4}
+                      sorted={column === 'created_at' ? direction : null} 
+                      onClick={this.handleSort('created_at')}>
+                      Created At</Table.HeaderCell>
+                    <Table.HeaderCell width={4}
+                      sorted={column === 'course' ? direction : null} 
+                      onClick={this.handleSort('course')}>
+                      Course</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>

@@ -5,9 +5,10 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { PageTitle } from '../../styles/styledComponents';
+import _ from 'lodash';
 
 class Lectures extends Component {
-  state = { lectures: [] }
+  state = { lectures: [], column: null, direction: null }
 
   componentDidMount() {
     axios.get('/api/lectures')
@@ -17,6 +18,22 @@ class Lectures extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  handleSort = clickedColumn => () => {
+    const { column, direction, lectures } = this.state
+    if (column == clickedColumn) {
+      this.setState({
+        column: clickedColumn,
+        lectures: _.sortBy(lectures, [clickedColumn]),
+        direction: 'ascending',
+      })
+    return
+    }
+    this.setState({
+      lectures: lectures.reverse(),
+      direction: direction === 'ascending' ? 'descending' : 'ascending',
+    })
   }
 
   displayLectures = () => {
@@ -38,6 +55,7 @@ class Lectures extends Component {
 
   render() {
     const { id } = this.props.match.params;
+    const { column, direction } = this.state;
     return (
       <Segment basic>
         <PageTitle>Lectures</PageTitle>
@@ -62,9 +80,21 @@ class Lectures extends Component {
               <Table basic='very' striped singleLine>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell width={6}>Name</Table.HeaderCell>
-                    <Table.HeaderCell width={4}>Created At</Table.HeaderCell>
-                    <Table.HeaderCell width={4}>Course</Table.HeaderCell>
+                    <Table.HeaderCell 
+                      width={6} 
+                      sorted={column === 'name' ? direction : null} 
+                      onClick={this.handleSort('name')}>
+                      Name</Table.HeaderCell>
+                    <Table.HeaderCell 
+                      width={4}
+                      sorted={column === 'created_at' ? direction : null}
+                      onClick={this.handleSort('created_at')}>
+                      Created At</Table.HeaderCell>
+                    <Table.HeaderCell 
+                      width={4}
+                      sorted={column === 'course' ? direction : null}
+                      onClick={this.handleSort('course')}>
+                      Course</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
