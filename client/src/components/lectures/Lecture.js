@@ -57,7 +57,7 @@ class Lecture extends Component {
       { user.is_admin &&
         [
           <Link to={'./'} >
-            <Button basic floated='right'>Cancel</Button>
+            <Button basic floated='right'>View All Lectures</Button>
           </Link>,
           <Button basic floated='right' name='delete' onClick={() => this.deleteAssignment(id)}>Delete</Button>,
           <Button basic  floated='right' onClick={this.toggleEdit}>Edit</Button>

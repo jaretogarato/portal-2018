@@ -1,15 +1,11 @@
 import React from 'react';
-import { Container, Header, Segment, Grid, Image, List } from 'semantic-ui-react';
+import { Container, Image } from 'semantic-ui-react';
 import devpoint from '../../assets/images/devpoint.png'
 import { HomeStrings } from '../../assets/strings/homeStrings'
-import { PageTitle, PageSubTitle, BoldText, ParagraphText } from '../../styles/styledComponents'
+import { PageTitle, PageSubTitle, ParagraphText } from '../../styles/styledComponents'
 import CourseHomeDropDown from './CourseHomeDropdown'
 
-//merge conflicts
 class CourseHome extends React.Component {
-  // see comments below for usage of state
-  // it starts with truly
-  // state = { displaySwitch: false }
 
   displayConcepts = (input) => {
     return input.map( concept => {
@@ -24,63 +20,9 @@ class CourseHome extends React.Component {
       return <li>{input}</li>
     })
   }
-
-  // if wanting the original mock table from canvas, see this
-  // conceptsTable = () => {
-  //  const first = HomeStrings.concepts.slice(0, 4)
-  //  const second = HomeStrings.concepts.slice(4,8)
-  //  const third = HomeStrings.concepts.slice(8,12)
-  //  const fourth = HomeStrings.concepts.slice(12,16)
-  //  const fifth = HomeStrings.concepts.slice(16,20)
-  //  const sixth = HomeStrings.concepts.slice(20,24)
-  //  const seventh = HomeStrings.concepts.slice(24,28)
-  //  const eighth = HomeStrings.concepts.slice(28,32)
-  //   return (
-  //     <table style={{width: '100%'}}>
-  //       <tbody>
-  //         <tr>
-  //           {this.displayConcepts(first)}
-  //         </tr>
-  //         <tr>
-  //           {this.displayConcepts(second)}
-  //         </tr>
-  //         <tr>
-  //           {this.displayConcepts(third)}
-  //         </tr>
-  //         <tr>
-  //           {this.displayConcepts(fourth)}
-  //         </tr>
-  //         <tr>
-  //           {this.displayConcepts(fifth)}
-  //         </tr>
-  //         <tr>
-  //           {this.displayConcepts(sixth)}
-  //         </tr>
-  //         <tr>
-  //           {this.displayConcepts(seventh)}
-  //         </tr>
-  //         <tr>
-  //           {this.displayConcepts(eighth)}
-  //         </tr>
-  //       </tbody>
-  //     </table>
-  //   )
-  // }
-
-  // this is the switch for displaying table or dropdown with concepts
-  // checkSize = () => {
-  //   if (window.innerWidth > 768){
-  //     return this.setState({ displaySwitch: true })
-  //   } else {
-  //     return this.setState({ displaySwitch: false})
-  //   }
-  // }
-  
   
 
   render() {
-    // if wanted responsive switch use function below
-    // window.onresize = this.checkSize
     return(
       <Container>
               <div style={{height: '250px', display: 'flex'}}>

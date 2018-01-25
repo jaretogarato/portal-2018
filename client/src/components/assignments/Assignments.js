@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 import axios from 'axios';
 import _ from 'lodash';
+import moment from 'moment';
 
 class Assignments extends Component {
   state = { assignments: [], column: null, direction: null }
@@ -46,12 +47,18 @@ class Assignments extends Component {
   displayAssignments = () => {
     const { id } = this.props.match.params
     return this.state.assignments.map( (assignment, i) => {
+      let date = moment(assignment.due_date).format('MMMM DD, YYYY')
       return (
         <Table.Row key={i}>
           <Table.Cell>
             <Link to={`/courses/${id}/assignments/${assignment.id}`}>{assignment.title}</Link>
           </Table.Cell>
-          { /*<Table.Cell>{date}</Table.Cell> */ }
+          <Table.Cell>
+            {assignment.points}
+          </Table.Cell>
+          <Table.Cell>
+            {date}
+          </Table.Cell>
         </Table.Row>
       )
     })
@@ -88,11 +95,11 @@ class Assignments extends Component {
                     <Table.HeaderCell width={4}
                       sorted={column === 'created_at' ? direction : null} 
                       onClick={this.handleSort('created_at')}>
-                      Created At</Table.HeaderCell>
+                      Points</Table.HeaderCell>
                     <Table.HeaderCell width={4}
                       sorted={column === 'course' ? direction : null} 
                       onClick={this.handleSort('course')}>
-                      Course</Table.HeaderCell>
+                      Due Date</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>

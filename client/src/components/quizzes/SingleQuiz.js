@@ -125,7 +125,7 @@ displayQuiz = () => {
     <Segment basic clearing >
       <PageTitle>{title}</PageTitle>
       <Link to={'./'} >
-        <Button basic floated='right'>All Quizzes</Button>
+        <Button basic floated='right'>View All Quizzes</Button>
       </Link>
       <Button basic floated='right' name='delete' onClick={() => this.deleteQuiz(id)}>Delete</Button>
       <Button basic floated='right' onClick={this.toggleEdit}>Edit</Button>

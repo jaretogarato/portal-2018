@@ -26,7 +26,7 @@ class Quizzes extends Component {
 
   handleSort = clickedColumn => () => {
     const { column, direction, quizzes } = this.state
-    if (column == clickedColumn) {
+    if (column === clickedColumn) {
       this.setState({
         column: clickedColumn,
         quizzes: _.sortBy(quizzes, [clickedColumn]),

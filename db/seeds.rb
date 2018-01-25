@@ -160,7 +160,7 @@ end
   Quiz.create(
     title: "Quiz #{l + 1}: #{Faker::Lorem.sentence}",
     content: Faker::Lorem.paragraph(2),
-    due_date: "Jan 18, 2018",
+    due_date: Time.now,
     points: 100
   )
 end
@@ -170,7 +170,7 @@ end
     title: "Assignment #{a + 1}: #{Faker::Lorem.sentence}",
     submission_type: 'Online',
     points: 100,
-    due_date: 'June 9th, 2018',
+    due_date: Time.now,
     published: true,
     content: Faker::Lorem.paragraph
   )

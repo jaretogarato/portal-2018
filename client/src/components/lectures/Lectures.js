@@ -28,7 +28,7 @@ class Lectures extends Component {
 
   handleSort = clickedColumn => () => {
     const { column, direction, lectures } = this.state
-    if (column == clickedColumn) {
+    if (column === clickedColumn) {
       this.setState({
         column: clickedColumn,
         lectures: _.sortBy(lectures, [clickedColumn]),
