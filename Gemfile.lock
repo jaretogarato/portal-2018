@@ -226,24 +226,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
   cloudinary (~> 1.8.1)
-  database_cleaner (~> 1.6.1)
+  database_cleaner
   delayed_job_active_record (~> 4.1.2)
   devise (~> 4.3.0)
   devise_invitable (~> 1.7.2)
   devise_token_auth (~> 0.1.42)
   dotenv-rails (= 2.2.1)
-=======
-  cloudinary
-  database_cleaner
-  delayed_job_active_record
-  devise
-  devise_invitable
-  devise_token_auth
-  dotenv-rails
   factory_bot_rails
->>>>>>> model testing
   faker!
   jbuilder (~> 2.7.0)
   letter_opener (~> 1.4.1)
@@ -253,9 +243,9 @@ DEPENDENCIES
   pry (~> 0.11.1)
   puma (~> 3.7)
   rails (~> 5.1.4)
-  rspec-rails (~> 3.6.1)
-  shoulda-matchers (~> 3.1.2)
-  simplecov (~> 0.15.1)
+  rspec-rails
+  shoulda-matchers
+  simplecov
   spring (~> 2.0.2)
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
