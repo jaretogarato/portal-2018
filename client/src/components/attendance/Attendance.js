@@ -23,6 +23,7 @@ import {
 } from 'semantic-ui-react';
 
 import { PageTitle } from '../../styles/styledComponents';
+import { setFlash } from '../../actions/flash';
 
 class Attendance extends React.Component {
   state = { submitted: false, users: [] }
@@ -62,6 +63,7 @@ class Attendance extends React.Component {
     const { dispatch, users, currentDate, match: { params: { id } } } = this.props
     dispatch(addAttendance(id, users, currentDate))
     dispatch(clearAllStatuses())
+    dispatch(setFlash('Attendance Submitted', 'green'));
     this.setState({ submitted: true }, () => {
       this.isSubmitted(users)
     })
@@ -93,7 +95,7 @@ class Attendance extends React.Component {
   }
 
   legend = () => (
-    <div>
+    <div style={styles.legend}>
       <span>
         <Icon
           name='check circle outline'
@@ -148,9 +150,8 @@ class Attendance extends React.Component {
               </Button>
             ]
           }
-          <br/>
-          <br/>
-          { submitted && <Segment compact>Attendance Submitted</Segment>}
+
+          { submitted }
           { this.displayUsers() }
           <br/>
           { this.allChosen() }
@@ -168,6 +169,10 @@ class Attendance extends React.Component {
 const styles = {
   dimmer: {
     height: '80vh'
+  },
+
+  legend: {
+    marginBottom: '10px'
   }
 }
 

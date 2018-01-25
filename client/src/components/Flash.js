@@ -11,7 +11,7 @@ import {
 const fadeFlash = dispatch => {
   setTimeout(() => {
     dispatch(clearFlash());
-  }, 1000);
+  }, 2000);
 };
 
 const Flash = ({ flash, dispatch }) => {

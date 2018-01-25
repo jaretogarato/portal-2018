@@ -93,10 +93,10 @@ class StudentRecord extends React.Component {
           <Item style={styles.userSection} onClick={this.toggleStatus}>
             <Item.Image style={styles.recordImage} size='tiny' src={image} />
             <Item.Content verticalAlign='middle'>
-              <Item.Header style={styles.row}>
+              <Item.Content as='h4' style={styles.row}>
                 { last_name }, { first_name }
                 { this.displayIcon() }
-              </Item.Header>
+              </Item.Content>
               <span style={styles.status}>{this.state.status}</span>
             </Item.Content>
           </Item>
