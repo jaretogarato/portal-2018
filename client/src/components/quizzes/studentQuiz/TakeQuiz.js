@@ -5,7 +5,6 @@ import {
   List,
   Button,
   Grid,
-  Sticky,
 } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';

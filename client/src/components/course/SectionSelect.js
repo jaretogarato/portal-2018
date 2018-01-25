@@ -34,7 +34,6 @@ import {
 
 import SectionForm from '../SectionForm';
 import SectionEditForm from '../SectionEditForm';
-import SubSectionForm from './SubSectionForm';
 import Section from './Section';
 import SectionSelectMobile from './SectionSelectMobile';
 import {
@@ -111,8 +110,8 @@ class SectionSelect extends React.Component {
   }
   
   render() {
-    let { courseLoaded, sectionsLoaded, subSectionsLoaded } = this.state;
-    const { user: { is_admin }, sectionId, sections, subSections } = this.props
+    let { courseLoaded, sectionsLoaded } = this.state;
+    const { user: { is_admin }, sectionId, sections } = this.props;
     let current = sections.filter( s => s.id === sectionId )[0]
     if(sectionsLoaded && courseLoaded) {
       return(

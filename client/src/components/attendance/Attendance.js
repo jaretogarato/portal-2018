@@ -17,7 +17,6 @@ import {
   Button,
   Container,
   Icon,
-  Segment,
   Dimmer,
   Loader,
 } from 'semantic-ui-react';

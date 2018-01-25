@@ -1,6 +1,5 @@
 import React from 'react';
-import defaultAvatar from '../../assets/images/missing-avatar.png'
-import UserNotifications from './UserNotifications'
+import UserNotifications from './UserNotifications';
 import UserEditForm from './UserEditForm';
 import { connect } from 'react-redux';
 import {
