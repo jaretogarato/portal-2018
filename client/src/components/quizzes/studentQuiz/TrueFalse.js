@@ -6,7 +6,7 @@ import {
   updateResponse,
 } from '../../../actions/quizResponses';
 
-import { PageTitle } from '../../../styles/styledComponents';
+import { PageSubTitle } from '../../../styles/styledComponents';
 
 class TrueFalse extends React.Component {
   state = { response: '', hasResponse: false }

@@ -5,7 +5,7 @@ import {
   addResponse,
   updateResponse,
 } from '../../../actions/quizResponses';
-import { PageTitle } from '../../../styles/styledComponents';
+import { PageSubTitle } from '../../../styles/styledComponents';
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 

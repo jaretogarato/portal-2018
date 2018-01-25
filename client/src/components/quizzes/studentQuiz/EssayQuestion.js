@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Form,
   Segment,
+  Divider
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import {
@@ -9,7 +10,7 @@ import {
   updateResponse,
   removeResponse,
 } from '../../../actions/quizResponses';
-import { PageTitle } from '../../../styles/styledComponents';
+import { PageSubTitle } from '../../../styles/styledComponents';
 
 
 class EssayQuestion extends React.Component {

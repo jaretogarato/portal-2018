@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Segment,
   Checkbox,
+  Divider
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import {
@@ -9,7 +10,7 @@ import {
   updateResponse,
   removeResponse,
 } from '../../../actions/quizResponses';
-import { PageTitle } from '../../../styles/styledComponents';
+import { PageSubTitle } from '../../../styles/styledComponents';
 
 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
