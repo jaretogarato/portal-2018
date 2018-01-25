@@ -62,7 +62,7 @@ export const BoldText = styled.h3`
 export const ParagraphText = styled.p`
   color: black;
   padding-top: 2%;
-  font-size: .85em;
+  font-size: 1em;
 `
 
 // export const PlainText = styled.h5`

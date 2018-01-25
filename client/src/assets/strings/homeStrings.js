@@ -11,7 +11,7 @@ export const HomeStrings = {
   usingCanvasModuleText3: "During the lecture, there is no need to panic if you are following along and fall behind.  The code will always be given out to the class at different break points.  It is more important to listen and ask questions.  The code will always be available in the Canvas module for that day.",
   usingCanvasModuleText4: "After the lecture, it is a good idea to go back through the content in Canvas on your own and make notes of anything you might have questions on for the next day.",
   usingCanvasAnnouncementsHeader: "Announcements",
-  usingCanvasAnnouncements: "All important dates and announcements will be under the announcements tab as well as communicated to you in class and through Slack.",
+  usingCanvasAnnouncementsText: "All important dates and announcements will be under the announcements tab as well as communicated to you in class and through Slack.",
   primaryPortfolioProjectHeader: "Primary Portfolio Project",
   primaryPortfolioProjectIntroText1: "Starting week 8 you will begin your primary portfolio project.  This is not a \"capstone\" project.  This is real world experience working on real production applications with a real team. These projects will be guided by DevPoint Studios led by senior developers.",
   primaryPortfolioProjectIntroText2: "There are two categories of primary portfolio projectS:",
