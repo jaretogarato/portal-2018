@@ -157,12 +157,7 @@ class SectionSelect extends React.Component {
               </Menu>
             </Grid.Column>
             <Grid.Column width={12}>
-              { sectionId && 
-                <Section loaded={subSectionsLoaded} subSections={subSections} 
-                  title={ current ? current.title : "Subsection" } 
-                /> 
-              }
-              { is_admin && sectionId && <SubSectionForm/> } 
+              { sectionId && <Section title={ current ? current.title : "Subsection" } /> }
             </Grid.Column>
           </Grid.Row>
           <Grid.Row only='mobile'>

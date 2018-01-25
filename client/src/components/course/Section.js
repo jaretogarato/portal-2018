@@ -15,9 +15,17 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-
 class Section extends React.Component {
-  state = { activeIndexes: [] }
+  
+  state = { activeIndexes: [], loaded: false }
+
+  componentWillReceiveProps(nextProps) {
+    let p = this.props.subSections.length
+    let n = nextProps.subSections.length
+    let i = this.props.sectionId
+    let d = nextProps.sectionId
+    i === d ? this.setState( p === n ? {loaded: true} : { loaded: false} ) : this.setState( {loaded: false} )
+  }
 
   checkActiveIndex = (index) => this.state.activeIndexes.includes(index)
 
@@ -92,8 +100,17 @@ class Section extends React.Component {
   }
 
   render() {
-    const { subSections = null, user: { is_admin }, title } = this.props
-    if(subSections && this.props.loaded) {
+    const { sectionId, subSections, user: { is_admin }, title } = this.props
+    if( sectionId && !subSections.length && !this.state.loaded ) {
+      return(
+        <div>
+          <PageSubTitle>{title}</PageSubTitle>
+          <Dimmer active inverted style={styles.dimmer}>
+            <Loader inverted size='medium'>Loading subsections</Loader>
+          </Dimmer>
+        </div>    
+      ) 
+    } else {
       return(
         <div>
           <PageSubTitle>{title}</PageSubTitle>
@@ -128,28 +145,24 @@ class Section extends React.Component {
               </Accordion.Content>
             </Accordion>
           })}
+          { is_admin && <SubSectionForm/> }
         </div>
-      )
-    } else {
-      return(
-        <Dimmer active inverted style={styles.dimmer}>
-          <Loader inverted size='medium'>Loading subsections</Loader>
-        </Dimmer>
       )
     }
   }
 }
 
 const styles = {
-  corner: {
-    borderRadius: '0px',
-  },
+  corner: { borderRadius: '0px' },
+  dimmer: { height: '50vh' }
 }
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
     course: state.course,
+    subSections: state.subSections,
+    sectionId: state.sectionId,
     content: state.courseContent,
     quizzes: state.quizzes,
     lectures: state.lectures,
