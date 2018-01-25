@@ -43,14 +43,13 @@ class Quizzes extends Component {
   displayQuizzes = () => {
     const { id } = this.props.match.params
     return this.state.quizzes.map(quiz => {
-      let time = moment(quiz.created_at).format('MMMM D, YYYY')
       let date = moment(quiz.due_date).format('MMMM D, YYYY')
       return(
         <Table.Row key={quiz.id}>
           <Table.Cell>
             <Link to={`/courses/${id}/quizzes/${quiz.id}`}> {quiz.title} </Link>
           </Table.Cell>
-          <Table.Cell>{time}</Table.Cell>
+          <Table.Cell>{quiz.points}</Table.Cell>
           <Table.Cell>{date}</Table.Cell>
         </Table.Row>
       )
@@ -89,9 +88,9 @@ class Quizzes extends Component {
                   onClick={this.handleSort('name')}> 
                   Name</Table.HeaderCell>
                 <Table.HeaderCell width={4}
-                  sorted={column === 'created_at' ? direction : null} 
-                  onClick={this.handleSort('created_at')}> 
-                  Created At</Table.HeaderCell>
+                  sorted={column === 'due_date' ? direction : null} 
+                  onClick={this.handleSort('due_date')}> 
+                  Points</Table.HeaderCell>
                 <Table.HeaderCell width={4}
                   sorted={column === 'due_date' ? direction : null} 
                   onClick={this.handleSort('due_date')}> 

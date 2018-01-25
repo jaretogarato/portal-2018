@@ -8,7 +8,6 @@ import {
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
-import { getAssignments } from '../../actions/assignments';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 import axios from 'axios';
@@ -30,7 +29,7 @@ class Assignments extends Component {
 
   handleSort = clickedColumn => () => {
     const { column, direction, assignments } = this.state
-    if (column == clickedColumn) {
+    if (column === clickedColumn) {
       this.setState({
         column: clickedColumn,
         assignments: _.sortBy(assignments, [clickedColumn]),

@@ -3,7 +3,6 @@ import {
   Form,
   Button,
   Segment,
-  Divider,
 } from 'semantic-ui-react';
 import { addLecture } from '../../actions/lectures';
 import { Link } from 'react-router-dom';

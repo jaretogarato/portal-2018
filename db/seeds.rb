@@ -151,28 +151,28 @@ end
 
 25.times do |l|
   Lecture.create(
-    title: "Lecture #{l + 1}: #{Faker::Lorem.sentence}",
-    content: Faker::Lorem.paragraph(2)
+    title: "Lecture #{l + 1}: #{Faker::ProgrammingLanguage.name}",
+    content: Faker::Hipster.paragraph(2)
   )
 end
 
 5.times do |l|
   Quiz.create(
-    title: "Quiz #{l + 1}: #{Faker::Lorem.sentence}",
-    content: Faker::Lorem.paragraph(2),
-    due_date: Time.now,
-    points: 100
+    title: "Quiz #{l + 1}: #{Faker::ProgrammingLanguage.name}",
+    content: Faker::Hipster.paragraph(2),
+    due_date: Faker::Date.between(20.days.ago, Date.today),
+    points: rand(50...100)
   )
 end
 
 5.times do |a|
   Assignment.create(
-    title: "Assignment #{a + 1}: #{Faker::Lorem.sentence}",
+    title: "Assignment #{a + 1}: #{Faker::ProgrammingLanguage.name}",
     submission_type: 'Online',
-    points: 100,
-    due_date: Time.now,
+    points: rand(50...100),
+    due_date: Faker::Date.between(20.days.ago, Date.today),
     published: true,
-    content: Faker::Lorem.paragraph
+    content: Faker::Hipster.paragraph
   )
 end
 

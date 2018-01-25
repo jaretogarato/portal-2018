@@ -95,7 +95,7 @@ class Lectures extends Component {
                       width={4}
                       sorted={column === 'created_at' ? direction : null}
                       onClick={this.handleSort('created_at')}>
-                      Created At</Table.HeaderCell>
+                      Lecture Date</Table.HeaderCell>
                     <Table.HeaderCell 
                       width={4}
                       sorted={column === 'course' ? direction : null}
