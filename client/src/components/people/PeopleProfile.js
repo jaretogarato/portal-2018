@@ -125,7 +125,7 @@ class PeopleProfile extends React.Component {
     const { options } = this.state
     const fullName = `${user.first_name} ${user.last_name}`
     return (
-      <Segment basic>
+      <Segment basic style={{paddingTop: '80px'}}>
         <Grid className='container'>
           <Grid.Row>
             <Grid.Column width={5}>

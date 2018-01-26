@@ -51,7 +51,7 @@ class Courses extends React.Component {
           }
         </Menu>
         { isAdding && <CourseForm cancelAdding={ () => this.setState({ isAdding: false }) } /> }
-        <HomeBody>
+        <HomeBody style={{paddingTop: '80px'}}>
           <HomeWrapper style={ styles.scrollable_section }>
             <Container>
               <Card.Group stackable columns='3'>
