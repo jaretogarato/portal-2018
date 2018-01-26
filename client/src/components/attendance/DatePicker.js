@@ -99,4 +99,4 @@ const mapStateToProps = (state) => {
   return { currentDate: state.currentDate, course: state.course }
 }
 
-export default connect(mapStateToProps)(DatePicker)
+export default connect(mapStateToProps)(DatePicker);

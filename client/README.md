@@ -435,10 +435,9 @@ class App extends Component {
     import('./moduleA')
       .then(({ moduleA }) => {
         // Use moduleA
-      })
-      .catch(err => {
+      }).catch(err => {
         // Handle failure
-      });
+    });
   };
 
   render() {

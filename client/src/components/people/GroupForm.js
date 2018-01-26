@@ -31,11 +31,10 @@ class GroupForm extends React.Component {
         .then(res => {
           dispatch(setHeaders(res.headers));
           window.location.reload();
-        })
-        .catch( err => {
+        }).catch( err => {
           dispatch(setFlash('Error Generating Groups. Try Again.', 'red'));
           dispatch(setHeaders(err.headers));
-        })
+      });
   }
 
   handleCheck = (s) => {

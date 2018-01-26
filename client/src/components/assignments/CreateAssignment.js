@@ -33,13 +33,11 @@ class CreateAssignment extends Component {
 
   handlePublishedClick = (e) => {
     const { published } = this.state;
-    // this.setState({ published: !published })
     this.setState({ published: !published })
   }
 
   handleGroupClick = (e) => {
     const { group_assignment } = this.state;
-    // this.setState({ published: !published })
     this.setState({ group_assignment: !group_assignment })
   }
   

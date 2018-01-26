@@ -4,8 +4,6 @@ import DisplayAnnouncements from './DisplayAnnouncements';
 import { Button, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
-import { isAdmin } from '../../utils/permissions';
-import CanView from '../shared/CanView';
 
 
 class Announcements extends React.Component {

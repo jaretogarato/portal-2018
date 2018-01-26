@@ -19,8 +19,6 @@ class SubSectionsMobile extends React.Component {
     return(
       <Accordion>
         <Accordion.Title
-          // active={this.state.activeIndexes === section.id}
-          // index={section.id}
           onClick={this.handleClick}
         >
           { this.props.sectionId }

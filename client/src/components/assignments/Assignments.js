@@ -21,9 +21,8 @@ class Assignments extends Component {
     axios.get('/api/assignments')
     .then( res => {
       this.setState({ assignments: res.data })
-    })
-    .catch( err => {
-      // TODO
+    }).catch( err => {
+      // TODO - Flash Message
     });
   }
 

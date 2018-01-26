@@ -31,10 +31,9 @@ class PeopleProfile extends React.Component {
       .then( res => {
         this.setState({ badges: res.data })
         dispatch(setHeaders(res.headers))
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to get badges.', 'red'))
-      })
+    });
     this.props.dispatch(getUser(id))
   }
 
@@ -78,10 +77,9 @@ class PeopleProfile extends React.Component {
         })
         .then( () => {
           this.setState({ options: [], badges: newBadges })
-        })
-        .catch( err => {
+        }).catch( err => {
           dispatch(setFlash('Failed to add badge.', 'red'))
-        })
+      });
     })
   }
 
@@ -93,10 +91,9 @@ class PeopleProfile extends React.Component {
       .then( res => {
         this.setState({ badges: newBadges })
         dispatch(setHeaders(res.headers))
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to delete badge', 'red'))
-      })
+    });
   }
 
   dropdownOptions = () => {

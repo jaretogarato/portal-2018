@@ -46,8 +46,7 @@ export const editNote = (note, recipientId) => {
     axios.put(`/api/notes/${note.id}?user_id=${recipientId}`, { note })
       .then( res => {
         dispatch({type: 'EDIT_NOTE', note: res.data, headers: res.headers})
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to update note', 'red'))
         dispatch(setHeaders(err.headers))
     });

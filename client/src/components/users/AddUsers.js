@@ -33,11 +33,10 @@ class AddUsers extends React.Component {
       .then( res => {
         this.props.dispatch(setHeaders(res.headers))
         this.props.dispatch(setFlash('Users upload started...', 'green')) 
-      })
-      .catch( err => {
+      }).catch( err => {
         this.props.dispatch(setFlash(err.response.errors, 'red')) 
         this.props.dispatch(setHeaders(err.headers))
-      })
+    });
   }
 
   render() {

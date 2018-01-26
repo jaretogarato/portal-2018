@@ -59,7 +59,7 @@ class Courses extends React.Component {
               </Card.Group>
             </Container>
           </HomeWrapper>
-       </HomeBody>
+        </HomeBody>
       </div>
     )
   }

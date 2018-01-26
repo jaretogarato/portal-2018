@@ -17,12 +17,11 @@ class Quizzes extends Component {
 
   componentDidMount() {
     axios.get('/api/quizzes')
-    .then( res => {
-      this.setState({ quizzes: res.data })
-    })
-    .catch( err => {
-      // TODO
-      // ALERT MESSAGE
+      .then( res => {
+        this.setState({ quizzes: res.data })
+      }).catch( err => {
+        // TODO
+        // ALERT MESSAGE
     });
   }
 

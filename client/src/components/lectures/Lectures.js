@@ -21,9 +21,9 @@ class Lectures extends Component {
     axios.get('/api/lectures')
       .then(res => {
         this.setState({ lectures: res.data })
-      })
-      .catch(err => {
-      });
+      }).catch(err => {
+        // TODO - Flash Message
+    });
   }
 
   handleSort = clickedColumn => () => {

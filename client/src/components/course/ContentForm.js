@@ -15,7 +15,6 @@ import {
 
 
 class ContentForm extends React.Component {
-
   state = { itemOptions: [] };
 
   getItems = (e, { value }) => {

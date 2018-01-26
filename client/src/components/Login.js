@@ -83,7 +83,6 @@ const styles = {
     maxWidth: '100%',
   },
   login_grid: {
-    // maxWidth: '45%',
     padding: '5%',
     margin: '0 auto',
   },

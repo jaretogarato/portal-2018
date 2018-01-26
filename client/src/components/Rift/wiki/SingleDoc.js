@@ -17,11 +17,10 @@ class SingleDoc extends React.Component {
       .then( res => {
         this.setState({ doc: res.data })
         dispatch(setHeaders(res.headers))
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setHeaders(err.headers))
         dispatch(setFlash('Failed to retrieve doc', 'red'))
-      })
+    });
   }
 
   toggleEdit = () => {
@@ -35,16 +34,16 @@ class SingleDoc extends React.Component {
   deleteDoc = (doc) => {
     const { dispatch, history, match: { params: { id, doc_id } } } = this.props
     let deleted = window.confirm('Are you sure?')
-    if (deleted)
+    if (deleted) {
       axios.delete(`/api/courses/${id}/wiki_docs/${doc_id}`)
         .then( res => {
           dispatch(setHeaders(res.headers))
           history.replace(`/courses/${id}/wiki`)
-        })
-        .catch( err => {
+        }).catch( err => {
           dispatch(setHeaders(err.headers))
           dispatch(setFlash('Failed to delete doc', 'red'))
-        })
+      });
+    }
   }
 
   render() {

@@ -29,8 +29,7 @@ state = { showQuestion: false, activeType: '', question: '', options: [], isHidd
     axios.post(`/api/quizzes/${id}/quiz_questions`, { question })
       .then( res => {
         // TODO
-      })
-      .catch( err => {
+      }).catch( err => {
         // TODO
     });
   }

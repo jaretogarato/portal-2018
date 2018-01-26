@@ -49,11 +49,10 @@ class JournalEntries extends React.Component {
         .then( ({ data, headers }) => {
           dispatch(setHeaders(headers));
           this.setState({ entries: data });
-        })
-        .catch( ({ data, headers }) => {
+        }).catch( ({ data, headers }) => {
           dispatch(setHeaders(headers));
           dispatch(setFlash('Error retrieving entries', 'red'));
-        });
+      });
     }
   }
 
@@ -117,8 +116,7 @@ class JournalEntries extends React.Component {
           body: '', 
           permission: 'private' 
         })
-      })
-      .catch( ({ data, headers }) => {
+      }).catch( ({ data, headers }) => {
         dispatch(setHeaders(headers));
         dispatch(setFlash('Something went wrong', 'red'));
       });

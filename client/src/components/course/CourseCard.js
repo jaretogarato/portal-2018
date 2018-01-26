@@ -24,7 +24,7 @@ const CourseCard = ({ course }) => (
       >
       View
       </Button>
-      <EditCourseModal course={course}/>
+      <EditCourseModal course={course} />
       </Button.Group>
       </div>
     </Card.Content>

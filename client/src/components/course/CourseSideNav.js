@@ -70,4 +70,4 @@ const mapStateToProps = (state) => {
   return { user: state.user }
 }
 
-export default connect(mapStateToProps)(CourseSideNav)
+export default connect(mapStateToProps)(CourseSideNav);

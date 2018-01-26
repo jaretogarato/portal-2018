@@ -33,30 +33,30 @@ class AnnouncementForm extends React.Component {
     const { toggleEdit, editing } = this.props;
     return(
       <Segment>
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Group widths='equal'>
-          <Form.Field>
-            <label>Title</label>
-            <Form.Input 
-              name='title' 
-              placeholder='Title' 
-              onChange={this.handleChange} 
-              value={this.state.title} 
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Body</label>
-            <Form.TextArea 
-              name='body' 
-              placeholder='Body' 
-              onChange={this.handleChange} 
-              value={this.state.body} 
-            />
-          </Form.Field>
-          <Form.Button basic type='submit'>Submit</Form.Button>
-          { editing && <Form.Button basic onClick={toggleEdit}>Cancel</Form.Button> }
-        </Form.Group>
-      </Form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group widths='equal'>
+            <Form.Field>
+              <label>Title</label>
+              <Form.Input 
+                name='title' 
+                placeholder='Title' 
+                onChange={this.handleChange} 
+                value={this.state.title} 
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Body</label>
+              <Form.TextArea 
+                name='body' 
+                placeholder='Body' 
+                onChange={this.handleChange} 
+                value={this.state.body} 
+              />
+            </Form.Field>
+            <Form.Button basic type='submit'>Submit</Form.Button>
+            { editing && <Form.Button basic onClick={toggleEdit}>Cancel</Form.Button> }
+          </Form.Group>
+        </Form>
       </Segment>
     )
   }

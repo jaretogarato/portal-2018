@@ -8,8 +8,7 @@ export const editUser = (user, id) => {
     axios.put(`/api/users/${id}`, {user})
       .then( res => {
         dispatch({ type: 'UPDATE_USER', user: res.data, headers: res.headers });
-      })
-      .catch( err => {
+      }).catch( err => {
         dispatch(setFlash('Failed to Update', 'red'));
         dispatch(setHeaders(err.headers));
     });

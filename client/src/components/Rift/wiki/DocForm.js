@@ -35,22 +35,20 @@ class DocForm extends React.Component {
           addDoc(res.data)
           dispatch(setHeaders(res.headers))
           toggleAdd()
-        })
-        .catch( err => {
+        }).catch( err => {
           dispatch(setHeaders(err.headers))
           dispatch(setFlash('Failed to save doc', 'red'))
-        })
+      });
     else
       axios.put(`/api/courses/${courseId}/wiki_docs/${id}`, doc)
         .then( res => {
           updateDoc(res.data)
           dispatch(setHeaders(res.headers))
           toggleEdit()
-        })
-        .catch( err => {
+        }).catch( err => {
           dispatch(setHeaders(err.headers))
           dispatch(setFlash('Failed to update doc', 'red'))
-        })
+      });
   }
 
   render() {

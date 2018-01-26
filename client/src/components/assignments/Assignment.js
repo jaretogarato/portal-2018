@@ -40,6 +40,7 @@ class Assignment extends Component {
         .then(res => {
           this.props.history.push('./')
         }).catch(err => {
+          // TODO - Display flash message
       });
     }
   }

@@ -93,7 +93,6 @@ class CourseSettings extends React.Component {
                 </Table.Cell>
               </Table.Row>
             </Form>
-
           </Table.Body>
         </Table>
       </Segment>

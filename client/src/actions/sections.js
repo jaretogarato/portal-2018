@@ -29,8 +29,11 @@ export const addSection = (title, courseId) => {
 export const updateSection = (section) => {
   return(dispatch) => {
     axios.put(`/api/sections/${section.id}`, {section})
-      .then( res => dispatch({ type: 'UPDATE_SECTION', section: res.data, headers: res.headers }))
-      .catch( err => {
+      .then( res => dispatch({
+        type: 'UPDATE_SECTION',
+        section: res.data,
+        headers: res.headers })
+      ).catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Update Section', 'red'));
     });

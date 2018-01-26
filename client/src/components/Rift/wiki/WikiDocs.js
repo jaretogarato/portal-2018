@@ -21,14 +21,13 @@ class WikiDocs extends Component {
   componentDidMount() {
     const { dispatch, match: { params: { id } } } = this.props
     axios.get(`/api/courses/${id}/wiki_docs`)
-    .then( res => {
-      this.setState({ docs: res.data })
-      dispatch(setHeaders(res.headers))
-    })
-    .catch( err => {
-      dispatch(setHeaders(err.headers))
-      dispatch(setFlash('Failed to retrieve Wiki Docs', 'red'))
-    })
+      .then( res => {
+        this.setState({ docs: res.data })
+        dispatch(setHeaders(res.headers))
+      }).catch( err => {
+        dispatch(setHeaders(err.headers))
+        dispatch(setFlash('Failed to retrieve Wiki Docs', 'red'))
+    });
   }
 
   toggleAdd = () => {
