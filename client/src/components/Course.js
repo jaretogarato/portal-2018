@@ -76,7 +76,7 @@ class Course extends React.Component {
   }
 
   renderRoutes = () => (
-      <Segment basic>
+      <Segment basic >
         <FetchEnrollment>
           <Switch>
             <ProtectedRoute exact path="/courses/:id" component={CourseHome} />
@@ -107,7 +107,7 @@ class Course extends React.Component {
     const { sidebar } = this.state;
 
     return (
-      <Segment basic>
+      <Segment basic style={{marginTop: '86px'}}>
         <Container fluid style={styles.noBorder}>
           <Grid style={styles.noBorder}>
             <Grid.Row only='computer'>

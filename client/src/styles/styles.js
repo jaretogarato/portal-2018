@@ -122,7 +122,6 @@ export const FlexContainer = styled.div`
 
 export const FlexContent = styled.div`
   flex: 1 0 auto;
-  border-top: solid 1px;
   left: 0;
   bottom: 0;
   width: 100%;

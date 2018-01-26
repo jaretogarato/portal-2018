@@ -91,7 +91,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.navbarWrap}>
         <Menu style={styles.navbarPrimary} pointing secondary>
           <Menu.Item
             as={Link}
@@ -111,6 +111,11 @@ class NavBar extends React.Component {
 }
 
 const styles = {
+  navbarWrap: {
+    position: 'fixed',
+    width: '100%',
+    zIndex: '10',
+  },
   dropdown: {
     // backgroundColor: '#DDD',
     width: '21vw',
