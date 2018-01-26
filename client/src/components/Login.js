@@ -34,7 +34,7 @@ class Login extends Component {
       <Container fluid>
         <HomeBody bgImage={HomeBg}>
           <HomeWrapper>
-            <Segment basic textAlign='center'>
+            <Segment basic textAlign='center' style={{paddingTop: '100px'}} >
               <Grid textAlign='center' style={styles.login_grid}>
                 <Grid.Column style={styles.login_container} mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
                   <PageTitle>Login</PageTitle>
@@ -81,6 +81,7 @@ const styles = {
     backgroundColor: 'rgba(255, 255, 255, .55)',
     padding: '30px 20px',
     maxWidth: '100%',
+    borderRadius: '5px'
   },
   login_grid: {
     padding: '5%',

@@ -32,7 +32,7 @@ class UserProfile extends React.Component {
       { key: 2, text: 'Notifications', value: 2 },
     ]
     return(
-      <Segment basic>
+      <Segment basic style={{paddingTop: '80px'}}>
         <Button.Group>
           <Menu floated='right'>
           <Dropdown text='Settings' onChange={this.handleSelection} selection options={options} />
