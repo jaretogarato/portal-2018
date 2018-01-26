@@ -25,7 +25,7 @@ class TakeQuiz extends React.Component {
     const { questions } = this.props
     return questions.map((q, i) => (
         <List.Item key={q.id} style={{fontSize: '1.2em', marginBottom: '2%'}}>
-        <a href={`#${q.id}`}>
+        <a href={`#${q.id}a`}>
           Question {(i + 1) }
        </a>
         </List.Item>
@@ -38,28 +38,40 @@ class TakeQuiz extends React.Component {
       if(q.multiple_choice) {
         if(q.true_false) {
           return (
-            <Header as='a' id={q.id} key={q.id}>
-              <TrueFalse key={q.id} id={q.id} question={q} number={(i + 1)}/>
-            </Header>
+            <div>
+              <div id={`${q.id}a`} style={styles.anchor} />
+              <Header key={q.id}>
+                <TrueFalse key={q.id} id={q.id} question={q} number={(i + 1)}/>
+              </Header>
+            </div>
           )
         } else if(q.multiple_correct) {
           return (
-            <Header as='a' id={q.id} key={q.id}>
-              <MultipleAnswer key={q.id} id={q.id} question={q} number={(i + 1)}/>
-            </Header>
+            <div>
+              <div id={`${q.id}a`} style={styles.anchor} />
+              <Header key={q.id}>
+                <MultipleAnswer key={q.id} id={q.id} question={q} number={(i + 1)}/>
+              </Header>
+            </div>
           )
         } else {
           return (
-            <Header as='a' id={q.id} key={q.id}>
-              <MultipleChoice key={q.id} id={q.id} question={q} number={(i + 1)}/>
-            </Header>
+            <div>
+              <div id={`${q.id}a`} style={styles.anchor} />
+              <Header key={q.id}>
+                <MultipleChoice key={q.id} id={q.id} question={q} number={(i + 1)}/>
+              </Header>
+            </div>
           )
         }
       } else {
         return (
-          <Header as='a' id={q.id} key={q.id}>
-            <EssayQuestion key={q.id} id={q.id} question={q} number={(i + 1)}/>
-          </Header>
+          <div>
+            <div id={`${q.id}a`} style={styles.anchor} />
+            <Header key={q.id}>
+              <EssayQuestion key={q.id} id={q.id} question={q} number={(i + 1)}/>
+            </Header>
+          </div>
          )
       }
     })
@@ -95,6 +107,15 @@ class TakeQuiz extends React.Component {
   }
 }
 
+const styles = {
+  anchor: {
+    display: 'block',
+    position: 'relative',
+    visibility: 'hidden',
+    top: '-86px',
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
     quiz: state.singleQuiz,
@@ -104,4 +125,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(TakeQuiz)
-
