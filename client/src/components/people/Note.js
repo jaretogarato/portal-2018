@@ -48,7 +48,6 @@ class Note extends React.Component {
     )
   }
 
-  //Todo: format time
   displayNote = () => {
     const { user, permission } = this.props
     const { sender_id, updated_at, image, first_name, last_name, id, title, content } = this.state
@@ -60,9 +59,9 @@ class Note extends React.Component {
               {isAdmin(permission) && this.renderDeleteButton(id)}
               {user.id === sender_id && this.renderEditButton(id)}
               <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={image} />
-                <PageSubTitle>
+                <Header as='h4'>
                  {fullName}
-                </PageSubTitle>
+                </Header>
               <Card.Header as='h3'>{title}</Card.Header>
               <Divider fitted />
               <Card.Description>
@@ -99,27 +98,29 @@ class Note extends React.Component {
   editNote = () => {
     const { user, title, content } = this.props
     return(
-      <Message style={{borderRadius: '0px', backgroundColor: 'white'}} fluid='true' as='form' onSubmit={this.handleSubmit}>
+      <Message info fluid='true' as='form' onSubmit={this.handleSubmit}>
         <Card.Content>
           <Button
-            basic
             floated='right'
+            color='blue'
             type='submit'
+            size='mini'
             onSubmit={this.handleSubmit}
             >
             Submit
           </Button>
           <Button
-            basic
             onClick={ () => this.setState({ editing: !this.state.editing })}
+            color='teal'
+            size='mini'
             floated='right'
           >
             Cancel
           </Button>
           <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={user.image} /> { }
-            <PageSubTitle>
+            <Header as='h4'>
              {`${user.first_name} ${user.last_name}`}
-            </PageSubTitle>
+            </Header>
           <Card.Header as='h3'>
             <Form.Input
               autoFocus

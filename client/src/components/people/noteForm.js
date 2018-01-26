@@ -1,16 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 import {
+  Message,
+  Header,
   Divider,
   Button,
   Form,
   Segment,
   Image,
   Card,
-} from 'semantic-ui-react';
-import { addNote } from '../../actions/notes';
-import { PageSubTitle } from '../../styles/styledComponents';
-
+} from 'semantic-ui-react'
+import { addNote } from '../../actions/notes'
 
 class NoteForm extends React.Component {
   state = { title: '', content: '', visible: false, noteTime:false }
@@ -39,26 +39,24 @@ class NoteForm extends React.Component {
     const { title, content } = this.state
     return(
       // <Message noteid={note.id} />
-      <Segment style={{borderRadius: '0px', backgroundColor: 'white', margin: '0px'}} onSubmit={this.handleSubmit}>
+      <Message info fluid='true' as='form' onSubmit={this.handleSubmit}>
         <Card.Content>
           <Button
-            basic
             onClick={ () => this.setState({ noteTime: !this.state.noteTime })}
-            floated='right'
+            color='teal' size='mini' floated='right'
           >
             Cancel
           </Button>
-          <Button basic floated='right' type='submit'>
+          <Button floated='right' color='blue' type='submit' size='mini'>
             Submit
           </Button>
           <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={user.image} /> { }
-            <PageSubTitle>
+            <Header as='h4'>
              {`${user.first_name} ${user.last_name}`}
-            </PageSubTitle>
+            </Header>
           <Card.Header as='h3'>
             <Form.Input
               autoFocus
-              style={{paddingBottom: '2%'}}
               name='title'
               value={title}
               width={7}
@@ -66,11 +64,11 @@ class NoteForm extends React.Component {
               required
               onChange={this.handleChange}
             />
-            <Form.Field
-              label='Visible to student?'
-              control='input'
-              type='checkbox'
-              onChange={this.handleChecked}
+          <Form.Field
+            label='Visible to student?'
+            control='input'
+            type='checkbox'
+            onChange={this.handleChecked}
             />
           </Card.Header>
           <Divider fitted />
@@ -85,7 +83,7 @@ class NoteForm extends React.Component {
             />
           </Card.Description>
         </Card.Content>
-      </Segment>
+      </Message>
     )
   }
 

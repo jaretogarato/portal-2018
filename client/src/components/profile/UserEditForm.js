@@ -49,7 +49,6 @@ class UserEditForm extends React.Component {
     const { firstName, lastName, bio, email, nickname } = this.state;
     this.props.dispatch(editUser({ first_name: firstName, last_name: lastName, bio, email, nickname }, this.props.user.id))
     this.setState({ bio, email, nickname });
-    this.props.toggleEdit();
     this.setState({ redirect: true })
   }
 
