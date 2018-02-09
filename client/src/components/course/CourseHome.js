@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image } from 'semantic-ui-react';
+import { Container, Image, Grid } from 'semantic-ui-react';
 import devpoint from '../../assets/images/devpoint.png';
 import { HomeStrings } from '../../assets/strings/homeStrings';
 import {
