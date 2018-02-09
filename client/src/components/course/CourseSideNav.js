@@ -31,7 +31,8 @@ class CourseSideNav extends React.Component {
           <Menu.Item
             name={link}
             active={activeItem === `${link}`}
-            onClick={this.handleItemClick}>
+            onClick={this.handleItemClick}
+          >
           </Menu.Item>
         </Menu>
       </Link>

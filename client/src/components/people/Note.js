@@ -13,8 +13,6 @@ import {
 } from 'semantic-ui-react';
 import { editNote, deleteNote } from '../../actions/notes';
 import { isAdmin, isStudent } from '../../utils/permissions';
-import { PageSubTitle } from '../../styles/styledComponents';
-
 
 class Note extends React.Component {
   state = {

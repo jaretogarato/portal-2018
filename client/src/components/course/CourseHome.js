@@ -1,13 +1,10 @@
 import React from 'react';
-import { Container, Image, Grid } from 'semantic-ui-react';
+import { 
+  Container, 
+  Image, 
+  Grid, 
+} from 'semantic-ui-react';
 import devpoint from '../../assets/images/devpoint.png';
-import { HomeStrings } from '../../assets/strings/homeStrings';
-import {
-  PageTitle,
-  PageSubTitle,
-  ParagraphText,
-} from '../../styles/styledComponents';
-import CourseHomeDropDown from './CourseHomeDropdown';
 
 class CourseHome extends React.Component {
 
@@ -61,18 +58,18 @@ class CourseHome extends React.Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1}  stackable >
+            <Grid.Column width={1} stackable>
             </Grid.Column>
-            <Grid.Column width={14} stackable >
+            <Grid.Column width={14} stackable>
               <h3>
                 Student Handbook
               </h3>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable >
+            <Grid.Column width={1} stackable>
             </Grid.Column>
-            <Grid.Column width={14} stackable >
+            <Grid.Column width={14} stackable>
               <h5>
                 <a href='https://docs.google.com/document/d/1ly9CTnGcYb6Rls-92RpKCR9RHJ1IcvdBSmfy7HZj3NM/edit' style={{color: 'purple'}}> Student Handbook </a>
               </h5>
@@ -84,28 +81,31 @@ class CourseHome extends React.Component {
             <Grid.Column width={14} stackable>
               <h3>
                 Concepts
-                </h3>
+              </h3>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={1} stackable>
             </Grid.Column>
             <Grid.Column width={4} stackable>
-              <p style={styles.paragraph1}>skdjaljldjaskld
+              <p style={styles.paragraph1}>
+                skdjaljldjaskld
                 lksjdlasjdlasjd
                 slkjdlkasjdkl
                 asldjkaljd
               </p>
             </Grid.Column>
             <Grid.Column width={4} stackable>
-              <p style={styles.paragraph1}>skdjaljldjaskld
+              <p style={styles.paragraph1}>
+                skdjaljldjaskld
                 lksjdlasjdlasjd
                 slkjdlkasjdkl
                 asldjkaljd
               </p>
             </Grid.Column>
             <Grid.Column width={4} stackable>
-              <p style={styles.paragraph1}>skdjaljldjaskld
+              <p style={styles.paragraph1}>
+                skdjaljldjaskld
                 lksjdlasjdlasjd
                 slkjdlkasjdkl
                 asldjkaljd
@@ -125,7 +125,8 @@ class CourseHome extends React.Component {
             <Grid.Column width={1} stackable>
             </Grid.Column>
             <Grid.Column width={4} stackable >
-              <p style={styles.paragraph2}>skdjaljldjaskld
+              <p style={styles.paragraph2}>
+                skdjaljldjaskld
                 lksjdlasjdlasjd
                 slkjdlkasjdkl
                 asldjkaljdsjdhasdkajshdk
@@ -148,7 +149,8 @@ class CourseHome extends React.Component {
             <Grid.Column width={1}>
             </Grid.Column>
             <Grid.Column width={4}>
-              <p style={styles.paragraph2}>skdjaljldjaskld
+              <p style={styles.paragraph2}>
+                skdjaljldjaskld
                 lksjdlasjdlasjd
                 slkjdlkasjdkl
                 asldjkaljdsjdhasdkajshdk
@@ -171,7 +173,8 @@ class CourseHome extends React.Component {
             <Grid.Column width={1}>
             </Grid.Column>
             <Grid.Column width={4}>
-              <p style={styles.paragraph2}>skdjaljldjaskld
+              <p style={styles.paragraph2}>
+                skdjaljldjaskld
                 lksjdlasjdlasjd
                 slkjdlkasjdkl
                 asldjkaljdsjdhasdkajshdk
@@ -194,7 +197,8 @@ class CourseHome extends React.Component {
             <Grid.Column width={1}>
             </Grid.Column>
             <Grid.Column width={4}>
-              <p style={styles.paragraph2}>skdjaljldjaskld
+              <p style={styles.paragraph2}>
+                skdjaljldjaskld
                 lksjdlasjdlasjd
                 slkjdlkasjdkl
                 asldjkaljdsjdhasdkajshdk
