@@ -2,7 +2,6 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
-
 export const addQuiz = (quiz, history) => {
   return(dispatch) => {
     axios.post('/api/quizzes', { quiz })
@@ -15,7 +14,6 @@ export const addQuiz = (quiz, history) => {
     });
   }
 }
-
 
 export const getQuizzes = () => {
   return(dispatch) => {
