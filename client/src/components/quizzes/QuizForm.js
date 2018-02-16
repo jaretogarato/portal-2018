@@ -34,48 +34,48 @@ handleSubmit = (e) => {
     return(
       <Container> 
         <PageTitle>Create Quiz</PageTitle>
-          <Form onSubmit={this.handleSubmit} style={styles.form}>
-            <Form.Group widths='equal'>
-              <Form.Input 
-                label='Title'
-                name='title'
-                value={title}  
-                width={9}
-                placeholder='Quiz Title' 
-                autoFocus={true}
-                required
-                onChange={this.handleChange}>
-              </Form.Input>
-              <Form.Input 
-                name='due_date'
-                value={due_date}
-                label='Due Date' 
-                type='date' 
-                width={4}
-                onChange={this.handleChange}
-                 >
-              </Form.Input>
-              <Form.Input 
-                label='Points'
-                placeholder='Points' 
-                name='points'
-                value={points}
-                type='number' 
-                required 
-                onChange={this.handleChange}
-                width={3} />
-            </Form.Group>
-           <RiftEditor riftChange={this.riftChange} />
-            <Divider />
-            <Form.Checkbox label='Published?' />
-            <Divider />
-            <Form.Group>
-              <Button basic type='submit'>Create</Button> 
+        <Form onSubmit={this.handleSubmit} style={styles.form}>
+          <Form.Group widths='equal'>
+            <Form.Input 
+              label='Title'
+              name='title'
+              value={title}  
+              width={9}
+              placeholder='Quiz Title' 
+              autoFocus={true}
+              required
+              onChange={this.handleChange}
+            />
+            <Form.Input 
+              name='due_date'
+              value={due_date}
+              label='Due Date' 
+              type='date' 
+              width={4}
+              onChange={this.handleChange}
+            />
+            <Form.Input 
+              label='Points'
+              placeholder='Points' 
+              name='points'
+              value={points}
+              type='number' 
+              required 
+              onChange={this.handleChange}
+              width={3} 
+            />
+          </Form.Group>
+          <RiftEditor riftChange={this.riftChange} />
+          <Divider />
+          <Form.Checkbox label='Published?' />
+          <Divider />
+          <Form.Group>
+            <Button basic type='submit'>Create</Button> 
             <Link to={`./quizzes`} > 
               <Button basic> Cancel </Button> 
             </Link>
-            </Form.Group>
-          </Form> 
+          </Form.Group>
+        </Form> 
       </Container> 
     )
   }

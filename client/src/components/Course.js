@@ -30,6 +30,9 @@ import CreateLecture from './lectures/CreateLecture';
 import Attendance from './attendance/Attendance';
 import Assignments from './assignments/Assignments';
 import Assignment from './assignments/Assignment';
+import Miscellaneous from './miscellaneous/Miscellaneous';
+import MiscellaneousForm from './miscellaneous/MiscellaneousForm';
+import Miscellaneou from './miscellaneous/Miscellaneou';
 import CreateAssignment from './assignments/CreateAssignment';
 import FetchEnrollment from './course/FetchEnrollment';
 import JournalEntries from './course/JournalEntries';
@@ -56,6 +59,7 @@ class Course extends React.Component {
       { name: 'Quizzes', path: `/courses/${courseId}/quizzes` },
       { name: 'Lectures', path: `/courses/${courseId}/lectures` },
       { name: 'Assignments', path: `/courses/${courseId}/assignments` },
+      { name: 'Miscellaneous', path: `/courses/${courseId}/miscellaneous` },
       { name: 'WikiDocs', path: `/courses/${courseId}/wiki` },
       { name: 'Settings', path: `/courses/${courseId}/settings` }
     ]
@@ -93,6 +97,9 @@ class Course extends React.Component {
             <ProtectedRoute exact path='/courses/:id/lectures/create' component={CreateLecture} />
             <ProtectedRoute exact path='/courses/:id/lectures/:id' component={Lecture} />
             <ProtectedRoute exact path='/courses/:id/assignments' component={Assignments} />
+            <ProtectedRoute exact path='/courses/:id/miscellaneous' component={Miscellaneous} />
+            <ProtectedRoute exact path='/courses/:id/miscellaneou' component={Miscellaneou} />
+            <ProtectedRoute exact path='/courses/:id/miscellaneousform' component={MiscellaneousForm} />
             <ProtectedRoute exact path='/courses/:id/journal_entries' component={JournalEntries} />
             <ProtectedRoute adminOnly={true} exact path='/courses/:id/assignments/create' component={CreateAssignment} />
             <ProtectedRoute exact path='/courses/:id/assignments/:id' component={Assignment} />

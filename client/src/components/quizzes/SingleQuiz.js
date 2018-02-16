@@ -160,9 +160,9 @@ displayQuiz = () => {
       <Link to={'./'} >
         <Button basic>Save Quiz</Button>
       </Link>
-        </Segment>
-  );
-}
+    </Segment>
+    );
+  }
 }
 
 questionDelete = (quizId, questionId) => {

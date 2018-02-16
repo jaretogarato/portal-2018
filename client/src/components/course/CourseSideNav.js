@@ -14,7 +14,7 @@ class CourseSideNav extends React.Component {
     const { activeItem } = this.state;
     const adminLinks = [
       'Home', 'Announcements', 'People', 'Attendance', 'Sections',
-      'Quizzes', 'Lectures', 'Assignments', 'Wiki', 'Settings'
+      'Quizzes', 'Lectures', 'Assignments', 'Miscellaneous', 'Wiki', 'Settings'
     ];
 
     const studentLinks = [
