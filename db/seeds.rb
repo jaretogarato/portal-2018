@@ -176,6 +176,13 @@ end
   )
 end
 
+5.times do |m|
+  Miscellaneou.create(
+    title: Faker::ProgrammingLanguage.name,
+    content: Faker::Internet.url
+  )
+end
+
 puts "10 courses seeded"
 puts "11 sections seeded"
 puts "5 sub_sections seeded"

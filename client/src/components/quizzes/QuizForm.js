@@ -13,15 +13,15 @@ import { PageTitle } from '../../styles/styledComponents';
 
 
 class QuizForm extends Component {
-state = { title: '', content: '', due_date:'', points: '' }
+  state = { title: '', content: '', due_date:'', points: '' }
 
-handleSubmit = (e) => {
-  const { history, dispatch } = this.props
-  const { due_date, title, content, points } = this.state
-  e.preventDefault();
-  let quiz = { due_date: due_date, title: title, content: content, points: points }
-  dispatch(addQuiz(quiz, history))
-}
+  handleSubmit = (e) => {
+    const { history, dispatch } = this.props
+    const { due_date, title, content, points } = this.state
+    e.preventDefault();
+    let quiz = { due_date: due_date, title: title, content: content, points: points }
+    dispatch(addQuiz(quiz, history))
+  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 

@@ -27,6 +27,30 @@ export const getMiscellaneous = () => {
   }
 }
 
+export const getMiscellaneou = (id) => {
+  return (dispatch) => {
+    axios.get(`/api/miscellaneous/${id}`)
+      .then( res => {
+        dispatch({ type: 'GET_MISCELLANEOU', miscellaneou: res.data, headers: res.headers })
+      }).catch( err => {
+        dispatch(setFlash('Failed to get misc', 'red'))
+        dispatch(setHeaders(err.headers))
+    });
+  }
+}
+
+export const updateMiscellaneou = (misc, id) => {
+  return (dispatch) => {
+    axios.put(`/api/miscellaneous/${id}`, { misc })
+      .then( res => {
+        dispatch({ type: 'UPDATE_MISC', misc: res.data, headers: res.headers })
+      }).catch( err => {
+        dispatch(setFlash('Failed to update misc', 'red'))
+        dispatch(setHeaders(err.headers))
+    });
+  }
+}
+
 export const clearMiscellaneous = () => {
   return ({ type: 'CLEAR_MISCELLANEOUS', miscellaneous: [] })
 }
