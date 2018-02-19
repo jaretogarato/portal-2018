@@ -32,7 +32,7 @@ class Api::MiscellaneousController < ApplicationController
 
   private
     def miscellaneous_params
-      params.require(:miscellaneous).permit(:title, :content)
+      params.require(:miscellaneou).permit(:title, :content)
     end
 
     def set_miscellaneous
