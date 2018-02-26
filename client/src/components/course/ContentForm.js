@@ -39,6 +39,12 @@ class ContentForm extends React.Component {
         })
         this.setState({ itemOptions: quizOptions })
         break
+      case "miscellaneous":
+        const miscellaneousOptions = this.props.miscellaneous.map( content => {
+          return { id: content.id, text: content.title, value: content.id }
+        })
+        this.setState({ itemOptions: miscellaneousOptions })
+        break
       default:
         break 
     }
@@ -115,14 +121,16 @@ class ContentForm extends React.Component {
 export const typeOptions = [
   { text: 'Assignment', value: 'assignment' },
   { text: 'Lecture', value: 'lecture' },
-  { text: 'Quiz', value: 'quiz' }
+  { text: 'Quiz', value: 'quiz' },
+  { text: 'Miscellaneous', value: 'miscellaneous' },
 ]
 
 const mapStateToProps = ( state ) => {
   return { 
     quizzes: state.quizzes,
     assignments: state.assignments, 
-    lectures: state.lectures
+    lectures: state.lectures,
+    miscellaneous: state.miscellaneous,
   }
 }
 
