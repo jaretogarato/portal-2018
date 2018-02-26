@@ -5,7 +5,11 @@ const miscellaneous = ( state = [], action) => {
     case 'GET_MISCELLANEOU':
       return action.miscellaneous
     case 'UPDATE_MISC':
-      return action.miscellaneous
+      if(state.id === action.miscellaneou.id)
+        return action.miscellaneou;
+    return state;
+    case 'DELETE_MISC':
+      return {...state, miscellaneous: action.miscellaneous };
     case 'ADD_MISCELLANEOU':
       return [action.miscellaneou, ...state]
     case 'CLEAR_MISCELLANEOUS':

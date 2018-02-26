@@ -51,6 +51,19 @@ export const updateMiscellaneou = (misc, id) => {
   }
 }
 
+export const deleteMisc = (id, history) => {
+  return(dispatch) => {
+    axios.delete(`/api/miscellaneous/${id}`)
+      .then( res => {
+        dispatch({ type: 'DELETE_MISC', id, headers: res.headers })
+        history.push(`/courses/${id}/miscellaneous`)
+      }).catch( err => {
+        dispatch(setFlash('Failed to delete', 'red'));
+        dispatch(setHeaders(err.headers));
+    });
+  } 
+}
+
 export const clearMiscellaneous = () => {
   return ({ type: 'CLEAR_MISCELLANEOUS', miscellaneous: [] })
 }
