@@ -26,6 +26,24 @@ import {
 import { withRouter } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
 import { PageSubTitle } from '../../styles/styledComponents';
+import styled from 'styled-components';
+
+const MenuItemText = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+`
+const MenuItemIcons = styled.div`
+  display: flex;
+  width: 50%;
+  align-self: right;
+
+`
+
+const MenuItemContainer = styled.div`
+  display: flex;
+`
 
 
 class SectionSelect extends React.Component {
@@ -101,37 +119,46 @@ class SectionSelect extends React.Component {
               <Menu vertical style={styles.menu}>
                 {sections.map( section =>
                   <Menu.Item
+                    as={MenuItemContainer}
                     key={section.id}
                     id={section.id}
                     active={sectionId === section.id}
                     onClick={e => this.handleClick(e)}
                   >
-                    {section.title}
-                    <span>
-                      <Popup basic content="Add Journal Entry" trigger={
-                        <Icon 
-                          link
-                          name='book'
-                          size='large'
-                          style={{float: "right"}}                           
-                          onClick={() => this.journalEntryClick(section) }/>
-                        }
-                      />
-                    </span>
-                    { is_admin && 
-                      <span>
-                        <Popup basic content="Delete Section" trigger={
-                          <Icon 
-                            link 
-                            size="large" 
-                            name='delete' 
-                            style={{float: "right"}} 
-                            onClick={() => this.deleteButtonClick(section) }/> 
-                          }  
-                        />
-                        <SectionEditForm />
-                      </span>
+                    <Popup basic content={section.title} trigger={
+                      <MenuItemText>
+                        {section.title}
+                      </MenuItemText>
                     }
+                    />
+                    <MenuItemIcons>
+                      <div>
+                        <Popup basic content="Add Journal Entry" trigger={
+                          <Icon 
+                            link
+                            name='book'
+                            size='large'
+                            style={{float: "right"}}                           
+                            onClick={() => this.journalEntryClick(section) }/>
+                          }
+                        />
+                      </div>
+                      { is_admin && 
+                        <div>
+                          <Popup basic content="Delete Section" trigger={
+                            <Icon 
+                              link 
+                              size="large" 
+                              name='delete' 
+                              style={{float: "right"}} 
+                              onClick={() => this.deleteButtonClick(section) }/> 
+                            }  
+                          />
+                          <SectionEditForm />
+                        </div>
+                      }
+                    </MenuItemIcons>
+                    
                   </Menu.Item>
                 )}
                 { is_admin && <SectionForm /> }
