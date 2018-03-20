@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.5.0'
 
 gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
@@ -20,9 +20,9 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-group :test do 
+group :test do
   gem 'database_cleaner'
-  gem 'shoulda-matchers' 
+  gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'factory_bot_rails'
 end
