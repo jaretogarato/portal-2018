@@ -8,7 +8,9 @@ import {
 import { updateQuiz, getQuiz } from '../../actions/singleQuiz';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
-
+import { stateFromHTML } from 'draft-js-import-html';
+import { stateToHTML } from 'draft-js-export-html'
+import RiftEditor from '../Rift/riftEditor/RiftEditor';
 
 class EditQuizForm extends Component {
 state = { title: '', content: '', due_date:'', points: '' }
@@ -19,7 +21,6 @@ componentDidMount() {
   this.setState({ title, content, due_date, points })
 }
 
-
 handleSubmit = (e) => {
   e.preventDefault();
   const { due_date, title, content, points } = this.state
@@ -29,6 +30,9 @@ handleSubmit = (e) => {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
+  contentChange = (content) => {
+    this.setState({ content })
+  }
 
   render(){
     const { title, content, due_date, points } = this.props.quiz
@@ -66,15 +70,8 @@ handleSubmit = (e) => {
                 onChange={this.handleChange}
                 width={3} />
             </Form.Group>
-            <Form.TextArea
-              name='content'
-              defaultValue={content}
-              style={ styles.textArea }
-              label='Description'
-              placeholder='Rift Text Editor Placeholder'
-              required
-              onChange={this.handleChange}
-              />
+            <RiftEditor dValue={stateFromHTML(content)} contentChange={this.contentChange} />
+
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />

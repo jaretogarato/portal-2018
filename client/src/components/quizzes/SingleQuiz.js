@@ -35,7 +35,6 @@ class SingleQuiz extends Component{
     this.checkLoaded()
   }
 
-
   componentDidUpdate() {
     this.checkLoaded()
   }
@@ -123,7 +122,7 @@ displayQuiz = () => {
       <Button basic floated='right' onClick={this.toggleEdit}>Edit</Button>
       <List>
         <List.Item>
-          Description: {content}
+          Description: <div dangerouslySetInnerHTML={{__html: content}} />
         </List.Item>
         <List.Item>
           Created: {created}

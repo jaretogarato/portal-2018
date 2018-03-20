@@ -7,27 +7,41 @@ import {
 import './Style.css';
 import BlockStyleControls from './BlockStyles';
 import InlineStyleControls from './InlineStyles';
-import { convertToRaw } from 'draft-js';
+import { convertToRaw, convertFromRaw } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
+
 
 
 class RiftEditor extends Component {
-  state = { editorState: EditorState.createEmpty() };
+    state = {
+      editorState: EditorState.createEmpty()
+    };
+
+  componentDidMount() {
+    const { dValue } = this.props;
+    if (dValue) {
+      this.setState({
+        editorState: EditorState.createWithContent(dValue)
+      })
+    }
+  }
 
     focus = () => this.refs.editor.focus();
+
     onChange = (editorState) => {
-      this.props.riftChange(JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent())))
-      this.setState({editorState});
+      this.props.contentChange(stateToHTML(this.state.editorState.getCurrentContent()))
+      this.setState({ editorState });
     }
 
     handleKeyCommand = (command) => this._handleKeyCommand(command);
     onTab = (e) => this._onTab(e);
     toggleBlockType = (type) => this._toggleBlockType(type);
     toggleInlineStyle = (style) => this._toggleInlineStyle(style);
-  
+
   _handleKeyCommand(command) {
     const {editorState} = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
-    if (newState) {
+    if ( newState ) {
       this.onChange(newState);
       return true;
     }
@@ -56,20 +70,14 @@ class RiftEditor extends Component {
       )
     );
   }
-
   render() {
     const {editorState} = this.state;
 
     // If the user changes block type before entering any text, we can
     // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
-    var contentState = editorState.getCurrentContent();
-    if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        className += ' RichEditor-hidePlaceholder';
-      }
-    }
 
+    let contentState = editorState.getCurrentContent();
     return (
       <div className="RichEditor-root">
         <BlockStyleControls
@@ -88,7 +96,6 @@ class RiftEditor extends Component {
             handleKeyCommand={this.handleKeyCommand}
             onChange={this.onChange}
             onTab={this.onTab}
-            placeholder="Tell a story..."
             ref="editor"
             spellCheck={true}
           />

@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import RiftEditor from '../Rift/riftEditor/RiftEditor';
 import { PageTitle } from '../../styles/styledComponents';
 
-
 class QuizForm extends Component {
   state = { title: '', content: '', due_date:'', points: '' }
 
@@ -25,58 +24,58 @@ class QuizForm extends Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  riftChange = (rift) => {
-    this.setState({ content: rift })
+  contentChange = (content) => {
+    this.setState({ content })
   }
- 
+
   render(){
     const { title, due_date, points } = this.state
     return(
-      <Container> 
+      <Container>
         <PageTitle>Create Quiz</PageTitle>
         <Form onSubmit={this.handleSubmit} style={styles.form}>
           <Form.Group widths='equal'>
-            <Form.Input 
+            <Form.Input
               label='Title'
               name='title'
-              value={title}  
+              value={title}
               width={9}
-              placeholder='Quiz Title' 
+              placeholder='Quiz Title'
               autoFocus={true}
               required
               onChange={this.handleChange}
             />
-            <Form.Input 
+            <Form.Input
               name='due_date'
               value={due_date}
-              label='Due Date' 
-              type='date' 
+              label='Due Date'
+              type='date'
               width={4}
               onChange={this.handleChange}
             />
-            <Form.Input 
+            <Form.Input
               label='Points'
-              placeholder='Points' 
+              placeholder='Points'
               name='points'
               value={points}
-              type='number' 
-              required 
+              type='number'
+              required
               onChange={this.handleChange}
-              width={3} 
+              width={3}
             />
           </Form.Group>
-          <RiftEditor riftChange={this.riftChange} />
+          <RiftEditor contentChange={this.contentChange} />
           <Divider />
           <Form.Checkbox label='Published?' />
           <Divider />
           <Form.Group>
-            <Button basic type='submit'>Create</Button> 
-            <Link to={`./quizzes`} > 
-              <Button basic> Cancel </Button> 
+            <Button basic type='submit'>Create</Button>
+            <Link to={`./quizzes`} >
+              <Button basic> Cancel </Button>
             </Link>
           </Form.Group>
-        </Form> 
-      </Container> 
+        </Form>
+      </Container>
     )
   }
 }
