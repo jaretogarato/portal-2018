@@ -33,11 +33,12 @@ const MenuItemText = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 10px;
+  font-weight: bold;
 `
 const MenuItemIcons = styled.div`
   display: flex;
-  width: 50%;
   align-self: right;
+  justify-content: flex-end !important;
 
 `
 
