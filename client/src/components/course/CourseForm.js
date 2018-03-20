@@ -17,7 +17,8 @@ import {
   Select,
 } from 'semantic-ui-react';
 import { PageTitle } from '../../styles/styledComponents';
-
+import RiftEditor from '../Rift/riftEditor/RiftEditor';
+import { stateFromHTML } from 'draft-js-import-html';
 
 class CourseForm extends React.Component {
   state = { course_type: '', term: '', year: ''  };
@@ -44,6 +45,10 @@ class CourseForm extends React.Component {
 
   handleChange = (e, { id, value }) => this.setState({ [id]: value })
 
+  contentChange = (course_type) => {
+    this.setState({ course_type })
+  }
+
   render() {
     const { course_type, term, year } = this.state;
 
@@ -55,13 +60,10 @@ class CourseForm extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>
                 <Form.Field width={1} />
-                <Form.Field
-                  control={Select}
+                <RiftEditor
                   label='Course'
-                  options={courseTypeOptions}
-                  placeholder='Select a Course'
-                  value={course_type}
-                  onChange={this.handleChange}
+                  dValue={stateFromHTML(course_type)}
+                  contentChange={this.contentChange}
                   id='course_type'
                   required
                   width={6}

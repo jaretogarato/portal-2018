@@ -7,6 +7,8 @@ import {
 import { addQuestion } from '../../actions/quizQuestions';
 import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
+import { stateFromHTML } from 'draft-js-import-html'
+
 
 
 class EssayQuestion extends Component {
@@ -42,11 +44,16 @@ class EssayQuestion extends Component {
     hideForm()
   }
 
+  contentChange = (question) => {
+    this.setState({ question })
+  }
+
   render(){
     return (
     <Segment>
         <Form onSubmit={this.handleSubmit}>
         <Form.TextArea onChange={this.handleChange} name='question' value={this.state.question} label='Question'> </Form.TextArea>
+        <RiftEditor dValue={this.state.question} name='question' onChange={this.handleChange} contentChange={this.contentChange} label='Question' />
         { !this.props.editing && <Button basic type='submit'> save question </Button> }
         </Form>
       </Segment>

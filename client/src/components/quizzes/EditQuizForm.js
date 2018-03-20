@@ -71,7 +71,6 @@ handleSubmit = (e) => {
                 width={3} />
             </Form.Group>
             <RiftEditor dValue={stateFromHTML(content)} contentChange={this.contentChange} />
-
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
