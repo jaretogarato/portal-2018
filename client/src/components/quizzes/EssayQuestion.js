@@ -8,6 +8,7 @@ import { addQuestion } from '../../actions/quizQuestions';
 import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
 import { stateFromHTML } from 'draft-js-import-html'
+import RiftEditor from '../Rift/riftEditor/RiftEditor';
 
 
 
