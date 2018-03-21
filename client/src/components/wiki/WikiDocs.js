@@ -10,9 +10,9 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import DocForm from './DocForm';
-import { setHeaders } from '../../../actions/headers';
-import { setFlash } from '../../../actions/flash';
-import { PageTitle, PageSubTitle } from '../../../styles/styledComponents';
+import { setHeaders } from '../../actions/headers';
+import { setFlash } from '../../actions/flash';
+import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
 
 
 class WikiDocs extends Component {

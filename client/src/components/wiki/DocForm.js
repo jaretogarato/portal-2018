@@ -7,8 +7,8 @@ import {
 } from 'semantic-ui-react';
 
 import axios from 'axios';
-import { setHeaders } from '../../../actions/headers';
-import { setFlash } from '../../../actions/flash';
+import { setHeaders } from '../../actions/headers';
+import { setFlash } from '../../actions/flash';
 
 
 class DocForm extends React.Component {

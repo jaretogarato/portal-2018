@@ -3,9 +3,9 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Segment, Button } from 'semantic-ui-react';
 import DocForm from './DocForm';
-import { setHeaders } from '../../../actions/headers';
-import { setFlash } from '../../../actions/flash';
-import { PageTitle } from '../../../styles/styledComponents';
+import { setHeaders } from '../../actions/headers';
+import { setFlash } from '../../actions/flash';
+import { PageTitle } from '../../styles/styledComponents';
 
 
 class SingleDoc extends React.Component {
