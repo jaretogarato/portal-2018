@@ -4,6 +4,9 @@ import AnnouncementForm from './AnnouncementForm';
 import { connect } from 'react-redux';
 import { Button, Segment } from 'semantic-ui-react';
 import { deleteAnnouncement } from '../../actions/announcements';
+import { stateFromHTML } from 'draft-js-import-html'
+import { stateToHTML } from 'draft-js-export-html'
+import DraftEditor from '../editor/DraftEditor'
 
 
 class Announcement extends React.Component {

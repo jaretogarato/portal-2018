@@ -17,7 +17,7 @@ import {
   Select,
 } from 'semantic-ui-react';
 import { PageTitle } from '../../styles/styledComponents';
-import RiftEditor from '../Rift/riftEditor/RiftEditor';
+import DraftEditor from '../editor/DraftEditor';
 import { stateFromHTML } from 'draft-js-import-html';
 
 class CourseForm extends React.Component {
@@ -60,7 +60,7 @@ class CourseForm extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>
                 <Form.Field width={1} />
-                <RiftEditor
+                <DraftEditor
                   label='Course'
                   dValue={stateFromHTML(course_type)}
                   contentChange={this.contentChange}

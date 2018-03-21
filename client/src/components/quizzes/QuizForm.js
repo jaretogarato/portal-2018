@@ -8,7 +8,7 @@ import {
 import { addQuiz } from '../../actions/quizzes';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import RiftEditor from '../Rift/riftEditor/RiftEditor';
+import DraftEditor from '../editor/DraftEditor';
 import { PageTitle } from '../../styles/styledComponents';
 
 class QuizForm extends Component {
@@ -64,7 +64,7 @@ class QuizForm extends Component {
               width={3}
             />
           </Form.Group>
-          <RiftEditor contentChange={this.contentChange} />
+          <DraftEditor contentChange={this.contentChange} />
           <Divider />
           <Form.Checkbox label='Published?' />
           <Divider />

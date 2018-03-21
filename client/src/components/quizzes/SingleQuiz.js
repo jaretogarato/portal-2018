@@ -178,8 +178,8 @@ displayQuestions= () => {
       if (!questionsEdit) {
           return(
           <Segment clearing key={q.id} >
-           <div style={{paddingRight: '2%', display: 'inline-block'}}> {(i + 1)} </div>
-            {q.question}
+           <div style={{paddingRight: '2%', display: 'inline-block'}} > {(i + 1)} </div>
+            { <div dangerouslySetInnerHTML={{__html: q.question}} /> }
             { q.multiple_choice &&
               q.options.map((option, i) => {
                 return(

@@ -9,6 +9,9 @@ import {
 import { connect } from 'react-redux';
 import { addQuestion } from '../../actions/quizQuestions';
 import { addUpdate, editUpdate } from '../../actions/questionUpdates';
+import { stateFromHTML } from 'draft-js-import-html'
+import { stateToHTML } from 'draft-js-export-html'
+import DraftEditor from '../editor/DraftEditor'
 
 
 class TrueFalse extends Component {
@@ -16,6 +19,7 @@ state = { question: '', isTrue: '', hasUpdate: false }
 
 componentDidMount() {
   const { text, editing, truth } = this.props
+  let html = stateFromHTML(text);
   if(editing)
     this.setState({ question: text, isTrue: truth })
 }
@@ -24,7 +28,7 @@ sendUpdate = () => {
   const { dispatch, editing, questionId, options } = this.props
   const { question, isTrue } = this.state
   const truthy = (isTrue === 'true')
-  const falsy = (isTrue === 'false')  
+  const falsy = (isTrue === 'false')
   if (editing) {
     const newOptions = [
       { id: options[0].id, text: 'True', correct: truthy },
@@ -42,6 +46,22 @@ sendUpdate = () => {
 
 handleChange = (_, { name, value }) => {
   this.setState({ [name]: value }, this.sendUpdate)
+}
+
+handleDraftChange = (content) => {
+const { dispatch, editing, questionId } = this.props
+  this.setState({ question: content }, () => {
+    if (editing) {
+      const question = { id: questionId, question: this.state.question, multiple_choice: false }
+      console.log(question);
+      if (!this.state.hasUpdate) {
+        dispatch(addUpdate(question))
+        this.setState({ hasUpdate: true })
+      } else {
+        dispatch(editUpdate(question))
+      }
+    }
+  })
 }
 
 handleCheck = (_, { value }) => {
@@ -65,10 +85,11 @@ handleSubmit = (e) => {
 
   render(){
     const { question } = this.state
+    const { text } = this.props;
     return (
     <Segment>
      <Form onSubmit={this.handleSubmit}>
-        <Form.TextArea onChange={this.handleChange} name='question' value={question} label='Question'> </Form.TextArea>
+       <DraftEditor dValue={stateFromHTML(text ? text : "")} onChange={this.handleDraftChange} contentChange={this.handleDraftChange} />
         <Grid style={styles.grid} >
           <Grid.Row>
             <Grid.Column>

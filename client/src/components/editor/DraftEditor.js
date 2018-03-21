@@ -9,16 +9,15 @@ import BlockStyleControls from './BlockStyles';
 import InlineStyleControls from './InlineStyles';
 import { convertToRaw, convertFromRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
+import CodeUtils from 'draft-js-code';
 
-
-
-class RiftEditor extends Component {
+class DraftEditor extends Component {
     state = {
       editorState: EditorState.createEmpty()
     };
 
   componentDidMount() {
-    const { dValue } = this.props;
+    const { dValue, name, value } = this.props;
     if (dValue) {
       this.setState({
         editorState: EditorState.createWithContent(dValue)
@@ -29,6 +28,7 @@ class RiftEditor extends Component {
     focus = () => this.refs.editor.focus();
 
     onChange = (editorState) => {
+      const { dValue } = this.props;
       this.props.contentChange(stateToHTML(this.state.editorState.getCurrentContent()))
       this.setState({ editorState });
     }
@@ -48,9 +48,12 @@ class RiftEditor extends Component {
     return false;
   }
 
-  _onTab(e) {
-    const maxDepth = 4;
-    this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
+  onTab = (evt) => {
+    const { editorState } = this.state;
+    if (!CodeUtils.hasSelectionInBlock(editorState)) return 'not-handled';
+
+    this.onChange(CodeUtils.onTab(evt, editorState));
+    return 'handled';
   }
 
   _toggleBlockType(blockType) {
@@ -77,7 +80,9 @@ class RiftEditor extends Component {
     // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
 
-    let contentState = editorState.getCurrentContent();
+    if (editorState) {
+      let contentState = editorState.getCurrentContent();
+    }
     return (
       <div className="RichEditor-root">
         <BlockStyleControls
@@ -97,6 +102,8 @@ class RiftEditor extends Component {
             onChange={this.onChange}
             onTab={this.onTab}
             ref="editor"
+            name="question"
+            value="{this.state.question}"
             spellCheck={true}
           />
         </div>
@@ -122,4 +129,4 @@ function getBlockStyle(block) {
   }
 }
 
-export default RiftEditor;
+export default DraftEditor;

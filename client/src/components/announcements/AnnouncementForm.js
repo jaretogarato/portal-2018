@@ -5,15 +5,15 @@ import { addAnnouncement, editAnnouncement } from '../../actions/announcements';
 
 
 class AnnouncementForm extends React.Component {
-  state = { title: '', body: '' };
+  state = { text: '' };
 
   componentDidMount() {
     const { editing } = this.props;
     if(editing) {
-      this.setState({ body: this.props.announcement.body, title: this.props.announcement.title });
-    } 
+      this.setState({ text: this.props.announcement.body, title: this.props.announcement.title });
+    }
   }
-  
+
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = (e) => {
@@ -34,19 +34,19 @@ class AnnouncementForm extends React.Component {
     return(
       <Segment>
       <Form onSubmit={this.handleSubmit}>
-            <Form.Input 
-              name='title' 
+            <Form.Input
+              name='title'
               label='Title'
-              placeholder='Title' 
-              onChange={this.handleChange} 
-              value={this.state.title} 
+              placeholder='Title'
+              onChange={this.handleChange}
+              value={this.state.title}
             />
-            <Form.TextArea 
-              name='body' 
+            <Form.TextArea
+              name='body'
               label='Body'
-              placeholder='Body' 
-              onChange={this.handleChange} 
-              value={this.state.body}  
+              placeholder='Body'
+              onChange={this.handleChange}
+              value={this.state.body}
             />
           <Form.Button basic type='submit'>Submit</Form.Button>
           { editing && <Form.Button basic onClick={toggleEdit}>Cancel</Form.Button> }

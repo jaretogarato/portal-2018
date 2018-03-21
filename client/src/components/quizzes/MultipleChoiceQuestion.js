@@ -11,7 +11,9 @@ import { addQuestion } from '../../actions/quizQuestions';
 import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
 import { PageSubTitle } from '../../styles/styledComponents';
-
+import { stateFromHTML } from 'draft-js-import-html'
+import { stateToHTML } from 'draft-js-export-html'
+import DraftEditor from '../editor/DraftEditor'
 
 const options = [
   { key: 2, text: 2, value: 2 },
@@ -34,8 +36,9 @@ class MultipleChoiceQuestion extends React.Component {
 
   componentDidMount() {
     const { quizOptions, text } = this.props
+    let html = stateFromHTML(text);
     if (quizOptions)
-      this.setState({ question: text, optionCount: quizOptions.length })
+      this.setState({ question: html, optionCount: quizOptions.length })
   }
 
   sendUpdate = () => {
@@ -53,6 +56,22 @@ class MultipleChoiceQuestion extends React.Component {
 
   handleChange = ( _, { name, value} ) => {
     this.setState({ [name]: value }, this.sendUpdate)
+  }
+
+  handleDraftChange = (content) => {
+  const { dispatch, editing, questionId } = this.props
+    this.setState({ question: content }, () => {
+      if (editing) {
+        const question = { id: questionId, question: this.state.question, multiple_choice: false }
+        console.log(question);
+        if (!this.state.hasUpdate) {
+          dispatch(addUpdate(question))
+          this.setState({ hasUpdate: true })
+        } else {
+          dispatch(editUpdate(question))
+        }
+      }
+    })
   }
 
   handleSubmit = (e) => {
@@ -97,16 +116,12 @@ class MultipleChoiceQuestion extends React.Component {
 
   render() {
     const { question, optionCount } = this.state
+    const { text } = this.props;
     return (
      <Segment>
         <Form onSubmit={this.handleSubmit}>
           <PageSubTitle>Question Text</PageSubTitle>
-          <Form.TextArea
-            name='question'
-            value={question}
-            onChange={this.handleChange}
-            required
-          />
+            <DraftEditor dValue={stateFromHTML(text ? text : "")} onChange={this.handleDraftChange} contentChange={this.handleDraftChange} />
           { !this.props.editing &&
             <Form.Field
               control={Select}

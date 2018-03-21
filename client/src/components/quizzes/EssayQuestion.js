@@ -8,22 +8,33 @@ import { addQuestion } from '../../actions/quizQuestions';
 import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
 import { stateFromHTML } from 'draft-js-import-html'
-import RiftEditor from '../Rift/riftEditor/RiftEditor';
+import { stateToHTML } from 'draft-js-export-html'
+import DraftEditor from '../editor/DraftEditor'
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  convertToRaw
+} from 'draft-js';
 
 
 
 class EssayQuestion extends Component {
-  state = { question: '', hasUpdate: false }
+  state = { question: '', hasUpdate: false, editorState: EditorState.createEmpty()};
 
   componentDidMount() {
     const { editing, text } = this.props
-    if (editing)
-      this.setState({ question: text })
+    let html = stateFromHTML(text);
+    if (text){
+      this.setState({
+        question: html
+      })
+    }
   }
 
-  handleChange = (e, {name, value}) => {
-  const { dispatch, editing, questionId } = this.props
-    this.setState({ [name]: value }, () => {
+  handleChange = (content) => {
+  const { dispatch, editing, questionId, dValue } = this.props
+    this.setState({ question: content }, () => {
       if (editing) {
         const question = { id: questionId, question: this.state.question, multiple_choice: false }
         if (!this.state.hasUpdate) {
@@ -37,7 +48,7 @@ class EssayQuestion extends Component {
   }
 
   handleSubmit = (e) => {
-    const { quizId, dispatch, hideForm } = this.props
+    const { quizId, dispatch, hideForm, name, value } = this.props
     e.preventDefault();
     const { question } = this.state
     const quizQuestion = { question, multiple_choice: false }
@@ -50,12 +61,12 @@ class EssayQuestion extends Component {
   }
 
   render(){
+    const { text } = this.props;
     return (
     <Segment>
         <Form onSubmit={this.handleSubmit}>
-        <Form.TextArea onChange={this.handleChange} name='question' value={this.state.question} label='Question'> </Form.TextArea>
-        <RiftEditor dValue={this.state.question} name='question' onChange={this.handleChange} contentChange={this.contentChange} label='Question' />
-        { !this.props.editing && <Button basic type='submit'> save question </Button> }
+        <DraftEditor dValue={stateFromHTML(text ? text : "")} onChange={this.handleChange} contentChange={this.handleChange} />
+          { !this.props.editing && <Button basic type='submit'> save question </Button> }
         </Form>
       </Segment>
     )

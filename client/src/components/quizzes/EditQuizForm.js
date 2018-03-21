@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 import { stateFromHTML } from 'draft-js-import-html';
 import { stateToHTML } from 'draft-js-export-html'
-import RiftEditor from '../Rift/riftEditor/RiftEditor';
+import DraftEditor from '../editor/DraftEditor';
 
 class EditQuizForm extends Component {
 state = { title: '', content: '', due_date:'', points: '' }
@@ -70,7 +70,7 @@ handleSubmit = (e) => {
                 onChange={this.handleChange}
                 width={3} />
             </Form.Group>
-            <RiftEditor dValue={stateFromHTML(content)} contentChange={this.contentChange} />
+            <DraftEditor dValue={stateFromHTML(content)} contentChange={this.contentChange} />
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
