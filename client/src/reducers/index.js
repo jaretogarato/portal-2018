@@ -28,8 +28,6 @@ import groups from './groups';
 import courseContent from './courseContent';
 import assignments from './assignment';
 import singleAssignment from './singleAssignment';
-import miscellaneous from './miscellaneous';
-
 
 const rootReducer = combineReducers({
   singleAssignment,
@@ -61,7 +59,6 @@ const rootReducer = combineReducers({
   groups,
   courseContent,
   announcements,
-  miscellaneous,
 });
 
 export default rootReducer;

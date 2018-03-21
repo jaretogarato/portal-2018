@@ -7,6 +7,10 @@ class NoMatch extends React.Component {
   render() {
     return (
       <Header as='h1' textAlign='center'>
+      <hr />
+      <hr />
+      <hr />
+      <hr />
         Page Not Found
         <Link to='/'> Home</Link>
       </Header>

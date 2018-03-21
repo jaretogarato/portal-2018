@@ -25,8 +25,6 @@ mount_devise_token_auth_for 'User', at: 'api/auth'
       resources :groups
     end
 
-    resources :miscellaneous
-
     resources :sub_sections do
       resources :lectures
     end

@@ -180,7 +180,6 @@ class Note extends React.Component {
           </div>
         )
       }
-
     }
   }
 
