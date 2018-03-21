@@ -38,23 +38,21 @@ class NoteForm extends React.Component {
     const { user } = this.props
     const { title, content } = this.state
     return(
-      // <Message noteid={note.id} />
-      <Message info fluid='true' as='form' onSubmit={this.handleSubmit}>
-        <Card.Content>
+      <Segment as='form' onSubmit={this.handleSubmit}>
           <Button
             onClick={ () => this.setState({ noteTime: !this.state.noteTime })}
-            color='teal' size='mini' floated='right'
+            floated='right'
+            basic
           >
             Cancel
           </Button>
-          <Button floated='right' color='blue' type='submit' size='mini'>
+          <Button floated='right' basic type='submit'>
             Submit
           </Button>
           <Image floated='left' size='mini' spaced='left' verticalAlign='top' bordered src={user.image} /> { }
-            <Header as='h4'>
+            <Header as='h4' style={styles.noMargin}>
              {`${user.first_name} ${user.last_name}`}
             </Header>
-          <Card.Header as='h3'>
             <Form.Input
               autoFocus
               name='title'
@@ -70,7 +68,6 @@ class NoteForm extends React.Component {
             type='checkbox'
             onChange={this.handleChecked}
             />
-          </Card.Header>
           <Divider fitted />
           <Card.Description>
             <Form.TextArea
@@ -82,8 +79,7 @@ class NoteForm extends React.Component {
               onChange={this.handleChange}
             />
           </Card.Description>
-        </Card.Content>
-      </Message>
+      </Segment>
     )
   }
 
@@ -100,6 +96,14 @@ class NoteForm extends React.Component {
     )
   }
 }
+
+
+const styles = {
+  noMargin: {
+    margin: '0',
+  }
+}
+
 
 const mapStateToProps = (state) => {
   return { user: state.user }
