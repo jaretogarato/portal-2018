@@ -25,69 +25,69 @@ class CourseHome extends React.Component {
   render() {
     return(
       <Container>
-        <Grid>
+        <Grid stackable>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
             <Grid.Column width={12}>
               <div>
                 <Image src={devpoint} alt='devpoint' />
               </div>
             </Grid.Column>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
               <div >
               </div>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={14} stackable>
+            <Grid.Column width={14}>
               <h3>
                 Main Website
               </h3>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={14} stackable>
+            <Grid.Column width={14}>
               <h5>
                 <a href='http://devpointlabs.com' style={{color: 'purple'}}> Main Site </a>
               </h5>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={14} stackable>
+            <Grid.Column width={14}>
               <h3>
                 Student Handbook
               </h3>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={14} stackable>
+            <Grid.Column width={14}>
               <h5>
                 <a href='https://docs.google.com/document/d/1ly9CTnGcYb6Rls-92RpKCR9RHJ1IcvdBSmfy7HZj3NM/edit' style={{color: 'purple'}}> Student Handbook </a>
               </h5>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={14} stackable>
+            <Grid.Column width={14}>
               <h3>
                 Concepts
               </h3>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={4} stackable>
+            <Grid.Column width={4}>
               <p style={styles.paragraph1}>
                 skdjaljldjaskld
                 lksjdlasjdlasjd
@@ -95,7 +95,7 @@ class CourseHome extends React.Component {
                 asldjkaljd
               </p>
             </Grid.Column>
-            <Grid.Column width={4} stackable>
+            <Grid.Column width={4}>
               <p style={styles.paragraph1}>
                 skdjaljldjaskld
                 lksjdlasjdlasjd
@@ -103,7 +103,7 @@ class CourseHome extends React.Component {
                 asldjkaljd
               </p>
             </Grid.Column>
-            <Grid.Column width={4} stackable>
+            <Grid.Column width={4}>
               <p style={styles.paragraph1}>
                 skdjaljldjaskld
                 lksjdlasjdlasjd
@@ -113,18 +113,18 @@ class CourseHome extends React.Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={14} stackable>
+            <Grid.Column width={14}>
               <h3>
               What you will learn
               </h3>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={1} stackable>
+            <Grid.Column width={1}>
             </Grid.Column>
-            <Grid.Column width={4} stackable >
+            <Grid.Column width={4} >
               <p style={styles.paragraph2}>
                 skdjaljldjaskld
                 lksjdlasjdlasjd

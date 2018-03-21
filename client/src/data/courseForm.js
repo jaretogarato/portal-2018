@@ -5,25 +5,6 @@ export const courseTermOptions = [
   { text: 'Spring', value: 'Spring' },
 ];
 
-export const courseTypeOptions = [
-  {
-    text: 'UofU Full-Time Fullstack WebDev',
-    value: 'UofU Full-Time Fullstack WebDev',
-  },
-  {
-    text: 'Part Time-Fullstack WebDev',
-    value: 'Part Time-Fullstack WebDev',
-  },
-  {
-    text: 'WebDev Prep',
-    value: 'WebDev Prep',
-  },
-  {
-    text: 'DPL Career Services Certificate',
-    value: 'DPL Career Services Certificate',
-  },
-];
-
 export const courseYearOptions = [
   { text: '2016', value: 2016 },
   { text: '2017', value: 2017 },

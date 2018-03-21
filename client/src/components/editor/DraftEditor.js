@@ -7,7 +7,6 @@ import {
 import './Style.css';
 import BlockStyleControls from './BlockStyles';
 import InlineStyleControls from './InlineStyles';
-import { convertToRaw, convertFromRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import CodeUtils from 'draft-js-code';
 

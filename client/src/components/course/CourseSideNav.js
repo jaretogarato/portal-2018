@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { ParagraphText } from '../../styles/styledComponents';
 
 
 class CourseSideNav extends React.Component {
@@ -29,6 +30,7 @@ class CourseSideNav extends React.Component {
       >
         <Menu fluid vertical style={styles.sideNav}>
           <Menu.Item
+            as={ParagraphText}
             name={link}
             active={activeItem === `${link}`}
             onClick={this.handleItemClick}
@@ -45,6 +47,7 @@ class CourseSideNav extends React.Component {
       >
         <Menu fluid vertical style={styles.sideNav}>
           <Menu.Item 
+            as={ParagraphText}
             name={link}
             active={activeItem === `${link}`}
             onClick={this.handleItemClick}

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { addCourse, updateCourse } from '../../actions/courses';
 import {
   courseTermOptions,
-  courseTypeOptions,
   courseYearOptions,
 } from '../../data/courseForm';
 import {
