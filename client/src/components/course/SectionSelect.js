@@ -22,6 +22,9 @@ import {
   Menu,
   Icon,
   Popup,
+  Modal,
+  Header,
+  Button
 } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { getAssignments } from '../../actions/assignments';
@@ -46,11 +49,12 @@ const MenuItemContainer = styled.div`
   display: flex;
 `
 
-
 class SectionSelect extends React.Component {
   state = {
     courseLoaded: false,
     sectionsLoaded: false,
+    modalOpen: false,
+    modalSection: {}
   };
 
   setCourseLoaded = () => this.setState({ courseLoaded: true });
@@ -94,20 +98,27 @@ class SectionSelect extends React.Component {
       dispatch(getSubSections(sectionId, this.setSubSectionsLoaded));
     }
   }
-  
-  deleteButtonClick = (section) => {
-    if( window.confirm("Are you sure?")) {
-      this.props.dispatch(deleteSection(section))
-      this.props.dispatch(clearSection())
-    }
-  }
 
   journalEntryClick = (section) => {
     const { course } = this.props;
     this.props.history.push(`/courses/${course.id}/journal_entries`, { section: section.id })
   }
+
+  handleConfirm = (section) => {
+    this.props.dispatch(deleteSection(section))
+    this.toggleModal()
+  }
+
+  toggleModal = (section = {}) => {
+    this.setState( state => {
+      return { modalOpen: !this.state.modalOpen, modalSection: section }
+    })
+  }
   
   render() {
+    let open = {}
+    if (this.state.modalOpen) 
+      open = { open: true }
     let { courseLoaded, sectionsLoaded } = this.state;
     const { user: { is_admin }, sectionId, sections } = this.props;
     let current = sections.filter( s => s.id === sectionId )[0]
@@ -146,20 +157,33 @@ class SectionSelect extends React.Component {
                       </div>
                       { is_admin && 
                         <div>
+                          <Modal basic {...open} onClose={() => this.toggleModal()}>
+                            <Header icon='archive' content='Delete Subsection' />
+                            <Modal.Content>
+                              <p>Are you sure you want to delete "{this.state.modalSection.title}"?</p>
+                            </Modal.Content>
+                            <Modal.Actions>
+                              <Button onClick={() => this.toggleModal()} color='red' inverted>
+                                <Icon name='remove' /> No
+                              </Button>
+                              <Button onClick={() => this.handleConfirm(this.state.modalSection)} color='green' inverted>
+                                <Icon name='checkmark' /> Yes
+                              </Button>
+                            </Modal.Actions>
+                          </Modal>
                           <Popup basic content="Delete Section" trigger={
                             <Icon 
                               link 
                               size="large" 
                               name='delete' 
                               style={{float: "right"}} 
-                              onClick={() => this.deleteButtonClick(section) }/> 
+                              onClick={() => this.toggleModal(section) }/> 
                             }  
                           />
                           <SectionEditForm />
                         </div>
                       }
                     </MenuItemIcons>
-                    
                   </Menu.Item>
                 )}
                 { is_admin && <SectionForm /> }

@@ -12,12 +12,15 @@ import {
   Segment,
   Popup,
   Loader,
+  Modal,
+  Button,
+  Header,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 
 class Section extends React.Component {
-  state = { activeIndexes: [], loaded: false }
+  state = { activeIndexes: [], loaded: false, modalOpen: false, modalSub: {} }
 
   componentWillReceiveProps(nextProps) {
     let p = this.props.subSections.length
@@ -72,11 +75,6 @@ class Section extends React.Component {
     }
   }
 
-  deleteSubClick = (ss) => {
-    if( window.confirm("Are You Sure?"))
-      this.props.dispatch(deleteSubSection(ss))
-  }
-
   mapContents = (ssid) => {
     const { content, quizzes, assignments, lectures } = this.props
     const filtered = []
@@ -99,7 +97,22 @@ class Section extends React.Component {
     return filtered
   }
 
+  handleConfirm = (subSection) => {
+    this.props.dispatch(deleteSubSection(subSection))
+    this.toggleModal()
+  }
+
+  toggleModal = (ss = {}) => {
+    this.setState( state => {
+      return { modalOpen: !this.state.modalOpen, modalSub: ss }
+    })
+  }
+
   render() {
+    let open = {}
+    if (this.state.modalOpen) 
+      open = { open: true }
+
     const { sectionId, subSections, user: { is_admin }, title } = this.props
     if( sectionId && !subSections.length && !this.state.loaded ) {
       return(
@@ -113,6 +126,20 @@ class Section extends React.Component {
     } else {
       return(
         <div>
+          <Modal basic {...open} onClose={() => this.toggleModal()}>
+            <Header icon='archive' content='Delete Subsection' />
+            <Modal.Content>
+              <p>Are you sure you want to delete "{this.state.modalSub.title}"?</p>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button onClick={() => this.toggleModal()} color='red' inverted>
+                <Icon name='remove' /> No
+              </Button>
+              <Button onClick={() => this.handleConfirm(this.state.modalSub)} color='green' inverted>
+                <Icon name='checkmark' /> Yes
+              </Button>
+            </Modal.Actions>
+          </Modal>
           <PageSubTitle>{title}</PageSubTitle>
           { subSections.map( ss => {
             let content = this.mapContents(ss.id)
@@ -134,17 +161,18 @@ class Section extends React.Component {
                         size="large" 
                         name='delete' 
                         style={{float: "right"}} 
-                        onClick={ () => this.deleteSubClick(ss)}/> 
+                        onClick={ () => this.toggleModal(ss)}/> 
                       }
-                    /> 
+                      />
                     <SubSectionForm originalTitle={ss.title} id={ss.id} editing={true}/>
                     <AddCourseContent content={content} subSectionId={ss.id} />
                   </div>
                 }
                 { content.length ? this.displayItems(content) : "No Content" }
               </Accordion.Content>
-            </Accordion>
-          })}
+            </Accordion> 
+          })
+          }
           { is_admin && <SubSectionForm/> }
         </div>
       )
