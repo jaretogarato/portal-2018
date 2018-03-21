@@ -23,13 +23,13 @@ class Api::AnnouncementsController < ApplicationController
     end
   end
 
-  def destroy 
+  def destroy
     @announcement.destroy
   end
 
-  private 
+  private
     def announcement_params
-      params.require(:announcement).permit(:title, :body)
+      params.require(:announcement).permit(:body)
     end
 
     def set_announcement

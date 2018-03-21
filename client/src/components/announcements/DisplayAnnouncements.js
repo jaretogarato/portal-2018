@@ -15,8 +15,8 @@ class DisplayAnnouncements extends React.Component {
 
   displayAnnouncements = () => {
     const { announcements } = this.props;
-    return announcements.map( (announcement, i) => {
-      return <Announcement key={i} announcement={announcement} />
+    return announcements.map( (text, i) => {
+      return <Announcement key={i} announcement={text} />
     })
   }
 
@@ -33,6 +33,6 @@ const mapStateToProps = (state) => {
   return {
     announcements: state.announcements,
   }
-} 
+}
 
 export default connect(mapStateToProps)(withRouter(DisplayAnnouncements));

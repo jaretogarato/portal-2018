@@ -2,26 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Segment } from 'semantic-ui-react';
 import { addAnnouncement, editAnnouncement } from '../../actions/announcements';
-
+import { stateFromHTML } from 'draft-js-import-html'
+import DraftEditor from '../editor/DraftEditor';
 
 class AnnouncementForm extends React.Component {
-  state = { text: '' };
+  state = { body: '' };
 
   componentDidMount() {
-    const { editing } = this.props;
+    const { editing, announcement } = this.props
+    let html = stateFromHTML(announcement);
     if(editing) {
-      this.setState({ text: this.props.announcement.body, title: this.props.announcement.title });
+      this.setState({ body: html });
     }
   }
-
-  handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch, course, toggleForm, editing } = this.props;
-    // const { title, body } = this.state;
+    const { body } = this.state;
     if(editing) {
-      dispatch(editAnnouncement(course.id, this.state, this.props.announcement.id));
+      dispatch(editAnnouncement(course.id, body, this.props.announcement.id));
       this.props.toggleEdit();
     } else {
       dispatch(addAnnouncement(course.id, this.state));
@@ -29,25 +29,16 @@ class AnnouncementForm extends React.Component {
     }
   }
 
+  contentChange = (body) => {
+    this.setState({ body })
+  }
+
   render() {
-    const { toggleEdit, editing } = this.props;
+    const { toggleEdit, editing, text } = this.props;
     return(
       <Segment>
       <Form onSubmit={this.handleSubmit}>
-            <Form.Input
-              name='title'
-              label='Title'
-              placeholder='Title'
-              onChange={this.handleChange}
-              value={this.state.title}
-            />
-            <Form.TextArea
-              name='body'
-              label='Body'
-              placeholder='Body'
-              onChange={this.handleChange}
-              value={this.state.body}
-            />
+          <DraftEditor dValue={text} onChange={this.handleChange} contentChange={this.contentChange} />
           <Form.Button basic type='submit'>Submit</Form.Button>
           { editing && <Form.Button basic onClick={toggleEdit}>Cancel</Form.Button> }
       </Form>

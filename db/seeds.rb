@@ -176,13 +176,6 @@ end
   )
 end
 
-5.times do |m|
-  Miscellaneou.create(
-    title: Faker::ProgrammingLanguage.name,
-    content: Faker::Internet.url
-  )
-end
-
 puts "10 courses seeded"
 puts "11 sections seeded"
 puts "5 sub_sections seeded"
@@ -221,7 +214,7 @@ puts "\nTest Admin seeded email: admin@admin.com and password: password"
 puts "Test Student seeded email: test@test.com and password: password \n "
 
 5.times do |i|
-  Announcement.create(title: "Test Announcement #{i + 1}", body: "This is some test announcement data...", course_id: 1)
+  Announcement.create(body: "This is some test announcement data...", course_id: 1)
 end
 
 puts '5 Announcements seeded'

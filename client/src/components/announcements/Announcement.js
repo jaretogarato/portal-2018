@@ -21,15 +21,14 @@ class Announcement extends React.Component {
   }
 
   render() {
-    const { announcement: { title, body } } = this.props;
+    const { announcement } = this.props;
     const { editing } = this.state;
     if(editing) {
-      return <AnnouncementForm announcement={this.props.announcement} toggleEdit={this.toggleEdit} editing />
+      return <AnnouncementForm announcement={announcement} toggleEdit={this.toggleEdit} editing />
     } else {
       return(
         <Segment fluid>
-          <PageTitle>{title}</PageTitle>
-          <BoldText>{body}</BoldText>
+          <PageTitle> <div dangerouslySetInnerHTML={{__html: announcement.body}}></div> </PageTitle>
           { this.props.user.is_admin &&
             <Segment basic>
               <Button basic onClick={this.toggleEdit}>Edit</Button>
