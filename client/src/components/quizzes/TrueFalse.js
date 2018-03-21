@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { addQuestion } from '../../actions/quizQuestions';
 import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { stateFromHTML } from 'draft-js-import-html'
-import { stateToHTML } from 'draft-js-export-html'
 import DraftEditor from '../editor/DraftEditor'
 
 
@@ -19,7 +18,6 @@ state = { question: '', isTrue: '', hasUpdate: false }
 
 componentDidMount() {
   const { text, editing, truth } = this.props
-  let html = stateFromHTML(text);
   if(editing)
     this.setState({ question: text, isTrue: truth })
 }
@@ -84,7 +82,6 @@ handleSubmit = (e) => {
 }
 
   render(){
-    const { question } = this.state
     const { text } = this.props;
     return (
     <Segment>

@@ -12,7 +12,6 @@ import { addUpdate, editUpdate } from '../../actions/questionUpdates';
 import { connect } from 'react-redux';
 import { PageSubTitle } from '../../styles/styledComponents';
 import { stateFromHTML } from 'draft-js-import-html'
-import { stateToHTML } from 'draft-js-export-html'
 import DraftEditor from '../editor/DraftEditor'
 
 const options = [
@@ -115,7 +114,7 @@ class MultipleChoiceQuestion extends React.Component {
   }
 
   render() {
-    const { question, optionCount } = this.state
+    const { optionCount } = this.state
     const { text } = this.props;
     return (
      <Segment>

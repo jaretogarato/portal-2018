@@ -16,7 +16,7 @@ class DraftEditor extends Component {
     };
 
   componentDidMount() {
-    const { dValue, name, value } = this.props;
+    const { dValue } = this.props;
     if (dValue) {
       this.setState({
         editorState: EditorState.createWithContent(dValue)
@@ -27,7 +27,6 @@ class DraftEditor extends Component {
     focus = () => this.refs.editor.focus();
 
     onChange = (editorState) => {
-      const { dValue } = this.props;
       this.props.contentChange(stateToHTML(this.state.editorState.getCurrentContent()))
       this.setState({ editorState });
     }
@@ -79,9 +78,6 @@ class DraftEditor extends Component {
     // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
 
-    if (editorState) {
-      let contentState = editorState.getCurrentContent();
-    }
     return (
       <div className="RichEditor-root">
         <BlockStyleControls

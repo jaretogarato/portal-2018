@@ -9,7 +9,6 @@ import { updateQuiz, getQuiz } from '../../actions/singleQuiz';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
 import { stateFromHTML } from 'draft-js-import-html';
-import { stateToHTML } from 'draft-js-export-html'
 import DraftEditor from '../editor/DraftEditor';
 
 class EditQuizForm extends Component {
