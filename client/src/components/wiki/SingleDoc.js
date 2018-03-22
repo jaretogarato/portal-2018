@@ -79,7 +79,7 @@ class SingleDoc extends React.Component {
               </Button>
             </div>
           }
-          <p>{doc.content}</p>
+          <div dangerouslySetInnerHTML={{__html: doc.content}}></div>
         </Segment>
       )
   }

@@ -9,6 +9,8 @@ import {
 import axios from 'axios';
 import { setHeaders } from '../../actions/headers';
 import { setFlash } from '../../actions/flash';
+import { stateFromHTML } from 'draft-js-import-html'
+import DraftEditor from '../editor/DraftEditor'
 
 
 class DocForm extends React.Component {
@@ -16,6 +18,10 @@ class DocForm extends React.Component {
 
   handleChange = (_, { name, value }) => {
     this.setState({ [name]: value })
+  }
+
+  contentChange = (content) => {
+    this.setState({ content })
   }
 
   componentWillMount() {
@@ -62,12 +68,7 @@ class DocForm extends React.Component {
             value={title}
             onChange={this.handleChange}
           />
-          <Form.TextArea
-            name='content'
-            label='Content'
-            value={content}
-            onChange={this.handleChange}
-          />
+        <DraftEditor dValue={stateFromHTML(content ? content : "")} contentChange={this.contentChange} />
           <Button basic onClick={this.handleSubmit}>Save</Button>
         </Form>
       </Segment>
