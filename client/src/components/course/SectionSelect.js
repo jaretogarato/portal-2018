@@ -157,8 +157,8 @@ class SectionSelect extends React.Component {
                       </div>
                       { is_admin && 
                         <div>
-                          <Modal basic {...open} onClose={() => this.toggleModal()}>
-                            <Header icon='archive' content='Delete Subsection' />
+                          <Modal size='tiny' basic {...open} onClose={() => this.toggleModal()}>
+                            <Header icon='archive' content='Delete Section' />
                             <Modal.Content>
                               <p>Are you sure you want to delete "{this.state.modalSection.title}"?</p>
                             </Modal.Content>

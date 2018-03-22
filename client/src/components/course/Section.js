@@ -126,7 +126,7 @@ class Section extends React.Component {
     } else {
       return(
         <div>
-          <Modal basic {...open} onClose={() => this.toggleModal()}>
+          <Modal size='tiny' basic {...open} onClose={() => this.toggleModal()}>
             <Header icon='archive' content='Delete Subsection' />
             <Modal.Content>
               <p>Are you sure you want to delete "{this.state.modalSub.title}"?</p>
