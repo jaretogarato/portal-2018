@@ -9,6 +9,9 @@ import { updateAssignment, getAssignment } from '../../actions/assignment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
+import DraftEditor from '../editor/DraftEditor';
+import { stateFromHTML } from 'draft-js-import-html';
+import { EditorState } from 'draft-js';
 
 
 const submissionOptions = [
@@ -65,6 +68,10 @@ class EditAssignment extends Component {
     this.setState({ [name]: value })
   }
 
+  contentChange = (content) => {
+    this.setState({ content })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -78,7 +85,7 @@ class EditAssignment extends Component {
       due_date, published, content,
       group_assignment
     }, this.props.currentAssignment.id))
-    
+
     this.props.toggleEdit();
   }
 
@@ -152,15 +159,7 @@ class EditAssignment extends Component {
               required
             />
           </Form.Group>
-          <Form.TextArea
-            name='content'
-            label='Description'
-            defaultValue={content}
-            style={styles.textArea}
-            placeholder='Rift Text Editor Placeholder'
-            required
-            onChange={this.handleChange}
-          />
+          <DraftEditor dValue={stateFromHTML(content)} contentChange={this.contentChange} />
           <Divider />
           <Form.Checkbox
             name='published'

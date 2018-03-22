@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { PageTitle } from '../../styles/styledComponents';
+import DraftEditor from '../editor/DraftEditor';
+import { stateFromHTML } from 'draft-js-import-html';
 
 
 const submissionOptions = [
@@ -25,10 +27,14 @@ class CreateAssignment extends Component {
     due_date: '', created_at: moment().format('LL'),
     published: false, content: '', group_assignment: false
   }
-  
+
   handleChange = (e) => {
     const { value, name } = e.target;
     this.setState({ [name]: value })
+  }
+
+  contentChange = (content) => {
+    this.setState({ content })
   }
 
   handlePublishedClick = (e) => {
@@ -40,7 +46,7 @@ class CreateAssignment extends Component {
     const { group_assignment } = this.state;
     this.setState({ group_assignment: !group_assignment })
   }
-  
+
   handleSubmit = (e) => {
     const { history, dispatch } = this.props
     const {
@@ -49,7 +55,7 @@ class CreateAssignment extends Component {
       content, group_assignment
     } = this.state
     e.preventDefault();
-    
+
     let assignment = {
       title, submission_type,
       points, due_date, published,
@@ -83,7 +89,7 @@ class CreateAssignment extends Component {
             <Form.Select
               label='Submission Options'
               name= "submission_type"
-              
+
               options={ submissionOptions }
               placeholder='Submission Options'
               required
@@ -97,7 +103,7 @@ class CreateAssignment extends Component {
               label='Due Date'
               type='date'
               width={ 9 }
-              onChange={ this.handleChange } 
+              onChange={ this.handleChange }
             >
             </Form.Input>
             <Form.Input
@@ -110,15 +116,7 @@ class CreateAssignment extends Component {
               required
             />
           </Form.Group>
-          <Form.TextArea
-            name='content'
-            label='Description'
-            value={ content }
-            style={ styles.textArea }
-            placeholder='Rift Text Editor Placeholder'
-            required
-            onChange={ this.handleChange }
-          />
+          <DraftEditor dValue={stateFromHTML(content)} contentChange={this.contentChange} />
           <Divider />
           <Form.Checkbox
             name='published'
@@ -136,7 +134,7 @@ class CreateAssignment extends Component {
             onChange={ this.handleChange }
           />
           <Form.Group>
-            <Button basic type='submit'>Create</Button> 
+            <Button basic type='submit'>Create</Button>
             <Link to={'./assignments'}>
               <Button basic onClick={ this.props.history.goBack }>Cancel</Button>
             </Link>

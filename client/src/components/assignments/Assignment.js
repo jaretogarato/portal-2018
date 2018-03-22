@@ -14,6 +14,7 @@ import axios from 'axios';
 import { PageTitle } from '../../styles/styledComponents';
 
 
+
 class Assignment extends Component {
   state = { loaded: false, edit: false };
 
@@ -100,7 +101,10 @@ class Assignment extends Component {
               Submission Type: {submission_type} {group_assignment ? " - Group Assignment" : ""}
             </List.Item>
             <List.Item>
-              Description: {content}
+              <br />
+              Description:
+              <hr /> 
+              <div dangerouslySetInnerHTML={{__html: content}}></div>
             </List.Item>
           </List>
         </Segment>
