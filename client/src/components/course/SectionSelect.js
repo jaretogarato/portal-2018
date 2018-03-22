@@ -106,6 +106,7 @@ class SectionSelect extends React.Component {
 
   handleConfirm = (section) => {
     this.props.dispatch(deleteSection(section))
+    this.props.dispatch(setSection())
     this.toggleModal()
   }
 

@@ -1,4 +1,4 @@
-export const setSection = section => {
+export const setSection = (section = null) => {
   return { type: 'SET_SECTION', section };
 };
 
