@@ -19,12 +19,6 @@ const Footer = () => (
               Home 
             </h5>
           </Link>
-          &nbsp;
-          <Link to='/' style={styles.leftNav}>
-            <h5 style={{fontWeight: '300'}}>
-              Support
-            </h5>
-          </Link>
         </Grid.Column>
       </Grid>
     </Segment>
