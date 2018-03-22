@@ -9,28 +9,32 @@ import { Link } from 'react-router-dom';
 import { editLecture, getLecture } from '../../actions/lectures';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
-
+import { stateFromHTML } from 'draft-js-import-html'
+import DraftEditor from '../editor/DraftEditor'
 
 class EditLecture extends Component {
   state = { title: '', content: '' }
-  
+
   componentDidMount() {
     const { id, title, content } = this.props.lecture
     this.props.dispatch(getLecture(id))
     this.setState({ title, content })
   }
-  
-  
+
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { title, content } = this.state
     this.props.dispatch(editLecture({ title, content }, this.props.lecture.id))
     this.props.toggleEdit();
   }
-  
+
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
-  
-  
+
+    contentChange = (content) => {
+      this.setState({ content })
+    }
+
     render() {
       const { title, content } = this.props.lecture
       return(
@@ -48,17 +52,8 @@ class EditLecture extends Component {
                 required
                 onChange={this.handleChange}>
               </Form.Input>
-            </Form.Group> 
-            <Form.TextArea
-              name='content'
-              defaultValue={content}
-              style={ styles.textArea }
-              label='Description'
-              labelFontSize='1.3em'
-              placeholder='Rift Text Editor Placeholder'
-              required
-              onChange={this.handleChange}
-            />
+            </Form.Group>
+            <DraftEditor dValue={stateFromHTML(content)} onChange={this.handleChange} contentChange={this.contentChange} />
             <Divider />
             <Form.Checkbox label='Published?' />
             <Divider />
@@ -73,7 +68,7 @@ class EditLecture extends Component {
       );
     }
   }
-  
+
   const styles = {
     form: {
       paddingTop: '2%',
@@ -83,10 +78,10 @@ class EditLecture extends Component {
       fontSize:'1.3em',
     },
   }
-  
+
   const mapStateToProps = (state) => {
     return { lecture: state.lectures }
   }
-  
-  
+
+
   export default connect(mapStateToProps)(EditLecture);

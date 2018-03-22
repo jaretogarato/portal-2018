@@ -8,7 +8,7 @@ import { addLecture } from '../../actions/lectures';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PageTitle } from '../../styles/styledComponents';
-
+import DraftEditor from '../editor/DraftEditor'
 
 const submissionOptions = [
   { key: '1', text: 'PLACEHOLDER', value: '1' },
@@ -27,51 +27,47 @@ class CreateLecture extends Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
+  contentChange = (content) => {
+    this.setState({ content })
+  }
+
   render(){
     const { title, content } = this.state
     return(
       <Segment basic>
         <PageTitle>Create Lecture</PageTitle>
-        <Segment> 
+        <Segment>
           <Form onSubmit={this.handleSubmit} style={styles.form}>
             <Form.Group widths='equal'>
-              <Form.Input 
+              <Form.Input
                 label='Title'
                 name='title'
-                value={title}  
+                value={title}
                 width={9}
-                placeholder='Lecture Title' 
+                placeholder='Lecture Title'
                 autoFocus={true}
                 required
                 onChange={this.handleChange}>
               </Form.Input>
-              <Form.Select 
-                label='Sub-section group' 
-                options={ submissionOptions } 
-                placeholder='Sub-section groups' 
-                required 
-                width={2} 
+              <Form.Select
+                label='Sub-section group'
+                options={ submissionOptions }
+                placeholder='Sub-section groups'
+                required
+                width={2}
               />
             </Form.Group>
-            <Form.TextArea 
-              name='content'
-              value={content}
-              style={ styles.textArea }
-              label='Content' 
-              placeholder='Rift Text Editor Placeholder' 
-              required 
-              onChange={this.handleChange}
-            />
+            <DraftEditor {...this.props} dValue={this.state.content} onChange={this.handleChange} contentChange={this.contentChange} />
             <Form.Checkbox label='Published?' />
             <Form.Group>
-              <Button basic type='submit'>Create</Button> 
+              <Button basic type='submit'>Create</Button>
               <Link to={'./lectures'}>
-                <Button basic onClick={this.props.history.goBack}>Cancel</Button> 
+                <Button basic onClick={this.props.history.goBack}>Cancel</Button>
               </Link>
             </Form.Group>
-          </Form> 
+          </Form>
         </Segment>
-      </Segment> 
+      </Segment>
     )
   }
 }

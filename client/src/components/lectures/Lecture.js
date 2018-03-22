@@ -10,6 +10,8 @@ import EditLecture from './EditLecture';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { PageTitle, PageSubTitle } from '../../styles/styledComponents';
+import { stateToHTML } from 'draft-js-export-html'
+
 
 
 class Lecture extends Component {
@@ -59,7 +61,7 @@ class Lecture extends Component {
         <PageTitle>{title}</PageTitle>
         <List>
           <List.Item>
-            <PageSubTitle style={ styles.listItemHeader }>Description:</PageSubTitle> {content}
+            <PageSubTitle style={ styles.listItemHeader }>Description:</PageSubTitle> <div dangerouslySetInnerHTML={{__html: content}}></div>
           </List.Item>
           <List.Item>
             <PageSubTitle style={ styles.listItemHeader }>Created:</PageSubTitle> {created}
