@@ -33,6 +33,15 @@ class CreateAssignment extends Component {
     this.setState({ [name]: value })
   }
 
+  handlePointsChange = (e) => {
+    if (e.target.value > 0 ) {
+    const { value } = e.target;
+    this.setState({ points: value })
+    } else {
+      this.setState({ points: 0 })
+    }
+  }
+
   contentChange = (content) => {
     this.setState({ content })
   }
@@ -66,7 +75,7 @@ class CreateAssignment extends Component {
 
   render() {
     const {
-      title, published, group_assignment, content
+      title, published, group_assignment, content, points
     } = this.state
 
     return (
@@ -109,10 +118,11 @@ class CreateAssignment extends Component {
             <Form.Input
               label='Points'
               placeholder='Points'
+              value={ points }
               name="points"
               type='number'
               width={ 2 }
-              onChange={ this.handleChange }
+              onChange={ this.handlePointsChange }
               required
             />
           </Form.Group>

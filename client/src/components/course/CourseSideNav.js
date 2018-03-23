@@ -53,12 +53,8 @@ class CourseSideNav extends React.Component {
         to={`/courses/${id}${link === 'Home' ? '' : `/${link.toLowerCase()}`}`}
       >
         <Menu fluid vertical style={styles.sideNav}>
-<<<<<<< HEAD
           <Menu.Item 
             as={ParagraphText}
-=======
-          <Menu.Item
->>>>>>> changes order of menu on sidebar
             name={link}
             active={activeItem === `${link}`}
             onClick={this.handleItemClick}
