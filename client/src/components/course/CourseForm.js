@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCourse, updateCourse } from '../../actions/courses';
+import { addCourse, updateCourse, deleteCourse } from '../../actions/courses';
 import {
   courseTermOptions,
   courseYearOptions
@@ -20,9 +20,9 @@ import DraftEditor from '../editor/DraftEditor';
 import { stateFromHTML } from 'draft-js-import-html';
 
 class CourseForm extends React.Component {
-  state = { course_type: '', term: '', year: ''  };
+  state = { course_type: '', term: '', year: '', };
 
-  componentWillMount(){
+  componentDidMount(){
     if(this.props.type === 'edit'){
       const { course_type, term, year } = this.props.course;
       this.setState({course_type, term, year});
@@ -92,6 +92,7 @@ class CourseForm extends React.Component {
                 <Form.Field width={1} />
               </Form.Group>
             <CourseFormButton basic>Save</CourseFormButton>
+            <CourseFormButton basic onClick={ this.props.cancelAdding }>Cancel</CourseFormButton>
             </Form>
           </CourseFormSegment>
         </Grid.Column>

@@ -56,11 +56,11 @@ export const updateCourse = (course, id) => {
   }
 }
 
-export const deleteCourse = (course) => {
+export const deleteCourse = (id) => {
   return(dispatch) => {
-    axios.delete(`/api/courses/${course.id}`)
+    axios.delete(`/api/courses/${id}`)
       .then( res => dispatch({
-        type: 'DELETE_APP', course, headers: res.headers
+        type: 'DELETE_COURSE', id, headers: res.headers
       })).catch( err => {
         dispatch({ type: 'SET_HEADERS', headers: err.headers });
         dispatch(setFlash('Failed To Delete Course', 'red'));

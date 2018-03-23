@@ -7,6 +7,9 @@ import {
   Container,
   Menu,
   Card,
+  Button,
+  Divider,
+  Modal
 } from 'semantic-ui-react';
 import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
 
@@ -14,12 +17,17 @@ import { HomeBody, HomeWrapper } from '../../styles/home-images.js';
 class Courses extends React.Component {
   state = {
     courses: [],
-    isAdding: false,
+    modalOpen: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getCourses());
+  }
+
+  toggleModal = (e) => {
+    const { modalOpen } = this.state
+    this.setState({ modalOpen: !modalOpen })
   }
 
   renderCourses = () => {
@@ -32,37 +40,28 @@ class Courses extends React.Component {
   }
 
   render() {
-    const { isAdding } = this.state;
-    return(
-      <div>
-        <Menu>
-          <Menu.Item
-            disabled={ isAdding }
-            name='Add Course'
-            active={ 'nope' === 'editorials' }
-            onClick={ () => this.setState({ isAdding: true }) }
-          />
-          { isAdding &&
-            <Menu.Item
-              name='Cancel Create Course'
-              active={'nope' === 'editorials'}
-              onClick={ () => this.setState({ isAdding: false }) }
-            />
-          }
-        </Menu>
-        { isAdding && <CourseForm cancelAdding={ () => this.setState({ isAdding: false }) } /> }
+    const { modalOpen, loaded } = this.state;
+      return (
         <HomeBody style={{paddingTop: '80px'}}>
           <HomeWrapper style={ styles.scrollable_section }>
             <Container>
+              <Button onClick={ () => this.toggleModal() }>Add Course</Button>
+              <Divider />
               <Card.Group stackable columns='3'>
                 { this.renderCourses() }
               </Card.Group>
+              { modalOpen && 
+              <Modal
+                open={ modalOpen }
+                onClose={() => this.toggleModal()}
+                >
+                <CourseForm cancelAdding={ () => this.setState({ modalOpen: false }) } /> 
+              </Modal> }
             </Container>
           </HomeWrapper>
         </HomeBody>
-      </div>
-    )
-  }
+      )
+    } 
 }
 
 const styles = {
