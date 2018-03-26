@@ -121,6 +121,7 @@ class CreateAssignment extends Component {
               value={ points }
               name="points"
               type='number'
+              min="0"
               width={ 2 }
               onChange={ this.handlePointsChange }
               required
