@@ -18,10 +18,9 @@ class AnnouncementForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { dispatch, course, toggleForm, editing } = this.props;
-    const { body } = this.state;
+    const { dispatch, course, toggleForm, editing, announcement } = this.props;
     if(editing) {
-      dispatch(editAnnouncement(course.id, body, this.props.announcement.id));
+      dispatch(editAnnouncement(course.id, {...announcement, body: this.state.body } , announcement.id));
       this.props.toggleEdit();
     } else {
       dispatch(addAnnouncement(course.id, this.state));
@@ -34,11 +33,11 @@ class AnnouncementForm extends React.Component {
   }
 
   render() {
-    const { toggleEdit, editing, text } = this.props;
+    const { toggleEdit, editing, announcement } = this.props;
     return(
       <Segment>
       <Form onSubmit={this.handleSubmit}>
-          <DraftEditor dValue={text} onChange={this.handleChange} contentChange={this.contentChange} />
+          <DraftEditor dValue={stateFromHTML(announcement ? announcement.body : "")} onChange={this.handleChange} contentChange={this.contentChange} />
           <Form.Button basic type='submit'>Submit</Form.Button>
           { editing && <Form.Button basic onClick={toggleEdit}>Cancel</Form.Button> }
       </Form>
