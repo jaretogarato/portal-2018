@@ -42,6 +42,10 @@ class CourseForm extends React.Component {
     }
   }
 
+  deleteCourse = (course) => {
+    this.props.dispatch(deleteCourse(course));
+  }
+
   handleChange = (e, { id, value }) => this.setState({ [id]: value })
 
   contentChange = (course_type) => {
@@ -50,7 +54,7 @@ class CourseForm extends React.Component {
 
   render() {
     const { course_type, term, year } = this.state;
-
+    const { cancelAdding, course, editing } = this.props;
     return(
       <CourseFormGrid width={16}>
         <Grid.Column style={{ maxWidth: 1200, paddingTop: 15 }}>
@@ -91,14 +95,29 @@ class CourseForm extends React.Component {
                 />
                 <Form.Field width={1} />
               </Form.Group>
-            <CourseFormButton basic>Save</CourseFormButton>
-            <CourseFormButton basic onClick={ this.props.cancelAdding }>Cancel</CourseFormButton>
+              <CourseFormButton basic>Save</CourseFormButton>
+              <CourseFormButton basic onClick={ cancelAdding }>Cancel</CourseFormButton>
+              { editing && 
+                  <CourseFormButton 
+                    basic 
+                    style={ styles.right } 
+                    onClick={ () => this.deleteCourse(course) }
+                  >
+                    Delete
+                  </CourseFormButton> 
+              }
             </Form>
           </CourseFormSegment>
         </Grid.Column>
       </CourseFormGrid>
     )
   }
+}
+
+const styles = {
+  right: {
+    float: 'right',
+  },
 }
 
   const mapStateToProps = ( state )  => {

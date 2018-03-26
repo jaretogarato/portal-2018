@@ -4,7 +4,7 @@ import { Button, Modal } from 'semantic-ui-react';
 
 
 class EditCourseModal extends React.Component {
-  state = { modalOpen: false };
+  state = { modalOpen: false, editing: true };
 
   toggleModal = (e) => {
     const { modalOpen } = this.state
@@ -22,7 +22,7 @@ class EditCourseModal extends React.Component {
           <Button onClick={() => this.toggleModal() }>Edit</Button>
         }
       >
-        <CourseForm type='edit' course={course} toggleModal={this.toggleModal}/>
+        <CourseForm type='edit' editing={this.state.editing} course={course} toggleModal={this.toggleModal}/>
       </Modal>
     );
   }
