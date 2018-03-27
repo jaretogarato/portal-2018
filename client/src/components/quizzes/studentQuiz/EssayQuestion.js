@@ -43,7 +43,7 @@ class EssayQuestion extends React.Component {
       <Segment style={{marginBottom: '2%'}}>
         <PageSubTitle> Question {this.props.number}</PageSubTitle>
         <Divider />
-        <PageSubTitle>{question.question}</PageSubTitle>
+        <PageSubTitle><div dangerouslySetInnerHTML={{__html: question.question}}></div></PageSubTitle>
         <Form>
           <Form.TextArea value={response} onChange={this.handleChange} onBlur={this.sendResponse} />
         </Form>

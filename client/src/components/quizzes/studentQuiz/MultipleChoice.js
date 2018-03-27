@@ -30,7 +30,7 @@ class MultipleChoice extends React.Component {
       <Segment style={{marginBottom: '2%'}}>
         <PageSubTitle> Question {this.props.number}</PageSubTitle>
         <Divider /> 
-        <PageSubTitle>{question.question}</PageSubTitle>
+        <PageSubTitle><div dangerouslySetInnerHTML={{__html: question.question}}></div></PageSubTitle>
         {
           question.options.map( (o,i) => {
             return(
