@@ -33,6 +33,8 @@ import Assignment from './assignments/Assignment';
 import CreateAssignment from './assignments/CreateAssignment';
 import FetchEnrollment from './course/FetchEnrollment';
 import JournalEntries from './course/JournalEntries';
+import { PageTitle } from '../styles/styledComponents';
+
 
 
 class Course extends React.Component {
@@ -106,13 +108,15 @@ class Course extends React.Component {
 
   render() {
     const { sidebar } = this.state;
-
     return (
       <Segment basic style={{marginTop: '86px'}}>
         <Container fluid style={styles.noBorder}>
           <Grid style={styles.noBorder}>
             <Grid.Row only='computer'>
               <Grid.Column mobile={16} tablet={16} computer={3} only='computer'>
+                <Link to={`/courses/${this.props.course.id}`}>
+                  <PageTitle style={styles.title}>{this.props.course.course_type}</PageTitle>
+                </Link>
                 <Segment style={styles.sidebar} basic>
                   <Route component={CourseSideNav} />
                 </Segment>
@@ -166,7 +170,16 @@ const styles = {
   },
   pusher: {
     height: '100vh'
+  },
+  title: {
+    paddingLeft: '10%',
+  },
+}
+
+const mapStateToProps = (state) => {
+  return {
+    course: state.course,
   }
 }
 
-export default connect()(Course);
+export default connect(mapStateToProps)(Course);
