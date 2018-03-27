@@ -50,7 +50,7 @@ class Attendance extends React.Component {
       if (user.role === 'student')
         return <StudentRecord submitted={submitted} key={user.id} user={user} status={user.status} />
       return null
-    })
+      })
   }
 
   submitAttendance = () => {
@@ -173,7 +173,7 @@ const styles = {
 const mapStateToProps = (state) => {
   return {
     users: state.users,
-    currentDate: state.currentDate
+    currentDate: state.currentDate,
   }
 }
 

@@ -39,3 +39,5 @@ export const HomeLogo = styled.div`
   bottom: 0;
   left: 0;
 `
+
+
