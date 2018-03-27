@@ -98,7 +98,6 @@ class CreateAssignment extends Component {
             <Form.Select
               label='Submission Options'
               name= "submission_type"
-
               options={ submissionOptions }
               placeholder='Submission Options'
               required
@@ -118,7 +117,6 @@ class CreateAssignment extends Component {
             <Form.Input
               label='Points'
               placeholder='Points'
-              value={ points }
               name="points"
               type='number'
               min="0"

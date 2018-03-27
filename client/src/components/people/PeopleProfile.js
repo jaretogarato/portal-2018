@@ -149,7 +149,7 @@ class PeopleProfile extends React.Component {
                     onChange={this.handleChange}
                     value={options}
                   />
-                  <Button basic type='submit' onClick={this.addBadge}>
+                  <Button style={{marginLeft: '1%'}} basic type='submit' onClick={this.addBadge}>
                     Add
                   </Button>
                 </Form>
