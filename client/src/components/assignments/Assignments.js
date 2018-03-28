@@ -5,6 +5,7 @@ import {
   Button,
   Icon,
   Grid,
+  Input,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,95 +14,87 @@ import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
 
-
 class Assignments extends Component {
-  state = { assignments: [], column: null, direction: null }
+  state = {
+    search: '',
+    assignments: [],
+  }
 
   componentDidMount() {
     axios.get('/api/assignments')
     .then( res => {
-      this.setState({ assignments: res.data })
+      this.setState({
+        assignments: res.data,
+      })
     }).catch( err => {
       // TODO - Flash Message
     });
   }
 
-  handleSort = clickedColumn => () => {
-    const { column, direction, assignments } = this.state
-    if (column === clickedColumn) {
-      this.setState({
-        column: clickedColumn,
-        assignments: _.sortBy(assignments, [clickedColumn]),
-        direction: 'ascending',
-      })
-    return
-    }
-    this.setState({
-      assignments: assignments.reverse(),
-      direction: direction === 'ascending' ? 'descending' : 'ascending',
-    })
-  }
-
-  displayAssignments = () => {
-    const { id } = this.props.match.params
-    return this.state.assignments.map( (assignment, i) => {
-      let date = moment(assignment.due_date).format('MMMM DD, YYYY')
-      return (
-        <Table.Row key={i}>
-          <Table.Cell>
-            <Link to={`/courses/${id}/assignments/${assignment.id}`}>{assignment.title}</Link>
-          </Table.Cell>
-          <Table.Cell>
-            {assignment.points}
-          </Table.Cell>
-          <Table.Cell>
-            {date}
-          </Table.Cell>
-        </Table.Row>
-      )
-    })
-  }
+  handleChange = (e) => {
+    this.setState({ search: e.target.value});
+  };
 
   render() {
     const { id } = this.props.match.params;
-    const { column, direction } = this.state;
+    const { column, search, assignments } = this.state;
     return (
       <Segment basic>
         <PageTitle style={{ textAlign: 'left'}}>All Assignments</PageTitle>
         <Grid>
           <Grid.Row>
             <Grid.Column width={14}>
-              <Link to={`/courses/${id}/assignments/create`}>
-                <Button
-                  basic
-                  icon
-                  labelPosition='left'
-                  floated='right'>
-                  <Icon name='add' />
-                  Assignment
-                </Button>
-              </Link>
+              <div>
+                <Input
+                  onChange={this.handleChange}
+                  icon={{ name: 'search'}}
+                  placeholder="Search Assignments"
+                />
+                <Link to={`/courses/${id}/assignments/create`}>
+                  <Button
+                    basic
+                    icon
+                    labelPosition='left'
+                    floated='right'>
+                    <Icon name='add' />
+                    Assignment
+                  </Button>
+                </Link>
+              </div>
               <br />
               <br />
               <Table basic='very' striped singleLine>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell width={6}
-                      sorted={column === 'name' ? direction : null} 
-                      onClick={this.handleSort('name')}>
+                    <Table.HeaderCell width={6}>
                       Name</Table.HeaderCell>
-                    <Table.HeaderCell width={4}
-                      sorted={column === 'created_at' ? direction : null} 
-                      onClick={this.handleSort('created_at')}>
+                    <Table.HeaderCell width={4}>
                       Points</Table.HeaderCell>
-                    <Table.HeaderCell width={4}
-                      sorted={column === 'course' ? direction : null} 
-                      onClick={this.handleSort('course')}>
+                    <Table.HeaderCell width={4}>
                       Due Date</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                  {this.displayAssignments()}
+                {
+                  assignments.map( (assignment, i) =>  assignment.title.toLowerCase()
+                    .includes(this.state.search.toLowerCase()
+                  ) ? (
+                    <Table.Row key={i}>
+                      <Table.Cell>
+                        <Link to={`/courses/${id}/assignments/${assignment.id}`}>
+                          {assignment.title}
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell>
+                        {assignment.points}
+                      </Table.Cell>
+                      <Table.Cell>
+                        {moment(assignment.due_date).format('MMMM DD, YYYY')}
+                      </Table.Cell>
+                    </Table.Row>
+                  ) : null
+                  )
+                }
                 </Table.Body>
               </Table>
             </Grid.Column>
