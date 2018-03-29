@@ -13,7 +13,8 @@ gem 'devise_invitable', '~>1.7.2'
 gem 'cloudinary', "~> 1.8.1"
 gem 'delayed_job_active_record', '~> 4.1.2'
 gem 'jbuilder', '~> 2.7.0'
-gem 'faker', github: 'stympy/faker'
+# gem 'faker', github: 'stympy/faker'
+gem 'faker', '1.8.4'
 
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
