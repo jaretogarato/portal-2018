@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
-ruby '2.5.0'
+# ruby '2.5.0'
+ruby '2.3.1'
 
 gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'omniauth', '~> 1.6.1'
 gem 'devise', '~> 4.3.0'
+# gem 'devise', git: 'https://github.com/plataformatec/devise'
 gem 'devise_token_auth', '~> 0.1.42'
 gem 'devise_invitable', '~>1.7.2'
 gem 'cloudinary', "~> 1.8.1"
