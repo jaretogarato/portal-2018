@@ -13,12 +13,13 @@ gem 'devise_invitable', '~>1.7.2'
 gem 'cloudinary', "~> 1.8.1"
 gem 'delayed_job_active_record', '~> 4.1.2'
 gem 'jbuilder', '~> 2.7.0'
+gem 'faker', github: 'stympy/faker'
 
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry', '~> 0.11.1'
   gem 'dotenv-rails', '2.2.1'
-  gem 'faker', github: 'stympy/faker'
+  # gem 'faker', github: 'stympy/faker'
   gem 'rspec-rails'
 end
 
@@ -36,4 +37,4 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
