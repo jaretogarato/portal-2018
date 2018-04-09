@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
+// import { AdobeEdge } from '../assets/animate/animate_package/portal-logo/Assets/edge_includes/edge.6.0.0.min.js';
 
 class HomeAnimation extends Component {
-  
+
   componentDidMount() {
     const compId = 'EDGE-18968668';
     let composition = AdobeEdge.getComposition(compId);

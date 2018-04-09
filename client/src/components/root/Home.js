@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { getCoursesByStudent } from '../../actions/courses';
 import { HomeBody, HomeLogo, HomeWrapper } from '../../styles/home-images.js';
 import { PortalButton } from '../../styles/styledComponents';
+// import '../HomeAnimation';
 
 
 class Home extends React.Component {
